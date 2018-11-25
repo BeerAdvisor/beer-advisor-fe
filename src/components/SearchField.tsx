@@ -5,9 +5,8 @@ interface SearchFieldProps {
     classes?: any;
 }
 
-const SearchField = (props: SearchFieldProps) => { 
+const SearchField = (props: SearchFieldProps) => {
     return <TextField id="search-bar" label="Beer" variant="standard" />;
 };
 
 export default SearchField;
-
