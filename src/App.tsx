@@ -4,6 +4,7 @@ import SearchField from './components/SearchField';
 import StepSlider from './components/StepSlider';
 // @ts-ignore TODO: configure TS correctly
 import { install } from '@material-ui/styles';
+import Select from './components/Select';
 
 install();
 
@@ -13,6 +14,7 @@ class App extends Component {
             <div>
                 <SearchField />
                 <StepSlider />
+                <Select/>
             </div>
         );
     }
