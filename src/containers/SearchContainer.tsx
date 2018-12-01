@@ -1,9 +1,9 @@
 import React from 'react';
 import { MenuItem } from '@material-ui/core';
-import Layout from '../components/Layout';
-import Tabs from '../components/Tabs';
+import { Tabs, Layout } from '../components';
 
 const SearchContainer = () => {
+    // TODO: fetch this from server
     const menuItems = [1, 2, 3, 4];
 
     const layoutProps = {
