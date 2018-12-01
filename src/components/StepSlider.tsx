@@ -28,8 +28,9 @@ export interface MaterialSliderProps {
 }
 
 const StepSlider = (props: MaterialSliderProps) => {
-    const classes = useStyles();
     const [sliderValue, setSliderValue] = useState(0);
+    const classes = useStyles();
+
     const { min = 0, max = 100, step = 10, labelElement = 'h6' } = props;
 
     const handleChange = (e: ChangeEvent<{}>, value: number) => {
