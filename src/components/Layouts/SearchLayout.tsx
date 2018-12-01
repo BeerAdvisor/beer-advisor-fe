@@ -1,11 +1,14 @@
 import React from 'react';
-import SearchField from './TextFields/SearchField';
-import Select from './Select';
-import StepSlider from './StepSlider';
+import SearchField from '../TextFields/SearchField';
+import Select from '../Select/Select';
+import StepSlider from '../Sliders/StepSlider';
 import styled from 'styled-components';
 
 const SearchLayoutConatiner = styled.div`
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
 `;
 
 interface SearchLayoutProps {

@@ -3,7 +3,7 @@ import './App.css';
 // @ts-ignore TODO: configure TS correctly
 import { install } from '@material-ui/styles';
 import { MuiThemeProvider }  from '@material-ui/core/styles';
-import theme from './components/theme';
+import theme from './theme/theme';
 import SearchContainer from './containers/SearchContainer';
 
 install();
