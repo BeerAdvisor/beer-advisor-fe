@@ -1,9 +1,8 @@
 import React, { useState, ChangeEvent } from 'react';
-import { FormControl, InputLabel, MenuItem, Input } from '@material-ui/core';
+import { FormControl, InputLabel, Input } from '@material-ui/core';
 import Select from '@material-ui/core/Select';
 // @ts-ignore
 import { makeStyles } from '@material-ui/styles';
-import { MenuItemProps } from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles({
     root: {
@@ -20,7 +19,7 @@ const useStyles = makeStyles({
 
 interface SelectBoxProps {
     label?: string;
-    items?: Array<React.ComponentType<MenuItemProps>>;
+    items: JSX.Element[];
 }
 
 const SelectBox = ({ label, items }: SelectBoxProps) => {
@@ -47,13 +46,7 @@ const SelectBox = ({ label, items }: SelectBoxProps) => {
                     onChange={handleValueChange}
                     input={<Input id="filled-age-native-simple" />}
                 >
-                // TODO: export this
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                {items}
                 </Select>
             </FormControl>
         </div>
