@@ -2,17 +2,11 @@ import React from 'react';
 import SearchField from '../TextFields/SearchField';
 import Select from '../Select/Select';
 import StepSlider from '../Sliders/StepSlider';
-import styled from 'styled-components';
-
-const SearchLayoutConatiner = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 200px;
-`;
+import { SearchLayoutWrapper, ElementsWrapper } from './style';
 
 interface SearchLayoutProps {
     searchFieldPlaceholder: string;
+    selectLabel: string;
     selectMenuItems: JSX.Element[];
     sliderMaxValue: number;
     sliderMinValue: number;
@@ -25,6 +19,7 @@ const SearchLayout = ({
     sliderMaxValue,
     sliderMinValue,
     sliderStep,
+    selectLabel,
 }: SearchLayoutProps) => {
     const searchFieldProps = {
         placeholder: searchFieldPlaceholder,
@@ -32,6 +27,7 @@ const SearchLayout = ({
 
     const selectProps = {
         items: selectMenuItems,
+        label: selectLabel,
     };
 
     const sliderProps = {
@@ -41,11 +37,13 @@ const SearchLayout = ({
     };
 
     return (
-        <SearchLayoutConatiner>
+        <SearchLayoutWrapper>
             <SearchField {...searchFieldProps} />
-            <Select {...selectProps}/>
-            <StepSlider {...sliderProps} />
-        </SearchLayoutConatiner>
+            <ElementsWrapper>
+                <Select {...selectProps}/>
+                <StepSlider {...sliderProps} />
+            </ElementsWrapper>
+        </SearchLayoutWrapper>
     );
 };
 

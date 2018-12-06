@@ -7,7 +7,8 @@ const SearchContainer = () => {
     const menuItems = [1, 2, 3, 4];
 
     const layoutProps = {
-        searchFieldPlaceholder: 'Find a beer',
+        searchFieldPlaceholder: 'Find a beer', // TODO: constants
+        selectLabel: 'Beer type',
         selectMenuItems: menuItems.map(item => (
             <MenuItem value={item}>{item}</MenuItem>
         )),

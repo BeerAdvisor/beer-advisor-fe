@@ -1,65 +1,62 @@
-import React, { ChangeEvent } from 'react';
-import { withStyles, Theme } from '@material-ui/core/styles';
+import React, { ChangeEvent, useState } from 'react';
+import { Theme } from '@material-ui/core/styles';
 // @ts-ignore
 import SwipeableViews from 'react-swipeable-views';
+// @ts-ignore
+import { makeStyles } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import { TabsContainer } from './style';
 
-const styles = (theme: Theme) => ({
-  root: {
-    // display: 'flex',
-    color: theme.palette.primary.light,
-    minWidth: 300,
-    maxWidth: 500,
-  },
-});
+const useStyles = makeStyles((theme: Theme) => ({
+   root: {
+    backgroundColor: 'inherit',
+    color: 'black',
+   },
+}));
 
 interface FullWidthTabsProps {
-  classes: any;
-  children: any;
+    children: any;
 }
 
-class FullWidthTabs extends React.Component<FullWidthTabsProps> {
-  state = {
-    value: 0,
-  };
+function FullWidthTabs(props: FullWidthTabsProps) {
+    const [activeValue, setActiveValue] = useState(0);
+    const { root } = useStyles();
 
-  handleChange = (event: ChangeEvent<{}>, value: string) => {
-    this.setState({ value });
-  };
+    const handleChange = (event: ChangeEvent<{}>, value: number) => {
+        setActiveValue(value);
+    };
 
-  handleChangeIndex = (index: string) => {
-    this.setState({ value: index });
-  };
+    const handleChangeIndex = (index: number) => {
+        setActiveValue(index);
+    };
 
-  render() {
-    const { classes, children } = this.props;
+    const { children } = props;
 
     return (
-      <div className={classes.root}>
-        <AppBar position="static" color="primary">
-          <Tabs
-            value={this.state.value}
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            fullWidth={true}
-          >
-            <Tab label="Find a beer" />
-            <Tab label="Find a bar" />
-          </Tabs>
-        </AppBar>
-        <SwipeableViews
-          axis={'x'}
-          index={this.state.value}
-          onChangeIndex={this.handleChangeIndex}
-        >
-         {children}
-        </SwipeableViews>
-      </div>
+        <TabsContainer>
+            <AppBar position="static" classes={{root}}>
+                <Tabs
+                    value={activeValue}
+                    onChange={handleChange}
+                    indicatorColor="primary"
+                    fullWidth={true}
+                >
+                    // TODO: extract this
+                    <Tab label="Find a beer" />
+                    <Tab label="Find a bar" />
+                </Tabs>
+            </AppBar>
+            <SwipeableViews
+                axis={'x'}
+                index={activeValue}
+                onChangeIndex={handleChangeIndex}
+            >
+                {children}
+            </SwipeableViews>
+        </TabsContainer>
     );
-  }
 }
 
-export default withStyles(styles, { withTheme: true })(FullWidthTabs);
+export default FullWidthTabs;
