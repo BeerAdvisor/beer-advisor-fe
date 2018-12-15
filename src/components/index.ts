@@ -1,4 +1,3 @@
-export * from './Layouts';
 export * from './NavBar';
 export * from './Select';
 export * from './Sliders';

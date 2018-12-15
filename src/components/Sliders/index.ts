@@ -1,3 +1,3 @@
-export { default as Slider } from './StepSlider';
+export { default as Slider } from './ReactSlider';
 
 export * from './StepSlider';

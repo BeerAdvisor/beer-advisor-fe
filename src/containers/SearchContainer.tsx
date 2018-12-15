@@ -1,6 +1,7 @@
 import React from 'react';
 import { MenuItem } from '@material-ui/core';
-import { Tabs, Layout } from '../components';
+import { Tabs } from '../components';
+import { MainLayout } from '../Layouts';
 
 const SearchContainer = () => {
     // TODO: fetch this from server
@@ -19,8 +20,8 @@ const SearchContainer = () => {
 
     return (
         <Tabs>
-            <Layout {...layoutProps} />
-            <Layout {...layoutProps} />
+            <MainLayout {...layoutProps} />
+            <MainLayout {...layoutProps} />
         </Tabs>
     );
 };

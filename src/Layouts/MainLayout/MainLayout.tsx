@@ -1,10 +1,9 @@
 import React from 'react';
-import SearchField from '../TextFields/SearchField';
-import Select from '../Select/Select';
-import StepSlider from '../Sliders/StepSlider';
-import { SearchLayoutWrapper, ElementsWrapper } from './style';
+import { Select, Slider, TextField } from '../../components';
+import Button from '@material-ui/core/Button';
+import { MainLayoutContainer, ElementsWrapper, ButtonContainer } from './style';
 
-interface SearchLayoutProps {
+interface MainLayoutProps {
     searchFieldPlaceholder: string;
     selectLabel: string;
     selectMenuItems: JSX.Element[];
@@ -13,14 +12,14 @@ interface SearchLayoutProps {
     sliderStep: number;
 }
 
-const SearchLayout = ({
+const MainLayout = ({
     searchFieldPlaceholder,
     selectMenuItems,
     sliderMaxValue,
     sliderMinValue,
     sliderStep,
     selectLabel,
-}: SearchLayoutProps) => {
+}: MainLayoutProps) => {
     const searchFieldProps = {
         placeholder: searchFieldPlaceholder,
     };
@@ -37,14 +36,17 @@ const SearchLayout = ({
     };
 
     return (
-        <SearchLayoutWrapper>
-            <SearchField {...searchFieldProps} />
+        <MainLayoutContainer>
+            <TextField {...searchFieldProps} />
             <ElementsWrapper>
                 <Select {...selectProps}/>
-                <StepSlider {...sliderProps} />
+                <Slider {...sliderProps} />
             </ElementsWrapper>
-        </SearchLayoutWrapper>
+            <ButtonContainer>
+                <Button fullWidth={true} variant="contained" color="primary">Search</Button>
+            </ButtonContainer>
+        </MainLayoutContainer>
     );
 };
 
-export default SearchLayout;
+export default MainLayout;

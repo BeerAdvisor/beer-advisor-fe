@@ -10,10 +10,22 @@ import Tab from '@material-ui/core/Tab';
 import { TabsContainer } from './style';
 
 const useStyles = makeStyles((theme: Theme) => ({
-   root: {
-    backgroundColor: 'inherit',
-    color: 'black',
-   },
+    root: {
+        backgroundColor: 'inherit',
+        display: 'inline-flex',
+        width: 'auto',
+        color: 'black',
+        boxShadow: 'none',
+    },
+    selectedFirst: {
+        boxShadow: '-5px -1.5px 5px rgba(0, 0, 0, 0.09) inset',
+    },
+    selectedSecond: {
+        boxShadow: '5px -1.5px 5px rgba(0, 0, 0, 0.09) inset',
+    },
+    indicator: {
+        visibility: 'hidden',
+    },
 }));
 
 interface FullWidthTabsProps {
@@ -22,7 +34,7 @@ interface FullWidthTabsProps {
 
 function FullWidthTabs(props: FullWidthTabsProps) {
     const [activeValue, setActiveValue] = useState(0);
-    const { root } = useStyles();
+    const { root, selectedFirst, selectedSecond, indicator } = useStyles();
 
     const handleChange = (event: ChangeEvent<{}>, value: number) => {
         setActiveValue(value);
@@ -36,16 +48,22 @@ function FullWidthTabs(props: FullWidthTabsProps) {
 
     return (
         <TabsContainer>
-            <AppBar position="static" classes={{root}}>
+            <AppBar position="static" classes={{ root }}>
                 <Tabs
                     value={activeValue}
                     onChange={handleChange}
-                    indicatorColor="primary"
-                    fullWidth={true}
+                    classes={{ indicator }}
+                    scrollable={false}
                 >
                     // TODO: extract this
-                    <Tab label="Find a beer" />
-                    <Tab label="Find a bar" />
+                    <Tab
+                        classes={{ selected: selectedFirst }}
+                        label="Find a beer"
+                    />
+                    <Tab
+                        classes={{ selected: selectedSecond }}
+                        label="Find a bar"
+                    />
                 </Tabs>
             </AppBar>
             <SwipeableViews
