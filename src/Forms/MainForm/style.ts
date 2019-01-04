@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MainLayoutContainer = styled.div`
+export const MainFormContainer = styled.div`
     min-width: 300px;
     min-height: 200px;
     overflow-x: hidden;

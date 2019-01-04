@@ -1,9 +1,9 @@
 import React from 'react';
 import { Select, Slider, TextField } from '../../components';
 import Button from '@material-ui/core/Button';
-import { MainLayoutContainer, ElementsWrapper, ButtonContainer } from './style';
+import { MainFormContainer, ElementsWrapper, ButtonContainer } from './style';
 
-interface MainLayoutProps {
+interface MainFormProps {
     searchFieldPlaceholder: string;
     selectLabel: string;
     selectMenuItems: JSX.Element[];
@@ -12,14 +12,14 @@ interface MainLayoutProps {
     sliderStep: number;
 }
 
-const MainLayout = ({
+const MainForm = ({
     searchFieldPlaceholder,
     selectMenuItems,
     sliderMaxValue,
     sliderMinValue,
     sliderStep,
     selectLabel,
-}: MainLayoutProps) => {
+}: MainFormProps) => {
     const searchFieldProps = {
         placeholder: searchFieldPlaceholder,
     };
@@ -36,7 +36,7 @@ const MainLayout = ({
     };
 
     return (
-        <MainLayoutContainer>
+        <MainFormContainer>
             <TextField {...searchFieldProps} />
             <ElementsWrapper>
                 <Select {...selectProps}/>
@@ -45,8 +45,8 @@ const MainLayout = ({
             <ButtonContainer>
                 <Button fullWidth={true} variant="contained" color="primary">Search</Button>
             </ButtonContainer>
-        </MainLayoutContainer>
+        </MainFormContainer>
     );
 };
 
-export default MainLayout;
+export default MainForm;

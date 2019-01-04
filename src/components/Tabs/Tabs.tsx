@@ -12,10 +12,20 @@ import { TabsContainer } from './style';
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
         backgroundColor: 'inherit',
-        display: 'inline-flex',
         width: 'auto',
         color: 'black',
         boxShadow: 'none',
+    },
+    flexContainer: {
+        flexDirection: 'column',
+    },
+    // TODO: Media queries for label
+    tabRoot: {
+        minWidth: '120px',
+        minHeight: '360px',
+    },
+    wrapper: {
+        transform: 'rotate(-90deg)',
     },
     selectedFirst: {
         boxShadow: '-5px -1.5px 5px rgba(0, 0, 0, 0.09) inset',
@@ -34,7 +44,7 @@ interface FullWidthTabsProps {
 
 function FullWidthTabs(props: FullWidthTabsProps) {
     const [activeValue, setActiveValue] = useState(0);
-    const { root, selectedFirst, selectedSecond, indicator } = useStyles();
+    const { root, selectedFirst, selectedSecond, wrapper, flexContainer, tabRoot, indicator } = useStyles();
 
     const handleChange = (event: ChangeEvent<{}>, value: number) => {
         setActiveValue(value);
@@ -48,24 +58,24 @@ function FullWidthTabs(props: FullWidthTabsProps) {
 
     return (
         <TabsContainer>
-            <AppBar position="static" classes={{ root }}>
-                <Tabs
-                    value={activeValue}
-                    onChange={handleChange}
-                    classes={{ indicator }}
-                    scrollable={false}
-                >
-                    // TODO: extract this
-                    <Tab
-                        classes={{ selected: selectedFirst }}
-                        label="Find a beer"
-                    />
-                    <Tab
-                        classes={{ selected: selectedSecond }}
-                        label="Find a bar"
-                    />
-                </Tabs>
-            </AppBar>
+                <AppBar position="static" classes={{ root }}>
+                    <Tabs
+                        value={activeValue}
+                        onChange={handleChange}
+                        classes={{ flexContainer, indicator }}
+                        scrollable={false}
+                    >
+                        // TODO: extract this
+                        <Tab
+                            classes={{ root: tabRoot, wrapper, selected: selectedFirst }}
+                            label="BEER"
+                        />
+                        <Tab
+                            classes={{ root: tabRoot, wrapper, selected: selectedSecond }}
+                            label="BAR"
+                        />
+                    </Tabs>
+                </AppBar>
             <SwipeableViews
                 axis={'x'}
                 index={activeValue}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { MenuItem } from '@material-ui/core';
 import { Tabs } from '../components';
-import { MainLayout } from '../Layouts';
+import { MainForm } from '../Forms';
 
 const SearchContainer = () => {
     // TODO: fetch this from server
@@ -19,10 +19,10 @@ const SearchContainer = () => {
     };
 
     return (
-        <Tabs>
-            <MainLayout {...layoutProps} />
-            <MainLayout {...layoutProps} />
-        </Tabs>
+            <Tabs>
+                <MainForm {...layoutProps} />
+                <MainForm {...layoutProps} />
+            </Tabs>
     );
 };
 
