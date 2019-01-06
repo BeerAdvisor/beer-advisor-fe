@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // @ts-ignore TODO: configure TS correctly
 import { install, ThemeProvider } from '@material-ui/styles';
+import { MuiThemeProvider } from  '@material-ui/core/styles';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
 import theme from './theme';
 import SearchContainer from './containers/SearchContainer';
@@ -15,7 +16,9 @@ class App extends Component {
     <ApolloProvider client={client}>
       <StyledComponentsThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
-          <SearchContainer />
+          <MuiThemeProvider  theme={theme}>
+            <SearchContainer />
+          </MuiThemeProvider >
         </ThemeProvider>
       </StyledComponentsThemeProvider>
     </ApolloProvider>

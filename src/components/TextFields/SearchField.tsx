@@ -1,12 +1,12 @@
 import React from 'react';
-import TextField, { TextFieldProps } from '@material-ui/core/TextField';
+import { InputBase, InputLabel, FormControl } from '@material-ui/core';
 // @ts-ignore
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
     root: {
         width: '100%',
-        marginTop: '15px',
+        marginTop: '31px',
         height: '40px',
     },
     input: {
@@ -16,23 +16,27 @@ const useStyles = makeStyles({
         height: '40px',
         padding: '0px 14px',
     },
-    notchedOutline: {
-        borderRadius: '25px',
+    labelRoot: {
+
     },
 });
 
-const SearchField = (props: TextFieldProps) => {
-    const { root, input, notchedOutline } = useStyles();
+const SearchField = (props: any) => {
+    const { root, input, labelRoot } = useStyles();
+    const { label, placeholder } = props;
 
     return (
          // @ts-ignore
-        <TextField
+        <FormControl classes={{ root }}> 
+        {label && (<InputLabel shrink={true} className={labelRoot} htmlFor="bootstrap-input">
+          {label}
+        </InputLabel>)}
+        <InputBase
             id="search-bar"
-            variant="outlined"
-            classes={{ root }}
-            InputProps={{ classes: { input, notchedOutline } }}
-            {...props}
+            classes={{ input }}
+            placeholder={placeholder}
         />
+        </FormControl>
     );
 };
 

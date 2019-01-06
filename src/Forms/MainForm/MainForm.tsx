@@ -5,6 +5,7 @@ import { MainFormContainer, ElementsWrapper, ButtonContainer } from './style';
 
 interface MainFormProps {
     searchFieldPlaceholder: string;
+    searchFieldLabel: string;
     selectLabel: string;
     selectMenuItems: JSX.Element[];
     sliderMaxValue: number;
@@ -13,6 +14,7 @@ interface MainFormProps {
 }
 
 const MainForm = ({
+    searchFieldLabel,
     searchFieldPlaceholder,
     selectMenuItems,
     sliderMaxValue,
@@ -22,6 +24,7 @@ const MainForm = ({
 }: MainFormProps) => {
     const searchFieldProps = {
         placeholder: searchFieldPlaceholder,
+        label: searchFieldLabel,
     };
 
     const selectProps = {

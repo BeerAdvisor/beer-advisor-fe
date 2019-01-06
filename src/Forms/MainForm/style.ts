@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
+// TODO: Media queries here
 export const MainFormContainer = styled.div`
-    min-width: 300px;
-    min-height: 200px;
+    box-sizing: border-box; 
+    border-radius: 40px;
+    padding: 0 110px;
+    width: 100%;
+    height: 720px;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: ${props => props.theme.palette.secondary.main};
 `;
 
 export const ElementsWrapper = styled.div`

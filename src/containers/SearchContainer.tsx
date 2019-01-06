@@ -9,6 +9,7 @@ const SearchContainer = () => {
 
     const layoutProps = {
         searchFieldPlaceholder: 'Find a beer', // TODO: constants
+        searchFieldLabel: 'Beer name',
         selectLabel: 'Beer type',
         selectMenuItems: menuItems.map(item => (
             <MenuItem value={item}>{item}</MenuItem>

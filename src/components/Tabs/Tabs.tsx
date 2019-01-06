@@ -13,25 +13,43 @@ const useStyles = makeStyles((theme: Theme) => ({
     root: {
         backgroundColor: 'inherit',
         width: 'auto',
-        color: 'black',
+        color: theme.palette.primary.main,
         boxShadow: 'none',
     },
     flexContainer: {
         flexDirection: 'column',
     },
     // TODO: Media queries for label
-    tabRoot: {
+    tabRootFirst: {
+        borderRadius: '40px',
+        position: 'relative',
+        zIndex: 1,
+        backgroundColor: theme.palette.secondary.main,
+        fontSize: '24px',
         minWidth: '120px',
-        minHeight: '360px',
+        minHeight: '400px',
+    },
+    tabRootSecond: {
+        borderRadius: '40px',
+        position: 'relative',
+        transform: 'translateY(-80px)',
+        zIndex: 0,
+        backgroundColor: theme.palette.secondary.main,
+        fontSize: '24px',
+        minWidth: '120px',
+        minHeight: '400px',
     },
     wrapper: {
         transform: 'rotate(-90deg)',
     },
     selectedFirst: {
-        boxShadow: '-5px -1.5px 5px rgba(0, 0, 0, 0.09) inset',
+        zIndex: 1,
+        textDecoration: 'underline',
+        boxShadow: '10px 0 26px 0 rgba(0, 0, 0, 0.09)',
     },
     selectedSecond: {
-        boxShadow: '5px -1.5px 5px rgba(0, 0, 0, 0.09) inset',
+        textDecoration: 'underline',
+        boxShadow: '10px 0 26px 0 rgba(0, 0, 0, 0.09)',
     },
     indicator: {
         visibility: 'hidden',
@@ -44,7 +62,7 @@ interface FullWidthTabsProps {
 
 function FullWidthTabs(props: FullWidthTabsProps) {
     const [activeValue, setActiveValue] = useState(0);
-    const { root, selectedFirst, selectedSecond, wrapper, flexContainer, tabRoot, indicator } = useStyles();
+    const { root, selectedFirst, selectedSecond, wrapper, flexContainer, tabRootFirst, tabRootSecond, indicator } = useStyles();
 
     const handleChange = (event: ChangeEvent<{}>, value: number) => {
         setActiveValue(value);
@@ -67,11 +85,11 @@ function FullWidthTabs(props: FullWidthTabsProps) {
                     >
                         // TODO: extract this
                         <Tab
-                            classes={{ root: tabRoot, wrapper, selected: selectedFirst }}
+                            classes={{ root: tabRootFirst, wrapper, selected: selectedFirst }}
                             label="BEER"
                         />
                         <Tab
-                            classes={{ root: tabRoot, wrapper, selected: selectedSecond }}
+                            classes={{ root: tabRootSecond, wrapper, selected: selectedSecond }}
                             label="BAR"
                         />
                     </Tabs>
