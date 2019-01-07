@@ -10,8 +10,9 @@ const theme = createMuiTheme({
         },
     },
     overrides: {
-        MuiInputLabel: {
-            shrink: {
+        MuiFormLabel: {
+            root: {
+                color: '#000000',
                 fontSize: '24px',
                 alignSelf: 'center',
                 left: 'unset',
@@ -23,16 +24,13 @@ const theme = createMuiTheme({
                     borderRadius: '25px',
                     // TODO: Media queries
                     height: '40px',
-                    'label + &': {
-                        marginTop: 30,
-                      },
+                    padding: '0px 14px',
             },
         },
         MuiFormControl: {
             root: {
                 width: '100%',
-                marginTop: '31px',
-                height: '40px',
+                marginTop: '60px',
             },
         },
     },

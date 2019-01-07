@@ -5,6 +5,7 @@ import { Theme, Button as MaterialButton } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
+        marginTop: '60px',
         [theme.breakpoints.down('sm')]: {
           width: '120px',
         },

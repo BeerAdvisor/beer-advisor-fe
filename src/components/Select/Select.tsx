@@ -1,20 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import { FormControl, InputLabel, Input } from '@material-ui/core';
-import Select from '@material-ui/core/Select';
-// @ts-ignore
-import { makeStyles } from '@material-ui/styles';
-
-const useStyles = makeStyles({
-    root: {
-        display: 'flex',
-    },
-    selectEmpty: {
-        marginTop: 5 * 2,
-    },
-    formControl: {
-        width: '100%',
-    },
-});
+import { FormControl, FormLabel, Input, Select } from '@material-ui/core';
 
 interface SelectBoxProps {
     label?: string;
@@ -23,7 +8,6 @@ interface SelectBoxProps {
 
 const SelectBox = ({ label, items }: SelectBoxProps) => {
     const [selectedValue, setSelectedValue] = useState('0');
-    const { selectEmpty, root, formControl } = useStyles();
 
     const handleValueChange = ({
         target: { value },
@@ -32,23 +16,20 @@ const SelectBox = ({ label, items }: SelectBoxProps) => {
     };
 
     return (
-        <div className={root}>
-            <FormControl variant="standard" className={formControl}>
-                {label && (
-                    <InputLabel htmlFor="filled-age-native-simple">
-                        {label}
-                    </InputLabel>
-                )}
-                <Select
-                    className={selectEmpty}
-                    value={selectedValue}
-                    onChange={handleValueChange}
-                    input={<Input id="filled-age-native-simple" />}
-                >
-                {items}
-                </Select>
-            </FormControl>
-        </div>
+        <FormControl variant="standard">
+            {label && (
+                <FormLabel htmlFor="filled-age-native-simple">
+                    {label}
+                </FormLabel>
+            )}
+            <Select
+                value={selectedValue}
+                onChange={handleValueChange}
+                input={<Input id="filled-age-native-simple" />}
+            >
+            {items}
+            </Select>
+        </FormControl>
     );
 };
 

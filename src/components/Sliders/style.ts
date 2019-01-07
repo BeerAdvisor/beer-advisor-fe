@@ -1,24 +1,28 @@
 import styled from 'styled-components';
 
-export const Labels = styled.div`
+export const ValuesContainer = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
 `;
 
+export const LabelContainer = styled.div`
+    text-align: center;
+`;
+
 export const SliderContainer = styled.div`
-    width: 99%;
-    margin-top: 25px;
+    min-width: 450px;
+    margin-top: 60px;
 `;
 
 export const trackStyle = {
-    backgroundColor: 'yellow',
+    backgroundColor: '#f2af2a',
     height: 10,
 };
 
 export const handlerStyle = {
-    backgroundColor: 'yellow',
-    borderColor: 'yellow',
+    backgroundColor: '#f2af2a',
+    borderColor: '#f2af2a',
     height: 17,
     width: 17,
     marginLeft: -6,
@@ -27,7 +31,7 @@ export const handlerStyle = {
 
 export const railStyle = {
     backgroundColor: 'transparent',
-    borderColor: 'yellow',
+    borderColor: '#f2af2a',
     borderStyle: 'solid',
     borderWidth: '1px',
     height: 10,
