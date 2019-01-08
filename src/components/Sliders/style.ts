@@ -21,12 +21,13 @@ export const trackStyle = {
 };
 
 export const handlerStyle = {
-    backgroundColor: '#f2af2a',
-    borderColor: '#f2af2a',
-    height: 17,
-    width: 17,
-    marginLeft: -6,
-    marginTop: -3,
+    border: 'none',
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    marginLeft: '-8px',
+    marginTop: '-8px',
+    height: 0,
+    width: 0,
 };
 
 export const railStyle = {

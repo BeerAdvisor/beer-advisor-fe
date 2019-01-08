@@ -2,8 +2,19 @@
 import "rc-slider/assets/index.css";
 import React, { useState } from "react";
 import { Typography, InputLabel } from "@material-ui/core";
-import { Range } from "rc-slider";
+import { Handle, Range } from "rc-slider";
 import { ValuesContainer, SliderContainer, trackStyle, handlerStyle, railStyle, LabelContainer } from "./style";
+import { HomeIcon } from '../Icons';
+
+const handle = (props: any) => {
+  const { dragging, index, ...other } = props;
+  return (
+
+      <Handle key={index} {...other}>
+            <HomeIcon />
+      </Handle>
+  );
+};
 
 export interface ReactSliderProps {
   min: number;
@@ -33,6 +44,7 @@ const CustomizedRange = ({ min, max, step, label, onChange }: ReactSliderProps) 
         step={step}
         value={sliderValue}
         onChange={onSliderChange}
+        handle={handle}
       />
       <ValuesContainer>
         <Typography variant={`h6`}>{sliderValue[0]}</Typography>
