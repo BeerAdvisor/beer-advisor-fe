@@ -25,8 +25,3 @@ export const SliderContaier = styled.div`
     display: flex;
     justify-content: space-between;
 `;
-
-// TODO: Media queries here
-export const ButtonContainer = styled.div`
-    width: 560px;
-`;

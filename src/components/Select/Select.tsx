@@ -25,7 +25,7 @@ const SelectBox = ({ label, items }: SelectBoxProps) => {
             <Select
                 value={selectedValue}
                 onChange={handleValueChange}
-                input={<Input id="filled-age-native-simple" />}
+                input={<Input id="filled-age-native-simple" disableUnderline={true} />}
             >
             {items}
             </Select>

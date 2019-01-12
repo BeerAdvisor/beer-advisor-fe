@@ -1,8 +1,6 @@
 import React from 'react';
-import { Select, Slider, TextField } from '../../components';
-import Button from '@material-ui/core/Button';
-import { MainFormContainer, ElementsWrapper, ButtonContainer, SliderContaier } from './style';
-import ToogleButton from '../../components/ToogleButton/ToogleButtons';
+import { Select, Slider, TextField, Button, ToogleButtons } from '../../components';
+import { MainFormContainer, ElementsWrapper, SliderContaier } from './style';
 
 interface MainFormProps {
     searchFieldPlaceholder: string;
@@ -39,6 +37,11 @@ const MainForm = ({
         step: sliderStep,
     };
 
+    const toogleButtonsProps = {
+        defaultValue: 'Distance',
+        buttonValues: ['Price', 'Distance', 'Rating'],
+    };
+
     return (
         <MainFormContainer>
             <ElementsWrapper>
@@ -49,10 +52,8 @@ const MainForm = ({
                     <Slider {...sliderProps} label="Strong" />
                 </SliderContaier>    
             </ElementsWrapper>
-            <ToogleButton defaultValue="left" />
-            <ButtonContainer>
-                <Button fullWidth={true} variant="contained" color="primary">Search</Button>
-            </ButtonContainer>
+            <ToogleButtons {...toogleButtonsProps} />
+            <Button fullWidth={true} variant="contained" color="primary">Search</Button>
         </MainFormContainer>
     );
 };

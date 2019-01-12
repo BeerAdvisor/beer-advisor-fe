@@ -7229,6 +7229,11 @@ raf@^3.4.0:
   dependencies:
     performance-now "^2.1.0"
 
+rambda@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/rambda/-/rambda-2.3.0.tgz#0f29d45b59bacaa1d0f0ebf04f9fe4737eaf2c5d"
+  integrity sha512-AZC4wrmBLfH5Wb+CSTYqizRQwBD5geFtrJdSs4Jg1L06e5IngKQ08tQAe8w9ftGUu8vuMfih16DptMRiPolnZA==
+
 randomatic@^3.0.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-3.1.1.tgz#b776efc59375984e36c537b2f51a1f0aff0da1ed"

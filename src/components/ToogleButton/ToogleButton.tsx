@@ -15,7 +15,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     root: {
         borderRadius: '25px !important',
         width: '250px',
+        height: '50px',
         boxShadow: '3px 0 10px 0 rgba(0, 0, 0, 0.11)',
+        fontSize: '18px',
+        color: '#884212',
     },
 }));
 
