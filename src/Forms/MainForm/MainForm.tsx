@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select, Slider, TextField, Button, ToogleButtons } from '../../components';
-import { MainFormContainer, ElementsWrapper, SliderContaier } from './style';
+import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper } from './style';
 
 interface MainFormProps {
     searchFieldPlaceholder: string;
@@ -44,16 +44,20 @@ const MainForm = ({
 
     return (
         <MainFormContainer>
-            <ElementsWrapper>
-                <TextField {...searchFieldProps} />
-                <Select {...selectProps}/>
-                <SliderContaier>
-                    <Slider {...sliderProps} label="Price" />
-                    <Slider {...sliderProps} label="Strong" />
-                </SliderContaier>    
-            </ElementsWrapper>
-            <ToogleButtons {...toogleButtonsProps} />
-            <Button fullWidth={true} variant="contained" color="primary">Search</Button>
+            <FormElementContainer>
+                <ElementsWrapper>
+                    <TextField {...searchFieldProps} />
+                    <Select {...selectProps}/>
+                    <SliderContaier>
+                        <Slider {...sliderProps} label="Price" />
+                        <Slider {...sliderProps} label="Strong" />
+                    </SliderContaier>    
+                </ElementsWrapper>
+                <ToogleButtons {...toogleButtonsProps} />
+                <ButtonWrapper>
+                    <Button fullWidth={true} variant="contained" color="primary">Search</Button>
+                </ButtonWrapper>
+            </FormElementContainer>
         </MainFormContainer>
     );
 };

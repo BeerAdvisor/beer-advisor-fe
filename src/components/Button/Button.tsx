@@ -5,7 +5,6 @@ import { Theme, Button as MaterialButton } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        marginTop: '60px',
         backgroundColor: '#531403',
         boxShadow: '1px 0 13.6px 2.4px rgba(0, 0, 0, 0.4)',
         borderRadius: '35px',

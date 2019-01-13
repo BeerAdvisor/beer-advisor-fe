@@ -3,10 +3,10 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#f2af2a',
+            main: '#ffc561',
         },
         secondary: {
-            main: '#feffb3',
+            main: '#fff',
         },
     },
     overrides: {
@@ -30,7 +30,7 @@ const theme = createMuiTheme({
         MuiFormControl: {
             root: {
                 width: '100%',
-                marginTop: '60px',
+                marginTop: '24px',
             },
         },
     },

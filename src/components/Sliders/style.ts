@@ -11,8 +11,8 @@ export const LabelContainer = styled.div`
 `;
 
 export const SliderContainer = styled.div`
-    min-width: 450px;
-    margin-top: 60px;
+    min-width: 350px;
+    margin-top: 24px;
 `;
 
 export const trackStyle = {
