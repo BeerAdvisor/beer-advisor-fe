@@ -40,6 +40,7 @@ const MainForm = ({
     const toogleButtonsProps = {
         defaultValue: 'Distance',
         buttonValues: ['Price', 'Distance', 'Rating'],
+        label: 'Filter by',
     };
 
     return (

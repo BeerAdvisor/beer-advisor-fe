@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../../theme';
 
 export const ValuesContainer = styled.div`
     display: flex;
@@ -11,12 +12,19 @@ export const LabelContainer = styled.div`
 `;
 
 export const SliderContainer = styled.div`
-    min-width: 350px;
+    min-width: 150px;
+    width: 100%;
     margin-top: 24px;
+    &:first-child {
+        margin-right: 10px;
+    }
+    &:last-child {
+        margin-left: 10px;
+    }
 `;
 
 export const trackStyle = {
-    backgroundColor: '#f2af2a',
+    backgroundColor: theme.palette.primary.light,
     height: 10,
 };
 
@@ -31,8 +39,8 @@ export const handlerStyle = {
 };
 
 export const railStyle = {
-    backgroundColor: 'transparent',
-    borderColor: '#f2af2a',
+    backgroundColor: '#DDD',
+    borderColor: '#DDD',
     borderStyle: 'solid',
     borderWidth: '1px',
     height: 10,

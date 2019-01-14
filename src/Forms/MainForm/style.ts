@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const MainFormContainer = styled.div`
     box-sizing: border-box; 
     border-radius: 40px;
-    width: 70%;
+    width: 100%;
     min-height: 620px;
     overflow-x: hidden;
     display: flex;

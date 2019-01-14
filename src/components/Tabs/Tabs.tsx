@@ -11,9 +11,10 @@ import { TabsContainer } from './style';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
+        fontFamily: 'Staatliches',
         backgroundColor: 'inherit',
         width: 'auto',
-        color: theme.palette.primary.main,
+        color: theme.palette.grey[500],
         boxShadow: 'none',
     },
     flexContainer: {
@@ -45,10 +46,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     selectedFirst: {
         zIndex: 1,
         textDecoration: 'underline',
+        color:  theme.palette.primary.main,
         boxShadow: '10px 0 26px 0 rgba(0, 0, 0, 0.09)',
     },
     selectedSecond: {
         textDecoration: 'underline',
+        color:  theme.palette.primary.main,
         boxShadow: '10px 0 26px 0 rgba(0, 0, 0, 0.09)',
     },
     indicator: {
@@ -98,6 +101,8 @@ function FullWidthTabs(props: FullWidthTabsProps) {
                 axis={'x'}
                 index={activeValue}
                 onChangeIndex={handleChangeIndex}
+                containerStyle={{width: '100%'}}
+                style={{width: '100%'}}
             >
                 {children}
             </SwipeableViews>

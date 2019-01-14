@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 
-export const RadioButton = styled.div`
-    width: 250px;
-    height: 50px;
-    border-radius: 25px;
-    text-align: center;
-    background: ${props => props.theme.palette.secondary.main};
+export const ElementsContainer = styled.div`
+    display flex;
+    flex-direction: column;
+    justify-content: center;
+    margin:  40px 0;
 `;
 
 export const ToogleButtonContainer = styled.div`
-    margin:  40px 0;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%
+    align-items: stretch;
+    justify-content: stretch;
+    width: 100%;
     background: ${props => props.theme.palette.secondary.main};
+    margin-top: 10px;
 `;
