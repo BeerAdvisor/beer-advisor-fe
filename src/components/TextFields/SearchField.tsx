@@ -2,16 +2,21 @@ import React from 'react';
 import { InputBase, FormLabel , FormControl } from '@material-ui/core';
 
 const SearchField = (props: any) => {
-    const { label, placeholder } = props;
+    const { label, placeholder, input: { name, onChange, value,  ...otherInput }, ...other} = props;
 
     return (
         <FormControl> 
-        {label && (<FormLabel  htmlFor="search-bar">
+        {label && (<FormLabel  htmlFor={name}>
           {label}
         </FormLabel >)}
         <InputBase
-            id="search-bar"
+            {...other}
+            name={name}
+            id={name}
             placeholder={placeholder}
+            onChange={onChange}
+            value={value}
+            inputProps={otherInput}
         />
         </FormControl>
     );

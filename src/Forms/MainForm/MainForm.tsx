@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form, Field, FormRenderProps } from 'react-final-form';
 import { Select, Slider, TextField, Button, ToogleButtons } from '../../components';
 import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper } from './style';
 
@@ -11,6 +12,10 @@ interface MainFormProps {
     sliderMinValue: number;
     sliderStep: number;
 }
+
+const onSubmit = (values: object) => {
+    window.alert(JSON.stringify(values));
+  };
 
 const MainForm = ({
     searchFieldLabel,
@@ -43,23 +48,39 @@ const MainForm = ({
         label: 'Filter by',
     };
 
+    const generateForm = ({ handleSubmit, reset, submitting, pristine, values }: FormRenderProps) => (
+        <form onSubmit={handleSubmit}>
+            <MainFormContainer>
+                <FormElementContainer>
+                    <ElementsWrapper>
+                        <Field name="beerName" component={TextField} type="text" {...searchFieldProps} />
+                        {/* 
+                        // @ts-ignore  https://github.com/final-form/react-final-form/issues/175 */}
+                        <Field name="beerType" component={Select} {...selectProps} />
+                        <SliderContaier>
+                            {/* 
+                            // @ts-ignore  https://github.com/final-form/react-final-form/issues/175 */}
+                            <Field name="priceRange" component={Slider} {...sliderProps} label="Price" />
+                            {/* 
+                             // @ts-ignore  https://github.com/final-form/react-final-form/issues/175 */}
+                            <Field name="strongRange" component={Slider} {...sliderProps} label="Strong" />
+                        </SliderContaier>    
+                    </ElementsWrapper>
+                    <ToogleButtons {...toogleButtonsProps} />
+                    <ButtonWrapper>
+                        <Button type="submit" disabled={submitting} fullWidth={true} variant="contained" color="primary">Search</Button>
+                    </ButtonWrapper>
+                </FormElementContainer>
+            </MainFormContainer>
+        </form>
+    );
+
     return (
-        <MainFormContainer>
-            <FormElementContainer>
-                <ElementsWrapper>
-                    <TextField {...searchFieldProps} />
-                    <Select {...selectProps}/>
-                    <SliderContaier>
-                        <Slider {...sliderProps} label="Price" />
-                        <Slider {...sliderProps} label="Strong" />
-                    </SliderContaier>    
-                </ElementsWrapper>
-                <ToogleButtons {...toogleButtonsProps} />
-                <ButtonWrapper>
-                    <Button fullWidth={true} variant="contained" color="primary">Search</Button>
-                </ButtonWrapper>
-            </FormElementContainer>
-        </MainFormContainer>
+        <Form
+            onSubmit={onSubmit}
+            initialValues={{ priceRange: [0, 100], strongRange: [0, 100] }}
+            render={generateForm}
+            />
     );
 };
 

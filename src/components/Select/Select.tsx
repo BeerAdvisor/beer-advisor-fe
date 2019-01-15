@@ -1,33 +1,47 @@
 import React, { useState, ChangeEvent } from 'react';
 import { FormControl, FormLabel, Input, Select } from '@material-ui/core';
+import { FieldRenderProps } from 'react-final-form';
 
 interface SelectBoxProps {
     label?: string;
     items: JSX.Element[];
 }
 
-const SelectBox = ({ label, items }: SelectBoxProps) => {
-    const [selectedValue, setSelectedValue] = useState('0');
+const SelectBox: React.SFC<SelectBoxProps & FieldRenderProps> = ({
+    label,
+    items,
+    input: { name, onChange, value, ...otherInput },
+    ...other
+}) => {
+    const [selectedValue, setSelectedValue] = useState(value);
 
     const handleValueChange = ({
-        target: { value },
+        target: { value: changedValue },
     }: ChangeEvent<HTMLSelectElement>) => {
-        setSelectedValue(value);
+        if (onChange) {
+            onChange(changedValue);
+        }
+
+        setSelectedValue(changedValue);
     };
 
     return (
         <FormControl variant="standard">
-            {label && (
-                <FormLabel htmlFor="filled-age-native-simple">
-                    {label}
-                </FormLabel>
-            )}
+            {label && <FormLabel htmlFor={name}>{label}</FormLabel>}
             <Select
                 value={selectedValue}
                 onChange={handleValueChange}
-                input={<Input id="filled-age-native-simple" disableUnderline={true} />}
+                input={
+                    <Input
+                        {...other}
+                        name={name}
+                        id={name}
+                        disableUnderline={true}
+                        inputProps={otherInput}
+                    />
+                }
             >
-            {items}
+                {items}
             </Select>
         </FormControl>
     );

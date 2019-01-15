@@ -5,6 +5,7 @@ import { Typography, InputLabel } from "@material-ui/core";
 import { Handle, Range } from "rc-slider";
 import { ValuesContainer, SliderContainer, trackStyle, handlerStyle, railStyle, LabelContainer } from "./style";
 import { BottleIcon } from "../Icons";
+import { FieldRenderProps } from "react-final-form";
 
 const handle = (props: any) => {
   const { dragging, index, ...other } = props;
@@ -16,18 +17,20 @@ const handle = (props: any) => {
   );
 };
 
-export interface ReactSliderProps {
+export interface ReactSliderProps extends FieldRenderProps {
   min: number;
   max: number;
   step: number;
   label?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const CustomizedRange = ({ min, max, step, label, onChange }: ReactSliderProps) => {
-  const [sliderValue, setSliderValue] = useState([min, max]);
+const CustomizedRange = ({ min, max, step, label, input: { name, onChange, value}}: ReactSliderProps) => {
+  const [sliderValue, setSliderValue] = useState(value);
 
   const onSliderChange = (value: number[]) => {
+    if (onChange) {
+      onChange(value);
+    }
     setSliderValue(value);
   };
 
