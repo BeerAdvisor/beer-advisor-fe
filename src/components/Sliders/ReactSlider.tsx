@@ -18,13 +18,11 @@ const handle = (props: any) => {
 };
 
 export interface ReactSliderProps extends FieldRenderProps {
-  min: number;
-  max: number;
   step: number;
   label?: string;
 }
 
-const CustomizedRange = ({ min, max, step, label, input: { name, onChange, value}}: ReactSliderProps) => {
+const CustomizedRange = ({ step, label, input: { onChange, value }}: ReactSliderProps) => {
   const [sliderValue, setSliderValue] = useState(value);
 
   const onSliderChange = (value: number[]) => {

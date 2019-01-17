@@ -56,7 +56,7 @@ const theme = createMuiTheme({
                 fontFamily: 'Staatliches',
                 fontSize: '48px',
             },
-        }
+        },
     },
 });
 

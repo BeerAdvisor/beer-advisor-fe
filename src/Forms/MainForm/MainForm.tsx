@@ -48,7 +48,7 @@ const MainForm = ({
         label: 'Filter by',
     };
 
-    const generateForm = ({ handleSubmit, reset, submitting, pristine, values }: FormRenderProps) => (
+    const generateForm = ({ handleSubmit, submitting, }: FormRenderProps) => (
         <form onSubmit={handleSubmit}>
             <MainFormContainer>
                 <FormElementContainer>
@@ -66,7 +66,9 @@ const MainForm = ({
                             <Field name="strongRange" component={Slider} {...sliderProps} label="Strong" />
                         </SliderContaier>    
                     </ElementsWrapper>
-                    <ToogleButtons {...toogleButtonsProps} />
+                    {/* 
+                             // @ts-ignore  https://github.com/final-form/react-final-form/issues/175 */}
+                    <Field name="filter" component={ToogleButtons} {...toogleButtonsProps} />
                     <ButtonWrapper>
                         <Button type="submit" disabled={submitting} fullWidth={true} variant="contained" color="primary">Search</Button>
                     </ButtonWrapper>
@@ -78,7 +80,7 @@ const MainForm = ({
     return (
         <Form
             onSubmit={onSubmit}
-            initialValues={{ priceRange: [0, 100], strongRange: [0, 100] }}
+            initialValues={{ priceRange: [0, 100], strongRange: [0, 100], filter: 'Distance' }}
             render={generateForm}
             />
     );

@@ -6,6 +6,7 @@ import { Theme, FormLabel } from '@material-ui/core';
 import { ToogleButtonContainer, ElementsContainer } from './style';
 // @ts-ignore
 import { makeStyles } from '@material-ui/styles';
+import { FieldRenderProps } from 'react-final-form';
 
 const useStyles = makeStyles((theme: Theme) => ({
     selected: {
@@ -23,37 +24,56 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export interface ToggleButtonProps {
-    defaultValue: string;
     buttonValues: string[];
     label?: string;
 }
 
-const ToggleButtons = ({ defaultValue, buttonValues, label }: ToggleButtonProps) => {
-  const { root } = useStyles();
-  const [value, setValue ] = useState(defaultValue);
+const ToggleButtons = ({
+    buttonValues,
+    label,
+    input: { name, onChange, value: defaultValue },
+}: ToggleButtonProps & FieldRenderProps) => {
+    const { root } = useStyles();
+    const [value, setValue] = useState(defaultValue);
 
-  const handleChange = (event: ChangeEvent<{}>, radioValue: string) => setValue(radioValue);
+    const handleChange = (event: ChangeEvent<{}>, radioValue: string) => {
+        if (onChange) {
+            onChange(radioValue);
+        }
+
+        setValue(radioValue);
+    };
 
     return (
-          <ElementsContainer>
-              {label && (
-                <FormLabel htmlFor="filled-age-native-simple">
+        <ElementsContainer>
+            {label && (
+                <FormLabel htmlFor={name}>
                     {label}
                 </FormLabel>
             )}
             <ToogleButtonContainer>
-              <ToggleButtonGroup classes={{ root }} value={value} exclusive={true} onChange={handleChange}>
-                  {mapButtonValues(buttonValues)}
-              </ToggleButtonGroup>
+                <ToggleButtonGroup
+                    id={name}
+                    classes={{ root }}
+                    value={value}
+                    exclusive={true}
+                    onChange={handleChange}
+                >
+                    {mapButtonValues(buttonValues)}
+                </ToggleButtonGroup>
             </ToogleButtonContainer>
-          </ElementsContainer>
+        </ElementsContainer>
     );
 };
 
-const mapButtonValues = (buttonValues: string[]) => map(buttonValue => (
-    <ToggleButton key={buttonValue} value={buttonValue}>
-        {buttonValue}
-    </ToggleButton>
-  ), buttonValues);
+const mapButtonValues = (buttonValues: string[]) =>
+    map(
+        buttonValue => (
+            <ToggleButton key={buttonValue} value={buttonValue}>
+                {buttonValue}
+            </ToggleButton>
+        ),
+        buttonValues
+    );
 
 export default ToggleButtons;
