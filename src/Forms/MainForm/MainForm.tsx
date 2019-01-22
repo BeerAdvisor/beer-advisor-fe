@@ -1,13 +1,13 @@
 import React from 'react';
 import { Form, Field, FormRenderProps } from 'react-final-form';
 import { Select, Slider, TextField, Button, ToogleButtons } from '../../components';
+import { BeerTypeSelect } from '../../containers';
 import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper } from './style';
 
 interface MainFormProps {
     searchFieldPlaceholder: string;
     searchFieldLabel: string;
     selectLabel: string;
-    selectMenuItems: JSX.Element[];
     sliderMaxValue: number;
     sliderMinValue: number;
     sliderStep: number;
@@ -20,7 +20,6 @@ const onSubmit = (values: object) => {
 const MainForm = ({
     searchFieldLabel,
     searchFieldPlaceholder,
-    selectMenuItems,
     sliderMaxValue,
     sliderMinValue,
     sliderStep,
@@ -32,7 +31,6 @@ const MainForm = ({
     };
 
     const selectProps = {
-        items: selectMenuItems,
         label: selectLabel,
     };
 
@@ -56,7 +54,7 @@ const MainForm = ({
                         <Field name="beerName" component={TextField} type="text" {...searchFieldProps} />
                         {/* 
                         // @ts-ignore  https://github.com/final-form/react-final-form/issues/175 */}
-                        <Field name="beerType" component={Select} {...selectProps} />
+                        <BeerTypeSelect {...selectProps} />
                         <SliderContaier>
                             {/* 
                             // @ts-ignore  https://github.com/final-form/react-final-form/issues/175 */}
