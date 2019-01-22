@@ -15,9 +15,11 @@ const BeerTypeSelect = () => (
     }
     `}
   >
-    {({ loading, error, data: { getBeers: beers} }) => {
+    {({ loading, error, data }) => {
+      // TODO: consider spinner for whole form, error state? 
       if (loading) return [<MenuItem key={'Empty'} value={'Empty'}>{'Empty'}</MenuItem>];
       if (error) return [<MenuItem key={'Empty'} value={'Empty'}>{'Empty'}</MenuItem>];
+      const { getBeers: beers} = data;
 
       const beerTypes = beers.map(({ type }: { type: string}) => (
         <MenuItem key={type} value={type}>{type}</MenuItem>
