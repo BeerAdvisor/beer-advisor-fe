@@ -52,8 +52,6 @@ const MainForm = ({
                 <FormElementContainer>
                     <ElementsWrapper>
                         <Field name="beerName" component={TextField} type="text" {...searchFieldProps} />
-                        {/* 
-                        // @ts-ignore  https://github.com/final-form/react-final-form/issues/175 */}
                         <BeerTypeSelect {...selectProps} />
                         <SliderContaier>
                             {/* 

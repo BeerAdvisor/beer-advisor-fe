@@ -7,6 +7,7 @@ import theme from './theme';
 import SearchContainer from './containers/SearchContainer';
 import { ApolloProvider } from 'react-apollo';
 import client from './api';
+import { HomePage } from './pages';
 
 install();
 
@@ -17,7 +18,7 @@ class App extends Component {
       <StyledComponentsThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
           <MuiThemeProvider  theme={theme}>
-            <SearchContainer />
+            <HomePage />
           </MuiThemeProvider >
         </ThemeProvider>
       </StyledComponentsThemeProvider>

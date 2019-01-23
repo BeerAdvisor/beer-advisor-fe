@@ -5,7 +5,7 @@ import { MenuItem } from '@material-ui/core';
 import { Select } from '../../components';
 import { Field } from 'react-final-form';
 
-const BeerTypeSelect = () => (
+const BeerTypeSelect = (props: any) => (
     <Query
     query={gql`
     {
@@ -17,8 +17,7 @@ const BeerTypeSelect = () => (
   >
     {({ loading, error, data }) => {
       // TODO: consider spinner for whole form, error state? 
-      if (loading) return [<MenuItem key={'Empty'} value={'Empty'}>{'Empty'}</MenuItem>];
-      if (error) return [<MenuItem key={'Empty'} value={'Empty'}>{'Empty'}</MenuItem>];
+      if (loading || error) return null;
       const { getBeers: beers} = data;
 
       const beerTypes = beers.map(({ type }: { type: string}) => (
@@ -26,7 +25,7 @@ const BeerTypeSelect = () => (
         ));
 
         // @ts-ignore
-      return <Field name="beerType" component={Select} items={beerTypes} />;
+      return <Field {...props} name="beerType" component={Select} items={beerTypes} />;
     }}
   </Query>
 );
