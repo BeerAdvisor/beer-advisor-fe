@@ -12,6 +12,7 @@ import { TabsContainer } from './style';
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
         fontFamily: 'Staatliches',
+        height: '562px',
         backgroundColor: 'inherit',
         width: 'auto',
         color: theme.palette.grey[500],
@@ -22,23 +23,25 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     // TODO: Media queries for label
     tabRootFirst: {
+        opacity: 1,
         borderRadius: '40px',
         position: 'relative',
         zIndex: 1,
         backgroundColor: theme.palette.secondary.main,
         fontSize: '24px',
         minWidth: '120px',
-        minHeight: '400px',
+        height: '312px',
     },
     tabRootSecond: {
+        opacity: 1,
         borderRadius: '40px',
         position: 'relative',
-        transform: 'translateY(-80px)',
+        transform: 'translateY(-66px)',
         zIndex: 0,
         backgroundColor: theme.palette.secondary.main,
         fontSize: '24px',
         minWidth: '120px',
-        minHeight: '400px',
+        height: '310px',
     },
     wrapper: {
         transform: 'rotate(-90deg)',
@@ -47,12 +50,13 @@ const useStyles = makeStyles((theme: Theme) => ({
         zIndex: 1,
         textDecoration: 'underline',
         color:  theme.palette.primary.main,
-        boxShadow: '10px 0 26px 0 rgba(0, 0, 0, 0.09)',
+        boxShadow: '6.4px 7.7px 24px 0 rgba(0, 0, 0, 0.14)',
     },
     selectedSecond: {
+        zIndex: 1,
         textDecoration: 'underline',
         color:  theme.palette.primary.main,
-        boxShadow: '10px 0 26px 0 rgba(0, 0, 0, 0.09)',
+        boxShadow: '6.4px -7.7px 24px 0 rgba(0, 0, 0, 0.14)',
     },
     indicator: {
         visibility: 'hidden',

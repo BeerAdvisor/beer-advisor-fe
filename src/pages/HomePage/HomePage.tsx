@@ -1,7 +1,8 @@
 import React from 'react';
-import { HomePageContainer, FormWrapper } from './style';
+import { HomePageContainer, FormWrapper, TextWrapper, HeadElementsContainer } from './style';
 import { Tabs } from '../../components';
 import { MainForm } from '../../forms';
+import { RevertedText } from '../../components/Typography/RevertedText';
  
 export const HomePage = (props: any) => {
 
@@ -16,12 +17,17 @@ export const HomePage = (props: any) => {
 
     return (
         <HomePageContainer>
-            <FormWrapper>
-                 <Tabs>
-                    <MainForm {...layoutProps} />
-                    <MainForm {...layoutProps} />
-                </Tabs>
-            </FormWrapper>
+            <HeadElementsContainer>
+                    <TextWrapper>
+                        <RevertedText noWrap variant="h1">LOVE BEER?</RevertedText>
+                    </TextWrapper>
+                    <FormWrapper>
+                         <Tabs>
+                            <MainForm {...layoutProps} />
+                            <MainForm {...layoutProps} />
+                        </Tabs>
+                    </FormWrapper>
+            </HeadElementsContainer>
         </HomePageContainer>
     );
 };

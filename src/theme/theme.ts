@@ -4,6 +4,7 @@ const palette = {
     primary: {
         main: '#ffc561',
         light: '#ffb400',
+        lightContrast: '#fff',
     },
     secondary: {
         main: '#fff',
@@ -14,6 +15,11 @@ const theme = createMuiTheme({
     typography: {
         fontFamily: 'Muli',
         useNextVariants: true,
+        h1: {
+            color: palette.primary.lightContrast,
+            fontFamily: 'Staatliches',
+            fontSize: '9rem',
+        },
         h6: {
             color: palette.primary.light,
             fontSize: '24px',

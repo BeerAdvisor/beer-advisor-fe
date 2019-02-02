@@ -5,7 +5,7 @@ export const MainFormContainer = styled.div`
     box-sizing: border-box; 
     border-radius: 40px;
     width: 100%;
-    min-height: 620px;
+    min-height: 562px;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
