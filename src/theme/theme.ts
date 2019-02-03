@@ -25,6 +25,13 @@ const theme = createMuiTheme({
             fontSize: '24px',
             letterSpacing: '0.6px',
         },
+        subtitle1: {
+            color: palette.primary.lightContrast,
+            fontFamily: 'Staatliches',
+            letterSpacing: '0.7px',
+            fontSize: '27px',
+            fontWeight: 400,
+        },
     },
     palette,
     overrides: {

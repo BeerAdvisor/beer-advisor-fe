@@ -5,3 +5,4 @@ export * from './Tabs';
 export * from './TextFields';
 export * from './Button';
 export * from './ToogleButton';
+export * from './Typography';

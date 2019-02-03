@@ -1,8 +1,8 @@
 import React from 'react';
-import { HomePageContainer, FormWrapper, TextWrapper, HeadElementsContainer } from './style';
-import { Tabs } from '../../components';
+import { HomePageContainer, FormWrapper, RevertedTextWrapper, HorizontalContainer, HeadElementsContainer } from './style';
+import { Tabs, RevertedText } from '../../components';
 import { MainForm } from '../../forms';
-import { RevertedText } from '../../components/Typography/RevertedText';
+import { Typography } from '@material-ui/core';
  
 export const HomePage = (props: any) => {
 
@@ -18,15 +18,18 @@ export const HomePage = (props: any) => {
     return (
         <HomePageContainer>
             <HeadElementsContainer>
-                    <TextWrapper>
+                <HorizontalContainer>
+                    <RevertedTextWrapper>
                         <RevertedText noWrap variant="h1">LOVE BEER?</RevertedText>
-                    </TextWrapper>
+                    </RevertedTextWrapper>
                     <FormWrapper>
                          <Tabs>
                             <MainForm {...layoutProps} />
                             <MainForm {...layoutProps} />
                         </Tabs>
                     </FormWrapper>
+                </HorizontalContainer>
+                <Typography variant="subtitle1">LET US HELP YOU TO FIND THE BEST ONE!</Typography>
             </HeadElementsContainer>
         </HomePageContainer>
     );
