@@ -6,14 +6,15 @@ import { Theme, Button as MaterialButton } from '@material-ui/core';
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
         fontFamily: 'Staatliches',
-        backgroundColor: '#531403',
+        backgroundColor: '#00b35c',
         boxShadow: '1px 0 13.6px 2.4px rgba(0, 0, 0, 0.4)',
         borderRadius: '35px',
         fontSize: '48px',
         letterSpacing: '1.2px',
-        color: theme.palette.primary.main,
+        color: '#FFF',
         padding: '0',
         [theme.breakpoints.down('sm')]: {
+          fontSize: '14px',
           width: '160px',
         },
         [theme.breakpoints.up('md')]: {

@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Header: React.FunctionComponent = (props: {}) => <div>Beer Advisor</div>;
+const Header: React.FunctionComponent = () => <div>Beer Advisor</div>;
 
 export default Header;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { EXTRA_LARGE_BP, LARGE_BP } from '../../theme';
 
 export const HomePageContainer = styled.div`
     display: flex;
