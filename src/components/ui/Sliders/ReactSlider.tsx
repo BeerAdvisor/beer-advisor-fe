@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Typography, InputLabel } from "@material-ui/core";
 import { Handle, Range } from "rc-slider";
 import { ValuesContainer, SliderContainer, trackStyle, handlerStyle, railStyle, LabelContainer } from "./style";
-import { BottleIcon } from "../Icons";
+import { BottleIcon } from "../../Icons";
 import { FieldRenderProps } from "react-final-form";
 
 const handle = (props: any) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field, FormRenderProps } from 'react-final-form';
-import { Select, Slider, TextField, Button, ToogleButtons } from '../../components';
+import { Select, Slider, TextField, Button, ToogleButtons } from '../../components/ui';
 import { BeerTypeSelect } from '../../containers';
 import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper } from './style';
 

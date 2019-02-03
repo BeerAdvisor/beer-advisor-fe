@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs } from '../components';
+import { Tabs } from '../components/ui';
 import { MainForm } from '../forms';
 
 const SearchContainer = () => {
