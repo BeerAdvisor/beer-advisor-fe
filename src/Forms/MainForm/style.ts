@@ -32,5 +32,6 @@ export const ElementsWrapper = styled.div`
 
 export const SliderContaier = styled.div`
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 `;

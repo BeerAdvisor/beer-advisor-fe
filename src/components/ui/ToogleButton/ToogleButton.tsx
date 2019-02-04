@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     root: {
         borderRadius: '25px !important',
         minWidth: '150px',
-        width: '100%',
+        flexGrow: 1,
         height: '50px',
         boxShadow: '3px 0 10px 0 rgba(0, 0, 0, 0.11)',
         fontSize: '18px',

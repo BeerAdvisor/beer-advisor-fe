@@ -12,10 +12,6 @@ export const HomePageContainer = styled.div`
 export const Zhopa = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 75%;
-    @media (max-width: 1550px) {
-        width: 85%;
-    }
+    align-items: center;
     padding-top: 50px;
 `;

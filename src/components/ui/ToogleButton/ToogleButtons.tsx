@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     root: {
         display: 'flex',
-        width: '100%',
+        flexWrap: 'wrap',
+        flexGrow: 1,
         justifyContent: 'stretch',
         background: theme.palette.secondary.main,
         borderRadius: '25px',

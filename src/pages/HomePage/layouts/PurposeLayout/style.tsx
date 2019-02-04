@@ -5,12 +5,16 @@ export const InfoTextContainer = styled.div`
     justify-content: flex-start;
     align-items: center;
 
+    position: absolute;
+    left: 20px;
 `;
 
 export const PurposeLayoutContainer = styled.div`
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 100%
 `;
 
 export const VerticalTextContainer = styled.div`
@@ -24,5 +28,8 @@ export const VerticalTextContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-    width: 500px;
+    width: 65%;
+    @media (max-width: 1550px){
+        width: 50%;
+    }
 `;
