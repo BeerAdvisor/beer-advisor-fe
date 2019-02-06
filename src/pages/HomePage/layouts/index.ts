@@ -1,2 +1,3 @@
-export { default as FormLayout } from './FormLayout';
-export { default as PurposeLayout } from './PurposeLayout';
+export { default as FormSection } from './FormSection';
+export { default as PurposeSection } from './PurposeSection';
+export { default as HowToSection } from './HowToSection';

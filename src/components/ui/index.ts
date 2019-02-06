@@ -7,3 +7,4 @@ export * from './Button';
 export * from './ToogleButton';
 export * from './Typography';
 export * from './Image';
+export * from './StepCard';

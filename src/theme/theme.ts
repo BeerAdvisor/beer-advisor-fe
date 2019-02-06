@@ -4,11 +4,11 @@ const palette = {
     primary: {
         main: '#ffc561',
         light: '#ffb400',
-        lightContrast: '#fff',
+        lightContrast: '#FFFFFF',
         darkContrast: '#000',
     },
     secondary: {
-        main: '#fff',
+        main: '#FFFFFF',
     },
 };
 
@@ -20,6 +20,11 @@ const theme = createMuiTheme({
             color: palette.primary.lightContrast,
             fontFamily: 'Staatliches',
             fontSize: '9rem',
+        },
+        h4: {
+            fontFamily: 'Staatliches',
+            fontSize: '43px',
+            lineHeight: 1.97,
         },
         h6: {
             color: palette.primary.light,
@@ -77,6 +82,14 @@ const theme = createMuiTheme({
                 fontFamily: 'Staatliches',
                 fontSize: '48px',
             },
+        },
+        MuiDivider: {
+            root: {
+                width: '100px',
+                height: '8px',
+                borderRadius: '3.6px',
+                backgroundColor: '#000000',
+            }
         },
     },
 });

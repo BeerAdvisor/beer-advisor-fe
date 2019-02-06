@@ -1,13 +1,14 @@
 import React from 'react';
 import { HomePageContainer, Zhopa } from './style';
-import { FormLayout, PurposeLayout } from './layouts';
+import { FormSection, PurposeSection, HowToSection } from './layouts';
 
 export const HomePage = (props: any) => {
     return (
         <HomePageContainer>
             <Zhopa>
-                <FormLayout />
-                <PurposeLayout />
+                <FormSection />
+                <PurposeSection />
+                <HowToSection />
             </Zhopa>
         </HomePageContainer>
     );

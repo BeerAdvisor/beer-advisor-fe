@@ -15,6 +15,7 @@ export const PurposeLayoutContainer = styled.div`
     align-items: flex-end;
     justify-content: flex-end;
     width: 100%
+    margin-bottom: 100px;
 `;
 
 export const VerticalTextContainer = styled.div`
