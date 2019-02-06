@@ -1,14 +1,14 @@
 import React from 'react';
-import { Typography , Divider} from '@material-ui/core';
-import { StepCard } from '../../../../components';
+import { Typography } from '@material-ui/core';
+import { StepCard, BasicDivider } from '../../../../components';
 import {
     HowToContainer,
     StepsContainer,
     DescriptionContainer,
     TextContainer,
     GeneralTextContainer,
+    ImageContainer,
 } from './style';
-import { ImageContainer } from '../PurposeSection/style';
 import {
     MAIN_PAGE_STEP_1,
     MAIN_PAGE_STEP_2,
@@ -35,13 +35,13 @@ export default () => {
                 </StepsContainer>
                 <GeneralTextContainer>               
                     <TextContainer>
-                        <Divider />
+                        <BasicDivider />
                         <Typography variant="subtitle2">
                             {MAING_PAGE_STEP_DESCRIPTION_1}
                         </Typography>
                     </TextContainer>
                     <TextContainer>
-                        <Divider />
+                        <BasicDivider />
                         <Typography variant="subtitle2">
                             {MAING_PAGE_STEP_DESCRIPTION_2}
                         </Typography>

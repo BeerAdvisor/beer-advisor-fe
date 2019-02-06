@@ -83,14 +83,6 @@ const theme = createMuiTheme({
                 fontSize: '48px',
             },
         },
-        MuiDivider: {
-            root: {
-                width: '100px',
-                height: '8px',
-                borderRadius: '3.6px',
-                backgroundColor: '#000000',
-            },
-        },
     },
 });
 
