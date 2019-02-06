@@ -5,7 +5,7 @@ export const HorizontalImage = styled.img`
     border-radius: 54.4px;
     max-height: 230px;
     
-    padding-top: 3.4em;
+    margin-top: 3.4em;
 `;
 
 export const HorizontalImageContainer = styled.div`
