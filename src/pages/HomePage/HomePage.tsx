@@ -1,6 +1,6 @@
 import React from 'react';
 import { HomePageContainer, Zhopa } from './style';
-import { FormSection, PurposeSection, HowToSection } from './layouts';
+import { FormSection, PurposeSection, HowToSection } from './sections';
 
 export const HomePage = (props: any) => {
     return (

@@ -89,7 +89,7 @@ const theme = createMuiTheme({
                 height: '8px',
                 borderRadius: '3.6px',
                 backgroundColor: '#000000',
-            }
+            },
         },
     },
 });
