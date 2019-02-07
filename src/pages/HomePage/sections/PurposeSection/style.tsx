@@ -6,7 +6,7 @@ export const InfoTextContainer = styled.div`
     align-items: center;
 
     position: absolute;
-    left: 20px;
+    right: 50%;
 `;
 
 export const PurposeLayoutContainer = styled.div`

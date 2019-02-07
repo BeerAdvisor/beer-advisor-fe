@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const HeadElementsContainer = styled.div`
     padding-bottom: 100px;
+    width: 100%;
 `;
 
 export const HorizontalContainer = styled.div`

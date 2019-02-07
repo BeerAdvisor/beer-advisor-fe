@@ -4,6 +4,8 @@ export const HowToContainer = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 100px;
+    width: 100%;
+    justify-content: space-between;
 `;
 
 export const StepsContainer = styled.div`
