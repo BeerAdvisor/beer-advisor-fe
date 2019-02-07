@@ -1,13 +1,13 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import { StepCard, BasicDivider } from '../../../../components';
+import { StepCard, BasicDivider, RevertedSmallerText } from '../../../../components';
 import {
     HowToContainer,
     StepsContainer,
     DescriptionContainer,
     TextContainer,
     GeneralTextContainer,
-    ImageContainer,
+    RevertedTextContainer,
 } from './style';
 import {
     MAIN_PAGE_STEP_1,
@@ -26,7 +26,11 @@ export default () => {
 
     return (
         <HowToContainer>
-            <ImageContainer />
+            <RevertedTextContainer>
+                <RevertedSmallerText noWrap variant="h3">
+                        HOW IT WORKS?
+                </RevertedSmallerText>
+            </RevertedTextContainer>
             <DescriptionContainer>
                 <StepsContainer>
                     <StepCard heading={firstStep} text={MAIN_PAGE_STEP_1} />

@@ -21,6 +21,11 @@ const theme = createMuiTheme({
             fontFamily: 'Staatliches',
             fontSize: '9rem',
         },
+        h3: {
+            fontFamily: 'Staatliches',
+            fontSize: '90px',
+            color: '#000000',
+        },
         h4: {
             fontFamily: 'Staatliches',
             fontSize: '43px',
