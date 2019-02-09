@@ -18,11 +18,11 @@ const useStyles = makeStyles((theme: Theme) => ({
           width: '160px',
         },
         [theme.breakpoints.up('md')]: {
-          width: '300px',
+          width: '250px',
         },
         [theme.breakpoints.up('lg')]: {
-          width: '460px',
-          height: '70px',
+          width: '350px',
+          height: '75px',
         },
       },
 }));
