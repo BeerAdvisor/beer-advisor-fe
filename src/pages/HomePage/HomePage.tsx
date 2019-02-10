@@ -7,7 +7,7 @@ export const HomePage = (props: any) => {
     return (
         <HomePageContainer>
             <Zhopa>
-                <FormSection />
+                <FormSection {...props} />
                 <PurposeSection />
                 <HowToSection />
                 <OportunitiesSection />

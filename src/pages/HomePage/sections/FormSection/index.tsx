@@ -1,19 +1,10 @@
 import React from 'react';
 import { HeadElementsContainer, RevertedTextWrapper, HorizontalContainer, FormWrapper } from './style';
-import { RevertedText, Tabs } from '../../../../components';
-import { MainForm } from '../../../../forms';
+import { RevertedText } from '../../../../components';
 import { Typography } from '@material-ui/core';
+import { CombinedForms } from '../../../../forms';
 
-export default () => {
-    const layoutProps = {
-        searchFieldPlaceholder: 'Find a beer', // TODO: constants, export to separate logic components
-        searchFieldLabel: 'Beer name',
-        selectLabel: 'Beer type',
-        sliderMaxValue: 100,
-        sliderMinValue: 0,
-        sliderStep: 1,
-    };
-
+export default (props: any) => {
     return (
             <HeadElementsContainer>
                 <HorizontalContainer>
@@ -23,10 +14,7 @@ export default () => {
                         </RevertedText>
                     </RevertedTextWrapper>
                     <FormWrapper>
-                        <Tabs>
-                            <MainForm {...layoutProps} />
-                            <MainForm {...layoutProps} />
-                        </Tabs>
+                        <CombinedForms {...props} />
                     </FormWrapper>
                 </HorizontalContainer>
                 <Typography variant="subtitle1">LET US HELP YOU TO FIND THE BEST ONE!</Typography>

@@ -6,6 +6,7 @@ export const InfoTextContainer = styled.div`
     align-items: center;
 
     position: absolute;
+    align-self: center;
     right: 50%;
 `;
 
@@ -29,8 +30,5 @@ export const VerticalTextContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-    width: 65%;
-    @media (max-width: 1550px){
         width: 50%;
-    }
 `;

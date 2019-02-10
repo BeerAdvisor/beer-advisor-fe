@@ -16,7 +16,6 @@
     "@types/styled-components": "^4.1.2",
     "apollo-boost": "^0.1.22",
     "graphql": "^14.0.2",
-    "rambda": "^2.3.0",
     "rc-slider": "^8.6.4",
     "react": "^16.7.0-alpha.2",
     "react-apollo": "^2.3.3",
@@ -42,9 +41,14 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/ramda": "^0.25.48",
+    "@types/react-router-dom": "^4.3.1",
     "final-form": "^4.11.0",
     "prettier": "^1.15.2",
+    "ramda": "^0.26.1",
     "react-final-form": "^4.0.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.16.0",
     "tslint-config-standard": "^8.0.1",

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { ToggleButtonGroup } from '@material-ui/lab';
-import { map } from 'rambda';
+import { map } from 'ramda';
 import ToggleButton from './ToogleButton';
 import { Theme, FormLabel } from '@material-ui/core';
 import { ToogleButtonContainer, ElementsContainer } from './style';

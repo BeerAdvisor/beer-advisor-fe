@@ -1,9 +1,8 @@
 import React from 'react';
-import { Tabs } from '../components/ui';
-import { MainForm, MainFormProps } from '../forms';
+import { MainForm } from '../MainForm';
+import { Tabs } from '../../components';
 
-const SearchContainer = (props: MainFormProps) => {
-
+export const CombinedForms = (props:any) => {
     const layoutProps = {
         ...props,
         searchFieldPlaceholder: 'Find a beer', // TODO: constants, export to separate logic components
@@ -15,11 +14,11 @@ const SearchContainer = (props: MainFormProps) => {
     };
 
     return (
-            <Tabs>
-                <MainForm {...layoutProps} />
-                <MainForm {...layoutProps} />
-            </Tabs>
+        <Tabs>
+            <MainForm {...layoutProps} />
+            <MainForm {...layoutProps} />
+        </Tabs>
     );
 };
 
-export default SearchContainer;
+export default CombinedForms;
