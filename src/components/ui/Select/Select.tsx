@@ -26,8 +26,8 @@ const SelectBox: React.SFC<SelectBoxProps & FieldRenderProps> = ({
     };
 
     return (
-        <FormControl variant="standard">
-            {label && <FormLabel htmlFor={name}>{label}</FormLabel>}
+        <FormControl>
+            {label && <FormLabel>{label}</FormLabel>}
             <Select
                 value={selectedValue}
                 onChange={handleValueChange}

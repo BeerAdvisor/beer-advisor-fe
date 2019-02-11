@@ -56,7 +56,7 @@ const theme = createMuiTheme({
         MuiFormLabel: {
             root: {
                 color: '#000000',
-                fontSize: '24px',
+                fontSize: '18px',
                 alignSelf: 'center',
                 left: 'unset',
             },
@@ -64,11 +64,15 @@ const theme = createMuiTheme({
         MuiInputBase: {
             root: {
                 backgroundColor: 'transparent',
+                marginTop: '16px',
                 boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.08);',
                 borderRadius: '25px',
                 // TODO: Media queries
                 height: '40px',
                 padding: '0px 14px',
+            },
+            input: {
+                textAlign: 'center',
             },
         },
         MuiFormControl: {

@@ -6,7 +6,7 @@ const SearchField = (props: any) => {
 
     return (
         <FormControl> 
-        {label && (<FormLabel  htmlFor={name}>
+        {label && (<FormLabel>
           {label}
         </FormLabel >)}
         <InputBase
