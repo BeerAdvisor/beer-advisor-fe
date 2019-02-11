@@ -1,8 +1,11 @@
 import React from 'react';
-import { MainForm } from '../MainForm';
+import { MainForm, MainFormProps } from '../MainForm';
 import { Tabs } from '../../components';
 
-export const CombinedForms = (props:any) => {
+export type CombinedForms = MainFormProps;
+
+export const CombinedForms = (props: CombinedForms) => {
+    const { variant } = props;
     const layoutProps = {
         ...props,
         searchFieldPlaceholder: 'Find a beer', // TODO: constants, export to separate logic components
@@ -14,9 +17,9 @@ export const CombinedForms = (props:any) => {
     };
 
     return (
-        <Tabs>
-            <MainForm {...layoutProps} />
-            <MainForm {...layoutProps} />
+        <Tabs variant={variant}>
+            <MainForm variant={variant} {...layoutProps} />
+            <MainForm variant={variant} {...layoutProps} />
         </Tabs>
     );
 };

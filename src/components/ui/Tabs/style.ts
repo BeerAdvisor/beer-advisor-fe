@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
-export const TabsContainer = styled.div`
-    width: 100%;
+export interface TabsContainerProps { 
+    variant?: 'small';
+}
+export const TabsContainer = styled.div<TabsContainerProps>`
+    width: ${props => props.variant === 'small' ? '20%' : '100%'};
     display: flex;
     justify-content: flex-start;
 `;

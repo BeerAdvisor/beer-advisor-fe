@@ -9,6 +9,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { TabsContainer } from './style';
 
+const getTabWidth = (props: FullWidthTabsProps) => props.variant === 'small' ? '60px' : '120px';
+
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
         fontFamily: 'Staatliches',
@@ -29,7 +31,8 @@ const useStyles = makeStyles((theme: Theme) => ({
         zIndex: 1,
         backgroundColor: theme.palette.secondary.main,
         fontSize: '24px',
-        minWidth: '120px',
+        minWidth: getTabWidth,
+        width: getTabWidth,
         height: '312px',
     },
     tabRootSecond: {
@@ -40,11 +43,13 @@ const useStyles = makeStyles((theme: Theme) => ({
         zIndex: 0,
         backgroundColor: theme.palette.secondary.main,
         fontSize: '24px',
-        minWidth: '120px',
+        minWidth: getTabWidth,
+        width: getTabWidth,
         height: '310px',
     },
     wrapper: {
         transform: 'rotate(-90deg)',
+        width: 'auto',
     },
     selectedFirst: {
         zIndex: 1,
@@ -65,11 +70,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface FullWidthTabsProps {
     children: any;
+    variant?: 'small';
 }
 
 function FullWidthTabs(props: FullWidthTabsProps) {
     const [activeValue, setActiveValue] = useState(0);
-    const { root, selectedFirst, selectedSecond, wrapper, flexContainer, tabRootFirst, tabRootSecond, indicator } = useStyles();
+    const { root, selectedFirst, selectedSecond, wrapper, flexContainer, tabRootFirst, tabRootSecond, indicator } = useStyles(props);
 
     const handleChange = (event: ChangeEvent<{}>, value: number) => {
         setActiveValue(value);
@@ -79,10 +85,10 @@ function FullWidthTabs(props: FullWidthTabsProps) {
         setActiveValue(index);
     };
 
-    const { children } = props;
+    const { children, ...other } = props;
 
     return (
-        <TabsContainer>
+        <TabsContainer {...other}>
                 <AppBar position="static" classes={{ root }}>
                     <Tabs
                         value={activeValue}
@@ -94,10 +100,12 @@ function FullWidthTabs(props: FullWidthTabsProps) {
                         <Tab
                             classes={{ root: tabRootFirst, wrapper, selected: selectedFirst }}
                             label="BEER"
+                            {...other}
                         />
                         <Tab
                             classes={{ root: tabRootSecond, wrapper, selected: selectedSecond }}
                             label="BAR"
+                            {...other}
                         />
                     </Tabs>
                 </AppBar>

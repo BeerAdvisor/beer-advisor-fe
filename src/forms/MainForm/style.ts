@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
+export interface MainFormContainerProps {
+    variant?: 'small';
+}
+
 // TODO: Media queries here
-export const MainFormContainer = styled.div`
+export const MainFormContainer = styled.div<MainFormContainerProps>`
     box-sizing: border-box; 
     border-radius: 40px;
     width: 100%;

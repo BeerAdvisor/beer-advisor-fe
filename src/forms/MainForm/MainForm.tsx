@@ -4,9 +4,9 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { RouteComponentProps } from 'react-router-dom';
 import { Form, Field, FormRenderProps } from 'react-final-form';
-import { Slider, TextField, Button, ToogleButtons } from '../../components/ui';
+import { Slider, TextField, Button, ToogleButtons, SmallButton } from '../../components/ui';
 import { BeerTypeSelect } from '../../containers';
-import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper } from './style';
+import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper, MainFormContainerProps } from './style';
 
 const GET_BEER_FORM_DATA = gql`
   {
@@ -20,7 +20,7 @@ const GET_BEER_FORM_DATA = gql`
   }
 `;
 
-export interface MainFormProps extends RouteComponentProps {
+export interface MainFormProps extends RouteComponentProps, MainFormContainerProps {
     searchFieldPlaceholder: string;
     searchFieldLabel: string;
     selectLabel: string;
@@ -38,7 +38,7 @@ export interface BeerFormValues {
 }
 
 const onSubmit = (history: RouteComponentProps['history'], client: ApolloClient<any>) => (values: BeerFormValues) => {
-    window.alert(JSON.stringify(values));
+    // window.alert(JSON.stringify(values));
     client.writeData({
         data: {
             beerForm: {
@@ -62,6 +62,7 @@ const MainForm = ({
     sliderStep,
     selectLabel,
     history,
+    variant,
 }: MainFormProps) => {
     const searchFieldProps = {
         placeholder: searchFieldPlaceholder,
@@ -84,9 +85,16 @@ const MainForm = ({
         label: 'Filter by',
     };
 
+    const searchButtonProps = {
+        type: 'submit',
+        fullWidth: true,
+        variant: 'contained',
+        color: 'primary',
+    };
+
     const generateForm = ({ handleSubmit, submitting, }: FormRenderProps) => (
         <form onSubmit={handleSubmit}>
-            <MainFormContainer>
+            <MainFormContainer variant={variant}>
                 <FormElementContainer>
                     <ElementsWrapper>
                         <Field name="beerName" component={TextField} type="text" {...searchFieldProps} />
@@ -104,9 +112,11 @@ const MainForm = ({
                              // @ts-ignore  https://github.com/final-form/react-final-form/issues/175 */}
                     <Field name="filter" component={ToogleButtons} {...toogleButtonsProps} />
                     <ButtonWrapper>
-                        <Button type="submit" disabled={submitting} fullWidth={true} variant="contained" color="primary">
-                            Search
-                        </Button>
+                        {variant !== 'small' ? (
+                            <Button {...searchButtonProps} disabled={submitting}>Search</Button>
+                            ) : (
+                            <SmallButton {...searchButtonProps} disabled={submitting}>Search</SmallButton>
+                        )}
                     </ButtonWrapper>
                 </FormElementContainer>
             </MainFormContainer>

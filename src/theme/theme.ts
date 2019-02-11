@@ -64,7 +64,7 @@ const theme = createMuiTheme({
         MuiInputBase: {
             root: {
                 backgroundColor: 'transparent',
-                boxShadow: '3px 0 10px 0 rgba(0, 0, 0, 0.11)',
+                boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.08);',
                 borderRadius: '25px',
                 // TODO: Media queries
                 height: '40px',
