@@ -92,7 +92,7 @@ const MainForm = ({
         color: 'primary',
     };
 
-    const generateForm = ({ handleSubmit, submitting, }: FormRenderProps) => (
+    const generateForm = ({ handleSubmit, submitting }: FormRenderProps) => (
         <form onSubmit={handleSubmit}>
             <MainFormContainer variant={variant}>
                 <FormElementContainer>

@@ -24,29 +24,29 @@ const useStyles = makeStyles((theme: Theme) => ({
         flexDirection: 'column',
     },
     // TODO: Media queries for label
-    tabRootFirst: {
-        opacity: 1,
-        borderRadius: '40px',
-        position: 'relative',
-        zIndex: 1,
-        backgroundColor: theme.palette.secondary.main,
-        fontSize: '24px',
-        minWidth: getTabWidth,
-        width: getTabWidth,
-        height: '312px',
-    },
-    tabRootSecond: {
-        opacity: 1,
-        borderRadius: '40px',
-        position: 'relative',
-        transform: 'translateY(-66px)',
-        zIndex: 0,
-        backgroundColor: theme.palette.secondary.main,
-        fontSize: '24px',
-        minWidth: getTabWidth,
-        width: getTabWidth,
-        height: '310px',
-    },
+    // tabRootFirst: {
+    //     opacity: 1,
+    //     borderRadius: '40px',
+    //     position: 'relative',
+    //     zIndex: 1,
+    //     backgroundColor: theme.palette.secondary.main,
+    //     fontSize: '24px',
+    //     minWidth: getTabWidth,
+    //     width: getTabWidth,
+    //     height: '312px',
+    // },
+    // tabRootSecond: {
+    //     opacity: 1,
+    //     borderRadius: '40px',
+    //     position: 'relative',
+    //     transform: 'translateY(-66px)',
+    //     zIndex: 0,
+    //     backgroundColor: theme.palette.secondary.main,
+    //     fontSize: '24px',
+    //     minWidth: getTabWidth,
+    //     width: getTabWidth,
+    //     height: '310px',
+    // },
     wrapper: {
         transform: 'rotate(-90deg)',
         width: 'auto',
@@ -75,7 +75,8 @@ interface FullWidthTabsProps {
 
 function FullWidthTabs(props: FullWidthTabsProps) {
     const [activeValue, setActiveValue] = useState(0);
-    const { root, selectedFirst, selectedSecond, wrapper, flexContainer, tabRootFirst, tabRootSecond, indicator } = useStyles(props);
+    // tabRootFirst, tabRootSecond,
+    const { root, selectedFirst, selectedSecond, wrapper, flexContainer, indicator } = useStyles(props);
 
     const handleChange = (event: ChangeEvent<{}>, value: number) => {
         setActiveValue(value);
@@ -98,12 +99,12 @@ function FullWidthTabs(props: FullWidthTabsProps) {
                     >
                         // TODO: extract this
                         <Tab
-                            classes={{ root: tabRootFirst, wrapper, selected: selectedFirst }}
+                            classes={{ wrapper, selected: selectedFirst }}
                             label="BEER"
                             {...other}
                         />
                         <Tab
-                            classes={{ root: tabRootSecond, wrapper, selected: selectedSecond }}
+                            classes={{ wrapper, selected: selectedSecond }}
                             label="BAR"
                             {...other}
                         />
