@@ -1,7 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Button as MaterialButton } from '@material-ui/core';
-import { ButtonProps } from '@material-ui/core/Button';
 
 const Button = styled(MaterialButton)<any>`
     font-family: Staatliches;

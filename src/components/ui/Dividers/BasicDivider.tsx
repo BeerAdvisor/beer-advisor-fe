@@ -1,21 +1,13 @@
-import React from 'react';
-import { Divider, Theme } from '@material-ui/core';
-// @ts-ignore
-import { makeStyles } from '@material-ui/styles';
+import styled from '../../../styled-components';
+import { Divider as MaterialDivider } from '@material-ui/core';
+import { DividerProps } from '@material-ui/core/Divider';
 
-const useStyles = makeStyles((theme: Theme) => ({
-        root: {
-            width: '100px',
-            height: '8px',
-            borderRadius: '3.6px',
-            backgroundColor: '#000000',
-            marginBottom: '20px',
-        },
-    })
-);
+export const BasicDivider = styled(MaterialDivider as React.FunctionComponent<DividerProps>)`
+    width: 100px;
+    height: 8px;
+    border-radius: 3.6px;
+    background-color: #000000;
+    margin-bottom: 20px;
+`;
 
-export default () => {
-    const { root } = useStyles();
-
-    return <Divider classes={{root}} />;
-};
+export default BasicDivider;
