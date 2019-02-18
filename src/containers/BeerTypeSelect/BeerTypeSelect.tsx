@@ -2,8 +2,9 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { MenuItem } from '@material-ui/core';
-import { Select } from '../../components/ui';
 import { Field } from 'react-final-form';
+
+import { Select } from '../../components/ui';
 
 const BeerTypeSelect = (props: any) => (
     <Query

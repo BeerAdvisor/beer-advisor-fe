@@ -1,13 +1,14 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Theme } from '@material-ui/core/styles';
 // @ts-ignore
 import SwipeableViews from 'react-swipeable-views';
-import styled from '../../../styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { TabsContainer } from './style';
 import { TabProps, TabsProps } from 'material-ui';
+
+import styled from '../../../styled-components';
+
+import { TabsContainer } from './style';
 
 const getTabWidth = (props: any) => props.variant === 'small' ? '60px' : '120px';
 

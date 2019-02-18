@@ -1,12 +1,14 @@
 import React, { ChangeEvent, useState } from 'react';
-import styled from '../../../styled-components';
 import { ToggleButtonGroup } from '@material-ui/lab';
 import { map } from 'ramda';
-import ToggleButton from './ToogleButton';
 import { FormLabel } from '@material-ui/core';
-import { ToogleButtonContainer, ElementsContainer } from './style';
 import { FieldRenderProps } from 'react-final-form';
 import { ToggleButtonGroupProps } from '@material-ui/lab/ToggleButtonGroup';
+
+import styled from '../../../styled-components';
+
+import ToggleButton from './ToogleButton';
+import { ToogleButtonContainer, ElementsContainer } from './style';
 
 const ToggleButtonGroupStyled = styled((props: ToggleButtonGroupProps) => (
     <ToggleButtonGroup {...props}/>

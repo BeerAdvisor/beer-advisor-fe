@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { MainForm, MainFormProps } from '../MainForm';
 import { Tabs } from '../../components';
 

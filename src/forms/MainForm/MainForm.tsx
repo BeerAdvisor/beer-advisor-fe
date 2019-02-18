@@ -4,8 +4,10 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { RouteComponentProps } from 'react-router-dom';
 import { Form, Field, FormRenderProps } from 'react-final-form';
+
 import { Slider, TextField, Button, ToogleButtons, SmallButton } from '../../components/ui';
 import { BeerTypeSelect } from '../../containers';
+
 import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper, MainFormContainerProps } from './style';
 
 const GET_BEER_FORM_DATA = gql`

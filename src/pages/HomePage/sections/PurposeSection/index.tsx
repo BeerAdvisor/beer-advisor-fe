@@ -1,8 +1,10 @@
 import React from 'react';
-import { InfoTextContainer, VerticalTextContainer, PurposeLayoutContainer, ImageContainer } from './style';
+
 import { ExtraLargeText, LargeText } from '../../../../components';
 import HorizontalImage from '../../../../components/ui/Image/HorizontalImage';
 import { MAIN_PAGE_HORIZONTAL_IMAGE_DESCRIPTION } from '../../../../texts/constants';
+
+import { InfoTextContainer, VerticalTextContainer, PurposeLayoutContainer, ImageContainer } from './style';
 
 export default () => (
     <PurposeLayoutContainer>

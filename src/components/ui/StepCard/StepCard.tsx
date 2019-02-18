@@ -1,6 +1,7 @@
 import React from 'react';
-import { StepCardContainer } from './style';
 import { Typography } from '@material-ui/core';
+
+import { StepCardContainer } from './style';
 
 export interface StepCardProps {
     heading: string;

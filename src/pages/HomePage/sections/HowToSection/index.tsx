@@ -1,6 +1,15 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
+
 import { StepCard, BasicDivider, RevertedSmallerText } from '../../../../components';
+import {
+    MAIN_PAGE_STEP_1,
+    MAIN_PAGE_STEP_2,
+    MAIN_PAGE_STEP_3,
+    MAING_PAGE_STEP_DESCRIPTION_2,
+    MAING_PAGE_STEP_DESCRIPTION_1,
+} from '../../../../texts/constants';
+
 import {
     HowToContainer,
     StepsContainer,
@@ -9,13 +18,6 @@ import {
     GeneralTextContainer,
     RevertedTextContainer,
 } from './style';
-import {
-    MAIN_PAGE_STEP_1,
-    MAIN_PAGE_STEP_2,
-    MAIN_PAGE_STEP_3,
-    MAING_PAGE_STEP_DESCRIPTION_2,
-    MAING_PAGE_STEP_DESCRIPTION_1,
-} from '../../../../texts/constants';
 
 const STEP = 'STEP ';
 

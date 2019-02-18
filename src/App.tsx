@@ -3,12 +3,12 @@ import React, { Component, Suspense, lazy } from 'react';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-// @ts-ignore TODO: configure TS correctly
-import { install, ThemeProvider } from '@material-ui/styles';
+import { install } from '@material-ui/styles';
 import { MuiThemeProvider, createGenerateClassName, jssPreset } from  '@material-ui/core/styles';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
-import theme from './theme';
 import { ApolloProvider } from 'react-apollo';
+
+import theme from './theme';
 import client from './api';
 import HomePage from './pages/HomePage';
 import BeerResultPage from './pages/BeerResultPage';
@@ -43,13 +43,11 @@ const Routes = () => (
 const App = () => (
      <ApolloProvider client={client}>
        <StyledComponentsThemeProvider theme={theme}>
-         <ThemeProvider theme={theme}>
            <MuiThemeProvider theme={theme}>
-           <JssProvider jss={jss} generateClassName={generateClassName}>
-             <Routes />
+            <JssProvider jss={jss} generateClassName={generateClassName}>
+              <Routes />
             </JssProvider>
            </MuiThemeProvider >
-         </ThemeProvider>
        </StyledComponentsThemeProvider>
      </ApolloProvider>
 );

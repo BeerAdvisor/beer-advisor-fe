@@ -1,4 +1,19 @@
 import React from 'react';
+import { Typography } from '@material-ui/core';
+
+import {
+    ExtraLargeText,
+    LargeText,
+    VerticalDivider,
+    Button,
+} from '../../../../components';
+import {
+    MAIN_PAGE_OPPORTUNNTIES_LIST_NAME,
+    MAIN_PAGE_OPPORTUNNTIES_LIST_1,
+    MAIN_PAGE_OPPORTUNNTIES_LIST_2,
+    MAIN_PAGE_OPPORTUNNTIES_LIST_3,
+} from '../../../../texts/constants';
+
 import {
     InfoTextContainer,
     VerticalTextContainer,
@@ -7,14 +22,6 @@ import {
     ButtonTextContainer,
     ExamplesContainer,
 } from './style';
-import {
-    ExtraLargeText,
-    LargeText,
-    VerticalDivider,
-    Button,
-} from '../../../../components';
-import { Typography } from '@material-ui/core';
-import { MAIN_PAGE_OPPORTUNNTIES_LIST_NAME, MAIN_PAGE_OPPORTUNNTIES_LIST_1, MAIN_PAGE_OPPORTUNNTIES_LIST_2, MAIN_PAGE_OPPORTUNNTIES_LIST_3 } from '../../../../texts/constants';
 
 export default () => (
     <OpportunitiesSection>
@@ -39,7 +46,9 @@ export default () => (
             <Typography variant="subtitle2">
                 {MAIN_PAGE_OPPORTUNNTIES_LIST_1}
             </Typography>
-            <Typography variant="subtitle2">{MAIN_PAGE_OPPORTUNNTIES_LIST_2}</Typography>
+            <Typography variant="subtitle2">
+                {MAIN_PAGE_OPPORTUNNTIES_LIST_2}
+            </Typography>
             <Typography variant="subtitle2">
                 {MAIN_PAGE_OPPORTUNNTIES_LIST_3}
             </Typography>

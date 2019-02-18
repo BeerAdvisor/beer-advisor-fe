@@ -1,6 +1,7 @@
 import React from 'react';
-import { HorizontalImage, HorizontalImageContainer } from './style';
 import { Typography } from '@material-ui/core';
+
+import { HorizontalImage, HorizontalImageContainer } from './style';
 
 interface HorizontalImageProps {
     src: string;

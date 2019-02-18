@@ -1,8 +1,10 @@
 import React from 'react';
-import { HeadElementsContainer, RevertedTextWrapper, HorizontalContainer, FormWrapper } from './style';
-import { RevertedText } from '../../../../components';
 import { Typography } from '@material-ui/core';
+
+import { RevertedText } from '../../../../components';
 import { CombinedForms } from '../../../../forms';
+
+import { HeadElementsContainer, RevertedTextWrapper, HorizontalContainer, FormWrapper } from './style';
 
 export default (props: any) => {
     return (
