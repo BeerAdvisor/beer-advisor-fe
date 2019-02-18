@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Button as MaterialButton } from '@material-ui/core';
+import { SMALL_BP_UP, MEDIUM_BP_UP, LARGE_BP_UP } from '../../../theme';
 
 const Button = styled(MaterialButton)<any>`
     font-family: Staatliches;
@@ -10,6 +11,18 @@ const Button = styled(MaterialButton)<any>`
     letter-spacing: 1.2px;
     color: #FFF;
     padding: 0;
+
+    ${SMALL_BP_UP} {
+        fontSize: 14px;
+        width: 160px;
+    }
+    ${MEDIUM_BP_UP}: {
+        width: 250px;
+    }
+    ${LARGE_BP_UP} {
+        width: 350px;
+        height: 75px;
+    }
 `;
 
 export default Button;

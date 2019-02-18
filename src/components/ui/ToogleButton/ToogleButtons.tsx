@@ -1,28 +1,32 @@
 import React, { ChangeEvent, useState } from 'react';
+import styled from '../../../styled-components';
 import { ToggleButtonGroup } from '@material-ui/lab';
 import { map } from 'ramda';
 import ToggleButton from './ToogleButton';
-import { Theme, FormLabel } from '@material-ui/core';
+import { FormLabel } from '@material-ui/core';
 import { ToogleButtonContainer, ElementsContainer } from './style';
-// @ts-ignore
-import { makeStyles } from '@material-ui/styles';
 import { FieldRenderProps } from 'react-final-form';
+import { ToggleButtonGroupProps } from '@material-ui/lab/ToggleButtonGroup';
 
-const useStyles = makeStyles((theme: Theme) => ({
-    selected: {
-        borderColor: theme.palette.secondary.main,
-    },
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexGrow: 1,
-        justifyContent: 'stretch',
-        background: theme.palette.secondary.main,
-        borderRadius: '25px',
-        boxShadow: 'none',
-        overflow: 'unset', // shadows
-    },
-}));
+const ToggleButtonGroupStyled = styled((props: ToggleButtonGroupProps) => (
+    <ToggleButtonGroup {...props}/>
+))`
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: stretch;
+    background: ${props => props.theme.palette.secondary.main};
+    border-radius: 25px;
+    box-shadow: none;
+    overflow: unset;
+
+    & .selected {
+        border-color: ${props => props.theme.palette.primary.main};
+        color:  ${props => props.theme.palette.primary.main};
+        border: 2px solid;
+        background-color: transparent;
+    }
+`;
 
 export interface ToggleButtonProps {
     buttonValues: string[];
@@ -34,7 +38,6 @@ const ToggleButtons = ({
     label,
     input: { name, onChange, value: defaultValue },
 }: ToggleButtonProps & FieldRenderProps) => {
-    const { root } = useStyles();
     const [value, setValue] = useState(defaultValue);
 
     const handleChange = (event: ChangeEvent<{}>, radioValue: string) => {
@@ -53,15 +56,14 @@ const ToggleButtons = ({
                 </FormLabel>
             )}
             <ToogleButtonContainer>
-                <ToggleButtonGroup
+                <ToggleButtonGroupStyled
                     id={name}
-                    classes={{ root }}
                     value={value}
                     exclusive={true}
                     onChange={handleChange}
                 >
                     {mapButtonValues(buttonValues)}
-                </ToggleButtonGroup>
+                </ToggleButtonGroupStyled>
             </ToogleButtonContainer>
         </ElementsContainer>
     );

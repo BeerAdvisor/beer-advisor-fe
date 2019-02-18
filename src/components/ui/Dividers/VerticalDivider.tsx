@@ -6,7 +6,7 @@ export const VerticalDivider = styled(MaterialDivider as React.FunctionComponent
     width: 10px;
     height: 315px;
     border-radius: 3.6px;
-    backgroundColor: #000000;
+    background-color: #000000;
     margin-bottom: 20px;
 `;
 

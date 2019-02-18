@@ -1,45 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
 import MaterialToogleButton, { ToggleButtonProps } from '@material-ui/lab/ToggleButton';
-// @ts-ignore
-import { makeStyles } from '@material-ui/styles';
-import { Theme } from '@material-ui/core';
 
-const useStyles = makeStyles((theme: Theme) => ({
-    selected: {
-        borderColor: theme.palette.primary.main,
-        color:  theme.palette.primary.main,
-        border: '2px solid',
-        '&:after' :{
-            backgroundColor: 'transparent',
-        },
-    },
-    disabled: {
-        color:  theme.palette.grey[400],
-    },
-    root: {
-        borderRadius: '25px !important',
-        minWidth: '150px',
-        flexGrow: 1,
-        height: '50px',
-        boxShadow: '3px 0 10px 0 rgba(0, 0, 0, 0.11)',
-        fontSize: '18px',
-        '&:not(:first-child)': {
-            marginLeft: '10px',
-        },
-        '&:not(:last-child)': {
-            marginRight: '10px',
-        },
-    },
-}));
+const ToggleButton = styled((props: ToggleButtonProps) => (
+    <MaterialToogleButton classes={{ disabled: 'disabled', selected: 'selected' }} {...props} />
+))`
+    border-radius: 25px !important; 
+    min-width: 150px;
+    flex-grow: 1;
+    height: 50px;
+    box-shadow: 3px 0 10px 0 rgba(0, 0, 0, 0.11);
+    font-size: 18px;
+    &:not(:first-child) {
+        margin-left: 10px;
+    }
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
 
-const ToggleButton = (props: ToggleButtonProps) => {
-    const { root, selected, disabled } = useStyles();
-    const { children } = props;
-
-    return ( 
-    <MaterialToogleButton classes={{ root, selected, disabled }} {...props}>
-        {children}
-    </MaterialToogleButton>);
-};
+    & .disabled {
+        color:  ${props => props.theme.palette.grey[400]};
+    }
+`;
 
 export default ToggleButton;
