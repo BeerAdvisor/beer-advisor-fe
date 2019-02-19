@@ -10,10 +10,10 @@ interface SelectBoxProps {
 const SelectBox: React.SFC<SelectBoxProps & FieldRenderProps> = ({
     label,
     items,
-    input: { name, onChange, value, ...otherInput },
+    input: { name, onChange, value: defaultValue, ...otherInput },
     ...other
 }) => {
-    const [selectedValue, setSelectedValue] = useState(value);
+    const [selectedValue, setSelectedValue] = useState(defaultValue);
 
     const handleValueChange = ({
         target: { value: changedValue },

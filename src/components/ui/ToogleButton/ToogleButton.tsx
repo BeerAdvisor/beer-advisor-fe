@@ -11,12 +11,7 @@ const ToggleButton = styled((props: ToggleButtonProps) => (
     height: 50px;
     box-shadow: 3px 0 10px 0 rgba(0, 0, 0, 0.11);
     font-size: 18px;
-    &:not(:first-child) {
-        margin-left: 10px;
-    }
-    &:not(:last-child) {
-        margin-right: 10px;
-    }
+    margin: 0 10px;
 
     & .disabled {
         color:  ${props => props.theme.palette.grey[400]};

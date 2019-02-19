@@ -21,6 +21,7 @@ const ToggleButtonGroupStyled = styled((props: ToggleButtonGroupProps) => (
     border-radius: 25px;
     box-shadow: none;
     overflow: unset;
+    margin: 0 -10px;
 
     & .selected {
         border-color: ${props => props.theme.palette.primary.main};
@@ -31,12 +32,12 @@ const ToggleButtonGroupStyled = styled((props: ToggleButtonGroupProps) => (
 `;
 
 export interface ToggleButtonProps {
-    buttonValues: string[];
+    values: string[];
     label?: string;
 }
 
 const ToggleButtons = ({
-    buttonValues,
+    values,
     label,
     input: { name, onChange, value: defaultValue },
 }: ToggleButtonProps & FieldRenderProps) => {
@@ -64,7 +65,7 @@ const ToggleButtons = ({
                     exclusive={true}
                     onChange={handleChange}
                 >
-                    {mapButtonValues(buttonValues)}
+                    {mapButtonValues(values)}
                 </ToggleButtonGroupStyled>
             </ToogleButtonContainer>
         </ElementsContainer>

@@ -15,6 +15,7 @@ export const MainFormContainer = styled.div<MainFormContainerProps>`
     flex-direction: column;
     align-items: center;
     background-color: ${props => props.theme.palette.secondary.main};
+    padding-bottom: 40px;
 `;
 
 export const FormElementContainer = styled.div`
@@ -38,4 +39,5 @@ export const SliderContaier = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: 0 -10px;
 `;

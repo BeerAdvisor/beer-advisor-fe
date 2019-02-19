@@ -15,13 +15,7 @@ export const LabelContainer = styled.div`
 export const SliderContainer = styled.div`
     min-width: 150px;
     flex-grow: 1;
-    margin-top: 24px;
-    &:first-child {
-        margin-right: 10px;
-    }
-    &:last-child {
-        margin-left: 10px;
-    }
+    margin: 24px 10px 0 10px;
 `;
 
 export const trackStyle = {

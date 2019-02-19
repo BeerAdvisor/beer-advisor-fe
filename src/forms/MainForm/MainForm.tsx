@@ -6,7 +6,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Form, Field, FormRenderProps } from 'react-final-form';
 
 import { Slider, TextField, Button, ToogleButtons, SmallButton } from '../../components/ui';
-import { BeerTypeSelect } from '../../containers';
+import { BeerTypeSelect, SelectField} from '../../containers';
 
 import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper, MainFormContainerProps } from './style';
 
@@ -81,9 +81,8 @@ const MainForm = ({
         step: sliderStep,
     };
 
-    const toogleButtonsProps = {
-        defaultValue: 'Distance',
-        buttonValues: ['Price', 'Distance', 'Rating'],
+    const filterProps = {
+        values: ['Price', 'Distance', 'Rating'],
         label: 'Filter by',
     };
 
@@ -110,9 +109,12 @@ const MainForm = ({
                             <Field name="strongRange" component={Slider} {...sliderProps} label="Strong" />
                         </SliderContaier>    
                     </ElementsWrapper>
-                    {/* 
-                             // @ts-ignore  https://github.com/final-form/react-final-form/issues/175 */}
-                    <Field name="filter" component={ToogleButtons} {...toogleButtonsProps} />
+                    {variant !== 'small' ? (
+                        // @ts-ignore  https://github.com/final-form/react-final-form/issues/175
+                        <Field name="filter" component={ToogleButtons} {...filterProps} />
+                        ) : (
+                        <SelectField name="filter" {...filterProps}/>
+                    )}
                     <ButtonWrapper>
                         {variant !== 'small' ? (
                             <Button {...searchButtonProps} disabled={submitting}>Search</Button>
