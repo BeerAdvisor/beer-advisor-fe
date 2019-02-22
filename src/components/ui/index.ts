@@ -9,3 +9,4 @@ export * from './Typography';
 export * from './Image';
 export * from './StepCard';
 export * from './Dividers';
+export * from './SearchResultCard';

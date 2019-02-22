@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { CombinedForms } from '../../forms';
+import { SearchResultCard } from '../../components';
 
 import { BeerResultContainer, FormContainer, SearchResultContainer } from './style';
 
@@ -9,9 +10,9 @@ export const BeerResultPage = (props: any) => (
         <FormContainer>
             <CombinedForms variant="small" {...props} />
         </FormContainer>
-        {/* <SearchResultContainer>
-
-        </SearchResultContainer> */}
+        <SearchResultContainer>
+            <SearchResultCard labelValues={[{label: 'Rating', value: '5.8%'}]} />
+        </SearchResultContainer>
     </BeerResultContainer>
 );
 

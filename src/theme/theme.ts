@@ -50,6 +50,14 @@ const theme = createMuiTheme({
             fontSize: '21.5px',
             fontWeight: 400,
         },
+        // @ts-ignore
+        bigSearchValue: {
+            color: palette.primary.lightContrast,
+            fontFamily: 'Staatliches',
+            letterSpacing: '0.9px',
+            lineHeight: 1,
+            fontSize: '36px',
+        },
     },
     palette,
     overrides: {
