@@ -12,6 +12,7 @@ export const SmallerButton = styled(MaterialButton)<any>`
     padding: 0;
     width: 280px;
     height: 48px;
+    margin-top: 20px;
 `;
 
 export default SmallerButton;

@@ -9,7 +9,7 @@ const defaults = {
 const resolvers = {};
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000',
+  uri: 'https://beer-advisor-development.herokuapp.com/',
   clientState: {
     defaults,
     resolvers,

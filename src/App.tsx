@@ -12,6 +12,7 @@ import theme from './theme';
 import client from './api';
 import HomePage from './pages/HomePage';
 import BeerResultPage from './pages/BeerResultPage';
+import LoginPage from './pages/LoginPage';
 
 const generateClassName = createGenerateClassName();
 const jss = create({
@@ -35,6 +36,7 @@ const Routes = () => (
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/beers" component={BeerResultPage} />
+        <Route path="/login" component={LoginPage} />
       </Switch>
     </Suspense>
   </Router>

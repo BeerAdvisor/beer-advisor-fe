@@ -2,6 +2,7 @@ import React from 'react';
 import { InputBase, FormLabel , FormControl } from '@material-ui/core';
 
 const SearchField = (props: any) => {
+    // TODO: transfer input to field component
     const { label, placeholder, input: { name, onChange, value,  ...otherInput }, ...other} = props;
 
     return (
@@ -10,13 +11,13 @@ const SearchField = (props: any) => {
           {label}
         </FormLabel >)}
         <InputBase
-            {...other}
             name={name}
             id={name}
             placeholder={placeholder}
             onChange={onChange}
             value={value}
             inputProps={otherInput}
+            {...other}
         />
         </FormControl>
     );
