@@ -6,3 +6,13 @@ export const LoginFormWrapper = styled.div`
     justify-content: center;
     align-items: center;
 `;
+
+export const StyledAnchor = styled.a`
+    margin-top: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+`;
+
+export const ErrorMessage = styled.div`
+    color: red;
+`;

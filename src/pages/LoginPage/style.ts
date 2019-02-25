@@ -1,11 +1,16 @@
 import styled from '../../styled-components';
 
-export const LoginPage = styled.div`
+export const LoginWrapper = styled.div`
     width: 300px;
     height: 300px;
     border-radius: 40px;
     background-color: #FFFFFF;
     padding: 0 20px;
+`;
 
-    margin: auto;
+export const LoginPage = styled.div`
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;

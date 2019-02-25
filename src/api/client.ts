@@ -9,7 +9,8 @@ const defaults = {
 const resolvers = {};
 
 const client = new ApolloClient({
-  uri: 'https://beer-advisor-development.herokuapp.com/',
+  uri: 'https://beer-advisor-development.herokuapp.com',
+  credentials: 'include',
   clientState: {
     defaults,
     resolvers,

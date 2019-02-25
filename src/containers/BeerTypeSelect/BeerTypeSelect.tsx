@@ -10,23 +10,22 @@ const BeerTypeSelect = (props: any) => (
     <Query
     query={gql`
     {
-      getBeers{
-        type
+      beerTypes{
+        name
       }
     }
     `}
   >
     {({ loading, error, data }) => {
-      // TODO: consider spinner for whole form, error state? 
-      // if (loading || error) return null;
-      // const { getBeers: beers} = data;
+      if (loading || error) return null;
+      const { beerTypes: beers} = data;
 
-      // const beerTypes = beers.map(({ type }: { type: string}) => (
-      //   <MenuItem key={type} value={type}>{type}</MenuItem>
-      //   ));
+      const beerTypes = beers.map(({ name }: { name: string}) => (
+        <MenuItem key={name} value={name}>{name}</MenuItem>
+        ));
 
         // @ts-ignore
-      return <Field {...props} name="beerType" component={Select} items={[<MenuItem key="alo" value="alo">alo</MenuItem>]} />;
+      return <Field {...props} name="beerType" component={Select} items={beerTypes} />;
     }}
   </Query>
 );
