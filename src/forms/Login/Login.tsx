@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import { Mutation, MutationFn } from 'react-apollo';
-import gql from 'graphql-tag';
+import React from 'react';
+import { Mutation, MutationFn, MutationResult } from 'react-apollo';
 import { ApolloClient } from 'apollo-boost';
+import { FormRenderProps, Form } from 'react-final-form';
+import { RouteComponentProps } from 'react-router';
 
-import { TextField, SmallButton } from '../../components';
+import { TextField, SmallButton, ErrorMessage } from '../../components';
+import { Field } from '../../containers';
 
-import { LoginFormWrapper, StyledAnchor, ErrorMessage } from './style';
+import { LoginFormWrapper, StyledAnchor } from './style';
+import { useLogin } from './hooks';
+import { LOGIN_MUTATION, SIGNUP_MUTATION } from './mutation';
+import { validate } from './helpers';
 
 export interface MutationVariable {
     email: string;
@@ -15,15 +20,18 @@ export interface MutationVariable {
     birthDate: Date;
 }
 
+export type MutationLogin = MutationFn<any, {
+    email: string;
+    password: string;
+    nickname: string;
+    sex: string;
+    birthDate: Date;
+}>;
+
 const onSubmit = (
-    mutation: MutationFn<any, {
-        email: string;
-        password: string;
-        nickname: string;
-        sex: string;
-        birthDate: Date;
-    }>,
-    client: ApolloClient<any>
+    mutation: MutationLogin,
+    client: ApolloClient<any>,
+    history: RouteComponentProps['history']
 ) => (variables: any) => {
     mutation(variables);
     return async (data: any) => {
@@ -32,14 +40,15 @@ const onSubmit = (
 };
 
 const buttonProps = {
+    type: 'submit',
     fullWidth: true,
     variant: 'contained',
     color: 'primary',
 };
 
 const loginProps = {
-    label: 'Login',
-    name: 'login',
+    label: 'E-mail',
+    name: 'email',
 };
 
 const passwordProps = {
@@ -52,45 +61,7 @@ const confirmPasswordProps = {
     name: 'confirmPassword',
 };
 
-const useLogin = () => {
-    const [login, setLogin] = useState(true);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-
-    const handleLogin = (changedLogin: boolean) => (
-        event: React.MouseEvent<HTMLAnchorElement>
-    ) => {
-        setLogin(changedLogin);
-    };
-
-    const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value);
-    };
-
-    const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.target.value);
-    };
-
-    const handleConfirmPassword = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        setConfirmPassword(event.target.value);
-    };
-
-    return {
-        login,
-        handleLogin,
-        email,
-        handleEmail,
-        password,
-        handlePassword,
-        confirmPassword,
-        handleConfirmPassword,
-    };
-};
-
-export default () => {
+export default ({ history }: RouteComponentProps) => {
     const {
         login,
         handleLogin,
@@ -102,54 +73,42 @@ export default () => {
         handleConfirmPassword,
     } = useLogin();
 
-    return (
-        <form>
-            <LoginFormWrapper>
-                <TextField
-                    onChange={handleEmail}
-                    value={email}
-                    {...loginProps}
-                    type="text"
-                />
-                <TextField
-                    onChange={handlePassword}
-                    value={password}
-                    {...passwordProps}
-                    type="password"
-                />
+    const generateForm = ({ loading, error }: MutationResult<any>) => (
+            { handleSubmit, submitting }: FormRenderProps
+        ) => (
+        <form onSubmit={handleSubmit}>
+            <LoginFormWrapper login={login}>
+            {/* 
+            // @ts-ignore */ }
+            <Field component={TextField} onChange={handleEmail} value={email} {...loginProps} type="text">
+                <TextField />
+            </Field>
+            <Field component={TextField} onChange={handlePassword} value={password} {...passwordProps} type="password">
+                <TextField />
+            </Field>
                 {!login && (
                     <React.Fragment>
-                        <TextField
+                        {/* 
+                        // @ts-ignore */ }
+                        <Field 
+                            component={TextField}
                             onChange={handleConfirmPassword}
                             value={confirmPassword}
                             {...confirmPasswordProps}
-                            type="password"
-                        />
+                            type="password">
+                            <TextField />
+                        </Field>
                     </React.Fragment>
                 )}
-                <Mutation
-                    mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
-                    variables={{
-                        email,
-                        password,
-                        nickname: 'zhopa',
-                        sex: 'M',
-                        birthDate: new Date(),
-                    }}
-                >
-                    {(mutation, { loading, error, client }) => (
                     <React.Fragment>
                         <SmallButton
                             {...buttonProps}
-                            onClick={onSubmit(mutation, client)}
                             disabled={loading}
                         >
                             Sign {login ? 'In' : 'Up'}
                         </SmallButton>
                         {error && <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>}
                     </React.Fragment>
-                    )}
-                </Mutation>
                 <StyledAnchor onClick={handleLogin(!login)}>
                     {login
                         ? "Don't have an account?"
@@ -158,34 +117,27 @@ export default () => {
             </LoginFormWrapper>
         </form>
     );
+
+    return (
+        <Mutation
+            mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
+            variables={{
+                email,
+                password,
+                nickname: 'zhopa',
+                sex: 'M',
+                birthDate: new Date(),
+            }}
+        >
+            {(mutation, {client, ...otherMutationProps}) => (
+                <Form
+                    // @ts-ignore
+                    onSubmit={onSubmit(mutation, client, history)}
+                    render={generateForm({ client, ...otherMutationProps })}
+                    // @ts-ignore
+                    validate={validate}
+                />
+        )}
+        </Mutation>
+    );
 };
-
-const SIGNUP_MUTATION = gql`
-    mutation SignupMutation(
-        $email: String!
-        $password: String!
-        $nickname: String!
-        $sex: String!
-        $birthdate: DateTime!
-    ) {
-        signup(
-            email: $email
-            password: $password
-            nickname: $nickname
-            sex: $sex
-            birthdate: $birthdate
-        ) {
-            user
-        }
-    }
-`;
-
-const LOGIN_MUTATION = gql`
-    mutation LoginMutation($email: String!, $password: String!) {
-        login(loginInput: { email: $email, password: $password }) {
-            user {
-                email
-            }
-        }
-    }
-`;

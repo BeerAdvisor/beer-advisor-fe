@@ -2,12 +2,10 @@ import React from 'react';
 
 import { Login } from '../../forms';
 
-import { LoginPage, LoginWrapper } from './style';
+import { LoginPage } from './style';
 
-export default () => (
+export default (props: any) => (
     <LoginPage>
-        <LoginWrapper>
-            <Login />
-        </LoginWrapper>
+            <Login {...props}/>
     </LoginPage>
 );
