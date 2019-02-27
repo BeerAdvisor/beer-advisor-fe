@@ -22,7 +22,7 @@ export interface ReactSliderProps extends FieldRenderProps {
   label?: string;
 }
 
-const CustomizedRange = ({ step, label, input: { onChange, value }}: ReactSliderProps) => {
+const CustomizedRange = ({ step, label, input: { value, onChange }}: ReactSliderProps) => {
   const [sliderValue, setSliderValue] = useState(value);
 
   const onSliderChange = (value: number[]) => {

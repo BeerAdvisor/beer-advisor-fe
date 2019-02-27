@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mutation, MutationFn, MutationResult } from 'react-apollo';
 import { ApolloClient } from 'apollo-boost';
 import { FormRenderProps, Form } from 'react-final-form';
 import { RouteComponentProps } from 'react-router';
 
 import { TextField, SmallButton, ErrorMessage } from '../../components';
-import { Field } from '../../containers';
 
 import { LoginFormWrapper, StyledAnchor } from './style';
-import { useLogin } from './hooks';
 import { LOGIN_MUTATION, SIGNUP_MUTATION } from './mutation';
 import { validate } from './helpers';
 
@@ -21,11 +19,11 @@ export interface MutationVariable {
 }
 
 export type MutationLogin = MutationFn<any, {
-    email: string;
-    password: string;
-    nickname: string;
-    sex: string;
-    birthDate: Date;
+    $email: string;
+    $password: string;
+    $nickname: string;
+    $sex: string;
+    $birthDate: Date;
 }>;
 
 const onSubmit = (
@@ -33,7 +31,7 @@ const onSubmit = (
     client: ApolloClient<any>,
     history: RouteComponentProps['history']
 ) => (variables: any) => {
-    mutation(variables);
+    mutation({ variables });
     return async (data: any) => {
         debugger;
     };
@@ -61,43 +59,34 @@ const confirmPasswordProps = {
     name: 'confirmPassword',
 };
 
-export default ({ history }: RouteComponentProps) => {
-    const {
+const useLogin = () => {
+    const [login, setLogin] = useState(true);
+
+    const handleLogin = (changedLogin: boolean) => (
+        event: React.MouseEvent<HTMLAnchorElement>
+    ) => {
+        setLogin(changedLogin);
+    };
+
+    return {
         login,
         handleLogin,
-        email,
-        handleEmail,
-        password,
-        handlePassword,
-        confirmPassword,
-        handleConfirmPassword,
-    } = useLogin();
+    };
+};
+
+export default ({ history }: RouteComponentProps) => {
+    const { login, handleLogin} = useLogin();
 
     const generateForm = ({ loading, error }: MutationResult<any>) => (
             { handleSubmit, submitting }: FormRenderProps
         ) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(handleSubmit)}>
             <LoginFormWrapper login={login}>
-            {/* 
-            // @ts-ignore */ }
-            <Field component={TextField} onChange={handleEmail} value={email} {...loginProps} type="text">
-                <TextField />
-            </Field>
-            <Field component={TextField} onChange={handlePassword} value={password} {...passwordProps} type="password">
-                <TextField />
-            </Field>
+            <TextField {...loginProps} type="text" />
+            <TextField {...passwordProps} type="password" />
                 {!login && (
                     <React.Fragment>
-                        {/* 
-                        // @ts-ignore */ }
-                        <Field 
-                            component={TextField}
-                            onChange={handleConfirmPassword}
-                            value={confirmPassword}
-                            {...confirmPasswordProps}
-                            type="password">
-                            <TextField />
-                        </Field>
+                        <TextField {...confirmPasswordProps} type="password" />
                     </React.Fragment>
                 )}
                     <React.Fragment>
@@ -107,7 +96,7 @@ export default ({ history }: RouteComponentProps) => {
                         >
                             Sign {login ? 'In' : 'Up'}
                         </SmallButton>
-                        {error && <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>}
+                        {error && error.graphQLErrors[0] && <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>}
                     </React.Fragment>
                 <StyledAnchor onClick={handleLogin(!login)}>
                     {login
@@ -119,19 +108,9 @@ export default ({ history }: RouteComponentProps) => {
     );
 
     return (
-        <Mutation
-            mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
-            variables={{
-                email,
-                password,
-                nickname: 'zhopa',
-                sex: 'M',
-                birthDate: new Date(),
-            }}
-        >
+        <Mutation mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}>
             {(mutation, {client, ...otherMutationProps}) => (
                 <Form
-                    // @ts-ignore
                     onSubmit={onSubmit(mutation, client, history)}
                     render={generateForm({ client, ...otherMutationProps })}
                     // @ts-ignore

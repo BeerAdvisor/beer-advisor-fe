@@ -5,8 +5,8 @@ import gql from 'graphql-tag';
 import { RouteComponentProps } from 'react-router-dom';
 import { Form, Field, FormRenderProps } from 'react-final-form';
 
-import { Slider, TextField, Button, ToogleButtons, SmallButton } from '../../components/ui';
-import { BeerTypeSelect, SelectField} from '../../containers';
+import { SliderField, TextField, SelectField, Button, ToogleButtons, SmallButton, ToogleButtonsField } from '../../components/ui';
+import { BeerTypeSelect } from '../../containers';
 
 import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper, MainFormContainerProps } from './style';
 
@@ -98,20 +98,15 @@ const MainForm = ({
             <MainFormContainer variant={variant}>
                 <FormElementContainer>
                     <ElementsWrapper>
-                        <Field name="beerName" component={TextField} type="text" {...searchFieldProps} />
+                        <TextField name="beerName" type="text" {...searchFieldProps} />
                         <BeerTypeSelect {...selectProps} />
                         <SliderContaier>
-                            {/* 
-                            // @ts-ignore  https://github.com/final-form/react-final-form/issues/175 */}
-                            <Field name="priceRange" component={Slider} {...sliderProps} label="Price" />
-                            {/* 
-                             // @ts-ignore  https://github.com/final-form/react-final-form/issues/175 */}
-                            <Field name="strongRange" component={Slider} {...sliderProps} label="Strong" />
+                            <SliderField name="priceRange" {...sliderProps} label="Price" />
+                            <SliderField name="strongRange" {...sliderProps} label="Strong" />
                         </SliderContaier>    
                     </ElementsWrapper>
                     {variant !== 'small' ? (
-                        // @ts-ignore  https://github.com/final-form/react-final-form/issues/175
-                        <Field name="filter" component={ToogleButtons} {...filterProps} />
+                        <ToogleButtonsField name="filter" {...filterProps} />
                         ) : (
                         <SelectField name="filter" {...filterProps}/>
                     )}
