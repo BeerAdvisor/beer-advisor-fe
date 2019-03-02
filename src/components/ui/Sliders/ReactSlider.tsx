@@ -1,11 +1,14 @@
 /* tslint:disable */
-import "rc-slider/assets/index.css";
 import React, { useState } from "react";
 import { Typography, InputLabel } from "@material-ui/core";
 import { Handle, Range } from "rc-slider";
-import { ValuesContainer, SliderContainer, trackStyle, handlerStyle, railStyle, LabelContainer } from "./style";
-import { BottleIcon } from "../../Icons";
 import { FieldRenderProps } from "react-final-form";
+
+import "rc-slider/assets/index.css";
+import { BottleIcon } from "../../Icons";
+import { Field } from '../../../containers';
+
+import { ValuesContainer, SliderContainer, trackStyle, handlerStyle, railStyle, LabelContainer } from "./style";
 
 const handle = (props: any) => {
   const { dragging, index, ...other } = props;
@@ -55,4 +58,4 @@ const CustomizedRange = ({ step, label, input: { value, onChange }}: ReactSlider
   );
 };
 
-export default CustomizedRange;
+export default Field(CustomizedRange);

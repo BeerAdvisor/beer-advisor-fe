@@ -4,7 +4,7 @@ import { ApolloClient } from 'apollo-boost';
 import { FormRenderProps, Form } from 'react-final-form';
 import { RouteComponentProps } from 'react-router';
 
-import { TextField, SmallButton, ErrorMessage } from '../../components';
+import { InputField, SmallButton, ErrorMessage } from '../../components';
 
 import { LoginFormWrapper, StyledAnchor } from './style';
 import { LOGIN_MUTATION, SIGNUP_MUTATION } from './mutation';
@@ -82,11 +82,11 @@ export default ({ history }: RouteComponentProps) => {
         ) => (
         <form onSubmit={(handleSubmit)}>
             <LoginFormWrapper login={login}>
-            <TextField {...loginProps} type="text" />
-            <TextField {...passwordProps} type="password" />
+            <InputField {...loginProps} type="text" />
+            <InputField {...passwordProps} type="password" />
                 {!login && (
                     <React.Fragment>
-                        <TextField {...confirmPasswordProps} type="password" />
+                        <InputField {...confirmPasswordProps} type="password" />
                     </React.Fragment>
                 )}
                     <React.Fragment>

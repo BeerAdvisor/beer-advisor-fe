@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { RouteComponentProps } from 'react-router-dom';
 import { Form, Field, FormRenderProps } from 'react-final-form';
 
-import { SliderField, TextField, SelectField, Button, ToogleButtons, SmallButton, ToogleButtonsField } from '../../components/ui';
+import { SliderField, InputField, SelectField, Button, ToogleButtonGroupField, SmallButton } from '../../components/ui';
 import { BeerTypeSelect } from '../../containers';
 
 import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper, MainFormContainerProps } from './style';
@@ -98,7 +98,7 @@ const MainForm = ({
             <MainFormContainer variant={variant}>
                 <FormElementContainer>
                     <ElementsWrapper>
-                        <TextField name="beerName" type="text" {...searchFieldProps} />
+                        <InputField name="beerName" type="text" {...searchFieldProps} />
                         <BeerTypeSelect {...selectProps} />
                         <SliderContaier>
                             <SliderField name="priceRange" {...sliderProps} label="Price" />
@@ -106,7 +106,7 @@ const MainForm = ({
                         </SliderContaier>    
                     </ElementsWrapper>
                     {variant !== 'small' ? (
-                        <ToogleButtonsField name="filter" {...filterProps} />
+                        <ToogleButtonGroupField name="filter" {...filterProps} />
                         ) : (
                         <SelectField name="filter" {...filterProps}/>
                     )}

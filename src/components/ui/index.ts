@@ -11,7 +11,5 @@ export * from './StepCard';
 export * from './Dividers';
 export * from './SearchResultCard';
 export * from './ErrorMessage';
-export * from './TextField';
-export * from './SliderField';
+export * from './Sliders';
 export * from './SelectField';
-export * from './ToogleButtonsField';

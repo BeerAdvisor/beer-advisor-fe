@@ -1,17 +1,18 @@
 import React, { ChangeEvent, useState } from 'react';
-import { ToggleButtonGroup } from '@material-ui/lab';
+import { ToggleButtonGroup as MaterialToggleButtonGroup } from '@material-ui/lab';
 import { map } from 'ramda';
 import { FormLabel } from '@material-ui/core';
 import { FieldRenderProps } from 'react-final-form';
 import { ToggleButtonGroupProps } from '@material-ui/lab/ToggleButtonGroup';
 
 import styled from '../../../styled-components';
+import { Field } from '../../../containers';
 
 import ToggleButton from './ToogleButton';
 import { ToogleButtonContainer, ElementsContainer } from './style';
 
 const ToggleButtonGroupStyled = styled((props: ToggleButtonGroupProps) => (
-    <ToggleButtonGroup {...props}/>
+    <MaterialToggleButtonGroup {...props}/>
 ))`
     display: flex;
     flex-wrap: wrap;
@@ -36,7 +37,7 @@ export interface ToggleButtonProps {
     label?: string;
 }
 
-const ToggleButtons = ({
+const ToogleButtonGroup = ({
     values,
     label,
     input: { name, onChange, value: defaultValue },
@@ -82,4 +83,4 @@ const mapButtonValues = (buttonValues: string[]) =>
         buttonValues
     );
 
-export default ToggleButtons;
+export default Field(ToogleButtonGroup);

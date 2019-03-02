@@ -1,2 +1,4 @@
 export { default as ToogleButton } from './ToogleButton';
-export { default as ToogleButtons } from './ToogleButtons';
+export { default as ToogleButtonGroupField } from './ToogleButtonGroup';
+export * from './ToogleButton';
+export * from './ToogleButtonGroup';

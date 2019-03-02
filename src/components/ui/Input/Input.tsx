@@ -1,7 +1,9 @@
 import React from 'react';
 import { InputBase, FormLabel , FormControl } from '@material-ui/core';
 
-const SearchField = (props: any) => {
+import { Field } from '../../../containers';
+
+const Input = (props: any) => {
     const { label, placeholder, name, input: { onChange, value, ...otherInput }, ...other} = props;
 
     return (
@@ -22,4 +24,4 @@ const SearchField = (props: any) => {
     );
 };
 
-export default SearchField;
+export default Field(Input);

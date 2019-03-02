@@ -1,3 +1,2 @@
-export { default as Input } from './SearchField';
-
-export * from './SearchField';
+export { default as InputField } from './Input';
+export * from './Input';

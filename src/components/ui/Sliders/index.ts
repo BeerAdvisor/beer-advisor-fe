@@ -1,1 +1,2 @@
-export { default as Slider } from './ReactSlider';
+export { default as SliderField } from './ReactSlider';
+export * from './ReactSlider';
