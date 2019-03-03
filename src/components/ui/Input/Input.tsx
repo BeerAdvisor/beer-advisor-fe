@@ -1,9 +1,11 @@
 import React from 'react';
+import { FieldProps } from 'react-final-form';
 import { InputBase, FormLabel , FormControl } from '@material-ui/core';
+import { InputBaseProps } from '@material-ui/core/InputBase';
 
 import { Field } from '../../../containers';
 
-const Input = (props: any) => {
+const Input = (props: InputBaseProps & FieldProps) => {
     const { label, placeholder, name, input: { onChange, value, ...otherInput }, ...other} = props;
 
     return (
