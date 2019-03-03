@@ -30,6 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "generate": "apollo client:codegen src/@types/__generated__ --target=typescript --endpoint=https://beer-advisor-development.herokuapp.com --outputFlat --tagName=gql",
     "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
   "eslintConfig": {

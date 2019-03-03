@@ -5,17 +5,28 @@ export const SIGNUP_MUTATION = gql`
         $email: String!
         $password: String!
         $nickname: String!
-        $sex: String!
+        $sex: Sex!
         $birthdate: DateTime!
     ) {
         signup(
-            email: $email
-            password: $password
-            nickname: $nickname
-            sex: $sex
-            birthdate: $birthdate
+            signUpInput: {
+                email: $email
+                password: $password
+                nickname: $nickname
+                sex: $sex
+                birthdate: $birthdate
+            }
         ) {
-            user
+            user {
+                email,
+                role,
+                nickname,
+                birthdate,
+                name,
+                surname,
+                createdAt,
+                updatedAt
+            }
         }
     }
 `;
@@ -24,7 +35,14 @@ export const LOGIN_MUTATION = gql`
     mutation LoginMutation($email: String!, $password: String!) {
         login(loginInput: { email: $email, password: $password }) {
             user {
-                email
+                email,
+                role,
+                nickname,
+                birthdate,
+                name,
+                surname,
+                createdAt,
+                updatedAt
             }
         }
     }

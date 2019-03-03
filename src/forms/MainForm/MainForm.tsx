@@ -11,7 +11,7 @@ import { BeerTypeSelect } from '../../containers';
 import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper, MainFormContainerProps } from './style';
 
 const GET_BEER_FORM_DATA = gql`
-  {
+query beerForm {
     beerForm @client {
         priceRange
         strongRange

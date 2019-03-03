@@ -4,37 +4,50 @@ import { ApolloClient } from 'apollo-boost';
 import { FormRenderProps, Form } from 'react-final-form';
 import { RouteComponentProps } from 'react-router';
 
+import { LoginMutationVariables, SignupMutationVariables, LoginMutation, SignupMutation } from '../../@types';
 import { InputField, SmallButton, ErrorMessage } from '../../components';
 
 import { LoginFormWrapper, StyledAnchor } from './style';
 import { LOGIN_MUTATION, SIGNUP_MUTATION } from './mutation';
-import { validate } from './helpers';
+import { validate, isLoginMutation, isSignupMutation } from './helpers';
 
-export interface MutationVariable {
-    email: string;
-    password: string;
-    nickname: string;
-    sex: string;
-    birthDate: Date;
-}
+export type MutationAuth = LoginMutation | SignupMutation;
 
-export type MutationLogin = MutationFn<any, {
-    $email: string;
-    $password: string;
-    $nickname: string;
-    $sex: string;
-    $birthDate: Date;
-}>;
+export type MutationLogin = MutationFn<MutationAuth, LoginMutationVariables | SignupMutationVariables>;
 
 const onSubmit = (
     mutation: MutationLogin,
     client: ApolloClient<any>,
-    history: RouteComponentProps['history']
-) => (variables: any) => {
-    mutation({ variables });
-    return async (data: any) => {
-        debugger;
-    };
+    history: RouteComponentProps['history'],
+    login: boolean
+) => async (variables: LoginMutationVariables | SignupMutationVariables) => {
+    // TODO: This is maybe redundandt since we have a mutation response
+    let finalVars = variables;
+    if (!login) {
+        finalVars = {...variables, sex: 'MALE', birthdate: new Date(), nickname: variables.email};
+    }
+
+    const result = await mutation({ variables: finalVars });
+    if (result) {
+        const { data } = result;
+
+        let user;
+        if (data) {
+            if (isLoginMutation(data)) ({ login: { user }} = data);
+            if (isSignupMutation(data)) ({ signup: { user }} = data);
+        }
+
+        if (user) {
+            client.writeData({
+                data: {
+                    user,
+                },
+            });
+
+        }
+    }
+
+    history.push('/');
 };
 
 const buttonProps = {
@@ -92,7 +105,7 @@ export default ({ history }: RouteComponentProps) => {
                     <React.Fragment>
                         <SmallButton
                             {...buttonProps}
-                            disabled={loading}
+                            disabled={submitting || loading}
                         >
                             Sign {login ? 'In' : 'Up'}
                         </SmallButton>
@@ -109,12 +122,13 @@ export default ({ history }: RouteComponentProps) => {
 
     return (
         <Mutation mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}>
-            {(mutation, {client, ...otherMutationProps}) => (
+            {(mutation , {client, ...otherMutationProps}) => (
                 <Form
-                    onSubmit={onSubmit(mutation, client, history)}
-                    render={generateForm({ client, ...otherMutationProps })}
+            // @ts-ignore https://stackoverflow.com/questions/54269600/how-to-set-react-final-form-onsubmit-values-param-type-typescript
+                    onSubmit={onSubmit(mutation, client, history, login)}
                     // @ts-ignore
                     validate={validate}
+                    render={generateForm({ client, ...otherMutationProps })}
                 />
         )}
         </Mutation>

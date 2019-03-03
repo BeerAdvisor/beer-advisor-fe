@@ -6,15 +6,17 @@ import { Field } from 'react-final-form';
 
 import { Select } from '../../components/ui';
 
+const BEER_TYPES_QUERY = gql`
+query beerTypes{
+  beerTypes{
+    name
+  }
+}
+`;
+
 const BeerTypeSelect = (props: any) => (
     <Query
-    query={gql`
-    {
-      beerTypes{
-        name
-      }
-    }
-    `}
+    query={BEER_TYPES_QUERY}
   >
     {({ loading, error, data }) => {
       if (loading || error) return null;

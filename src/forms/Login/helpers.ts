@@ -1,3 +1,5 @@
+import { LoginMutation, SignupMutation, SignupMutation_signup, LoginMutation_login} from '../../@types';
+
 export interface LoginErrors {
     confirmPassword?: string;
 }
@@ -16,3 +18,11 @@ export const validate = (values: LoginValues): LoginErrors => {
     }
     return errors;
 };
+
+export function isLoginMutation(mutation: LoginMutation | SignupMutation): mutation is LoginMutation {
+    return (mutation as LoginMutation).login !== undefined;
+}
+
+export function isSignupMutation(mutation: LoginMutation | SignupMutation): mutation is SignupMutation {
+    return (mutation as SignupMutation).signup !== undefined;
+}
