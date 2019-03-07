@@ -13,6 +13,7 @@ import client from './api';
 import HomePage from './pages/HomePage';
 import BeerResultPage from './pages/BeerResultPage';
 import LoginPage from './pages/LoginPage';
+import { ErrorBoundary } from './containers';
 
 const generateClassName = createGenerateClassName();
 const jss = create({
@@ -34,9 +35,11 @@ const Routes = () => (
   <Router>
     <Suspense fallback={<LoadingMessage />}>
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/beers" component={BeerResultPage} />
-        <Route path="/login" component={LoginPage} />
+        <ErrorBoundary>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/beers" component={BeerResultPage} />
+          <Route path="/login" component={LoginPage} />
+        </ErrorBoundary>
       </Switch>
     </Suspense>
   </Router>

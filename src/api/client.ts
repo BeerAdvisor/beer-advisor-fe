@@ -1,4 +1,6 @@
 import ApolloClient from 'apollo-boost';
+import { head } from 'ramda';
+import { GraphQlError, ServerError } from './errors';
 
 const defaults = {
   beerForm: {
@@ -15,6 +17,15 @@ const client = new ApolloClient({
     defaults,
     resolvers,
   },
+  onError: (({ graphQLErrors, networkError }) => {
+    // if (graphQLErrors) {
+    //   const graphqlError = head(graphQLErrors);
+    // }
+  
+    // if (networkError) {
+    //   throw new ServerError(networkError);
+    // }
+  }),
 });
 
 export default client;

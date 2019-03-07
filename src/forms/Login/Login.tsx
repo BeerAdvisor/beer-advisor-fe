@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Mutation, MutationFn, MutationResult } from 'react-apollo';
+import { MutationFn, MutationResult } from 'react-apollo';
 import { ApolloClient } from 'apollo-boost';
 import { FormRenderProps, Form } from 'react-final-form';
 import { RouteComponentProps } from 'react-router';
 
+import { Mutation } from '../../graphql';
 import { LoginMutationVariables, SignupMutationVariables, LoginMutation, SignupMutation } from '../../@types';
 import { InputField, SmallButton, ErrorMessage } from '../../components';
 
