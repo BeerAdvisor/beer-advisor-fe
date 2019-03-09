@@ -13,3 +13,4 @@ export * from './SearchResultCard';
 export * from './ErrorMessage';
 export * from './Sliders';
 export * from './SelectField';
+export * from './NavBar';

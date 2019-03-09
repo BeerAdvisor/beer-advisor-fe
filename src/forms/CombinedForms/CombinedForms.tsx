@@ -3,9 +3,9 @@ import React from 'react';
 import { MainForm, MainFormProps } from '../MainForm';
 import { Tabs } from '../../components';
 
-export type CombinedForms = MainFormProps;
+export type CombinedFormsProps = MainFormProps;
 
-export const CombinedForms = (props: CombinedForms) => {
+export const CombinedForms = (props: CombinedFormsProps) => {
     const { variant } = props;
     const layoutProps = {
         ...props,

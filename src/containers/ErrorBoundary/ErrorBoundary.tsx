@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GraphQlError, ServerError } from '../../api';
+import { ServerError } from '../../api';
 
 export interface GraphqlErrorBoundaryState {
     error: any | null;
@@ -17,11 +17,12 @@ class GraphqlErrorBoundary extends React.Component<any, GraphqlErrorBoundaryStat
   }
 
   render() {
-      // TODO: In progress!    
-    if (this.state.error && this.state.error.error.extensions.code === 'EMAIL_OR_PAS_INCORRECT') {
-      return <div>{this.state.error.error.message}</div>;
-    } else if (this.state.error instanceof ServerError ) {
-      console.log('sosi xui');
+    if (this.state.error) {
+      const { error } = this.state.error;
+    
+      if (error && error instanceof ServerError ) {
+        return <div>404 LOL</div>;
+      }
     }
 
     return this.props.children;

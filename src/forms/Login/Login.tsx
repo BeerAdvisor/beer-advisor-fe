@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { MutationFn, MutationResult } from 'react-apollo';
-import { ApolloClient } from 'apollo-boost';
+import { MutationFn } from 'react-apollo';
+import { ApolloClient, ApolloError } from 'apollo-boost';
 import { FormRenderProps, Form } from 'react-final-form';
 import { RouteComponentProps } from 'react-router';
+import { memoizeWith, identity } from 'ramda';
 
 import { Mutation } from '../../graphql';
 import { LoginMutationVariables, SignupMutationVariables, LoginMutation, SignupMutation } from '../../@types';
@@ -76,10 +77,8 @@ const confirmPasswordProps = {
 const useLogin = () => {
     const [login, setLogin] = useState(true);
 
-    const handleLogin = (changedLogin: boolean) => (
-        event: React.MouseEvent<HTMLAnchorElement>
-    ) => {
-        setLogin(changedLogin);
+    const handleLogin = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        setLogin(!login);
     };
 
     return {
@@ -91,47 +90,50 @@ const useLogin = () => {
 export default ({ history }: RouteComponentProps) => {
     const { login, handleLogin} = useLogin();
 
-    const generateForm = ({ loading, error }: MutationResult<any>) => (
-            { handleSubmit, submitting }: FormRenderProps
-        ) => (
-        <form onSubmit={(handleSubmit)}>
-            <LoginFormWrapper login={login}>
-            <InputField {...loginProps} type="text" />
-            <InputField {...passwordProps} type="password" />
-                {!login && (
-                    <React.Fragment>
-                        <InputField {...confirmPasswordProps} type="password" />
-                    </React.Fragment>
-                )}
-                    <React.Fragment>
-                        <SmallButton
-                            {...buttonProps}
-                            disabled={submitting || loading}
-                        >
-                            Sign {login ? 'In' : 'Up'}
-                        </SmallButton>
-                        {error && error.graphQLErrors[0] && <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>}
-                    </React.Fragment>
-                <StyledAnchor onClick={handleLogin(!login)}>
-                    {login
-                        ? "Don't have an account?"
-                        : 'Already have an account?'}
-                </StyledAnchor>
-            </LoginFormWrapper>
-        </form>
-    );
-
     return (
         <Mutation mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}>
-            {(mutation , {client, ...otherMutationProps}) => (
+            {(mutation , {client, loading, error}) => (
                 <Form
-            // @ts-ignore https://stackoverflow.com/questions/54269600/how-to-set-react-final-form-onsubmit-values-param-type-typescript
+                // @ts-ignore https://stackoverflow.com/questions/54269600how-to-set-react-final-form-onsubmit-values-param-type-typescript
                     onSubmit={onSubmit(mutation, client, history, login)}
                     // @ts-ignore
                     validate={validate}
-                    render={generateForm({ client, ...otherMutationProps })}
+                    render={generateForm(login, handleLogin, loading, error)}
                 />
         )}
         </Mutation>
     );
 };
+
+const generateForm = (
+        login: boolean,
+        handleLogin: (e: React.MouseEvent<HTMLAnchorElement>) => void,
+        loading: boolean, 
+        error?: ApolloError
+    ) => ({ handleSubmit, submitting }: FormRenderProps) => (
+    <form onSubmit={(handleSubmit)}>
+        <LoginFormWrapper login={login}>
+        <InputField {...loginProps} type="text" />
+        <InputField {...passwordProps} type="password" />
+            {!login && (
+                <React.Fragment>
+                    <InputField {...confirmPasswordProps} type="password" />
+                </React.Fragment>
+            )}
+                <React.Fragment>
+                    <SmallButton
+                        {...buttonProps}
+                        disabled={submitting || loading}
+                    >
+                        Sign {login ? 'In' : 'Up'}
+                    </SmallButton>
+                    {error && error.graphQLErrors[0] && <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>}
+                </React.Fragment>
+            <StyledAnchor onClick={handleLogin}>
+                {login
+                    ? "Don't have an account?"
+                    : 'Already have an account?'}
+            </StyledAnchor>
+        </LoginFormWrapper>
+    </form>
+    );

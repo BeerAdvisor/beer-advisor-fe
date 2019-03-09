@@ -1,5 +1,7 @@
 import React from 'react';
 
-const Header: React.FunctionComponent = () => <div>Beer Advisor</div>;
+import { NavigationBarStyled } from './style';
 
-export default Header;
+const NavigationBar: React.FunctionComponent = () => <NavigationBarStyled>Beer Advisor</NavigationBarStyled>;
+
+export default NavigationBar;

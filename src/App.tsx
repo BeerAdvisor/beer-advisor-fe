@@ -14,6 +14,7 @@ import HomePage from './pages/HomePage';
 import BeerResultPage from './pages/BeerResultPage';
 import LoginPage from './pages/LoginPage';
 import { ErrorBoundary } from './containers';
+import { NavigationBar } from './components';
 
 const generateClassName = createGenerateClassName();
 const jss = create({
@@ -34,6 +35,7 @@ const LoadingMessage = () => (
 const Routes = () => (
   <Router>
     <Suspense fallback={<LoadingMessage />}>
+      <NavigationBar />
       <Switch>
         <ErrorBoundary>
           <Route exact path="/" component={HomePage} />

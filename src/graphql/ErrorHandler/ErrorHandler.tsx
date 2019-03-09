@@ -16,10 +16,11 @@ const ErrorHandler = ({ error, children }: ErrorHandlerProps) => {
     if (error) {
         const { graphQLErrors, networkError } = error;
 
-        if (graphQLErrors) {
-            const graphqlError = head(graphQLErrors);
-            throw new GraphQlError(graphqlError);
-          }
+        // TODO: Unifiy errors, add throw only on some specific cases
+        // if (graphQLErrors) {
+        //     const graphqlError = head(graphQLErrors);
+        //     throw new GraphQlError(graphqlError);
+        //   }
       
         if (networkError) {
             throw new ServerError(networkError);
