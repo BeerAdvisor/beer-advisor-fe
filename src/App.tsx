@@ -13,8 +13,7 @@ import client from './api';
 import HomePage from './pages/HomePage';
 import BeerResultPage from './pages/BeerResultPage';
 import LoginPage from './pages/LoginPage';
-import { ErrorBoundary } from './containers';
-import { NavigationBar } from './components';
+import { ErrorBoundary, NavigationBar } from './containers';
 
 const generateClassName = createGenerateClassName();
 const jss = create({

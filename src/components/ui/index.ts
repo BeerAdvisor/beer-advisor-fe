@@ -14,3 +14,4 @@ export * from './ErrorMessage';
 export * from './Sliders';
 export * from './SelectField';
 export * from './NavBar';
+export * from './Link';
