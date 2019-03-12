@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 
+import { LARGE_BP_DOWN, MEDIUM_BP_DOWN } from '../../../theme';
+
 export const StepCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 250px;
+    ${LARGE_BP_DOWN} {
+        width: 150px;
+    }
+    ${MEDIUM_BP_DOWN} {
+        width: 120px;
+    }
     height: 220px;
     background-color: ${props => props.theme.palette.secondary.main};
     color: ${props => props.theme.palette.textColor};

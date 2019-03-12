@@ -24,6 +24,7 @@ export const VerticalTextContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
+    flex-shrink: 0;
 
     position: relative;
     top: -10px;

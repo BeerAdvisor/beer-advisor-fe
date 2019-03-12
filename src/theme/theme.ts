@@ -75,7 +75,6 @@ const theme = createMuiTheme({
                 marginTop: '16px',
                 boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.08);',
                 borderRadius: '25px',
-                // TODO: Media queries
                 height: '40px',
                 padding: '0px 14px',
             },
