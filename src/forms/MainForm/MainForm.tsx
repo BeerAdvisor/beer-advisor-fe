@@ -1,34 +1,27 @@
 import React from 'react';
 import { ApolloClient } from 'apollo-boost';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
+import { DataProps } from 'react-apollo';
 import { RouteComponentProps } from 'react-router-dom';
-import { Form, Field, FormRenderProps } from 'react-final-form';
+import { Form, FormRenderProps } from 'react-final-form';
+import { memoizeWith, identity } from 'ramda';
 
 import { SliderField, InputField, SelectField, Button, ToogleButtonGroupField, SmallButton } from '../../components/ui';
 import { BeerTypeSelect } from '../../containers';
 
 import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper, MainFormContainerProps } from './style';
 
-const GET_BEER_FORM_DATA = gql`
-query beerForm {
-    beerForm @client {
-        priceRange
-        strongRange
-        filter
-        beerName
-        beerType
-      }
-  }
-`;
-
-export interface MainFormProps extends RouteComponentProps, MainFormContainerProps {
+export interface MainFormProps extends RouteComponentProps, MainFormContainerProps, DataProps<FormData> {
     searchFieldPlaceholder: string;
     searchFieldLabel: string;
     selectLabel: string;
     sliderMaxValue: number;
     sliderMinValue: number;
     sliderStep: number;
+    client: ApolloClient<any>; 
+}
+
+export interface FormData {
+    beerForm: BeerFormValues;
 }
 
 export interface BeerFormValues {
@@ -39,8 +32,7 @@ export interface BeerFormValues {
     beerType?: string;
 }
 
-const onSubmit = (history: RouteComponentProps['history'], client: ApolloClient<any>) => (values: BeerFormValues) => {
-    // window.alert(JSON.stringify(values));
+const onSubmit = memoizeWith(identity, (history: RouteComponentProps['history'], client: ApolloClient<any>) => (values: BeerFormValues) => {
     client.writeData({
         data: {
             beerForm: {
@@ -54,7 +46,7 @@ const onSubmit = (history: RouteComponentProps['history'], client: ApolloClient<
         },
     });
     history.push('/beers');
-  };
+  });
 
 const MainForm = ({
     searchFieldLabel,
@@ -65,6 +57,8 @@ const MainForm = ({
     selectLabel,
     history,
     variant,
+    data,
+    client,
 }: MainFormProps) => {
     const searchFieldProps = {
         placeholder: searchFieldPlaceholder,
@@ -125,16 +119,12 @@ const MainForm = ({
     const initialValues: BeerFormValues = { beerName: '', beerType:'', priceRange: [0, 100], strongRange: [0, 100], filter: 'Distance' };
 
     return (
-        <Query query={GET_BEER_FORM_DATA}>
-            {({ data, client }) => (
             <Form
                     // @ts-ignore
                     onSubmit={onSubmit(history, client)}
                     initialValues={data && data.beerForm ? data.beerForm : initialValues}
                     render={generateForm}
                     />
-        )}
-        </Query>
     );
 };
 
