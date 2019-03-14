@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import theme from '../../../theme';
+import muiTheme from '../../../theme';
 
 export const ValuesContainer = styled.div`
     display: flex;
@@ -19,7 +19,7 @@ export const SliderContainer = styled.div`
 `;
 
 export const trackStyle = {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: muiTheme.palette.primary.light,
     height: 10,
 };
 

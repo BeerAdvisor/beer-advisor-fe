@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, Theme as MuiTheme } from '@material-ui/core/styles';
 
 const palette = {
     primary: {
@@ -12,7 +12,7 @@ const palette = {
     },
 };
 
-const theme = createMuiTheme({
+const muiTheme = createMuiTheme({
     typography: {
         fontFamily: 'Muli',
         useNextVariants: true,
@@ -101,5 +101,8 @@ const theme = createMuiTheme({
         },
     },
 });
+
+export type Theme = MuiTheme;
+const theme = { ...muiTheme };
 
 export default theme;

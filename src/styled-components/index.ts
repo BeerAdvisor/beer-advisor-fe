@@ -1,5 +1,6 @@
 import * as styledComponents from 'styled-components';
-import { Theme } from '@material-ui/core';
+
+import { Theme } from '../theme';
 
 const {
   default: styled,
