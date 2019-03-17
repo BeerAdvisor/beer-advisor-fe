@@ -28,7 +28,7 @@ query beerTypes{
 
 // TODO: Add proper loading, send beer types to select
 export default compose(
-  graphql<MainFormProps>(BEER_TYPES_QUERY, { name: 'beerTypes' }),
+  graphql<MainFormProps>(BEER_TYPES_QUERY, { name: 'beerTypesData' }),
   graphql<MainFormProps>(GET_BEER_FORM_DATA, { name: 'data' }),
   (Component: React.ComponentType<MainFormProps>) => withApollo(Component),
   (Component: React.ComponentType<MainFormProps>) => withLoadingHandler(Component)

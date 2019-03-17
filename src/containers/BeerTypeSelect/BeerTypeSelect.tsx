@@ -1,35 +1,26 @@
 import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { MenuItem } from '@material-ui/core';
 import { Field } from 'react-final-form';
+import { map } from 'ramda';
 
 import { Select } from '../../components/ui';
+import { beerTypes_beerTypes } from '../../@types';
 
-const BEER_TYPES_QUERY = gql`
-query beerTypes{
-  beerTypes{
-    name
-  }
+export interface BeerTypeSelectProps {
+  beerTypes: beerTypes_beerTypes[] | null;
 }
-`;
 
-const BeerTypeSelect = (props: any) => (
-    <Query
-    query={BEER_TYPES_QUERY}
-  >
-    {({ loading, error, data }) => {
-      if (loading || error) return null;
-      const { beerTypes: beers} = data;
+const BeerTypeSelect = ({ beerTypes, ...other }: BeerTypeSelectProps) => {
+      let items = [<MenuItem key={name} value={name}>{name}</MenuItem>];
+      
+      if (beerTypes) {
+          items = map(({ name }: beerTypes_beerTypes) => (
+            <MenuItem key={name} value={name}>{name}</MenuItem>
+          ))(beerTypes);
+      }
 
-      const beerTypes = beers.map(({ name }: { name: string}) => (
-        <MenuItem key={name} value={name}>{name}</MenuItem>
-        ));
-
-        // @ts-ignore
-      return <Field {...props} name="beerType" component={Select} items={beerTypes} />;
-    }}
-  </Query>
-);
+      // @ts-ignore
+      return <Field {...other} name="beerType" component={Select} items={items} />;
+};
 
 export default BeerTypeSelect;

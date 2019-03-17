@@ -7,6 +7,7 @@ import { memoizeWith, identity } from 'ramda';
 
 import { SliderField, InputField, SelectField, Button, ToogleButtonGroupField, SmallButton } from '../../components/ui';
 import { BeerTypeSelect } from '../../containers';
+import { beerTypes } from '../../@types';
 
 import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper, MainFormContainerProps } from './style';
 
@@ -18,6 +19,7 @@ export interface MainFormProps extends RouteComponentProps, MainFormContainerPro
     sliderMinValue: number;
     sliderStep: number;
     client: ApolloClient<any>; 
+    beerTypesData: beerTypes;
 }
 
 export interface FormData {
@@ -59,6 +61,7 @@ const MainForm = ({
     variant,
     data,
     client,
+    beerTypesData,
 }: MainFormProps) => {
     const searchFieldProps = {
         placeholder: searchFieldPlaceholder,
@@ -67,6 +70,7 @@ const MainForm = ({
 
     const selectProps = {
         label: selectLabel,
+        beerTypes: beerTypesData.beerTypes || [],
     };
 
     const sliderProps = {
@@ -116,15 +120,13 @@ const MainForm = ({
         </form>
     );
 
-    const initialValues: BeerFormValues = { beerName: '', beerType:'', priceRange: [0, 100], strongRange: [0, 100], filter: 'Distance' };
-
     return (
             <Form
-                    // @ts-ignore
-                    onSubmit={onSubmit(history, client)}
-                    initialValues={data && data.beerForm ? data.beerForm : initialValues}
-                    render={generateForm}
-                    />
+                // @ts-ignore
+                onSubmit={onSubmit(history, client)}
+                initialValues={data.beerForm}
+                render={generateForm}
+            />
     );
 };
 
