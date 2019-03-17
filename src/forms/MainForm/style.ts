@@ -18,6 +18,10 @@ export const MainFormContainer = styled.div<MainFormContainerProps>`
     padding-bottom: 40px;
 `;
 
+export const MainFormContainerStub = styled(MainFormContainer)`
+    justify-content: center;
+`;
+
 export const FormElementContainer = styled.div`
     width: 85%;
 `;

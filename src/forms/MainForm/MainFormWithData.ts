@@ -5,6 +5,7 @@ import { compose } from 'ramda';
 import { withLoadingHandler } from '../../graphql';
 
 import MainForm, { MainFormProps } from './MainForm';
+import { MainFormContainerStub } from './style';
 
 const GET_BEER_FORM_DATA = gql`
 query beerForm {
@@ -26,10 +27,9 @@ query beerTypes{
 }
 `;
 
-// TODO: Add proper loading, send beer types to select
 export default compose(
   graphql<MainFormProps>(BEER_TYPES_QUERY, { name: 'beerTypesData' }),
   graphql<MainFormProps>(GET_BEER_FORM_DATA, { name: 'data' }),
   (Component: React.ComponentType<MainFormProps>) => withApollo(Component),
-  (Component: React.ComponentType<MainFormProps>) => withLoadingHandler(Component)
+  (Component: React.ComponentType<MainFormProps>) => withLoadingHandler({ Component, CircularProgressContainer: MainFormContainerStub })
 )(MainForm);
