@@ -1,10 +1,11 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, useCallback, useLayoutEffect, useRef } from 'react';
 // @ts-ignore
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
+import Tabs, { TabsProps } from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { TabProps, TabsProps } from 'material-ui';
+import { TabProps } from 'material-ui';
+import { memoizeWith, identity } from 'ramda';
 
 import styled from '../../../styled-components';
 
@@ -48,7 +49,6 @@ const TabStyled = styled(({ icon, ...other}: TabProps) => (
 
 // Selected is in Tabs and is being passed down to Tab, some weird shit is going here, but whatever...
 const TabsStyled = styled((props: TabsProps) => (
-    // @ts-ignore
     <Tabs classes={{ flexContainer: 'flex-container' }}{...props} />
 ))`
     & .flex-container {
@@ -68,20 +68,16 @@ const TabsStyled = styled((props: TabsProps) => (
 `;
 
 interface FullWidthTabsProps {
-    children: any;
+    children: React.ReactNode[];
     variant?: 'small';
 }
 
 function FullWidthTabs(props: FullWidthTabsProps) {
     const [activeValue, setActiveValue] = useState(0);
 
-    const handleChange = (event: ChangeEvent<{}>, value: number) => {
+    const handleChange = useCallback((event: ChangeEvent<{}>, value: number) => {
         setActiveValue(value);
-    };
-
-    const handleChangeIndex = (index: number) => {
-        setActiveValue(index);
-    };
+    }, []);
 
     const { children, ...other } = props;
 
@@ -90,7 +86,6 @@ function FullWidthTabs(props: FullWidthTabsProps) {
                 <AppBarStyled position="static">
                     <TabsStyled
                         value={activeValue}
-                        // @ts-ignore
                         onChange={handleChange}
                     >
                         // TODO: extract this
@@ -107,7 +102,7 @@ function FullWidthTabs(props: FullWidthTabsProps) {
             <SwipeableViews
                 axis={'x'}
                 index={activeValue}
-                onChangeIndex={handleChangeIndex}
+                onChangeIndex={setActiveValue}
                 containerStyle={{width: '100%'}}
                 style={{width: '100%'}}
             >
