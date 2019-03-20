@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HorizontalImage = styled.img`
     width: 100%;
-    border-radius: 54.4px;
+    border-radius: ${props => props.theme.borderRadius};
     max-height: 230px;
     
     margin-top: 3.4em;

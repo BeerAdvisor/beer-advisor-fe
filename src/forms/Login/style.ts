@@ -11,7 +11,7 @@ export const LoginFormWrapper = styled.div<LoginFormWrapper>`
 
     width: 300px;
     height: ${({login}) => login ? '300px' : '400px'};
-    border-radius: 40px;
+    border-radius: ${props => props.theme.borderRadius};
     background-color: #FFFFFF;
     padding: 0 20px;
 `;

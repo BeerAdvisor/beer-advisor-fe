@@ -14,7 +14,7 @@ export const ExtraLargeText = styled.span`
         line-height: 300px;
     }
     letter-spacing: 4.5px;
-    color: ${props => props.theme.palette.primary.lightContrast}
+    color: ${props => props.theme.palette.light}
 `;
 
 interface LargeTextProps {
@@ -32,7 +32,7 @@ export const LargeText = styled.span<LargeTextProps>`
         line-height: .8;
     }
     letter-spacing: -1.3px;
-    color: ${props => props.dark ? props.theme.palette.primary.darkContrast : props.theme.palette.primary.lightContrast}
+    color: ${props => props.dark ? props.theme.palette.dark : props.theme.palette.light}
 `;
 
 export const ExtraLargeFirstLetter = styled(LargeText)`
@@ -40,6 +40,6 @@ export const ExtraLargeFirstLetter = styled(LargeText)`
         font-size: 447px;
         line-height: 1.23;
         line-height: 311px;
-        color: ${props => props.theme.palette.primary.lightContrast}
+        color: ${props => props.theme.palette.light}
     }
 `;

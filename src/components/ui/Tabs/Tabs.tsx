@@ -26,7 +26,7 @@ const TabStyled = styled(({ icon, ...other}: TabProps) => (
     <Tab classes={{ wrapper: 'wrapper', selected: 'selected' }} {...other} />
 ))`
     opacity: 1;
-    border-radius: 40px;
+    border-radius: ${props => props.theme.borderRadius};
     position: relative;
     z-index: 1;
     background-color: ${props => props.theme.palette.secondary.main};

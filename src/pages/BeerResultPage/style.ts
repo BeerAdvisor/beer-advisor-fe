@@ -2,19 +2,21 @@ import styled from 'styled-components';
 
 export const BeerResultContainer = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
+    padding: ${props => props.theme.combinedPadding}
 `;
 
 export const FormContainer = styled.div`
-    width: 20%;
+    max-width: 20%;
 `;
 
 export const SearchResultContainer = styled.div`
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    margin: 40px;
-    width: 80%;
-    max-width: 1000px;
+    margin-left: 3rem;
+    box-sizing: border-box;
+    max-width: 80%;
+    width: 100%;
 `;

@@ -16,7 +16,7 @@ export const StepCardContainer = styled.div`
     height: 220px;
     background-color: ${props => props.theme.palette.secondary.main};
     color: ${props => props.theme.palette.textColor};
-    border-radius: 36px;
+    border-radius: ${props => props.theme.borderRadius};
     box-shadow: 2.6px 3.1px 10.3px 0.7px rgba(0, 0, 0, 0.1);
     padding: 20px 30px;
     margin 0 20px;

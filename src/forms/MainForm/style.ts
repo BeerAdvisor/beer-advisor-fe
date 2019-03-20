@@ -7,8 +7,9 @@ export interface MainFormContainerProps {
 // TODO: Media queries here
 export const MainFormContainer = styled.div<MainFormContainerProps>`
     box-sizing: border-box; 
-    border-radius: 40px;
+    border-radius: ${props => props.theme.borderRadius};
     width: 100%;
+    min-width: 270px;
     min-height: 562px;
     overflow-x: hidden;
     display: flex;

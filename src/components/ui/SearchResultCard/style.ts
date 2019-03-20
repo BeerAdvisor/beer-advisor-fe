@@ -1,12 +1,13 @@
 import styled from '../../../styled-components';
 
 export const SearchResulCardStyled = styled.div`
-    max-width: 1000px;
+    max-width: 70rem;
+    height: 8.5rem;
     width: 100%;
-    height: 100px;
-    border-radius: 40px;
+    box-sizing: border-box;
+    border-radius: ${props => props.theme.borderRadius};
     background-color: ${props => props.theme.palette.secondary.main};
-    padding: 10px 20px;
+    padding: 1rem 3rem;
 `;
 
 export const SearchResultContainer = styled.div`
@@ -23,10 +24,20 @@ export const SearchResultColumn = styled.div`
     justify-content: center;
 `;
 
+export const SearchResultRow = styled.div`
+    display: flex;
+    justify-content: flex-start;
+`;
+
 export const SearchResultBigValue = styled.span`
-    font-family: Staatliches;
-    letter-spacing: 0.6px;
-    line-height: 1.5;
     font-size: 24px;
-    color: #ffc12f;
+    font-family: Raleway;
+    font-weight: 600;
+    color: #000000;
+`;
+
+export const LabelValueContainer = styled.span`
+    &:not(:first-child) {
+        margin-left: 2rem;
+    }
 `;

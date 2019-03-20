@@ -2,74 +2,65 @@ import { createMuiTheme, Theme as MuiTheme } from '@material-ui/core/styles';
 import { PaletteOptions as MuiPalette, PaletteColorOptions as MuiColor } from '@material-ui/core/styles/createPalette';
 
 export type Color = {
-    lightContrast: string;
-    darkContrast: string;
     light: string;
 } & MuiColor;
 
 export type Palette = {
     primary: Color;
     backgroundLight: string;
+    dark: string;
+    light: string;
 } & MuiPalette;
 
 const palette: Palette= {
     primary: {
         main: '#ffc561',
         light: '#ffb400',
-        lightContrast: '#FFFFFF',
-        darkContrast: '#000',
     },
     secondary: {
         main: '#FFFFFF',
     },
     backgroundLight: '#EDEBE3',
+    light: '#FFFFFF',
+    dark: '#000',
 };
 
 const muiTheme = createMuiTheme({
     typography: {
-        fontFamily: 'Muli',
+        fontFamily: 'Montserrat',
         useNextVariants: true,
         h1: {
-            color: palette.primary.lightContrast,
-            fontFamily: 'Staatliches',
+            color: palette.light,
+            fontFamily: 'Raleway',
             fontSize: '9rem',
         },
         h3: {
-            fontFamily: 'Staatliches',
+            fontFamily: 'Raleway',
             fontSize: '90px',
             color: '#000000',
         },
         h4: {
-            fontFamily: 'Staatliches',
+            fontFamily: 'Raleway',
             fontSize: '43px',
             lineHeight: 1.97,
         },
         h6: {
-            color: palette.primary.light,
+            color: palette.light,
             fontSize: '24px',
             letterSpacing: '0.6px',
         },
         subtitle1: {
-            color: palette.primary.lightContrast,
-            fontFamily: 'Staatliches',
-            letterSpacing: '0.7px',
-            fontSize: '27px',
-            fontWeight: 400,
+            color: palette.dark,
+            fontFamily: 'Raleway',
+            fontSize: '24px',
+            fontWeight: 600,
         },
         subtitle2: {
-            color: palette.primary.darkContrast,
+            color: palette.light,
             lineHeight: '1.51',
             letterSpacing: '0.5px',
             fontSize: '21.5px',
             fontWeight: 400,
-        },
-        // @ts-ignore
-        bigSearchValue: {
-            color: palette.primary.lightContrast,
-            fontFamily: 'Staatliches',
-            letterSpacing: '0.9px',
-            lineHeight: 1,
-            fontSize: '36px',
         },
     },
     palette,
@@ -117,7 +108,21 @@ const muiTheme = createMuiTheme({
 
 export type Theme = {
     palette: Palette;
+    borderRadius: string;
+    topDownPadding: string;
+    sidesPadding: string;
+    combinedPadding: string;
 } & MuiTheme;
-const theme = { ...muiTheme };
+
+const topDownPadding = '30px';
+const sidesPadding = '7rem';
+
+const theme = {
+    ...muiTheme,
+    borderRadius: '30px',
+    topDownPadding,
+    sidesPadding,
+    combinedPadding: `${topDownPadding} ${sidesPadding}`,
+};
 
 export default theme;
