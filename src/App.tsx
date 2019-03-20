@@ -14,6 +14,7 @@ import HomePage from './pages/HomePage';
 import BeerResultPage from './pages/BeerResultPage';
 import LoginPage from './pages/LoginPage';
 import { ErrorBoundary, NavigationBar } from './containers';
+import GlobalStyle from './theme/globalStyle';
 
 const generateClassName = createGenerateClassName();
 const jss = create({
@@ -51,7 +52,10 @@ const App = () => (
        <StyledComponentsThemeProvider theme={theme}>
            <MuiThemeProvider theme={theme}>
             <JssProvider jss={jss} generateClassName={generateClassName}>
+              <>
+              <GlobalStyle />
               <Routes />
+              </>
             </JssProvider>
            </MuiThemeProvider >
        </StyledComponentsThemeProvider>

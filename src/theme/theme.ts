@@ -1,6 +1,18 @@
 import { createMuiTheme, Theme as MuiTheme } from '@material-ui/core/styles';
+import { PaletteOptions as MuiPalette, PaletteColorOptions as MuiColor } from '@material-ui/core/styles/createPalette';
 
-const palette = {
+export type Color = {
+    lightContrast: string;
+    darkContrast: string;
+    light: string;
+} & MuiColor;
+
+export type Palette = {
+    primary: Color;
+    backgroundLight: string;
+} & MuiPalette;
+
+const palette: Palette= {
     primary: {
         main: '#ffc561',
         light: '#ffb400',
@@ -10,6 +22,7 @@ const palette = {
     secondary: {
         main: '#FFFFFF',
     },
+    backgroundLight: '#EDEBE3',
 };
 
 const muiTheme = createMuiTheme({
@@ -102,7 +115,9 @@ const muiTheme = createMuiTheme({
     },
 });
 
-export type Theme = MuiTheme;
+export type Theme = {
+    palette: Palette;
+} & MuiTheme;
 const theme = { ...muiTheme };
 
 export default theme;

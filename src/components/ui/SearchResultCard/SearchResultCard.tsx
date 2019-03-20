@@ -1,6 +1,6 @@
 import React from 'react';
 import { map } from 'ramda';
-import { Typography, FormLabel } from '@material-ui/core';
+import { FormLabel } from '@material-ui/core';
 
 import { SearchResulCardStyled, SearchResultContainer, SearchResultColumn, SearchResultBigValue} from './style';
 
