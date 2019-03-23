@@ -6,31 +6,26 @@ export interface MainFormContainerProps {
 
 // TODO: Media queries here
 export const MainFormContainer = styled.div<MainFormContainerProps>`
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box; 
     border-radius: ${props => props.theme.borderRadius};
     width: 100%;
-    min-width: 270px;
+    min-width: 20rem;
     min-height: 562px;
     overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: ${props => props.theme.palette.secondary.main};
-    padding-bottom: 40px;
+    background-color: ${props => props.theme.palette.light};
+    padding: 0 2rem 2rem;
 `;
 
 export const MainFormContainerStub = styled(MainFormContainer)`
     justify-content: center;
 `;
 
-export const FormElementContainer = styled.div`
-    width: 85%;
-`;
-
 export const ButtonWrapper = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 2rem;
 `;
 
 export const ElementsWrapper = styled.div`
@@ -44,5 +39,4 @@ export const SliderContaier = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0 -10px;
 `;

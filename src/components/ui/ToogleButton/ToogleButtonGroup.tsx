@@ -18,7 +18,7 @@ const ToggleButtonGroupStyled = styled((props: ToggleButtonGroupProps) => (
     flex-wrap: wrap;
     flex-grow: 1;
     justify-content: stretch;
-    background: ${props => props.theme.palette.secondary.main};
+    background: ${props => props.theme.palette.light};
     border-radius: 25px;
     box-shadow: none;
     overflow: unset;

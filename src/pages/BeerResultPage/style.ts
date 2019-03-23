@@ -9,6 +9,7 @@ export const BeerResultContainer = styled.div`
 
 export const FormContainer = styled.div`
     max-width: 20%;
+    min-width: 24rem;
 `;
 
 export const SearchResultContainer = styled.div`

@@ -9,7 +9,7 @@ import { SliderField, InputField, SelectField, Button, ToogleButtonGroupField, S
 import { BeerTypeSelect } from '../../containers';
 import { beerTypes } from '../../@types';
 
-import { MainFormContainer, ElementsWrapper, SliderContaier, FormElementContainer, ButtonWrapper, MainFormContainerProps } from './style';
+import { MainFormContainer, ElementsWrapper, SliderContaier, ButtonWrapper, MainFormContainerProps } from './style';
 
 export interface MainFormProps extends RouteComponentProps, MainFormContainerProps, DataProps<FormData> {
     searchFieldPlaceholder: string;
@@ -94,7 +94,6 @@ const MainForm = ({
     const generateForm = ({ handleSubmit, submitting }: FormRenderProps) => (
         <form onSubmit={handleSubmit}>
             <MainFormContainer variant={variant}>
-                <FormElementContainer>
                     <ElementsWrapper>
                         <InputField name="beerName" type="text" {...searchFieldProps} />
                         <BeerTypeSelect {...selectProps} />
@@ -115,7 +114,6 @@ const MainForm = ({
                             <SmallButton {...searchButtonProps} disabled={submitting}>Search</SmallButton>
                         )}
                     </ButtonWrapper>
-                </FormElementContainer>
             </MainFormContainer>
         </form>
     );

@@ -14,7 +14,7 @@ export const StepCardContainer = styled.div`
         width: 120px;
     }
     height: 220px;
-    background-color: ${props => props.theme.palette.secondary.main};
+    background-color: ${props => props.theme.palette.light};
     color: ${props => props.theme.palette.textColor};
     border-radius: ${props => props.theme.borderRadius};
     box-shadow: 2.6px 3.1px 10.3px 0.7px rgba(0, 0, 0, 0.1);

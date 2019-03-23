@@ -10,8 +10,8 @@ export const CombinedForms = (props: CombinedFormsProps) => {
     const layoutProps = {
         ...props,
         searchFieldPlaceholder: 'Find a beer', // TODO: constants, export to separate logic components
-        searchFieldLabel: 'Beer name',
-        selectLabel: 'Beer type',
+        searchFieldLabel: 'Name',
+        selectLabel: 'Type',
         sliderMaxValue: 100,
         sliderMinValue: 0,
         sliderStep: 1,

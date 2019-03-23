@@ -15,10 +15,10 @@ export type Palette = {
 const palette: Palette= {
     primary: {
         main: '#ffc561',
-        light: '#ffb400',
+        light: '#FEC619',
     },
     secondary: {
-        main: '#FFFFFF',
+        main: '#009B88',
     },
     backgroundLight: '#EDEBE3',
     light: '#FFFFFF',
@@ -45,7 +45,7 @@ const muiTheme = createMuiTheme({
             lineHeight: 1.97,
         },
         h6: {
-            color: palette.light,
+            color: palette.primary.light,
             fontSize: '24px',
             letterSpacing: '0.6px',
         },
@@ -67,29 +67,28 @@ const muiTheme = createMuiTheme({
     overrides: {
         MuiFormLabel: {
             root: {
+                fontFamily: 'Montserrat',
                 color: '#000000',
                 fontSize: '18px',
-                alignSelf: 'center',
-                left: 'unset',
+                left: '.8rem',
+                position: 'relative',
             },
         },
         MuiInputBase: {
             root: {
                 backgroundColor: 'transparent',
-                marginTop: '16px',
-                boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.08);',
-                borderRadius: '25px',
+                marginTop: '.5rem',
+                boxShadow: '0px 1px 8px rgba(0, 0, 0, 0.1)',
+                borderRadius: '40px',
                 height: '40px',
                 padding: '0px 14px',
-            },
-            input: {
-                textAlign: 'center',
             },
         },
         MuiFormControl: {
             root: {
                 width: '100%',
-                marginTop: '24px',
+                marginTop: '1.5rem',
+                
             },
         },
         MuiSvgIcon: {
@@ -99,8 +98,8 @@ const muiTheme = createMuiTheme({
         },
         MuiTab: {
             label: {
-                fontFamily: 'Staatliches',
-                fontSize: '48px',
+                fontFamily: 'Raleway',
+                fontSize: '24px',
             },
         },
     },

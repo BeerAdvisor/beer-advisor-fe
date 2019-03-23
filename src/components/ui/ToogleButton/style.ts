@@ -12,6 +12,6 @@ export const ToogleButtonContainer = styled.div`
     align-items: stretch;
     justify-content: stretch;
     width: 100%;
-    background: ${props => props.theme.palette.secondary.main};
+    background: ${props => props.theme.palette.light};
     margin-top: 10px;
 `;

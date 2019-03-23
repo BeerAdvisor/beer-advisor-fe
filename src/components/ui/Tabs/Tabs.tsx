@@ -14,10 +14,10 @@ import { TabsContainer } from './style';
 const getTabWidth = (props: any) => props.variant === 'small' ? '60px' : '120px';
 
 const AppBarStyled = styled(AppBar)<any>`
-    font-family: Staatliches;
-    height: 562px;
-    background-color: inherit;
+    font-family: Raleway;
+    height: 450px;
     width: auto;
+    background-color: inherit;
     color: ${props => props.theme.palette.grey[500]};
     box-shadow: none;
 `;
@@ -29,16 +29,16 @@ const TabStyled = styled(({ icon, ...other}: TabProps) => (
     border-radius: ${props => props.theme.borderRadius};
     position: relative;
     z-index: 1;
-    background-color: ${props => props.theme.palette.secondary.main};
+    background-color: ${props => props.theme.palette.light};
     font-size: 24px;
     min-width: ${props => getTabWidth(props)};
     width: ${props => getTabWidth(props)};
-    height: 312px;
+    height: 250px;
 
     &:last-child {
         transform: translateY(-66px);
         z-index: 0;
-        height: 310px;
+        height: 248px;
     }
 
     & .wrapper {

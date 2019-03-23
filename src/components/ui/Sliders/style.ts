@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { InputLabel } from '@material-ui/core';
 
 import muiTheme from '../../../theme';
 
@@ -8,14 +9,20 @@ export const ValuesContainer = styled.div`
     flex-direction: row;
 `;
 
-export const LabelContainer = styled.div`
-    text-align: center;
+export const SliderContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    margin: 1.5rem 1rem 0;
 `;
 
-export const SliderContainer = styled.div`
-    min-width: 150px;
-    flex-grow: 1;
-    margin: 24px 10px 0 10px;
+export const SliderWrapper = styled.div`
+    margin-top: 1rem;
+`;
+
+export const SliderLabel = styled(InputLabel)`
+    left: -0.2rem;
 `;
 
 export const trackStyle = {

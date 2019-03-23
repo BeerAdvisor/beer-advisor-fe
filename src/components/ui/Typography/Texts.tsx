@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { EXTRA_LARGE_BP_DOWN, LARGE_BP_DOWN } from '../../../theme';
 
 export const ExtraLargeText = styled.span`
-    font-family: Staatliches;
+    font-family: Raleway;
     margin: 0;
     ${EXTRA_LARGE_BP_DOWN} {
         font-size: 455px;
@@ -21,7 +21,7 @@ interface LargeTextProps {
     dark?: boolean;
 }
 export const LargeText = styled.span<LargeTextProps>`
-    font-family: Staatliches;
+    font-family: Raleway;
     margin: 0;
     ${EXTRA_LARGE_BP_DOWN} {
         font-size: 128px;
