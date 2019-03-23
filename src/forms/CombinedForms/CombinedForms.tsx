@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { MainForm, MainFormProps } from '../MainForm';
-import { Tabs } from '../../components';
+import { Tabs, Switch } from '../../components';
 
 export type CombinedFormsProps = MainFormProps;
 
@@ -18,10 +18,13 @@ export const CombinedForms = (props: CombinedFormsProps) => {
     };
 
     return (
+        <div>
+            <Switch onText="Bar" offText="Beer" />
         <Tabs variant={variant}>
             <MainForm variant={variant} {...layoutProps} />
             <MainForm variant={variant} {...layoutProps} />
         </Tabs>
+        </div>
     );
 };
 
