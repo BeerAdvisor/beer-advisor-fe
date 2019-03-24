@@ -18,6 +18,5 @@ export const SearchResultContainer = styled.div`
     flex-direction: column;
     margin-left: 3rem;
     box-sizing: border-box;
-    max-width: 80%;
     width: 100%;
 `;

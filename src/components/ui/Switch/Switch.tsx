@@ -39,16 +39,11 @@ export const Switch: FunctionComponent<SwitchProps> = ({
                 return !c;
             });
         }
-    },
-    [disabled]
-    );
+    }, [disabled]);
 
-    useEffect(
-        () => {
-            setChecked(propsChecked);
-        },
-        [propsChecked]
-    );
+    useEffect(() => {
+        setChecked(propsChecked);
+    }, [propsChecked]);
 
     const nativeControlProps = {
         checked,

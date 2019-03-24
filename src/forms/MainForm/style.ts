@@ -12,7 +12,7 @@ export const MainFormContainer = styled.div<MainFormContainerProps>`
     border-radius: ${props => props.theme.borderRadius};
     width: 100%;
     min-width: 20rem;
-    min-height: 562px;
+    min-height: 31rem;
     overflow-x: hidden;
     background-color: ${props => props.theme.palette.light};
     padding: 0 2rem 2rem;

@@ -52,7 +52,7 @@ const muiTheme = createMuiTheme({
         subtitle1: {
             color: palette.dark,
             fontFamily: 'Raleway',
-            fontSize: '24px',
+            fontSize: '1.3rem',
             fontWeight: 600,
         },
         subtitle2: {
@@ -69,7 +69,7 @@ const muiTheme = createMuiTheme({
             root: {
                 fontFamily: 'Montserrat',
                 color: '#000000',
-                fontSize: '18px',
+                fontSize: '1rem',
                 left: '.8rem',
                 position: 'relative',
             },
@@ -113,7 +113,7 @@ export type Theme = {
     combinedPadding: string;
 } & MuiTheme;
 
-const topDownPadding = '30px';
+const topDownPadding = '1.6rem';
 const sidesPadding = '7rem';
 
 const theme = {

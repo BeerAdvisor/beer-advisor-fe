@@ -1,9 +1,17 @@
 import { createGlobalStyle } from '../styled-components';
 
+import { EXTRA_LARGE_BP_UP, LARGE_BP_UP } from './breakpoints';
+
 export const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
-    font-size: 18px;
+    font-size: 14px;
+    ${LARGE_BP_UP} {
+      font-size: 16px;
+    }
+    ${EXTRA_LARGE_BP_UP} {
+      font-size: 18px;
+    }
   }
 
   body {
