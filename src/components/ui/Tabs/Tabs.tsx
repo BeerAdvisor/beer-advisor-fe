@@ -1,11 +1,9 @@
 import React, { ChangeEvent, useState, useCallback, useLayoutEffect, useRef } from 'react';
-// @ts-ignore
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs, { TabsProps } from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { TabProps } from 'material-ui';
-import { memoizeWith, identity } from 'ramda';
 
 import styled from '../../../styled-components';
 

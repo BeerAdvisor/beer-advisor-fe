@@ -30,22 +30,17 @@ export const Switch: FunctionComponent<SwitchProps> = ({
 }) => {
     const [checked, setChecked] = useState(propsChecked);
 
-    const handleToggle = useCallback(
-        () => {
-            if (!disabled) {
-                let stateChecked;
-
-                setChecked(c => {
-                    stateChecked = !c;
-                    return stateChecked;
-                });
-
-                if (onChange && stateChecked) {
-                    onChange(stateChecked);
+    const handleToggle = useCallback(() => {
+        if (!disabled) {
+            setChecked(c => {
+                if (onChange) {
+                    onChange(!c);
                 }
-            }
-        },
-        [disabled]
+                return !c;
+            });
+        }
+    },
+    [disabled]
     );
 
     useEffect(
