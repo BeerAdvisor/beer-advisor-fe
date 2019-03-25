@@ -2,22 +2,10 @@ import { graphql, withApollo} from 'react-apollo';
 import gql from 'graphql-tag';
 import { compose } from 'ramda';
 
-import { withLoadingHandler } from '../../graphql';
+import { withLoadingHandler, GET_BEER_FORM_DATA } from '../../graphql';
 
 import MainForm, { MainFormProps } from './MainForm';
 import { MainFormContainerStub } from './style';
-
-const GET_BEER_FORM_DATA = gql`
-query beerForm {
-    beerForm @client {
-        priceRange
-        strongRange
-        filter
-        beerName
-        beerType
-      }
-  }
-`;
 
 const BEER_TYPES_QUERY = gql`
 query beerTypes{

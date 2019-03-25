@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { ApolloClient } from 'apollo-boost';
-import { DataProps } from 'react-apollo';
 import { RouteComponentProps } from 'react-router-dom';
 import { Form, FormRenderProps } from 'react-final-form';
 import { memoizeWith, identity } from 'ramda';
 
 import { SliderField, InputField, SelectField, Button, ToogleButtonGroupField, SmallButton } from '../../components/ui';
 import { BeerTypeSelect } from '../../containers';
-import { beerTypes } from '../../@types';
+import { beerTypes, BeerForm, BeerFormValues } from '../../@types';
 
 import { MainFormContainer, ElementsWrapper, SliderContaier, ButtonWrapper, MainFormContainerProps } from './style';
 
-export interface MainFormProps extends RouteComponentProps, MainFormContainerProps, DataProps<FormData> {
+export interface MainFormProps extends RouteComponentProps, MainFormContainerProps, BeerForm {
     searchFieldPlaceholder: string;
     searchFieldLabel: string;
     selectLabel: string;
@@ -20,18 +19,6 @@ export interface MainFormProps extends RouteComponentProps, MainFormContainerPro
     sliderStep: number;
     client: ApolloClient<any>; 
     beerTypesData: beerTypes;
-}
-
-export interface FormData {
-    beerForm: BeerFormValues;
-}
-
-export interface BeerFormValues {
-    priceRange: number[];
-    strongRange: number[];
-    filter?: string;
-    beerName?: string;
-    beerType?: string;
 }
 
 const onSubmit = memoizeWith(identity, (history: RouteComponentProps['history'], client: ApolloClient<any>) => (values: BeerFormValues) => {
@@ -91,7 +78,7 @@ const MainForm = ({
         color: 'primary',
     };
 
-    const generateForm = ({ handleSubmit, submitting }: FormRenderProps) => (
+    const generateForm = useCallback(({ handleSubmit, submitting }: FormRenderProps) => (
         <form onSubmit={handleSubmit}>
             <MainFormContainer variant={variant}>
                     <ElementsWrapper>
@@ -116,7 +103,7 @@ const MainForm = ({
                     </ButtonWrapper>
             </MainFormContainer>
         </form>
-    );
+    ), [variant, searchFieldProps, filterProps, searchButtonProps, selectProps, sliderProps]);
 
     return (
             <Form

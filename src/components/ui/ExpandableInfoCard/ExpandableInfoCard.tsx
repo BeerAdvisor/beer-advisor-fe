@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { ExpansionPanel, ExpansionPanelDetails, Collapse } from '@material-ui/core';
+import { Collapse } from '@material-ui/core';
 
 import { InfoCard, InfoCardProps } from '../InfoCard';
+import { BeerInfoCard } from '../../../containers';
 
 export type ExpandableInfoCardProps = {
     bottomLink: string;
@@ -23,7 +24,7 @@ export const ExpandableInfoCard = ({ bottomLink = 'Shows bars', expanded: propsE
         <React.Fragment>
             <InfoCard onClick={handleExpanded} bottomLink={bottomLink} {...other} />
             <Collapse in={expanded}> 
-                ZHOPA
+                <BeerInfoCard {...other as any}/>
             </Collapse>
         </React.Fragment>
     );

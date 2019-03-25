@@ -1,6 +1,19 @@
 import ApolloClient from 'apollo-boost';
-import { head } from 'ramda';
-import { GraphQlError, ServerError } from './errors';
+import gql from 'graphql-tag';
+
+// TODO: add typeDefs and resolvers for clients state
+// export const typeDefs = gql`
+//   extend type Query {
+//     isLoggedIn: Boolean!
+//     cartItems: [Launch]!
+//   }
+//   extend type Launch {
+//     isInCart: Boolean!
+//   }
+//   extend type Mutation {
+//     addOrRemoveFromCart(id: ID!): [Launch]
+//   }
+// `;
 
 const defaults = {
   beerForm: {
