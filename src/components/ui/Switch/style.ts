@@ -1,12 +1,13 @@
 import styled from '../../../styled-components';
 
-import { SwitchProps } from './Switch';
-
 const SWITCH_WIDTH = 20;
 const SWITCH_HEIGHT = 2.5;
 const KNOB_SIZE = 12;
 
-export type StyledSwitchProps = Partial<SwitchProps>;
+export interface StyledSwitchProps {
+    checked?: boolean;
+    disabled?: boolean;
+};
 
 export const SwitchWrapper = styled.div`
     display: inline-block;

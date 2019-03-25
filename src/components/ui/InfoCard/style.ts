@@ -1,49 +1,52 @@
 import styled from '../../../styled-components';
 
-export const SearchResulCardStyled = styled.div`
+export const InfoCardStyled = styled.div`
     display: flex;
     justify-content: space-between;
     height: 8.5rem;
     width: 100%;
     box-sizing: border-box;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: ${props => props.theme.palette.light};
+
     &:first-child {
         border-radius: ${props => props.theme.borderRadius} ${props => props.theme.borderRadius} 0 0;
     }
+
     &:last-child {
         border-radius: 0 0 ${props => props.theme.borderRadius} ${props => props.theme.borderRadius};
     }
+
     &:only-child {
         border-radius: ${props => props.theme.borderRadius};
 
     }
-    
 
-    background-color: ${props => props.theme.palette.light};
 `;
 
-export const SearchResultContainer = styled.div`
+export const InfoCardContainer = styled.div`
     display: flex;
     padding: 0 3rem;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
+    padding: 1rem 3rem;
     height: 100%;
 `;
 
-export const SearchResultColumn = styled.div`
+export const InfoCardColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
 `;
 
-export const SearchResultRow = styled.div`
+export const InfoCardRow = styled.div`
     display: flex;
     justify-content: flex-start;
 `;
 
-export const SearchResultBigValue = styled.span`
-    font-size: 24px;
+export const InfoCardBigValue = styled.span`
+    font-size: 1.3rem;
     font-family: Raleway;
     font-weight: 600;
     color: #000000;
@@ -58,7 +61,7 @@ export const LabelValueContainer = styled.span`
 export const LeftDetailContainer = styled.div`
     width: 6rem;
     height: 6rem;
-    margin: 1rem 3rem 1rem 0;
+    margin-right: 3rem;
     border-radius: 50%;
     background-color: gray;
 `;
@@ -72,4 +75,12 @@ export const RightDetail = styled.div`
     background-color: ${props => props.theme.palette.primary.light};
     border-radius: 0 ${props => props.theme.borderRadius} ${props => props.theme.borderRadius} 0;
     cursor: pointer;
+`;
+
+export const BottomLink = styled.span`
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    color: ${props => props.theme.palette.secondary.main}
+    align-self: flex-end;
 `;

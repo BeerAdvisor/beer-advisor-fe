@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { CombinedForms } from '../../forms';
-import { SearchResultCard } from '../../components';
+import { ExpandableInfoCard } from '../../components';
 
 import { BeerResultContainer, FormContainer, SearchResultContainer } from './style';
 
 const searchResultProps = {
+    bottomLink: 'Show bars',
     labelValues: [
         { label: 'Rating', value: '4.5' },
         { label: 'Strong', value: '5.8' },
@@ -21,7 +22,7 @@ export const BeerResultPage = (props: any) => (
             <CombinedForms variant="small" {...props} />
         </FormContainer>
         <SearchResultContainer>
-            <SearchResultCard {...searchResultProps} />
+            <ExpandableInfoCard {...searchResultProps} />
         </SearchResultContainer>
     </BeerResultContainer>
 );

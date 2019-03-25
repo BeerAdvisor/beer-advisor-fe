@@ -12,15 +12,15 @@ import {
     SwitchKnob,
     SwitchOnText,
     SwitchOffText,
+    StyledSwitchProps,
 } from './style';
 
-export interface SwitchProps {
-    checked?: boolean;
-    disabled?: boolean;
+export interface SwitchProps extends StyledSwitchProps {
     onChange?: (checked: boolean) => void;
     onText: string;
     offText: string;
 }
+
 export const Switch: FunctionComponent<SwitchProps> = ({
     checked: propsChecked = false,
     disabled = false,

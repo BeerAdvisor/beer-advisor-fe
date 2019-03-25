@@ -1,37 +1,39 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { map } from 'ramda';
 import { Typography } from '@material-ui/core';
 
 import { ArrowRight } from '../../Icons';
 
 import {
-    SearchResulCardStyled,
-    SearchResultContainer,
-    SearchResultColumn,
-    SearchResultRow,
+    InfoCardStyled,
+    InfoCardContainer,
+    InfoCardColumn,
+    InfoCardRow,
     LabelValueContainer,
     LeftDetailContainer,
     RightDetail,
+    BottomLink,
 } from './style';
 
 export interface LabelValue {
-    label: string;
-    value?: string;
+    label: ReactNode;
+    value?: ReactNode;
 }
 
-export interface SearchResulCardProps {
+export interface InfoCardProps {
     labelValues: LabelValue[];
     name?: string;
+    bottomLink?: string;
 }
 
-export default ({ name, labelValues }: SearchResulCardProps) => {
+export default ({ name, labelValues, bottomLink }: InfoCardProps) => {
     return (
-        <SearchResulCardStyled>
-            <SearchResultContainer>
+        <InfoCardStyled>
+            <InfoCardContainer>
                 <LeftDetailContainer />
-                <SearchResultColumn>
+                <InfoCardColumn>
                     <Typography variant="subtitle1">{name}</Typography>
-                    <SearchResultRow>
+                    <InfoCardRow>
                         {map(
                             ({ label, value }) => (
                                 <LabelValueContainer>
@@ -40,12 +42,13 @@ export default ({ name, labelValues }: SearchResulCardProps) => {
                             ),
                             labelValues
                         )}
-                    </SearchResultRow>
-                </SearchResultColumn>
-            </SearchResultContainer>
+                    </InfoCardRow>
+                    {bottomLink && <BottomLink>{bottomLink}</BottomLink>}
+                </InfoCardColumn>
+            </InfoCardContainer>
             <RightDetail> 
                 <ArrowRight fontSize="large" />
             </RightDetail>
-        </SearchResulCardStyled>
+        </InfoCardStyled>
     );
 };
