@@ -4,7 +4,6 @@ export interface MainFormContainerProps {
     variant?: 'small';
 }
 
-// TODO: Media queries here
 export const MainFormContainer = styled.div<MainFormContainerProps>`
     display: flex;
     flex-direction: column;

@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
-import { ExpansionPanel, ExpansionPanelDetails } from '@material-ui/core';
+import React, { useState, useCallback, useEffect } from 'react';
+import { ExpansionPanel, ExpansionPanelDetails, Collapse } from '@material-ui/core';
 
 import { InfoCard, InfoCardProps } from '../InfoCard';
 
 export type ExpandableInfoCardProps = {
     bottomLink: string;
+    expanded?: boolean;
 } & InfoCardProps;
 
-export const ExpandableInfoCard = ({ bottomLink = 'Shows bars', ...other}: ExpandableInfoCardProps) => {
-    const [expanded, setExpanded] = useState(null);
+export const ExpandableInfoCard = ({ bottomLink = 'Shows bars', expanded: propsExpanded, ...other}: ExpandableInfoCardProps) => {
+    const [expanded, setExpanded] = useState(false);
 
-    // TODO: Use Expandble box? Or Something else? Material UI? Custom solution?
-    return ( // Delete height auto, detail: - relative, z-index: -1
-        <ExpansionPanel expanded>
-            <InfoCard bottomLink={bottomLink} {...other} />
-            <ExpansionPanelDetails> 
+    const handleExpanded = useCallback(() => setExpanded(e => !e), []);
+
+    useEffect(() => {
+        if (propsExpanded) {
+            setExpanded(propsExpanded);
+        }
+    }, [propsExpanded]);
+
+    return (
+        <React.Fragment>
+            <InfoCard onClick={handleExpanded} bottomLink={bottomLink} {...other} />
+            <Collapse in={expanded}> 
                 ZHOPA
-            </ExpansionPanelDetails>
-        </ExpansionPanel>
+            </Collapse>
+        </React.Fragment>
     );
 };
 

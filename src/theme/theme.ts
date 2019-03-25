@@ -46,8 +46,7 @@ const muiTheme = createMuiTheme({
         },
         h6: {
             color: palette.primary.light,
-            fontSize: '24px',
-            letterSpacing: '0.6px',
+            fontSize: '1rem',
         },
         subtitle1: {
             color: palette.dark,
@@ -80,7 +79,7 @@ const muiTheme = createMuiTheme({
                 marginTop: '.5rem',
                 boxShadow: '0px 1px 8px rgba(0, 0, 0, 0.1)',
                 borderRadius: '40px',
-                height: '40px',
+                minHeight: '40px',
                 padding: '0px 14px',
             },
         },

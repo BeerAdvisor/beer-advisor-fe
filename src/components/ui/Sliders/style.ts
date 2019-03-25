@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { InputLabel } from '@material-ui/core';
 
-import muiTheme from '../../../theme';
+import theme from '../../../theme';
 
 export const ValuesContainer = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    height: 1rem;
+    margin-top: .4rem;
 `;
 
 export const SliderContainer = styled.div`
@@ -26,7 +28,7 @@ export const SliderLabel = styled(InputLabel)`
 `;
 
 export const trackStyle = {
-    backgroundColor: muiTheme.palette.primary.light,
+    backgroundColor: theme.palette.primary.light,
     height: 10,
 };
 

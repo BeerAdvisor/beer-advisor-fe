@@ -26,11 +26,12 @@ export const InfoCardStyled = styled.div`
 
 export const InfoCardContainer = styled.div`
     display: flex;
-    padding: 0 3rem;
+    cursor: pointer;
+    position: absolute;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 1rem 3rem;
-    height: 100%;
+    margin: 1rem 3rem;
+    box-sizing: border-box;
 `;
 
 export const InfoCardColumn = styled.div`
@@ -78,6 +79,9 @@ export const RightDetail = styled.div`
 `;
 
 export const BottomLink = styled.span`
+    position: relative;
+    left: 45%;
+    bottom: 5%;
     cursor: pointer;
     font-size: 0.8rem;
     text-decoration: underline;

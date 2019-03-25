@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useCallback, MouseEvent } from 'react';
 import { map } from 'ramda';
 import { Typography } from '@material-ui/core';
 
@@ -24,11 +24,19 @@ export interface InfoCardProps {
     labelValues: LabelValue[];
     name?: string;
     bottomLink?: string;
+    onClick?: (e: MouseEvent<HTMLDivElement>) => void;
 }
 
-export default ({ name, labelValues, bottomLink }: InfoCardProps) => {
+export default ({ name, labelValues, bottomLink, onClick }: InfoCardProps) => {
+    const handleClick = useCallback((e: MouseEvent<HTMLDivElement>) => {
+        if (onClick) {
+            onClick(e);
+        }
+    }, []);
+
     return (
-        <InfoCardStyled>
+        <InfoCardStyled onClick={handleClick}>
+            {bottomLink && <BottomLink>{bottomLink}</BottomLink>}
             <InfoCardContainer>
                 <LeftDetailContainer />
                 <InfoCardColumn>
@@ -43,7 +51,6 @@ export default ({ name, labelValues, bottomLink }: InfoCardProps) => {
                             labelValues
                         )}
                     </InfoCardRow>
-                    {bottomLink && <BottomLink>{bottomLink}</BottomLink>}
                 </InfoCardColumn>
             </InfoCardContainer>
             <RightDetail> 
