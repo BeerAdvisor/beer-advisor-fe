@@ -17,3 +17,4 @@ export * from './NavBar';
 export * from './Link';
 export * from './Switch';
 export * from './ExpandableInfoCard';
+export * from './ExpandableInfoList';

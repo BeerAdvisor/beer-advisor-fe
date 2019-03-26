@@ -28,14 +28,8 @@ export interface InfoCardProps {
 }
 
 export default ({ name, labelValues, bottomLink, onClick }: InfoCardProps) => {
-    const handleClick = useCallback((e: MouseEvent<HTMLDivElement>) => {
-        if (onClick) {
-            onClick(e);
-        }
-    }, []);
-
     return (
-        <InfoCardStyled onClick={handleClick}>
+        <InfoCardStyled onClick={onClick}>
             {bottomLink && <BottomLink>{bottomLink}</BottomLink>}
             <InfoCardContainer>
                 <LeftDetailContainer />

@@ -9,15 +9,19 @@ export type ExpandableInfoCardProps = {
     expanded?: boolean;
 } & InfoCardProps;
 
-export const ExpandableInfoCard = ({ bottomLink = 'Shows bars', expanded: propsExpanded, ...other}: ExpandableInfoCardProps) => {
-    const [expanded, setExpanded] = useState(false);
+export const ExpandableInfoCard = ({ bottomLink = 'Shows bars', expanded: propsExpanded, onClick, ...other}: ExpandableInfoCardProps) => {
+    const [expanded, setExpanded] = useState(propsExpanded);
 
-    const handleExpanded = useCallback(() => setExpanded(e => !e), []);
+    const handleExpanded = useCallback((e) => {
+        if (onClick) {
+            onClick(e);
+        }
+
+        setExpanded(exp => !exp);
+    }, []);
 
     useEffect(() => {
-        if (propsExpanded) {
             setExpanded(propsExpanded);
-        }
     }, [propsExpanded]);
 
     return (
