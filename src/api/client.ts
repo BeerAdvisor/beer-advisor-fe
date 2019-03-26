@@ -1,19 +1,19 @@
 import ApolloClient from 'apollo-boost';
 import gql from 'graphql-tag';
 
-// TODO: add typeDefs and resolvers for clients state
-// export const typeDefs = gql`
-//   extend type Query {
-//     isLoggedIn: Boolean!
-//     cartItems: [Launch]!
-//   }
-//   extend type Launch {
-//     isInCart: Boolean!
-//   }
-//   extend type Mutation {
-//     addOrRemoveFromCart(id: ID!): [Launch]
-//   }
-// `;
+export const typeDefs = gql`
+  extend type Query {
+    beerForm: BeerForm
+  }
+
+  extend type BeerForm {
+    priceRange: [Int!]
+    strongRange: [Int!]
+    filter: String
+    beerName: String
+    beerType: String
+  }
+`;
 
 const defaults = {
   beerForm: {
@@ -21,7 +21,7 @@ const defaults = {
   },
 };
 
-const resolvers = {};
+export const resolvers = {};
 
 const client = new ApolloClient({
   uri: 'https://beer-advisor-development.herokuapp.com',
@@ -29,6 +29,7 @@ const client = new ApolloClient({
   clientState: {
     defaults,
     resolvers,
+    typeDefs,
   },
   onError: (({ graphQLErrors, networkError }) => {
     // if (graphQLErrors) {

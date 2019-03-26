@@ -17,15 +17,16 @@ export interface WithLoadingHocFactory<T> {
     Loader?: React.ComponentType<CircularProgressProps>;
     CircularProgressContainer?: React.ComponentType<any>;
     Component: React.ComponentType<T>;
+    dataPropName?: string;
 }
 
 const withLoadingHandler = <T extends any>({
     Component,
     Loader = MuiCircularProgress,
     CircularProgressContainer = CircularProgressContainerElement,
-}: WithLoadingHocFactory<T>) => ({ data, ...other }: any) => {
-    // TODO: Make data generic
-    if (data.loading) {
+    dataPropName = 'data',
+}: WithLoadingHocFactory<T>) => (props: T) => {
+    if (props[dataPropName].loading) {
         return (
             <CircularProgressContainer>
                 <Loader size={100} />
@@ -33,7 +34,7 @@ const withLoadingHandler = <T extends any>({
         );
     }
 
-    return <Component data={data} {...other} />;
+    return <Component {...props} />;
 };
 
 export default withLoadingHandler;

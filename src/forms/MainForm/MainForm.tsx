@@ -17,25 +17,34 @@ export interface MainFormProps extends RouteComponentProps, MainFormContainerPro
     sliderMaxValue: number;
     sliderMinValue: number;
     sliderStep: number;
-    client: ApolloClient<any>; 
+    client: ApolloClient<any>;
     beerTypesData: beerTypes;
 }
 
-const onSubmit = memoizeWith(identity, (history: RouteComponentProps['history'], client: ApolloClient<any>) => (values: BeerFormValues) => {
-    client.writeData({
-        data: {
-            beerForm: {
-                __typename: 'beerForm',
-                beerName: values.beerName,
-                beerType: values.beerType,
-                filter: values.filter,
-                priceRange: values.priceRange,
-                strongRange: values.strongRange,
+const onSubmit = memoizeWith(
+    identity,
+    (history: RouteComponentProps['history'], client: ApolloClient<any>) => ({
+        beerName = '',
+        beerType,
+        filter,
+        priceRange,
+        strongRange,
+    }: BeerFormValues) => {
+        client.writeData({
+            data: {
+                beerForm: {
+                    __typename: 'beerForm',
+                    beerName,
+                    beerType,
+                    filter,
+                    priceRange,
+                    strongRange,
+                },
             },
-        },
-    });
-    history.push('/beers');
-  });
+        });
+        history.push('/beers');
+    }
+);
 
 const MainForm = ({
     searchFieldLabel,
@@ -78,40 +87,47 @@ const MainForm = ({
         color: 'primary',
     };
 
-    const generateForm = useCallback(({ handleSubmit, submitting }: FormRenderProps) => (
-        <form onSubmit={handleSubmit}>
-            <MainFormContainer variant={variant}>
+    const generateForm = useCallback(
+        ({ handleSubmit, submitting }: FormRenderProps) => (
+            <form onSubmit={handleSubmit}>
+                <MainFormContainer variant={variant}>
                     <ElementsWrapper>
                         <InputField name="beerName" type="text" {...searchFieldProps} />
                         <BeerTypeSelect {...selectProps} />
                         <SliderContaier>
                             <SliderField name="priceRange" {...sliderProps} label="Price" />
                             <SliderField name="strongRange" {...sliderProps} label="Strong" />
-                        </SliderContaier>    
+                        </SliderContaier>
                     </ElementsWrapper>
                     {variant !== 'small' ? (
                         <ToogleButtonGroupField name="filter" {...filterProps} />
-                        ) : (
-                        <SelectField name="filter" {...filterProps}/>
+                    ) : (
+                        <SelectField name="filter" {...filterProps} />
                     )}
                     <ButtonWrapper>
                         {variant !== 'small' ? (
-                            <Button {...searchButtonProps} disabled={submitting}>Search</Button>
-                            ) : (
-                            <SmallButton {...searchButtonProps} disabled={submitting}>Search</SmallButton>
+                            <Button {...searchButtonProps} disabled={submitting}>
+                                Search
+                            </Button>
+                        ) : (
+                            <SmallButton {...searchButtonProps} disabled={submitting}>
+                                Search
+                            </SmallButton>
                         )}
                     </ButtonWrapper>
-            </MainFormContainer>
-        </form>
-    ), [variant, searchFieldProps, filterProps, searchButtonProps, selectProps, sliderProps]);
+                </MainFormContainer>
+            </form>
+        ),
+        [variant, searchFieldProps, filterProps, searchButtonProps, selectProps, sliderProps]
+    );
 
     return (
-            <Form
-                // @ts-ignore
-                onSubmit={onSubmit(history, client)}
-                initialValues={data.beerForm}
-                render={generateForm}
-            />
+        <Form
+            // @ts-ignore
+            onSubmit={onSubmit(history, client)}
+            initialValues={data.beerForm}
+            render={generateForm}
+        />
     );
 };
 

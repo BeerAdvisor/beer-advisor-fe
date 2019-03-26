@@ -1,3 +1,3 @@
-export { default as MainForm } from './MainFormWithData';
+export { default as MainForm } from './graphql';
 
 export * from './MainForm';

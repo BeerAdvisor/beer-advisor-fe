@@ -45,27 +45,31 @@ const defaultQuery: FindBeersVariables = {
 
 const getFindBeersQuery: ((props: BeerInfoProps) => QueryOpts<FindBeersVariables>) = ownProps => {
     let variables = defaultQuery;
-    // TODO: Use resolvers. Most likely. 
-    // const { data: { beerForm }} = ownProps;
 
-    // if (beerForm) {
-    //     const { beerName, beerType, strongRange } = beerForm;
-    //     variables = {
-    //         name: beerName || '',
-    //         type: beerType || '',
-    //         strong: '',
-    //         brewery: '',
-    //     };
-    // }
+    const { data: { beerForm }} = ownProps;
+
+    if (beerForm) {
+        const { beerName, beerType, strongRange } = beerForm;
+        variables = {
+            name: beerName || '',
+            type: beerType || '',
+            strong: '',
+            brewery: '',
+        };
+    }
 
     return { variables };
 };
 
 export default compose(
+  graphql<BeerInfoProps>(GET_BEER_FORM_DATA, { name: 'data' }),
   graphql<BeerInfoProps>(FIND_BEERS, {
         options: getFindBeersQuery,
-        name: 'data',
+        name: 'searchResult',
     }),
-  graphql<BeerInfoProps>(GET_BEER_FORM_DATA, { name: 'beerForm' }),
-  (Component: React.ComponentType<BeerInfoProps>) => withLoadingHandler({ Component, CircularProgressContainer: BeerInfoCardStub })
+  (Component: React.ComponentType<BeerInfoProps>) => withLoadingHandler({
+        Component,
+        CircularProgressContainer: BeerInfoCardStub,
+        dataPropName: 'searchResult',
+    })
 )(BeerInfoCard);

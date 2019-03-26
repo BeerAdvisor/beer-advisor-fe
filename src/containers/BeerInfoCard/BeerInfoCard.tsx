@@ -2,12 +2,13 @@ import React from 'react';
 
 import { BeerForm, FindBeers } from '../../@types';
 
-export type BeerInfoProps = FindBeers & BeerForm;
+export type BeerInfoProps = {
+    searchResult: FindBeers;
+} & BeerForm;
 
-export const BeerInfoCard = ({ data }: BeerInfoProps) => {
+export const BeerInfoCard = ({ searchResult }: BeerInfoProps) => {
 
-    // @ts-ignore
-    return data && <div>{JSON.stringify(data)}</div>;
+    return searchResult.findBeers && <div>{JSON.stringify(searchResult.findBeers)}</div>;
 };
 
 export default BeerInfoCard;
