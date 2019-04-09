@@ -8,11 +8,11 @@ import { ToggleButtonGroupProps } from '@material-ui/lab/ToggleButtonGroup';
 import styled from '../../../styled-components';
 import { Field } from '../../../containers';
 
-import ToggleButton from './ToogleButton';
+import ToggleButton, { LittleToggleButton } from './ToogleButton';
 import { ToogleButtonContainer, ElementsContainer } from './style';
 
 const ToggleButtonGroupStyled = styled((props: ToggleButtonGroupProps) => (
-    <MaterialToggleButtonGroup {...props}/>
+    <MaterialToggleButtonGroup {...props} />
 ))`
     display: flex;
     flex-wrap: wrap;
@@ -26,9 +26,13 @@ const ToggleButtonGroupStyled = styled((props: ToggleButtonGroupProps) => (
 
     & .selected {
         border-color: ${props => props.theme.palette.primary.main};
-        color:  ${props => props.theme.palette.primary.main};
+        color: ${props => props.theme.palette.primary.main};
         border: 2px solid;
         background-color: transparent;
+    }
+
+    & .label {
+        color: ${props => props.theme.palette.dark};
     }
 `;
 
@@ -54,11 +58,7 @@ const ToogleButtonGroup = ({
 
     return (
         <ElementsContainer>
-            {label && (
-                <FormLabel htmlFor={name}>
-                    {label}
-                </FormLabel>
-            )}
+            {label && <FormLabel htmlFor={name}>{label}</FormLabel>}
             <ToogleButtonContainer>
                 <ToggleButtonGroupStyled
                     id={name}
@@ -73,13 +73,18 @@ const ToogleButtonGroup = ({
     );
 };
 
-const mapButtonValues = (buttonValues: string[]) =>
+const mapButtonValues = (buttonValues: string[], isSmall: boolean = false) =>
     map(
-        buttonValue => (
-            <ToggleButton key={buttonValue} value={buttonValue}>
-                {buttonValue}
-            </ToggleButton>
-        ),
+        buttonValue =>
+            isSmall ? (
+                <LittleToggleButton key={buttonValue} value={buttonValue}>
+                    {buttonValue}
+                </LittleToggleButton>
+            ) : (
+                <ToggleButton key={buttonValue} value={buttonValue}>
+                    {buttonValue}
+                </ToggleButton>
+            ),
         buttonValues
     );
 

@@ -11,7 +11,7 @@ export const NavList = styled.ul`
     list-style: none;
     width: 100%;
     height: 3.5rem;
-    background-color: ${props => props.theme.palette.background};
+    background-color: ${props => props.theme.palette.light};
     box-shadow: 0.6px 0.8px 13.6px 2.4px rgba(0, 0, 0, 0.14);
     box-sizing: border-box;
 

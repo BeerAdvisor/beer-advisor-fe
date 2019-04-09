@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import SwipeableViews from 'react-swipeable-views';
 
 import { MainForm, MainFormProps } from '../MainForm';
 import { Switch } from '../../components';
 
-import { SwitchWrapper } from './style';
+import { SwitchWrapper, StyledSwipeableViews } from './style';
 
 export type CombinedFormsProps = MainFormProps;
 
@@ -27,15 +26,14 @@ export const CombinedForms = (props: CombinedFormsProps) => {
             <SwitchWrapper>
                 <Switch onChange={setForm} onText="Bar" offText="Beer" />
             </SwitchWrapper>
-            <SwipeableViews
+            <StyledSwipeableViews
                 axis={'x'}
                 index={Number(isBarForm)}
                 containerStyle={{width: '100%'}}
-                style={{width: '100%'}}
             >
                 <MainForm variant={variant} {...layoutProps} />
                 <MainForm variant={variant} {...layoutProps} />
-            </SwipeableViews>
+            </StyledSwipeableViews>
         </React.Fragment>        
     );
 };
