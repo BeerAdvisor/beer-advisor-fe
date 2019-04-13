@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, ReactNode } from 'react';
-import { Collapse } from '@material-ui/core';
 
+import { Collapse } from '../Collapse';
 import { InfoCard, InfoCardProps } from '../InfoCard';
 
 export type ExpandableInfoCardProps = {

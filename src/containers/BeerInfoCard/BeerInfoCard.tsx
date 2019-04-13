@@ -2,7 +2,7 @@ import React from 'react';
 import { map, memoizeWith, identity } from 'ramda';
 
 import { BeerForm, FindBeers, FindBeers_findBeers } from '../../@types';
-import { ExpandableInfoList } from '../../components';
+import { ExpandableInfoList, ExpandedInfoCard } from '../../components';
 
 export type BeerInfoProps = {
     searchResult: FindBeers;
@@ -26,7 +26,7 @@ const mapBeerInfoCards = memoizeWith(identity,
         { label: 'Type', value: type ? type.name : null },
     ];
 
-    return { name, labelValues };
+    return { name, labelValues, expandedContent: <ExpandedInfoCard listName="Bars where you can find this beer" /> };
 }));
 
 export default BeerInfoCard;

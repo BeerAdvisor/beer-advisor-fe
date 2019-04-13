@@ -8,7 +8,7 @@ import { ToggleButtonGroupProps } from '@material-ui/lab/ToggleButtonGroup';
 import styled from '../../../styled-components';
 import { Field } from '../../../containers';
 
-import ToggleButton, { LittleToggleButton } from './ToogleButton';
+import ToggleButton from './ToogleButton';
 import { ToogleButtonContainer, ElementsContainer } from './style';
 
 const ToggleButtonGroupStyled = styled((props: ToggleButtonGroupProps) => (
@@ -18,7 +18,7 @@ const ToggleButtonGroupStyled = styled((props: ToggleButtonGroupProps) => (
     flex-wrap: wrap;
     flex-grow: 1;
     justify-content: stretch;
-    background: ${props => props.theme.palette.light};
+    background: transparent;
     border-radius: 25px;
     box-shadow: none;
     overflow: unset;
@@ -39,11 +39,13 @@ const ToggleButtonGroupStyled = styled((props: ToggleButtonGroupProps) => (
 export interface ToggleButtonProps {
     values: string[];
     label?: string;
+    isSmall?: boolean;
 }
 
 const ToogleButtonGroup = ({
     values,
     label,
+    isSmall,
     input: { name, onChange, value: defaultValue },
 }: ToggleButtonProps & FieldRenderProps) => {
     const [value, setValue] = useState(defaultValue);
@@ -66,7 +68,7 @@ const ToogleButtonGroup = ({
                     exclusive={true}
                     onChange={handleChange}
                 >
-                    {mapButtonValues(values)}
+                    {mapButtonValues(values, isSmall)}
                 </ToggleButtonGroupStyled>
             </ToogleButtonContainer>
         </ElementsContainer>
@@ -76,15 +78,9 @@ const ToogleButtonGroup = ({
 const mapButtonValues = (buttonValues: string[], isSmall: boolean = false) =>
     map(
         buttonValue =>
-            isSmall ? (
-                <LittleToggleButton key={buttonValue} value={buttonValue}>
+                (<ToggleButton small={isSmall} key={buttonValue} value={buttonValue}>
                     {buttonValue}
-                </LittleToggleButton>
-            ) : (
-                <ToggleButton key={buttonValue} value={buttonValue}>
-                    {buttonValue}
-                </ToggleButton>
-            ),
+                </ToggleButton>),
         buttonValues
     );
 

@@ -4,11 +4,9 @@ import { DividerProps } from '@material-ui/core/Divider';
 import styled from '../../../styled-components';
 
 export const BasicDivider = styled(MaterialDivider as React.FunctionComponent<DividerProps>)`
-    width: 100px;
-    height: 8px;
-    border-radius: 3.6px;
-    background-color: #000000;
-    margin-bottom: 20px;
+    width: 100%;
+    height: 1px;
+    background-color: ${props => props.theme.palette.dividerColor};
 `;
 
 export default BasicDivider;

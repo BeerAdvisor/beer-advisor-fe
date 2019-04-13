@@ -18,3 +18,4 @@ export * from './Link';
 export * from './Switch';
 export * from './ExpandableInfoCard';
 export * from './ExpandableInfoList';
+export * from './ExpandedInfoCard';

@@ -4,7 +4,6 @@ export const ElementsContainer = styled.div`
     display flex;
     flex-direction: column;
     justify-content: center;
-    margin:  40px 0;
 `;
 
 export const ToogleButtonContainer = styled.div`
@@ -12,6 +11,6 @@ export const ToogleButtonContainer = styled.div`
     align-items: stretch;
     justify-content: stretch;
     width: 100%;
-    background: ${props => props.theme.palette.light};
+    background: transparent;
     margin-top: 10px;
 `;

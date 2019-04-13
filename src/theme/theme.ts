@@ -7,6 +7,7 @@ export type Color = {
 
 export type Palette = {
     primary: Color;
+    dividerColor: string;
     backgroundLight: string;
     dark: string;
     light: string;
@@ -20,6 +21,7 @@ const palette: Palette= {
     secondary: {
         main: '#009B88',
     },
+    dividerColor: '#DEDBDB',
     backgroundLight: '#F3F2F0',
     light: '#FFFFFF',
     dark: '#000',
@@ -57,7 +59,7 @@ const muiTheme = createMuiTheme({
         subtitle2: {
             color: palette.dark,
             fontSize: '1rem',
-            fontWeight: 500,
+            fontWeight: 600,
         },
     },
     palette,
