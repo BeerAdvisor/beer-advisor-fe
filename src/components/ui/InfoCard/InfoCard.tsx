@@ -3,6 +3,7 @@ import { map } from 'ramda';
 import { Typography } from '@material-ui/core';
 
 import { ArrowRight } from '../../Icons';
+import { mapLabelValues } from '../../../utils';
 
 import {
     InfoCardStyled,
@@ -36,14 +37,7 @@ export default ({ name, labelValues, bottomLink, onClick }: InfoCardProps) => {
                 <InfoCardColumn>
                     <Typography variant="subtitle1">{name}</Typography>
                     <InfoCardRow>
-                        {map(
-                            ({ label, value }) => (
-                                <LabelValueContainer>
-                                    {label}:{` ${value}`}
-                                </LabelValueContainer>
-                            ),
-                            labelValues
-                        )}
+                        {mapLabelValues(labelValues)}
                     </InfoCardRow>
                 </InfoCardColumn>
             </InfoCardContainer>

@@ -1,18 +1,24 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, ReactNode } from 'react';
 import { Collapse } from '@material-ui/core';
 
 import { InfoCard, InfoCardProps } from '../InfoCard';
-import { BeerInfoCard } from '../../../containers';
 
 export type ExpandableInfoCardProps = {
-    bottomLink: string;
+    bottomLink?: string;
     expanded?: boolean;
+    expandedContent?: ReactNode;
 } & InfoCardProps;
 
-export const ExpandableInfoCard = ({ bottomLink = 'Shows bars', expanded: propsExpanded, onClick, ...other}: ExpandableInfoCardProps) => {
+export const ExpandableInfoCard = ({
+    bottomLink = 'Shows bars',
+    expanded: propsExpanded,
+    expandedContent,
+    onClick,
+    ...other
+}: ExpandableInfoCardProps) => {
     const [expanded, setExpanded] = useState(propsExpanded);
 
-    const handleExpanded = useCallback((e) => {
+    const handleExpanded = useCallback(e => {
         if (onClick) {
             onClick(e);
         }
@@ -20,16 +26,21 @@ export const ExpandableInfoCard = ({ bottomLink = 'Shows bars', expanded: propsE
         setExpanded(exp => !exp);
     }, []);
 
-    useEffect(() => {
+    useEffect(
+        () => {
             setExpanded(propsExpanded);
-    }, [propsExpanded]);
+        },
+        [propsExpanded]
+    );
 
     return (
         <React.Fragment>
-            <InfoCard onClick={handleExpanded} bottomLink={bottomLink} {...other} />
-            <Collapse in={expanded}> 
-                <BeerInfoCard {...other as any}/>
-            </Collapse>
+            <InfoCard
+                onClick={handleExpanded}
+                bottomLink={bottomLink}
+                {...other}
+            />
+            <Collapse in={expanded}>{expandedContent}</Collapse>
         </React.Fragment>
     );
 };
