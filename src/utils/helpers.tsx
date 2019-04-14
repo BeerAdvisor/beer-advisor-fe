@@ -4,7 +4,7 @@ import { map } from 'ramda';
 import styled from '../styled-components';
 
 export const LabelValueContainer = styled.span`
-    width: 10rem;
+    width: auto;
     &:not(:first-child) {
         margin-left: 2rem;
     }

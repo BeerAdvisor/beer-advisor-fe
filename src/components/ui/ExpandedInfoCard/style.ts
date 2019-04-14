@@ -14,4 +14,12 @@ export const ExpandedInfoCardWrapper = styled.div`
 export const ListItemsContainer = styled.div`
     margin-top: 1.5rem;
     width: 100%;
+
+    &: >* {
+        margin-top: .5rem;
+    }
+`;
+
+export const ButtonContainer = styled.div`
+    margin-top: 1rem;
 `;
