@@ -38,6 +38,7 @@ export const ExpandableInfoCard = ({
             <InfoCard
                 onClick={handleExpanded}
                 bottomLink={bottomLink}
+                expanded={expanded}
                 {...other}
             />
             <Collapse in={expanded}>{expandedContent}</Collapse>

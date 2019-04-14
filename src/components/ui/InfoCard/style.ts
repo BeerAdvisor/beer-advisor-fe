@@ -59,6 +59,17 @@ export const LabelValueContainer = styled.span`
     }
 `;
 
+export const BottomLinkContainer = styled.span`
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 45%;
+    bottom: 5%;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    align-self: flex-end;
+`;
+
 export const LeftDetailContainer = styled.div`
     width: 6rem;
     height: 6rem;
@@ -79,12 +90,10 @@ export const RightDetail = styled.div`
 `;
 
 export const BottomLink = styled.span`
-    position: relative;
-    left: 45%;
-    bottom: 5%;
-    cursor: pointer;
     font-size: 0.8rem;
-    text-decoration: underline;
     color: ${props => props.theme.palette.secondary.main}
-    align-self: flex-end;
+    
+    &: hover {
+        text-decoration: underline;
+    }
 `;

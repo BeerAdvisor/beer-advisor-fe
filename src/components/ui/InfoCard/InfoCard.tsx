@@ -1,8 +1,7 @@
-import React, { ReactNode, useCallback, MouseEvent } from 'react';
-import { map } from 'ramda';
+import React, { ReactNode, MouseEvent } from 'react';
 import { Typography } from '@material-ui/core';
 
-import { ArrowRight } from '../../Icons';
+import { ArrowRight, KeyboardArrowDown, KeyboardArrowUp } from '../../Icons';
 import { mapLabelValues } from '../../../utils';
 
 import {
@@ -10,10 +9,10 @@ import {
     InfoCardContainer,
     InfoCardColumn,
     InfoCardRow,
-    LabelValueContainer,
     LeftDetailContainer,
     RightDetail,
     BottomLink,
+    BottomLinkContainer,
 } from './style';
 
 export interface LabelValue {
@@ -26,12 +25,18 @@ export interface InfoCardProps {
     name?: string;
     bottomLink?: string;
     onClick?: (e: MouseEvent<HTMLDivElement>) => void;
+    expanded?: boolean;
 }
 
-export default ({ name, labelValues, bottomLink, onClick }: InfoCardProps) => {
+export default ({ name, labelValues, bottomLink, onClick, expanded, ...other }: InfoCardProps) => {
     return (
-        <InfoCardStyled onClick={onClick}>
-            {bottomLink && <BottomLink>{bottomLink}</BottomLink>}
+        <InfoCardStyled onClick={onClick} {...other}>
+            {bottomLink && (
+                <BottomLinkContainer>
+                    <BottomLink>{bottomLink}</BottomLink>
+                    {expanded ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+                </BottomLinkContainer>
+            )}
             <InfoCardContainer>
                 <LeftDetailContainer />
                 <InfoCardColumn>
