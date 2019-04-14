@@ -2,7 +2,7 @@ import React, { ReactNode, MouseEvent } from 'react';
 import { Typography } from '@material-ui/core';
 
 import { ArrowRight, KeyboardArrowDown, KeyboardArrowUp } from '../../Icons';
-import { mapLabelValues } from '../../../utils';
+import { mapLabelValues, LabelValue } from '../../../utils';
 
 import {
     InfoCardStyled,
@@ -14,11 +14,6 @@ import {
     BottomLink,
     BottomLinkContainer,
 } from './style';
-
-export interface LabelValue {
-    label: ReactNode;
-    value?: ReactNode;
-}
 
 export interface InfoCardProps {
     labelValues: LabelValue[];

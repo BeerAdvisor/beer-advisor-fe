@@ -1,8 +1,7 @@
 import React, { MouseEvent } from 'react';
 import { Typography } from '@material-ui/core';
 
-import { LabelValue } from '../InfoCard';
-import { mapLabelValues } from '../../../utils';
+import { mapLabelValues, LabelValue } from '../../../utils';
 import { DoubleKeyboardArrowRight } from '../../Icons';
 
 import { ListItemValuesWrapper, ListItemDivider, ListItemWrapper, NameContainer } from './style';

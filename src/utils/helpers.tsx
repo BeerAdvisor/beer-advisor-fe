@@ -11,13 +11,14 @@ export const LabelValueContainer = styled.span`
 `;
 
 export interface LabelValue {
-    label: ReactNode;
+    label: string;
     value?: ReactNode;
 }
 
+let labelsIndex = 0;
 export const mapLabelValues = map<LabelValue, any>(
     ({ label, value }: LabelValue) => (
-        <LabelValueContainer>
+        <LabelValueContainer key={`${label}${labelsIndex++}`}>
             {label}:{` ${value ? value : 'Unknown'}`}
         </LabelValueContainer>
     )

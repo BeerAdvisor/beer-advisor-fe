@@ -2,7 +2,7 @@ import React, { memo, useState, useCallback } from 'react';
 import { isEmpty } from 'ramda';
 
 import { ExpandableInfoCard } from '../ExpandableInfoCard';
-import { LabelValue } from '../InfoCard';
+import { LabelValue } from '../../../utils';
 
 export interface ExpandableInfoListProps {
     expandableInfoCards: IExpandableInfoCard[];
@@ -27,6 +27,7 @@ export default memo(({
     ? null
     : expandableInfoCards.map((expandableInfoCardProps: IExpandableInfoCard, index: number) => (
         <ExpandableInfoCard
+            key={`${expandableInfoCardProps.name}${index}`}
             bottomLink={bottomLink}
             expanded={expandedIndex === index}
             onClick={handleExpandedIndex(index)}
