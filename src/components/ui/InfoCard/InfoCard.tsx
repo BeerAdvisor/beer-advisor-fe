@@ -13,9 +13,10 @@ import {
     RightDetail,
     BottomLink,
     BottomLinkContainer,
+    InfoCardStyledProps,
 } from './style';
 
-export interface InfoCardProps {
+export interface InfoCardProps extends InfoCardStyledProps {
     labelValues: LabelValue[];
     name?: string;
     bottomLink?: string;
@@ -23,9 +24,9 @@ export interface InfoCardProps {
     expanded?: boolean;
 }
 
-export default ({ name, labelValues, bottomLink, onClick, expanded, ...other }: InfoCardProps) => {
+export default ({ name, labelValues, bottomLink, onClick, expanded, isFirst, isLast, ...other }: InfoCardProps) => {
     return (
-        <InfoCardStyled onClick={onClick} {...other}>
+        <InfoCardStyled onClick={onClick} isFirst={isFirst} isLast={isLast} {...other}>
             {bottomLink && (
                 <BottomLinkContainer>
                     <BottomLink>{bottomLink}</BottomLink>
@@ -41,7 +42,7 @@ export default ({ name, labelValues, bottomLink, onClick, expanded, ...other }: 
                     </InfoCardRow>
                 </InfoCardColumn>
             </InfoCardContainer>
-            <RightDetail> 
+            <RightDetail isFirst={isFirst} isLast={isLast}> 
                 <ArrowRight fontSize="large" />
             </RightDetail>
         </InfoCardStyled>

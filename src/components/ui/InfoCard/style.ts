@@ -1,6 +1,24 @@
 import styled from '../../../styled-components';
 
-export const InfoCardStyled = styled.div`
+export interface InfoCardStyledProps {
+    isFirst?: boolean;
+    isLast?: boolean;
+    index?: number;
+}
+
+const getInfoCardBorderRadius = ({ isFirst, isLast, theme: { borderRadius } }: any) => {
+    if (isFirst) {
+        return `${borderRadius} ${borderRadius} 0 0`;
+    }
+
+    if (isLast) {
+        return `0 0 ${borderRadius} ${borderRadius}`;
+    }
+
+    return '0';
+};
+
+export const InfoCardStyled = styled.div<InfoCardStyledProps>`
     display: flex;
     justify-content: space-between;
     height: 8.5rem;
@@ -8,20 +26,13 @@ export const InfoCardStyled = styled.div`
     box-sizing: border-box;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     background-color: ${props => props.theme.palette.light};
+    z-index: ${props => typeof props.index === 'number' ? 1000 - props.index : 0};
 
-    &:first-child {
-        border-radius: ${props => props.theme.borderRadius} ${props => props.theme.borderRadius} 0 0;
+    &:hover {
+        z-index: 1001;
     }
 
-    &:last-child {
-        border-radius: 0 0 ${props => props.theme.borderRadius} ${props => props.theme.borderRadius};
-    }
-
-    &:only-child {
-        border-radius: ${props => props.theme.borderRadius};
-
-    }
-
+    border-radius: ${getInfoCardBorderRadius};
 `;
 
 export const InfoCardContainer = styled.div`
@@ -78,14 +89,25 @@ export const LeftDetailContainer = styled.div`
     background-color: gray;
 `;
 
-export const RightDetail = styled.div`
+const getRightDetailBorderRadius = ({ isFirst, isLast, theme: { borderRadius } }: any) => {
+    if (isFirst) {
+        return `0 ${borderRadius} 0 0`;
+    }
+
+    if (isLast) {
+        return `0 0 ${borderRadius} 0`;
+    }
+
+    return '0';
+};
+export const RightDetail = styled.div<InfoCardStyledProps>`
     display: flex;
     align-items: center;
     height: 100%;
     align-self: flex-end;
     width: 3rem;
     background-color: ${props => props.theme.palette.primary.light};
-    border-radius: 0 ${props => props.theme.borderRadius} ${props => props.theme.borderRadius} 0;
+    border-radius: ${getRightDetailBorderRadius};
     cursor: pointer;
 `;
 

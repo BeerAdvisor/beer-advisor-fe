@@ -2,7 +2,7 @@ import React, { ReactNode, useState, useCallback } from 'react';
 import { Typography } from '@material-ui/core';
 import { map, addIndex } from 'ramda';
 
-import { KeyboardArrowDown, KeyboardArrowUp } from '../../Icons'
+import { KeyboardArrowDown, KeyboardArrowUp } from '../../Icons';
 import { ToogleButtonGroupField } from '../ToogleButton';
 import { ListItem } from '../ListItem';
 import { FloatingButton } from '../FloatingButton';

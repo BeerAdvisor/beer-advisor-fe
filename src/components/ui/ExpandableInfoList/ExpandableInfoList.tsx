@@ -24,13 +24,16 @@ export default memo(({
     const handleExpandedIndex = useCallback((index) => () => setExpandedIndex(i => i === index ? -1 : index), []);
 
     const expandableCards = isEmpty(expandableInfoCards) 
-    ? null
+    ? null // TODO: Add fallback for no results. Show top beers? Not find page? Suggest to Search? 
     : expandableInfoCards.map((expandableInfoCardProps: IExpandableInfoCard, index: number) => (
         <ExpandableInfoCard
             key={`${expandableInfoCardProps.name}${index}`}
             bottomLink={bottomLink}
             expanded={expandedIndex === index}
             onClick={handleExpandedIndex(index)}
+            index={index}
+            isFirst={index === 0}
+            isLast={index === expandableInfoCards.length - 1}
             {...expandableInfoCardProps}
             {...other}
         />
