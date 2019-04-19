@@ -1,4 +1,4 @@
-import React, { ReactElement, ChangeEvent, ChangeEventHandler, memo } from 'react';
+import React, { memo } from 'react';
 import { Field, FieldProps } from 'react-final-form';
 
 import { ErrorMessage } from '../../components';

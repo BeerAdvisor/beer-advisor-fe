@@ -1,4 +1,4 @@
-import React, { ReactNode, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import { Typography } from '@material-ui/core';
 
 import { ArrowRight, KeyboardArrowDown, KeyboardArrowUp } from '../../Icons';

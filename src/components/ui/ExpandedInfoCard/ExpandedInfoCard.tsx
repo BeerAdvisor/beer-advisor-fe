@@ -1,9 +1,9 @@
 import React, { ReactNode, useState, useCallback } from 'react';
 import { Typography } from '@material-ui/core';
-import { map, addIndex } from 'ramda';
+import { map, addIndex, sortBy, compose, prop } from 'ramda';
 
 import { KeyboardArrowDown, KeyboardArrowUp } from '../../Icons';
-import { ToogleButtonGroupField } from '../ToogleButton';
+import { ToogleButtonGroup } from '../ToogleButton';
 import { ListItem } from '../ListItem';
 import { FloatingButton } from '../FloatingButton';
 
@@ -16,64 +16,83 @@ export interface ExpandedInfoCardProps {
     isBeer?: boolean;
 }
 
-const bars = [
+export interface Bar {
+    name: string;
+    id: number;
+    labelValues: BarLabelValue;
+}
+
+export interface BarLabelValue {
+    rating: string;
+    price: string;
+    distance: string;
+}
+
+const DUMMY_BAR_LABEL_VALUE: BarLabelValue = {
+    rating: '',
+    price: '',
+    distance: '',
+};
+
+const bars: Bar[] = [
     {
         name: 'Kozlovna',
         id: 1,
-        labelValues: [
-            { label: 'Rating', value: '5' },
-            { label: 'Price', value: '1000 CZK' },
-            { label: 'Distance', value: '300 M' },
-        ],
+        labelValues: {
+            rating: '4',
+            price: '2000 CZK',
+            distance: '1000 M',
+        },
     },
     {
         name: 'Mala ryba',
         id: 2,
-        labelValues: [
-            { label: 'Rating', value: '3' },
-            { label: 'Price', value: '100 CZK' },
-            { label: 'Distance', value: '300 M' },
-        ],
+        labelValues: {
+            rating: '3.5',
+            price: '2000 CZK',
+            distance: '12 M',
+        },
     },
     {
         name: 'Mila tchyne',
         id: 3,
-        labelValues: [
-            { label: 'Rating', value: '4.5' },
-            { label: 'Price', value: '20 CZK' },
-            { label: 'Distance', value: '300 M' },
-        ],
+        labelValues: {
+            rating: '4.2',
+            price: '2000 CZK',
+            distance: '300 M',
+        },
     },
     {
         name: 'Atmoska',
         id: 4,
-        labelValues: [
-            { label: 'Rating', value: '4.5' },
-            { label: 'Price', value: '50 CZK' },
-            { label: 'Distance', value: '1 KM' },
-        ],
+        labelValues: {
+            rating: '4.3',
+            price: '1010 CZK',
+            distance: '300 M',
+        },
     },
     {
         name: 'The Pub',
         id: 5,
-        labelValues: [
-            { label: 'Rating', value: '4.5' },
-            { label: 'Price', value: '100 CZK' },
-            { label: 'Distance', value: '300 M' },
-        ],
+        labelValues: {
+            rating: '5',
+            price: '100 CZK',
+            distance: '300 M',
+        },
     },
     {
         name: 'U Novaku',
         id: 6,
-        labelValues: [
-            { label: 'Rating', value: '4.5' },
-            { label: 'Price', value: '100 CZK' },
-            { label: 'Distance', value: '300 M' },
-        ],
+        labelValues: {
+            rating: '5',
+            price: '10 CZK',
+            distance: '100 M',
+        },
     },
 ];
 
 const mapIndexed = addIndex<any>(map);
+const filterProps = { values: Object.keys(DUMMY_BAR_LABEL_VALUE)};
 
 export default ({
     maxItemsToShow = 3,
@@ -83,18 +102,24 @@ export default ({
     ...other
 }: ExpandedInfoCardProps) => {
     const [isShowAll, setShowAll] = useState(false);
+    const [sortedBars, setSortedBars] = useState(sortByLabel('price')(bars));
 
     const handleShowAll = useCallback(() => setShowAll(c => !c), []);
-    const filterProps = {
-        values: ['Rating', 'Price', 'Distance'],
-    };
+
+    const handleSortChange = useCallback((value: string) => {
+        if (value === 'rating' || value === 'distance' || value === 'price' ) {
+            setSortedBars(sortByLabel(value)(bars));
+        }
+    }, []);
 
     return (
         <ExpandedInfoCardWrapper {...other}>
             <Typography variant="subtitle1">{listName}</Typography>
-            <ToogleButtonGroupField
+            <ToogleButtonGroup
                 isSmall
                 name="infoFilters"
+                defaultValue="price"
+                onChange={handleSortChange}
                 {...filterProps}
             />
             <ListItemsContainer>
@@ -105,7 +130,7 @@ export default ({
                         name={name}
                         labelValues={labelValues}
                     />
-                ), bars)}
+                ), sortedBars)}
             </ListItemsContainer>
             {bars.length !== maxItemsToShow && (
                 <ButtonContainer>
@@ -117,6 +142,13 @@ export default ({
         </ExpandedInfoCardWrapper>
     );
 };
+
+const sortByLabel = (filter: keyof BarLabelValue) => sortBy(
+        compose<Bar, BarLabelValue, string>(
+            prop(filter),
+            prop('labelValues')
+    )
+);
 
 const dummyOnClick = () => {
     console.log('Bar clicked');
