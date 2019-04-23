@@ -20,7 +20,7 @@ export const BeerInfoCard = ({
         return null;
     }
 
-    const expandableInfoCards = memoMapBeerCard(
+    const expandableInfoCards = memoMapBeerCards(
         history,
         searchResult.findBeers
     );
@@ -38,7 +38,6 @@ const mapBeerInfoCards = (
     history: History<any>,
     beers: FindBeers_findBeers[]
 ) => {
-
     const handleInfoClick = (beerId: string) => () => {
         history.push(`/beer/${beerId}`);
     };
@@ -64,7 +63,7 @@ const mapBeerInfoCards = (
     }, beers);
 };
 
-const memoMapBeerCard = memoizeWith(
+const memoMapBeerCards = memoizeWith(
     identity,
     mapBeerInfoCards
 );
