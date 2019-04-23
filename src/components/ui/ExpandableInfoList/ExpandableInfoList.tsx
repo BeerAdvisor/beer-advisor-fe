@@ -12,6 +12,7 @@ export interface ExpandableInfoListProps {
 export interface IExpandableInfoCard {
     name: string;
     labelValues: LabelValue[];
+    onInfoClick?: () => void;
 }
 
 export default memo(({

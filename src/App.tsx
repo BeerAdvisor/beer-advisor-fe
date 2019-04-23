@@ -15,6 +15,7 @@ import BeerResultPage from './pages/BeerResultPage';
 import LoginPage from './pages/LoginPage';
 import { ErrorBoundary, NavigationBar } from './containers';
 import GlobalStyle from './theme/globalStyle';
+import { BeerInfoPage } from './pages';
 
 const generateClassName = createGenerateClassName();
 const jss = create({
@@ -41,6 +42,7 @@ const Routes = () => (
           <Route exact path="/" component={HomePage} />
           <Route path="/beers" component={BeerResultPage} />
           <Route path="/login" component={LoginPage} />
+          <Route path="/beer/:beerId" component={BeerInfoPage} />
         </ErrorBoundary>
       </Switch>
     </Suspense>

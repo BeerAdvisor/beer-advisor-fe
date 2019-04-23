@@ -1,5 +1,4 @@
 import React, { MouseEvent } from 'react';
-import { map } from 'ramda';
 import { Typography } from '@material-ui/core';
 
 import { LabelValue, LabelValueContainer } from '../../../utils';

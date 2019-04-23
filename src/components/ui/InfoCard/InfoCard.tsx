@@ -21,10 +21,11 @@ export interface InfoCardProps extends InfoCardStyledProps {
     name?: string;
     bottomLink?: string;
     onClick?: (e: MouseEvent<HTMLDivElement>) => void;
+    onInfoClick?: () => void;
     expanded?: boolean;
 }
 
-export default ({ name, labelValues, bottomLink, onClick, expanded, isFirst, isLast, ...other }: InfoCardProps) => {
+export default ({ name, labelValues, bottomLink, onClick, expanded, isFirst, isLast, onInfoClick, ...other }: InfoCardProps) => {
     return (
         <InfoCardStyled onClick={onClick} isFirst={isFirst} isLast={isLast} {...other}>
             {bottomLink && (
@@ -42,7 +43,7 @@ export default ({ name, labelValues, bottomLink, onClick, expanded, isFirst, isL
                     </InfoCardRow>
                 </InfoCardColumn>
             </InfoCardContainer>
-            <RightDetail isFirst={isFirst} isLast={isLast}> 
+            <RightDetail onClick={onInfoClick} isFirst={isFirst} isLast={isLast}> 
                 <ArrowRight fontSize="large" />
             </RightDetail>
         </InfoCardStyled>

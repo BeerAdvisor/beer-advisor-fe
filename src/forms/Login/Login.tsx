@@ -3,7 +3,6 @@ import { MutationFn } from 'react-apollo';
 import { ApolloClient, ApolloError } from 'apollo-boost';
 import { FormRenderProps, Form } from 'react-final-form';
 import { RouteComponentProps } from 'react-router';
-import { memoizeWith, identity } from 'ramda';
 
 import { Mutation } from '../../graphql';
 import { LoginMutationVariables, SignupMutationVariables, LoginMutation, SignupMutation } from '../../@types';
