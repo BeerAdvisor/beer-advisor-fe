@@ -2,6 +2,9 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import { Query } from '../../graphql';
+import { DescriptionCard } from '../../components';
+import { beer } from '../../@types';
+import { GuaranteedQueryResult } from '../../@types/CustomGqlTypes';
 
 export interface BeerDescriptionCardProps {
     beerId: string;
@@ -28,18 +31,17 @@ const GET_BEER_INFO = gql`
     }
 `;
 
+const renderBeerDecriptionCard = ({ data }: GuaranteedQueryResult<beer>) => (
+    <DescriptionCard beerName={data.beer.name} />
+);
+
 export const BeerDescriptionCard = ({
     beerId,
     ...other
 }: BeerDescriptionCardProps) => {
     return (
         <Query query={GET_BEER_INFO} variables={{ beerId }}>
-            {({ data }) => {
-
-                return (
-                    <div>{data.beer.name}</div>
-                );
-            }}
+            {renderBeerDecriptionCard}
         </Query>
     );
 };
