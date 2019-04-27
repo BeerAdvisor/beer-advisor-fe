@@ -11,7 +11,7 @@ export interface BeerTypeSelectProps {
 }
 
 const BeerTypeSelect = ({ beerTypes, ...other }: BeerTypeSelectProps) => {
-      let items = [<MenuItem key={name} value={name}>{name}</MenuItem>];
+      let items = [<MenuItem key="beerItem0" value="">""</MenuItem>];
       
       if (beerTypes) {
           items = map(({ name }: beerTypes_beerTypes) => (
