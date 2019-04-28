@@ -20,3 +20,4 @@ export * from './ExpandableInfoCard';
 export * from './ExpandableInfoList';
 export * from './ExpandedInfoCard';
 export * from './DescriptionCard';
+export * from './Rating';
