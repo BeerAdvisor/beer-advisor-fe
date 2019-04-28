@@ -32,7 +32,7 @@ const GET_BEER_INFO = gql`
 `;
 
 const renderBeerDecriptionCard = ({ data }: GuaranteedQueryResult<beer>) => (
-    <DescriptionCard beerName={data.beer.name} />
+    <DescriptionCard beer={data.beer} />
 );
 
 export const BeerDescriptionCard = ({

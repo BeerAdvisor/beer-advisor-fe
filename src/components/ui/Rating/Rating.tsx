@@ -43,7 +43,7 @@ export interface RatingProps {
 }
 
 export const Rating = ({
-    disabled = false,
+    disabled = true,
     filled = 0,
     onClick,
     ...other

@@ -43,8 +43,10 @@ const muiTheme = createMuiTheme({
         },
         h4: {
             fontFamily: 'Raleway',
-            fontSize: '43px',
-            lineHeight: 1.97,
+            fontSize: '1.3rem',
+            lineHeight: '28px',
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
         },
         h6: {
             color: palette.primary.light,
@@ -60,6 +62,13 @@ const muiTheme = createMuiTheme({
             color: palette.dark,
             fontSize: '1rem',
             fontWeight: 600,
+            lineHeight: 1.5,
+        },
+        body1: {
+            color: palette.dark,
+            fontSize: '1rem',
+            fontWeight: 400,
+            lineHeight: 1.5,
         },
     },
     palette,
