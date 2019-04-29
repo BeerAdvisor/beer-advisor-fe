@@ -3,6 +3,7 @@ import { Typography } from '@material-ui/core';
 
 import { LogoImage } from '../LogoImage';
 import { Rating } from '../Rating';
+import { LittleButton, SmallButton } from '../Button';
 import { beer_beer } from '../../../@types';
 
 import {
@@ -18,6 +19,8 @@ export interface DescriptionCardProps {
     beer?: beer_beer;
     // TODO: we dont have type for this now, change it later
     bar?: any;
+    onChangeSuggest?: () => void;
+    onAddToFavourite?: (id: string) => void;
 }
 export const DescriptionCard = ({
     beer,
@@ -32,6 +35,7 @@ export const DescriptionCard = ({
                     {beer ? beer.name : bar.barName}
                 </Typography>
                 <Rating filled={beer ? beer.avgRating || 0 : bar.rating} />
+                <SmallButton favourite variant="outlined">Add to favourite</SmallButton>
             </DescriptionCardTopWrapper>
             <DescriptionCardBottomWrapper>
                 {beer && getBeerDescription(beer)}
@@ -39,8 +43,10 @@ export const DescriptionCard = ({
                     Your rating:
                     <LeaveRatingWrapper>
                         <Rating disabled={false} />
+                        <LittleButton>Confirm</LittleButton>
                     </LeaveRatingWrapper>
                 </RatingWrapper>
+                <SmallButton variant="outlined">Suggest change</SmallButton>
             </DescriptionCardBottomWrapper>
         </DescriptionCardWrapper>
     );

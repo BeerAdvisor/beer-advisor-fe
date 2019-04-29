@@ -3,13 +3,15 @@ import { Button as MaterialButton } from '@material-ui/core';
 
 const LittleButton = styled(MaterialButton)<any>`
     font-family: Raleway;
-    background-color: ${props => props.theme.palette.secondary.main};
-    box-shadow: 1px 0 13.6px 2.4px rgba(0, 0, 0, 0.4);
+    height: 2rem;
+    background-color: ${props => props.theme.palette.primary.main};
+    box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.06);
     border-radius: ${props => props.theme.borderRadius};
-    font-size: 48px;
-    letter-spacing: 1.2px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: none;
     color: ${props => props.theme.palette.light};
-    padding: 0;
+    padding: 0 1.5rem;
 `;
 
 export default LittleButton;
