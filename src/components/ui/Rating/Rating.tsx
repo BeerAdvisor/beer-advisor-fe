@@ -1,4 +1,4 @@
-import React, { useCallback, useState, RefObject, useEffect } from 'react';
+import React, { useCallback, useState, RefObject } from 'react';
 import { Star, StarBorder, StarHalf } from '@material-ui/icons';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 import { times } from 'ramda';

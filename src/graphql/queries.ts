@@ -12,6 +12,26 @@ query beerForm {
   }
 `;
 
+export const GET_USER = gql`
+query user {
+    user @client {
+        email,
+        role,
+        nickname,
+        birthdate,
+        name,
+        surname,
+        createdAt,
+        updatedAt,
+        beerRatings {
+            beer {
+                id
+            }
+        }
+    }
+  }
+`;
+
 export const GET_BEER_INFO = gql`
     query beer($beerId: ID!) {
         beer(id: $beerId) {

@@ -42,7 +42,12 @@ export const LOGIN_MUTATION = gql`
                 name,
                 surname,
                 createdAt,
-                updatedAt
+                updatedAt,
+                beerRatings {
+                    beer {
+                        id
+                    }
+                }
             }
         }
     }
