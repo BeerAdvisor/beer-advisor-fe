@@ -11,3 +11,24 @@ query beerForm {
       }
   }
 `;
+
+export const GET_BEER_INFO = gql`
+    query beer($beerId: ID!) {
+        beer(id: $beerId) {
+            name
+            id
+            strong
+            photo
+            avgRating
+            brewery {
+                name
+            }
+            type {
+                name
+            }
+            beerRating {
+                rating
+            }
+        }
+    }
+`;

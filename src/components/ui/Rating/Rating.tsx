@@ -1,4 +1,4 @@
-import React, { useCallback, useState, RefObject } from 'react';
+import React, { useCallback, useState, RefObject, useEffect } from 'react';
 import { Star, StarBorder, StarHalf } from '@material-ui/icons';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 import { times } from 'ramda';
@@ -95,7 +95,11 @@ export const Rating = ({
             }
 
             if (disabled) {
+                if (counter === 5) {
+                    counter = 0;
+                }
                 const leftToFill = filled - counter;
+
                 if (
                     leftToFill < 1 &&
                     leftToFill > 0 &&

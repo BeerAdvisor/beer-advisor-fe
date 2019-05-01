@@ -3,16 +3,16 @@ import { Typography } from '@material-ui/core';
 
 import { LogoImage } from '../LogoImage';
 import { Rating } from '../Rating';
-import { LittleButton, SmallButton } from '../Button';
+import { SmallButton } from '../Button';
 import { beer_beer } from '../../../@types';
+// TODO: This comes from the container, should I move Description card up?
+import { LeaveRating } from '../../../containers/LeaveRating';
 
 import {
     DescriptionCardWrapper,
     DescriptionCardTopWrapper,
     DescriptionCardBottomWrapper,
     DescriptionNameValueWrapper,
-    RatingWrapper,
-    LeaveRatingWrapper,
 } from './style';
 
 export interface DescriptionCardProps {
@@ -39,13 +39,7 @@ export const DescriptionCard = ({
             </DescriptionCardTopWrapper>
             <DescriptionCardBottomWrapper>
                 {beer && getBeerDescription(beer)}
-                <RatingWrapper>
-                    Your rating:
-                    <LeaveRatingWrapper>
-                        <Rating disabled={false} />
-                        <LittleButton>Confirm</LittleButton>
-                    </LeaveRatingWrapper>
-                </RatingWrapper>
+                <LeaveRating id={beer ? beer.id : bar.id} />
                 <SmallButton variant="outlined">Suggest change</SmallButton>
             </DescriptionCardBottomWrapper>
         </DescriptionCardWrapper>
