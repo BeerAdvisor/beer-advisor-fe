@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
-import { map } from 'ramda';
+import { map , addIndex } from 'ramda';
 
 import styled from '../styled-components';
 
-//TODO: Label values will be redone as table
+// TODO: Label values will be redone as table
 export const LabelValueContainer = styled.span`
     width: auto;
     &:not(:first-child) {
@@ -24,3 +24,5 @@ export const mapLabelValues = map<LabelValue, any>(
         </LabelValueContainer>
     )
 );
+
+export const mapIndexed = addIndex<any>(map);

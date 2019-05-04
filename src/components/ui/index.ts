@@ -21,3 +21,5 @@ export * from './ExpandableInfoList';
 export * from './ExpandedInfoCard';
 export * from './DescriptionCard';
 export * from './Rating';
+export * from './CarouselCard';
+export * from './Carousel';

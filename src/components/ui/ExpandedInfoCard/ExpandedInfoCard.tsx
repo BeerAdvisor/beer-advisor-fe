@@ -6,6 +6,7 @@ import { KeyboardArrowDown, KeyboardArrowUp } from '../../Icons';
 import { ToogleButtonGroup } from '../ToogleButton';
 import { ListItem } from '../ListItem';
 import { FloatingButton } from '../FloatingButton';
+import { mapIndexed } from '../../../utils';
 
 import { ExpandedInfoCardWrapper, ListItemsContainer, ButtonContainer } from './style';
 
@@ -91,7 +92,6 @@ const bars: Bar[] = [
     },
 ];
 
-const mapIndexed = addIndex<any>(map);
 const filterProps = { values: Object.keys(DUMMY_BAR_LABEL_VALUE)};
 
 export default ({
