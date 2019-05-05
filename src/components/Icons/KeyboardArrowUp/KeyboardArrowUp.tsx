@@ -7,7 +7,7 @@ import styled from '../../../styled-components';
 const KeyboardArrowUp = styled((props: SvgIconProps) => (
     <MuiKeyboardArrowUp {...props} />
 ))`
-    color: ${props => props.theme.palette.secondary.main};
+    color: inherit;
     width: 1em;
 `;
 

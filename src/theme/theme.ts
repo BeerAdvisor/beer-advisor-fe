@@ -20,6 +20,7 @@ const palette: Palette= {
     },
     secondary: {
         main: '#009B88',
+        dark: '#006666',
     },
     dividerColor: '#DEDBDB',
     backgroundLight: '#F3F2F0',
@@ -115,6 +116,8 @@ const muiTheme = createMuiTheme({
 
 export interface Surfaces {
     shadow_1: string;
+    color_shadow_1: string;
+    color_shadow_2: string;
 }
 
 export type Theme = {
@@ -137,6 +140,8 @@ const theme = {
     combinedPadding: `${topDownPadding} ${sidesPadding}`,
     surfaces: {
         shadow_1: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+        color_shadow_1: '0px 3px 10px rgba(0, 153, 153, 0.2)',
+        color_shadow_2: '0px 4px 16px rgba(0, 153, 153, 0.5)',
     },
 };
 

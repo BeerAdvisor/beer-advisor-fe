@@ -79,6 +79,7 @@ export const BottomLinkContainer = styled.span`
     cursor: pointer;
     margin-bottom: 1rem;
     align-self: flex-end;
+    color: ${props => props.theme.palette.secondary.main};
 `;
 
 export const LeftDetailContainer = styled.div`

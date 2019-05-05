@@ -23,6 +23,11 @@ export const SmallButton = styled(MaterialButton)<any>`
         color: ${props.theme.palette.primary.main};
     `}
 
+    ${props => props.color === 'secondary' && `
+        border: 1px solid ${props.theme.palette.secondary.main};
+        color: ${props.theme.palette.secondary.main};
+    `}
+
     ${props => props.favourite && `
         color: #E5432C;
         text-decoration: underline;

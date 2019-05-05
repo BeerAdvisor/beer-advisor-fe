@@ -23,3 +23,4 @@ export * from './DescriptionCard';
 export * from './Rating';
 export * from './CarouselCard';
 export * from './Carousel';
+export * from './AvailabilityCard';

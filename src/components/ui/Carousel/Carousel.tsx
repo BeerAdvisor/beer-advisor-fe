@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { map } from 'ramda';
 
 import { CarouselCard, CarouselCardProps } from '../CarouselCard';
 import { mapIndexed } from '../../../utils';
+import { FloatingButton } from '../FloatingButton';
+import { KeyboardArrowLeft, KeyboardArrowRight } from '../../Icons';
 
-import { CarouselContainer } from './style';
+import { CarouselContainer, CarouselWrapper } from './style';
 
 export interface CarouselProps {
     cards: CarouselCardProps[];
@@ -33,10 +34,14 @@ const Carousel = ({ cards, maxToShow = 4, ...other }: CarouselProps) => {
         )(cards);
     }, [cards]);
 
-    const handleClick = () => activeValue < 1 ? setActiveValue(a => a + 1) : setActiveValue(a => a - 1);
+    const handleRightClick = () => (activeValue !== carouselItems.length - 1) && setActiveValue(a => a + 1);
+    const handleLeftClick = () => activeValue !== 0 && setActiveValue(a => a - 1);
 
     return (
-        <div {...other} >
+        <CarouselWrapper {...other} >
+            <FloatingButton disabled={activeValue === 0} onClick={handleLeftClick} size="small">
+                <KeyboardArrowLeft />
+            </FloatingButton>
             <SwipeableViews
                 axis={'x'}
                 index={activeValue}
@@ -45,7 +50,7 @@ const Carousel = ({ cards, maxToShow = 4, ...other }: CarouselProps) => {
                 style={{width: '100%'}}
             >
             {mapIndexed((carouselCards: CarouselCardProps[], higherIndex) => (
-                <CarouselContainer key={`-.-${higherIndex}`} onClick={handleClick}>
+                <CarouselContainer key={`-.-${higherIndex}`}>
                     {mapIndexed(({ imageUrl, cardName, cardValue }: CarouselCardProps, index) => (
                         (index < maxToShow) && 
                             <CarouselCard
@@ -59,7 +64,10 @@ const Carousel = ({ cards, maxToShow = 4, ...other }: CarouselProps) => {
             )
             )(carouselItems)}
             </SwipeableViews>
-        </div>
+            <FloatingButton disabled={activeValue === carouselItems.length - 1} onClick={handleRightClick} size="small">
+                <KeyboardArrowRight />
+            </FloatingButton>
+        </CarouselWrapper>
     );
 };
 

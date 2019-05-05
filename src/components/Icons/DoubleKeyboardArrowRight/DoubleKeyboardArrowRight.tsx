@@ -8,6 +8,7 @@ const ArrowsWrapper = styled.div`
     position: relative;
     left: 2rem;
     cursor: pointer;
+    color: ${props => props.theme.palette.secondary.main};
 `;
 
 const MainArrowWrapper = styled.div`

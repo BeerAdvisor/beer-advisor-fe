@@ -1,6 +1,6 @@
 import React, { ReactNode, useState, useCallback } from 'react';
 import { Typography } from '@material-ui/core';
-import { map, addIndex, sortBy, compose, prop } from 'ramda';
+import { sortBy, compose, prop } from 'ramda';
 
 import { KeyboardArrowDown, KeyboardArrowUp } from '../../Icons';
 import { ToogleButtonGroup } from '../ToogleButton';
