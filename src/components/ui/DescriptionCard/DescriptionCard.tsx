@@ -40,7 +40,7 @@ export const DescriptionCard = ({
             <DescriptionCardBottomWrapper>
                 {beer && getBeerDescription(beer)}
                 <LeaveRating id={beer ? beer.id : bar.id} />
-                <SmallButton variant="outlined">Suggest change</SmallButton>
+                <SmallButton variant="outlined" color="primary">Suggest change</SmallButton>
             </DescriptionCardBottomWrapper>
         </DescriptionCardWrapper>
     );

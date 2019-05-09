@@ -49,6 +49,7 @@ const LeaveRating = ({ id }: LeaveRatingProps) => {
                     <LeaveRatingWrapper>
                         <Rating onClick={setUserBeerRating} filled={userBeerRating} disabled={canLeaveRating} />
                         <LittleButton
+                            color="primary"
                             disabled={canLeaveRating || !userBeerRating}
                             onClick={handleLeaveRating(mutation)}
                         >

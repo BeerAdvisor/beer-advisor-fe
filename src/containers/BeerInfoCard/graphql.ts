@@ -46,7 +46,12 @@ const defaultQuery: FindBeersVariables = {
 const getFindBeersQuery: ((props: BeerInfoProps) => QueryOpts<FindBeersVariables>) = ownProps => {
     let variables = defaultQuery;
 
-    const { data: { beerForm }} = ownProps;
+    const { data: { beerForm }, match } = ownProps;
+    const { params } = match;
+    
+    if (params.beerId) {
+        // TODO: fetch beer query here. 
+    }
 
     if (beerForm) {
         const { beerName, beerType, strongRange } = beerForm;

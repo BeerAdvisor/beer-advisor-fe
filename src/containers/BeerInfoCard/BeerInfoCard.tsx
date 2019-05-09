@@ -6,10 +6,14 @@ import { History } from 'history';
 import { BeerForm, FindBeers, FindBeers_findBeers } from '../../@types';
 import { ExpandableInfoList, ExpandedInfoCard } from '../../components';
 
+export interface BeerRouteParams {
+    beerId: string;
+}
+
 export type BeerInfoProps = {
     searchResult: FindBeers;
 } & BeerForm &
-    RouteComponentProps;
+    RouteComponentProps<BeerRouteParams>;
 
 export const BeerInfoCard = ({
     searchResult,
@@ -19,7 +23,6 @@ export const BeerInfoCard = ({
     if (!searchResult.findBeers) {
         return null;
     }
-
     const expandableInfoCards = memoMapBeerCards(
         history,
         searchResult.findBeers

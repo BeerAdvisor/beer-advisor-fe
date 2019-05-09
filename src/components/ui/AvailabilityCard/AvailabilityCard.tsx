@@ -1,10 +1,11 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
+import { map, memoizeWith, identity } from 'ramda';
 
 import { Carousel } from '../Carousel';
 import { SmallButton } from '../Button';
 
-import { AvailabilityCardWrapper, ButtonWrapper } from './style';
+import { AvailabilityCardWrapper, ButtonWrapper, SortingLink, SortingLinksWrapper, CarouselWrapper} from './style';
 
 const DUMMY_CAROUSEL_CARD = [
     {
@@ -49,13 +50,33 @@ const DUMMY_CAROUSEL_CARD = [
     },
 ];
 
-const AvailabilityCard = () => {
+const mapSortedLinks = (sortingLinks: SortingLink[]) => map(({ name, handler, selected }: SortingLink) => (
+    <SortingLink key={name}selected={selected} onClick={handler}>{name}</SortingLink>
+))(sortingLinks);
+
+// Does not work, why?
+// const memoizedMapSortedLinks = memoizeWith(identity, mapSortedLinks);
+
+export interface SortingLink {
+    name: string;
+    handler: () => void;
+    selected?: boolean;
+}
+
+export interface AvailabilityCardProps {
+    sortingLinks?: SortingLink[];
+    buttonClick?: () => void;
+}
+const AvailabilityCard = ({ sortingLinks, buttonClick, ...other }: AvailabilityCardProps) => {
     return (
-        <AvailabilityCardWrapper>
+        <AvailabilityCardWrapper {...other}>
             <Typography variant="body1">This beer in bars</Typography>
-            <Carousel cards={DUMMY_CAROUSEL_CARD} />
+            {/* <CarouselWrapper> */}
+                <Carousel cards={DUMMY_CAROUSEL_CARD} />
+            {/* </CarouselWrapper> */}
+                {sortingLinks && <SortingLinksWrapper>Sort by:{mapSortedLinks(sortingLinks)}</SortingLinksWrapper>}
             <ButtonWrapper>
-                <SmallButton variant="outlined" color="secondary">Show all bars</SmallButton>
+                <SmallButton onClick={buttonClick} variant="outlined" color="secondary">Show all bars</SmallButton>
             </ButtonWrapper>
         </AvailabilityCardWrapper>
     );

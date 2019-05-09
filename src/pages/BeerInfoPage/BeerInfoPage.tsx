@@ -11,7 +11,7 @@ export type BeerInfoPageProps = RouteComponentProps<BeerRouteParams>;
 export const BeerInfoPage = (props: BeerInfoPageProps) => {
     const { match: { params } } = props;
 
-    return <BeerDescriptionCard beerId={params.beerId} />;
+    return <BeerDescriptionCard beerId={params.beerId} {...props} />;
 };
 
 export default BeerInfoPage;
