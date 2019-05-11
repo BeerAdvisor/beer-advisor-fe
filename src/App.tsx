@@ -14,12 +14,14 @@ import { ApolloProvider } from 'react-apollo';
 
 import theme from './theme';
 import client from './api';
-import HomePage from './pages/HomePage';
-import BeerResultPage from './pages/BeerResultPage';
+import BeerResultPage, {
+    BeerResultContainer as AppContainer,
+} from './pages/BeerResultPage';
 import LoginPage from './pages/LoginPage';
 import { ErrorBoundary, NavigationBar } from './containers';
 import GlobalStyle from './theme/globalStyle';
 import { BeerInfoPage } from './pages';
+import { CombinedForms } from './forms';
 
 const generateClassName = createGenerateClassName();
 const jss = create({
@@ -34,20 +36,61 @@ install();
 // const HomePage =  lazy(() => (import('./pages/HomePage')));
 // const BeerResultPage = lazy(() => (import('./pages/BeerResultPage')));
 
-// TODO: Proper loader
+const routes = [
+    {
+        path: '/',
+        exact: true,
+        sidebar: (props: any) => <CombinedForms {...props} />,
+        main: () => null,
+    },
+    {
+        path: '/beers/:beerId',
+        sidebar: (props: any) => <CombinedForms variant="small" {...props} />,
+        main: (props: any) => <BeerResultPage {...props} />,
+    },
+    {
+        path: '/beers',
+        sidebar: (props: any) => <CombinedForms variant="small" {...props} />,
+        main: (props: any) => <BeerResultPage {...props} />,
+    },
+    {
+        path: '/login',
+        sidebar: () => null,
+        main: () => <LoginPage />,
+    },
+    {
+        path: '/beer/:beerId',
+        sidebar: (props: any) => <CombinedForms variant="small" {...props} />,
+        main: (props: any) => <BeerInfoPage {...props} />,
+    },
+];
+
 const LoadingMessage = () => <p>I'm loading...</p>;
 
 const Routes = () => (
     <Router>
         <Suspense fallback={<LoadingMessage />}>
-          <NavigationBar />
+            <NavigationBar />
             <ErrorBoundary>
                 <Switch>
-                    <Route exact path="/" component={HomePage} />
-                    <Route path="/beers/:beerId" component={BeerResultPage} />
-                    <Route path="/beers" component={BeerResultPage} />
-                    <Route path="/login" component={LoginPage} />
-                    <Route path="/beer/:beerId" component={BeerInfoPage} />
+                    <AppContainer>
+                        {routes.map((route, index) => (
+                            <React.Fragment>
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    exact={route.exact}
+                                    component={route.sidebar}
+                                />
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    exact={route.exact}
+                                    component={route.main}
+                                />
+                            </React.Fragment>
+                        ))}
+                    </AppContainer>
                 </Switch>
             </ErrorBoundary>
         </Suspense>

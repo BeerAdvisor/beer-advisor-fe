@@ -1,7 +1,7 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { FieldRenderProps } from 'react-final-form';
 
-import { Field } from '../../../containers';
+import { Field } from '../../CustomField';
 
 import ToogleButtonGroup from './ToogleButtonGroup';
 

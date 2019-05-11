@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { MainForm, MainFormProps } from '../MainForm';
 import { Switch } from '../../components';
 
-import { SwitchWrapper, StyledSwipeableViews } from './style';
+import { SwitchWrapper, StyledSwipeableViews, CombinedFormsContainer } from './style';
 
 export type CombinedFormsProps = MainFormProps;
 
@@ -22,7 +22,7 @@ export const CombinedForms = (props: CombinedFormsProps) => {
     };
 
     return (
-        <React.Fragment>
+        <CombinedFormsContainer variant={variant}>
             <SwitchWrapper>
                 <Switch onChange={setForm} onText="Bar" offText="Beer" />
             </SwitchWrapper>
@@ -34,7 +34,7 @@ export const CombinedForms = (props: CombinedFormsProps) => {
                 <MainForm variant={variant} {...layoutProps} />
                 <MainForm variant={variant} {...layoutProps} />
             </StyledSwipeableViews>
-        </React.Fragment>        
+        </CombinedFormsContainer>        
     );
 };
 

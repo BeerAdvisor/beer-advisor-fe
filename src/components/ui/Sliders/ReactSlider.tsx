@@ -6,7 +6,7 @@ import { FieldRenderProps } from "react-final-form";
 
 import "rc-slider/assets/index.css";
 import { BottleIcon } from "../../Icons";
-import { Field } from '../../../containers';
+import { Field } from '../../CustomField';
 
 import { ValuesContainer, SliderContainer, trackStyle, handlerStyle, railStyle, SliderWrapper, SliderLabel } from "./style";
 

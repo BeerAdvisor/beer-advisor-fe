@@ -7,11 +7,6 @@ export const BeerResultContainer = styled.div`
     padding: ${props => props.theme.combinedPadding}
 `;
 
-export const FormContainer = styled.div`
-    max-width: 20%;
-    min-width: 20rem;
-`;
-
 export const SearchResultContainer = styled.div`
     display: flex;
     align-items: flex-start;
