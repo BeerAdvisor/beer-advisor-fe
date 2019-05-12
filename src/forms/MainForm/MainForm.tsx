@@ -4,13 +4,30 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Form, FormRenderProps } from 'react-final-form';
 import { memoizeWith, identity } from 'ramda';
 
-import { SliderField, InputField, SelectField, Button, ToogleButtonGroupField, SmallButton } from '../../components/ui';
+import {
+    SliderField,
+    InputField,
+    SelectField,
+    Button,
+    SmallButton,
+    ToogleButtonGroupField,
+} from '../../components/ui';
 import { BeerTypeSelect } from '../../containers';
 import { beerTypes, BeerForm, BeerFormValues } from '../../@types';
 
-import { MainFormContainer, ElementsWrapper, SliderContaier, ButtonWrapper, MainFormContainerProps } from './style';
+import {
+    MainFormContainer,
+    ElementsWrapper,
+    SliderContaier,
+    ButtonWrapper,
+    MainFormToogleButtonGroupFieldWrapper,
+    MainFormContainerProps,
+} from './style';
 
-export interface MainFormProps extends RouteComponentProps, MainFormContainerProps, BeerForm {
+export interface MainFormProps
+    extends RouteComponentProps,
+        MainFormContainerProps,
+        BeerForm {
     searchFieldPlaceholder: string;
     searchFieldLabel: string;
     selectLabel: string;
@@ -84,7 +101,7 @@ const MainForm = ({
         type: 'submit',
         fullWidth: true,
         variant: 'contained',
-        color: 'primary',
+        color: 'secondary',
     };
 
     const generateForm = useCallback(
@@ -92,33 +109,54 @@ const MainForm = ({
             <form onSubmit={handleSubmit}>
                 <MainFormContainer variant={variant}>
                     <ElementsWrapper>
-                        <InputField name="beerName" type="text" {...searchFieldProps} />
+                        <InputField
+                            name="beerName"
+                            type="text"
+                            {...searchFieldProps}
+                        />
                         <BeerTypeSelect {...selectProps} />
                         <SliderContaier>
-                            <SliderField name="priceRange" {...sliderProps} label="Price" />
-                            <SliderField name="strongRange" {...sliderProps} label="Strong" />
+                            <SliderField
+                                name="priceRange"
+                                {...sliderProps}
+                                label="Price"
+                            />
+                            <SliderField
+                                name="strongRange"
+                                {...sliderProps}
+                                label="Strong"
+                            />
                         </SliderContaier>
                     </ElementsWrapper>
                     {variant !== 'small' ? (
-                        <ToogleButtonGroupField name="filter" {...filterProps} />
+                        <MainFormToogleButtonGroupFieldWrapper>
+                            <ToogleButtonGroupField
+                                name="filter"
+                                {...filterProps}
+                            />
+                        </MainFormToogleButtonGroupFieldWrapper>
                     ) : (
                         <SelectField name="filter" {...filterProps} />
                     )}
                     <ButtonWrapper>
-                        {variant !== 'small' ? (
-                            <Button {...searchButtonProps} disabled={submitting}>
-                                Search
-                            </Button>
-                        ) : (
-                            <SmallButton {...searchButtonProps} disabled={submitting}>
-                                Search
-                            </SmallButton>
-                        )}
+                        <SmallButton
+                            {...searchButtonProps}
+                            disabled={submitting}
+                        >
+                            Search
+                        </SmallButton>
                     </ButtonWrapper>
                 </MainFormContainer>
             </form>
         ),
-        [variant, searchFieldProps, filterProps, searchButtonProps, selectProps, sliderProps]
+        [
+            variant,
+            searchFieldProps,
+            filterProps,
+            searchButtonProps,
+            selectProps,
+            sliderProps,
+        ]
     );
 
     return (

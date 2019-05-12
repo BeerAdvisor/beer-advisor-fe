@@ -21,7 +21,7 @@ export const CombinedFormsContainer = styled.div<CombinedFormsContainerProps>`
         min-width: 20rem;
     ` :
     `
-        max-width: 60rem;
+        max-width: 39rem;
         margin: 0 auto;
         padding-top: 2rem;
     `}

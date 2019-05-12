@@ -4,6 +4,10 @@ export interface MainFormContainerProps {
     variant?: 'small';
 }
 
+export const MainFormToogleButtonGroupFieldWrapper = styled.div`
+    margin-top: 1.5rem;
+`;
+
 export const MainFormContainer = styled.div<MainFormContainerProps>`
     display: flex;
     flex-direction: column;
@@ -19,12 +23,14 @@ export const MainFormContainer = styled.div<MainFormContainerProps>`
 
 export const MainFormContainerStub = styled(MainFormContainer)`
     justify-content: center;
+    align-items: center;
 `;
 
 export const ButtonWrapper = styled.div`
-    display: flex;
-    justify-content: center;
+    align-self: center;
     margin-top: 2rem;
+    max-width: 18rem;
+    width: 100%;
 `;
 
 export const ElementsWrapper = styled.div`

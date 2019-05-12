@@ -28,6 +28,10 @@ export const SmallButton = styled(MaterialButton)<any>`
         color: ${props.theme.palette.secondary.main};
     `}
 
+    ${props => props.color === 'secondary' && props.variant === 'contained' && `
+        color: ${props.theme.palette.light};
+    `}
+
     ${props => props.favourite && `
         color: #E5432C;
         text-decoration: underline;
