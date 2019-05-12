@@ -14,14 +14,11 @@ import { ApolloProvider } from 'react-apollo';
 
 import theme from './theme';
 import client from './api';
-import BeerResultPage, {
-    BeerResultContainer as AppContainer,
-} from './pages/BeerResultPage';
-import LoginPage from './pages/LoginPage';
 import { ErrorBoundary, NavigationBar } from './containers';
 import GlobalStyle from './theme/globalStyle';
-import { BeerInfoPage } from './pages';
+import { WithFormPage } from './pages';
 import { CombinedForms } from './forms';
+import LoginPage from './pages/LoginPage';
 
 const generateClassName = createGenerateClassName();
 const jss = create({
@@ -40,28 +37,15 @@ const routes = [
     {
         path: '/',
         exact: true,
-        sidebar: (props: any) => <CombinedForms {...props} />,
-        main: () => null,
-    },
-    {
-        path: '/beers/:beerId',
-        sidebar: (props: any) => <CombinedForms variant="small" {...props} />,
-        main: (props: any) => <BeerResultPage {...props} />,
-    },
-    {
-        path: '/beers',
-        sidebar: (props: any) => <CombinedForms variant="small" {...props} />,
-        main: (props: any) => <BeerResultPage {...props} />,
+        main: (props: any) => <CombinedForms {...props} />,
     },
     {
         path: '/login',
-        sidebar: () => null,
         main: () => <LoginPage />,
     },
     {
-        path: '/beer/:beerId',
-        sidebar: (props: any) => <CombinedForms variant="small" {...props} />,
-        main: (props: any) => <BeerInfoPage {...props} />,
+        path: '/form',
+        main: (props: any) => <WithFormPage {...props} />,
     },
 ];
 
@@ -73,24 +57,14 @@ const Routes = () => (
             <NavigationBar />
             <ErrorBoundary>
                 <Switch>
-                    <AppContainer>
-                        {routes.map((route, index) => (
-                            <React.Fragment>
-                                <Route
-                                    key={index}
-                                    path={route.path}
-                                    exact={route.exact}
-                                    component={route.sidebar}
-                                />
-                                <Route
-                                    key={index}
-                                    path={route.path}
-                                    exact={route.exact}
-                                    component={route.main}
-                                />
-                            </React.Fragment>
-                        ))}
-                    </AppContainer>
+                    {routes.map((route, index) => (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                exact={route.exact}
+                                component={route.main}
+                            />
+                    ))}
                 </Switch>
             </ErrorBoundary>
         </Suspense>

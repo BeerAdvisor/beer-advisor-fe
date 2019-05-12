@@ -20,7 +20,7 @@ export const BeerDescriptionCard = ({
     const [selected, setSelected] = useState(0);
     const handleSorting = useCallback(() => setSelected(s => s === 0 ? 1 : 0), []);
 
-    const handleShowAllBars = useCallback(() => history.push(`/beers/${beerId}`), []);
+    const handleShowAllBars = useCallback(() => history.push(`/form/beers/${beerId}`), []);
 
     const sortingLinks: SortingLink[] = [
         { name: 'Cost', handler: handleSorting, selected: selected === 0 },

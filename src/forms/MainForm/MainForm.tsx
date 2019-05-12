@@ -42,7 +42,7 @@ const onSubmit = memoizeWith(
                 },
             },
         });
-        history.push('/beers');
+        history.push('/form/beers');
     }
 );
 

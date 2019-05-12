@@ -42,7 +42,7 @@ const mapBeerInfoCards = (
     beers: FindBeers_findBeers[]
 ) => {
     const handleInfoClick = (beerId: string) => () => {
-        history.push(`/beer/${beerId}`);
+        history.push(`/form/beer/${beerId}`);
     };
 
     return map(({ name, avgRating, strong, type, id }: FindBeers_findBeers) => {
