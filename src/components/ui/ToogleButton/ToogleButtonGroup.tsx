@@ -49,6 +49,7 @@ const ToogleButtonGroup = ({
     isSmall,
     onChange,
     defaultValue,
+    name,
     ...other
 }: ToggleButtonProps) => {
     const [value, setValue] = useState(defaultValue);

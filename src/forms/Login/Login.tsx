@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { MutationFn } from 'react-apollo';
 import { ApolloClient, ApolloError } from 'apollo-boost';
-import { FormRenderProps, Form } from 'react-final-form';
 import { RouteComponentProps } from 'react-router';
+import { Formik, Field, FormikProps } from 'formik';
 
 import { Mutation } from '../../graphql';
-import { LoginMutationVariables, SignupMutationVariables, LoginMutation, SignupMutation } from '../../@types';
+import { FormixInputField } from '../../components/formix';
 import { InputField, SmallButton, ErrorMessage } from '../../components';
+import { LoginMutationVariables, SignupMutationVariables, LoginMutation, SignupMutation } from '../../@types';
 
 import { LoginFormWrapper, StyledAnchor } from './style';
 import { LOGIN_MUTATION, SIGNUP_MUTATION } from './mutation';
@@ -89,13 +90,14 @@ const useLogin = () => {
 export default ({ history }: RouteComponentProps) => {
     const { login, handleLogin} = useLogin();
 
+    const initialValues = login ? {email: '', password: ''} : {email: '', password: '', confirmPassword: ''};
+
     return (
         <Mutation mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}>
             {(mutation , {client, loading, error}) => (
-                <Form
-                // @ts-ignore https://stackoverflow.com/questions/54269600how-to-set-react-final-form-onsubmit-values-param-type-typescript
+                <Formik
+                    initialValues={initialValues}
                     onSubmit={onSubmit(mutation, client, history, login)}
-                    // @ts-ignore
                     validate={validate}
                     render={generateForm(login, handleLogin, loading, error)}
                 />
@@ -109,20 +111,20 @@ const generateForm = (
         handleLogin: (e: React.MouseEvent<HTMLAnchorElement>) => void,
         loading: boolean, 
         error?: ApolloError
-    ) => ({ handleSubmit, submitting }: FormRenderProps) => (
+    ) => ({ handleSubmit }: FormikProps<any>) => (
     <form onSubmit={(handleSubmit)}>
         <LoginFormWrapper login={login}>
-        <InputField {...loginProps} type="text" />
-        <InputField {...passwordProps} type="password" />
+        <Field component={FormixInputField} {...loginProps} type="text" />
+        <Field component={FormixInputField}  {...passwordProps} type="password" />
             {!login && (
                 <React.Fragment>
-                    <InputField {...confirmPasswordProps} type="password" />
+                    <Field component={FormixInputField}  {...confirmPasswordProps} type="password" />
                 </React.Fragment>
             )}
                 <React.Fragment>
                     <SmallButton
                         {...buttonProps}
-                        disabled={submitting || loading}
+                        disabled={loading}
                     >
                         Sign {login ? 'In' : 'Up'}
                     </SmallButton>

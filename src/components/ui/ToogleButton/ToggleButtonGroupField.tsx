@@ -1,27 +1,26 @@
 import React from 'react';
-import { FieldRenderProps } from 'react-final-form';
+import { FieldProps } from 'formik';
 
 import { Field } from '../../CustomField';
 
 import ToogleButtonGroup from './ToogleButtonGroup';
 
-export interface ToggleButtonProps {
-    onChange?: (vale: string) => void;
+export interface ToggleButtonProps extends FieldProps {
+    onChange?: (e: any, value: string) => void;
+    value: string;
+    name: string;
     values: string[];
 }
 
 const ToogleButtonGroupField = ({
-    input: { name, onChange: fieldOnChange, value: defaultValue },
-    onChange,
+    onChange, 
+    value: defaultValue,
+    name,
     ...other
-}: ToggleButtonProps & FieldRenderProps) => {
+}: ToggleButtonProps) => {
     const handleChange = (radioValue: string) => {
         if (onChange) {
-            onChange(radioValue);
-        }
-
-        if (fieldOnChange) {
-            fieldOnChange(radioValue);
+            onChange(undefined, radioValue);
         }
 
     };

@@ -1,13 +1,14 @@
 import React from 'react';
-import { FieldProps } from 'react-final-form';
 import { InputBase, FormLabel , FormControl } from '@material-ui/core';
 import { InputBaseProps } from '@material-ui/core/InputBase';
 
-import { Field } from '../../CustomField';
+export interface InputProps extends InputBaseProps {
+    label?: string;
+}
 
-const Input = (props: InputBaseProps & FieldProps) => {
-    const { label, placeholder, name, input: { onChange, value, ...otherInput }, ...other} = props;
-
+const Input = (props: InputProps) => {
+    const { label, placeholder, name, onChange, value, defaultValue, ...other } = props;
+    console.log(value);
     return (
         <FormControl> 
         {label && (<FormLabel>
@@ -19,11 +20,11 @@ const Input = (props: InputBaseProps & FieldProps) => {
             placeholder={placeholder}
             onChange={onChange}
             value={value}
-            inputProps={otherInput}
+            inputProps={other as any}
             {...other}
         />
         </FormControl>
     );
 };
 
-export default Field(Input);
+export default Input;

@@ -1,19 +1,18 @@
 import React, { useCallback } from 'react';
 import { ApolloClient } from 'apollo-boost';
 import { RouteComponentProps } from 'react-router-dom';
-import { Form, FormRenderProps } from 'react-final-form';
+import { Formik, Field, FormikProps } from 'formik';
 import { memoizeWith, identity } from 'ramda';
 
 import {
     SliderField,
-    InputField,
     SelectField,
-    Button,
     SmallButton,
     ToogleButtonGroupField,
 } from '../../components/ui';
-import { BeerTypeSelect } from '../../containers';
+import { BeerTypeSelect } from '../../components';
 import { beerTypes, BeerForm, BeerFormValues } from '../../@types';
+import { FormixInputField } from '../../components/formix';
 
 import {
     MainFormContainer,
@@ -47,6 +46,7 @@ const onSubmit = memoizeWith(
         priceRange,
         strongRange,
     }: BeerFormValues) => {
+        console.log(filter);
         client.writeData({
             data: {
                 beerForm: {
@@ -105,23 +105,30 @@ const MainForm = ({
     };
 
     const generateForm = useCallback(
-        ({ handleSubmit, submitting }: FormRenderProps) => (
+        ({ handleSubmit }: FormikProps<BeerFormValues>) => (
             <form onSubmit={handleSubmit}>
                 <MainFormContainer variant={variant}>
                     <ElementsWrapper>
-                        <InputField
+                        <Field
                             name="beerName"
                             type="text"
                             {...searchFieldProps}
+                            component={FormixInputField}
                         />
-                        <BeerTypeSelect {...selectProps} />
+                        <BeerTypeSelect
+                            name="beerType"
+                            isReactFinalForm={false}
+                            {...selectProps}
+                        />
                         <SliderContaier>
-                            <SliderField
+                            <Field
+                                component={SliderField}
                                 name="priceRange"
-                                {...sliderProps}
                                 label="Price"
+                                {...sliderProps}
                             />
-                            <SliderField
+                            <Field
+                                component={SliderField}
                                 name="strongRange"
                                 {...sliderProps}
                                 label="Strong"
@@ -130,21 +137,20 @@ const MainForm = ({
                     </ElementsWrapper>
                     {variant !== 'small' ? (
                         <MainFormToogleButtonGroupFieldWrapper>
-                            <ToogleButtonGroupField
+                            <Field
+                                component={ToogleButtonGroupField}
                                 name="filter"
                                 {...filterProps}
                             />
                         </MainFormToogleButtonGroupFieldWrapper>
                     ) : (
-                        <SelectField name="filter" {...filterProps} />
+                        <SelectField
+                            name="filter"
+                            {...filterProps}
+                        />
                     )}
                     <ButtonWrapper>
-                        <SmallButton
-                            {...searchButtonProps}
-                            disabled={submitting}
-                        >
-                            Search
-                        </SmallButton>
+                        <SmallButton {...searchButtonProps}>Search</SmallButton>
                     </ButtonWrapper>
                 </MainFormContainer>
             </form>
@@ -160,12 +166,14 @@ const MainForm = ({
     );
 
     return (
-        <Form
-            // @ts-ignore
-            onSubmit={onSubmit(history, client)}
-            initialValues={data.beerForm}
-            render={generateForm}
-        />
+        data.beerForm ? (
+            <Formik
+                onSubmit={onSubmit(history, client)}
+                initialValues={data.beerForm}
+                render={generateForm}
+            />
+        )
+        : null
     );
 };
 

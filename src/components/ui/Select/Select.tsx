@@ -1,29 +1,31 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useCallback } from 'react';
 import { FormControl, FormLabel, Input, Select } from '@material-ui/core';
-import { FieldRenderProps } from 'react-final-form';
 
-interface SelectBoxProps {
+export interface SelectBoxProps {
     label?: string;
     items: JSX.Element[];
+    name: string;
+    onChange: (e: ChangeEvent<HTMLSelectElement>, value?: string) => void;
+    value: string;
 }
 
-const SelectBox: React.SFC<SelectBoxProps & FieldRenderProps> = ({
+const SelectBox: React.SFC<SelectBoxProps> = ({
     label,
     items,
-    input: { name, onChange, value: defaultValue, ...otherInput },
+    name,
+    onChange,
+    value: defaultValue,
+    children,
     ...other
 }) => {
     const [selectedValue, setSelectedValue] = useState(defaultValue);
-
-    const handleValueChange = ({
-        target: { value: changedValue },
-    }: ChangeEvent<HTMLSelectElement>) => {
+    const handleValueChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
         if (onChange) {
-            onChange(changedValue);
+            onChange(e);
         }
 
-        setSelectedValue(changedValue);
-    };
+        setSelectedValue(() => e.target.value);
+    }, [onChange]);
 
     return (
         <FormControl>
@@ -37,7 +39,7 @@ const SelectBox: React.SFC<SelectBoxProps & FieldRenderProps> = ({
                         name={name}
                         id={name}
                         disableUnderline={true}
-                        inputProps={otherInput}
+                        inputProps={other}
                     />
                 }
             >

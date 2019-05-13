@@ -11,9 +11,9 @@ export const SmallButton = styled(MaterialButton)<any>`
     padding: 0;
     width: 100%;
     height: 48px;
-    background-color: ${props => props.theme.palette.secondary.main};
-    border: 1px solid #006A5D;
     color: ${props => props.theme.palette.light};
+    border: 1px solid ${props => props.theme.palette.primary.main};
+    background-color: ${props => props.theme.palette.primary.main};
 
     ${props => props.variant === 'outlined' && `
         background-color: transparent;
@@ -30,6 +30,7 @@ export const SmallButton = styled(MaterialButton)<any>`
 
     ${props => props.color === 'secondary' && props.variant === 'contained' && `
         color: ${props.theme.palette.light};
+        background-color: ${props.theme.palette.secondary.main};
     `}
 
     ${props => props.favourite && `

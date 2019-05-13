@@ -25,6 +25,7 @@ export interface DescriptionCardProps {
 export const DescriptionCard = ({
     beer,
     bar,
+    onChangeSuggest,
     ...other
 }: DescriptionCardProps) => {
     return (
@@ -40,7 +41,7 @@ export const DescriptionCard = ({
             <DescriptionCardBottomWrapper>
                 {beer && getBeerDescription(beer)}
                 <LeaveRating id={beer ? beer.id : bar.id} />
-                <SmallButton variant="outlined" color="primary">Suggest change</SmallButton>
+                <SmallButton onClick={onChangeSuggest} variant="outlined" color="primary">Suggest change</SmallButton>
             </DescriptionCardBottomWrapper>
         </DescriptionCardWrapper>
     );
@@ -63,7 +64,7 @@ const getBeerDescription = (beer: beer_beer) => (
             beer.brewery ? beer.brewery.name : undefined
         )}
         {createDescriptionField('Type', beer.type ? beer.type.name : undefined)}
-        {createDescriptionField('Alchol Perception', beer.strong)}
+        {createDescriptionField('ABV', beer.strong)}
         {createDescriptionField('Minimum Price', 'Not known')}
     </>
 );
