@@ -35,8 +35,8 @@ const onSubmit = (
 
         let user;
         if (data) {
-            if (isLoginMutation(data)) ({ login: { user }} = data);
-            if (isSignupMutation(data)) ({ signup: { user }} = data);
+            if (isLoginMutation(data)) ({ login: user } = data);
+            if (isSignupMutation(data)) ({ signup: user } = data);
         }
 
         if (user) {

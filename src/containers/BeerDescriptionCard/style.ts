@@ -2,7 +2,9 @@ import styled from '../../styled-components';
 
 export const BeerDescriptionCardContainer = styled.div`
     display: flex;
-    &>* {
-        margin: 2rem;
-    }
 `;
+
+export const BeerDescriptionChildrenWrapper = styled.div`
+    margin: 0 2rem;
+`;
+

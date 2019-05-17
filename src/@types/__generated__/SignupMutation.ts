@@ -8,21 +8,14 @@ import { Sex, Role } from "./globalTypes";
 // GraphQL mutation operation: SignupMutation
 // ====================================================
 
-export interface SignupMutation_signup_user {
-  __typename: "User";
+export interface SignupMutation_signup {
+  __typename: "AuthPayload";
   email: string;
   role: Role;
   nickname: string;
   birthdate: any;
   name: string | null;
   surname: string | null;
-  createdAt: any;
-  updatedAt: any;
-}
-
-export interface SignupMutation_signup {
-  __typename: "AuthPayload";
-  user: SignupMutation_signup_user;
 }
 
 export interface SignupMutation {

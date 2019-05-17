@@ -9,6 +9,21 @@ const FloatingButton = styled(MuiFloatingButton as FunctionComponent<FabProps>)`
     box-shadow: none;
     color: ${props => props.theme.palette.light};
 
+    &:hover {
+        background-color: ${props => props.theme.palette.secondary.dark};
+        border-color: ${props => props.theme.palette.secondary.dark};
+    }
+
+    ${props => props.color === 'primary' && `
+        background-color: ${props.theme.palette.primary.main};
+        border: 1px solid ${props.theme.palette.primary.main};
+
+        &:hover {
+            background-color: ${props.theme.palette.primary.dark};
+            border-color: ${props.theme.palette.primary.dark};
+        }
+    `}
+
     &:disabled {
         cursor: not-allowed;
         background-color: transparent;
@@ -21,11 +36,6 @@ const FloatingButton = styled(MuiFloatingButton as FunctionComponent<FabProps>)`
         width: 25px;
         height: 25px;
     `}
-
-    &:hover {
-        background-color: ${props => props.theme.palette.secondary.dark};
-        border-color: ${props => props.theme.palette.secondary.dark};
-    }
 `;
 
 export default FloatingButton;

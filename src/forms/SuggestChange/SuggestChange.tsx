@@ -1,37 +1,62 @@
 import React from 'react';
 import { Formik, Field, FormikProps, FormikActions } from 'formik';
 
-import { SmallButton, BeerTypeSelect } from '../../components';
-import { FormixInputField, FormixSelectField } from '../../components/formix';
-import { beerTypes_beerTypes as BeerTypes } from '../../@types';
+import { SmallButton, TypeSelect } from '../../components';
+import { Clear } from '../../components/Icons';
+import { FormixInputField } from '../../components/formix';
+import {
+    beerTypes_beerTypes as BeerTypes,
+    suggestChange_breweries as Breweries,
+    beer_beer as Beer,
+} from '../../@types';
 
-import { StyledSuggestChange, ButtonWrapper } from './style';
+import { StyledSuggestChange, ButtonWrapper, SuggestChangeFloatingButton } from './style';
 
 export interface BeerSuggestChangeValues {
     name: string;
     brewery: string;
-    type: string;
+    beerType: string;
     abv: string;
-}  
+}
 
-const renderSuggestChange = (beerTypes?: BeerTypes[] | null) => ({ handleSubmit }: FormikProps<BeerSuggestChangeValues>) => (
+const renderSuggestChange = (
+    beerTypes?: BeerTypes[] | null,
+    breweries?: Breweries[] | null,
+    onClear?: () => void
+) => ({ handleSubmit }: FormikProps<BeerSuggestChangeValues>) => (
     <StyledSuggestChange onSubmit={handleSubmit}>
-        <Field name="name" component={FormixInputField} />
-        <Field name="brewery" component={FormixSelectField} />
-        { /* TODO: BeerTypeSelect => TypeSelect, use on brewery */}
-        {beerTypes && <BeerTypeSelect isReactFinalForm={false} name="type" beerTypes={beerTypes} />}
-        <Field name="abv" component={FormixInputField} />
+        {onClear && <SuggestChangeFloatingButton onClick={onClear} color="primary" size="small">
+            <Clear />
+        </SuggestChangeFloatingButton>}
+        <Field name="name" label="Name" component={FormixInputField} />
+        {breweries && <TypeSelect name="brewery" label="Brewery" types={breweries} />}
+        {beerTypes && <TypeSelect name="beerType" label="Type" types={beerTypes} />}
+        <Field name="abv" label="ABV" component={FormixInputField} />
         <ButtonWrapper>
-            <SmallButton color="primary" type="submit">Submit</SmallButton>
+            <SmallButton color="primary" type="submit">
+                Submit
+            </SmallButton>
         </ButtonWrapper>
     </StyledSuggestChange>
 );
 
 export interface SuggestChangeProps {
     beerTypes: BeerTypes[] | null;
+    breweries: Breweries[] | null;
+    beer: Beer;
+    onClear: () => void;
 }
-const SuggestChange = ({ beerTypes, ...other }: SuggestChangeProps) => {
-    const submitAnus = (values: BeerSuggestChangeValues, actions: FormikActions<BeerSuggestChangeValues>) => {
+const SuggestChange = ({
+    beerTypes,
+    breweries,
+    beer: { name, brewery, type, strong },
+    onClear,
+    ...other
+}: SuggestChangeProps) => {
+    const submitAnus = (
+        values: BeerSuggestChangeValues,
+        actions: FormikActions<BeerSuggestChangeValues>
+    ) => {
         setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             actions.setSubmitting(false);
@@ -39,12 +64,17 @@ const SuggestChange = ({ beerTypes, ...other }: SuggestChangeProps) => {
     };
 
     return (
-            <Formik 
-                {...other}
-                initialValues={{ name: '', brewery: 'red', type: '', abv: '' }}
-                onSubmit={submitAnus}
-                render={renderSuggestChange(beerTypes)}
-            />
+        <Formik
+            {...other}
+            initialValues={{
+                name: name || '',
+                brewery: (brewery && brewery.name) || '',
+                beerType: (type && type.name) || '',
+                abv: strong || '',
+            }}
+            onSubmit={submitAnus}
+            render={renderSuggestChange(beerTypes, breweries, onClear)}
+        />
     );
 };
 

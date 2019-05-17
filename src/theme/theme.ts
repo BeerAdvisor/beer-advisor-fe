@@ -78,7 +78,8 @@ const muiTheme = createMuiTheme({
             root: {
                 fontFamily: 'Montserrat',
                 color: '#000000',
-                fontSize: '1rem',
+                fontWeight: 'bold',
+                fontSize: '.78rem',
                 left: '.8rem',
                 position: 'relative',
             },

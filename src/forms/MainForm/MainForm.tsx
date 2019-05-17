@@ -10,7 +10,7 @@ import {
     SmallButton,
     ToogleButtonGroupField,
 } from '../../components/ui';
-import { BeerTypeSelect } from '../../components';
+import { TypeSelect } from '../../components';
 import { beerTypes, BeerForm, BeerFormValues } from '../../@types';
 import { FormixInputField } from '../../components/formix';
 
@@ -46,7 +46,7 @@ const onSubmit = memoizeWith(
         priceRange,
         strongRange,
     }: BeerFormValues) => {
-        console.log(filter);
+
         client.writeData({
             data: {
                 beerForm: {
@@ -83,7 +83,7 @@ const MainForm = ({
 
     const selectProps = {
         label: selectLabel,
-        beerTypes: beerTypesData.beerTypes || [],
+        types: beerTypesData.beerTypes || [],
     };
 
     const sliderProps = {
@@ -115,9 +115,8 @@ const MainForm = ({
                             {...searchFieldProps}
                             component={FormixInputField}
                         />
-                        <BeerTypeSelect
+                        <TypeSelect
                             name="beerType"
-                            isReactFinalForm={false}
                             {...selectProps}
                         />
                         <SliderContaier>
