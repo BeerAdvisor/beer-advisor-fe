@@ -6,8 +6,14 @@ import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMe
 import { MainForm, MainFormProps } from '../MainForm';
 import { Theme } from '../../theme';
 import { Switch } from '../../components';
+import { ToggleFormMobileButton } from '../../containers';
+import { GEET_BEER_FORM_STATUS, Query } from '../../graphql';
 
-import { SwitchWrapper, StyledSwipeableViews, CombinedFormsContainer } from './style';
+import {
+    SwitchWrapper,
+    StyledSwipeableViews,
+    CombinedFormsContainer,
+} from './style';
 
 export type CombinedFormsProps = MainFormProps;
 
@@ -35,33 +41,38 @@ export const CombinedForms = (props: CombinedFormsProps) => {
             <SwitchWrapper>
                 <Switch onChange={setForm} onText="Bar" offText="Beer" />
             </SwitchWrapper>
-            {isMobile ? (
-                    <SwipeableDrawer
-                      anchor="bottom"
-                      open={isOpened}
-                      onClose={handleOpenForm}
-                      onOpen={handleOpenForm}
-            >
-            <StyledSwipeableViews
-                axis={'x'}
-                index={Number(isBarForm)}
-                containerStyle={{width: '100%'}}
-            >
-                        <MainForm variant={variant} {...layoutProps} />
-                        <MainForm variant={variant} {...layoutProps} />
-            </StyledSwipeableViews>
-                </SwipeableDrawer>
-                ) : (
-                    <StyledSwipeableViews
-                        axis={'x'}
-                        index={Number(isBarForm)}
-                        containerStyle={{width: '100%'}}
-                    >
-                        <MainForm variant={variant} {...layoutProps} />
-                        <MainForm variant={variant} {...layoutProps} />
-            </StyledSwipeableViews>
-                )}
-        </CombinedFormsContainer>        
+            <Query query={GEET_BEER_FORM_STATUS}>
+                {({ data: { isMainFormOpened } }) =>
+                    isMobile ? (
+                        <SwipeableDrawer
+                            anchor="bottom"
+                            open={isMainFormOpened}
+                            onClose={handleOpenForm}
+                            onOpen={handleOpenForm}
+                        >
+                            <StyledSwipeableViews
+                                axis={'x'}
+                                index={Number(isBarForm)}
+                                containerStyle={{ width: '100%' }}
+                            >
+                                <MainForm variant={variant} {...layoutProps} />
+                                <MainForm variant={variant} {...layoutProps} />
+                            </StyledSwipeableViews>
+                        </SwipeableDrawer>
+                    ) : (
+                        <StyledSwipeableViews
+                            axis={'x'}
+                            index={Number(isBarForm)}
+                            containerStyle={{ width: '100%' }}
+                        >
+                            <MainForm variant={variant} {...layoutProps} />
+                            <MainForm variant={variant} {...layoutProps} />
+                        </StyledSwipeableViews>
+                    )
+                }
+            </Query>
+            {isMobile && <ToggleFormMobileButton />}
+        </CombinedFormsContainer>
     );
 };
 

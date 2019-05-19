@@ -7,3 +7,4 @@ export * from './KeyboardArrowRight';
 export * from './KeyboardArrowLeft';
 export * from './DoubleKeyboardArrowRight';
 export * from './Clear';
+export * from './Search';

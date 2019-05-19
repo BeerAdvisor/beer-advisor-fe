@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 export const typeDefs = gql`
   extend type Query {
     beerForm: BeerForm
-    isMainFormOpened: Boolean;
+    isMainFormOpened: Boolean
   }
 
   extend type BeerForm {

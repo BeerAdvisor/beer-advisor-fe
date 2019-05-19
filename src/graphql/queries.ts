@@ -14,7 +14,7 @@ query beerForm {
 
 export const GEET_BEER_FORM_STATUS = gql`
 query beerFormStatus {
-    isBeerFormOpened @client
+    isMainFormOpened @client
   }
 `;
 
