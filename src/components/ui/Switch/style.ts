@@ -12,6 +12,7 @@ export interface StyledSwitchProps {
 export const SwitchWrapper = styled.div`
     display: inline-block;
     position: relative;
+    border-radius: ${props => props.theme.borderRadius};
 `;
 
 export const NativeControl = styled.input.attrs({
@@ -34,7 +35,7 @@ export const SwitchBackground = styled.div<StyledSwitchProps>`
     display: flex;
     cursor: pointer;
     border-radius: ${props => props.theme.borderRadius};
-    background-color: transparent;
+    background-color: ${props => props.theme.palette.backgroundLight};
     height: ${SWITCH_HEIGHT}rem;
     outline: none;
     position: relative;
@@ -49,9 +50,9 @@ export const SwitchBackground = styled.div<StyledSwitchProps>`
         right: 0;
         top: 0;
         bottom: 0;
-        border-radius: ${SWITCH_HEIGHT / 2}px;
+        border-radius: ${props => props.theme.borderRadius};
         content: '';
-        background-color: transparent;
+        background-color: ${props => props.theme.palette.backgroundLight};
 
         ${props => props.disabled && `
             opacity: 0.5;
@@ -68,6 +69,7 @@ export const SwitchKnob = styled.div<StyledSwitchProps>`
     align-items: center;
     justify-content: center;
     border-radius: ${props => props.theme.borderRadius};
+    box-shadow: 0px 3px 10px rgba(0, 153, 153, 0.2);
 
     height: ${SWITCH_HEIGHT}rem;
     width: ${KNOB_SIZE}rem;

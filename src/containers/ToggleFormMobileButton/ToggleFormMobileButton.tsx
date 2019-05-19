@@ -42,6 +42,8 @@ const StyledFloatingButton = styled(FloatingButton)`
     left: 42%;
     bottom: 4%;
     z-index: ${props => props.theme.zIndex.tooltip};
+
+    box-shadow: 0px 5px 16px rgba(0, 153, 153, 0.4);
 `;
 
 export default ToggleFormMobileButton;

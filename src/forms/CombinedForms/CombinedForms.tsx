@@ -25,6 +25,7 @@ export const CombinedForms = (props: CombinedFormsProps) => {
 
     const handleOpenForm = useCallback(() => setOpened(o => !o), []);
     const { variant } = props;
+    const finalVaraint = isMobile ? 'small' : variant;
 
     const layoutProps = {
         ...props,
@@ -36,43 +37,40 @@ export const CombinedForms = (props: CombinedFormsProps) => {
         sliderStep: 1,
     };
 
+    const content = (
+        <CombinedFormsContainer variant={isMobile ? undefined : variant}>
+            <Switch onChange={setForm} onText="Bar" offText="Beer" />
+            <StyledSwipeableViews
+                axis={'x'}
+                index={Number(isBarForm)}
+                containerStyle={{ width: '100%' }}
+            >
+                <MainForm variant={finalVaraint} {...layoutProps} />
+                <MainForm variant={finalVaraint} {...layoutProps} />
+            </StyledSwipeableViews>
+        </CombinedFormsContainer>
+    );
+
     return (
-        <CombinedFormsContainer variant={variant}>
-            <SwitchWrapper>
-                <Switch onChange={setForm} onText="Bar" offText="Beer" />
-            </SwitchWrapper>
-            <Query query={GEET_BEER_FORM_STATUS}>
-                {({ data: { isMainFormOpened } }) =>
-                    isMobile ? (
+        <>
+            {isMobile ? (
+                <Query query={GEET_BEER_FORM_STATUS}>
+                    {({ data: { isMainFormOpened } }) => (
                         <SwipeableDrawer
                             anchor="bottom"
                             open={isMainFormOpened}
                             onClose={handleOpenForm}
                             onOpen={handleOpenForm}
                         >
-                            <StyledSwipeableViews
-                                axis={'x'}
-                                index={Number(isBarForm)}
-                                containerStyle={{ width: '100%' }}
-                            >
-                                <MainForm variant={variant} {...layoutProps} />
-                                <MainForm variant={variant} {...layoutProps} />
-                            </StyledSwipeableViews>
+                            {content}
                         </SwipeableDrawer>
-                    ) : (
-                        <StyledSwipeableViews
-                            axis={'x'}
-                            index={Number(isBarForm)}
-                            containerStyle={{ width: '100%' }}
-                        >
-                            <MainForm variant={variant} {...layoutProps} />
-                            <MainForm variant={variant} {...layoutProps} />
-                        </StyledSwipeableViews>
-                    )
-                }
-            </Query>
+                    )}
+                </Query>
+            ) : (
+                content
+            )}
             {isMobile && <ToggleFormMobileButton />}
-        </CombinedFormsContainer>
+        </>
     );
 };
 

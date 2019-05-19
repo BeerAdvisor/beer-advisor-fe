@@ -12,18 +12,16 @@ export const MainFormContainer = styled.div<MainFormContainerProps>`
     display: flex;
     flex-direction: column;
     box-sizing: border-box; 
-    border-radius: ${props => props.theme.borderRadius};
-    width: 100%;
-    min-width: 20rem;
-    min-height: 31rem;
     overflow-x: hidden;
-    background-color: ${props => props.theme.palette.light};
-    padding: 0 2rem 2rem;
+    background-color: transparent;
+    padding: 0 .2rem;
 `;
 
 export const MainFormContainerStub = styled(MainFormContainer)`
     justify-content: center;
     align-items: center;
+    min-width: 20rem;
+    min-height: 31rem;
 `;
 
 export const ButtonWrapper = styled.div`

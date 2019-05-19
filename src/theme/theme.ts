@@ -90,7 +90,7 @@ const muiTheme = createMuiTheme({
                 marginTop: '.5rem',
                 boxShadow: '0px 1px 8px rgba(0, 0, 0, 0.1)',
                 borderRadius: '40px',
-                minHeight: '40px',
+                minHeight: '2.5rem',
                 padding: '0px 14px',
             },
         },
