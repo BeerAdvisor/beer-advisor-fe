@@ -21,7 +21,7 @@ export const BeerDescriptionCard = ({
     ...other
 }: BeerDescriptionCardProps) => {
     const [selected, setSelected] = useState(0);
-    const [beerEditMode, setBeerEditMode] = useState(true);
+    const [beerEditMode, setBeerEditMode] = useState(false);
 
     const handleSetBeerEditMode = useCallback(
         () => setBeerEditMode(editMode => !editMode),

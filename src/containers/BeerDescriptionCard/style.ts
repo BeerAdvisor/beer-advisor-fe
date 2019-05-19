@@ -7,4 +7,3 @@ export const BeerDescriptionCardContainer = styled.div`
 export const BeerDescriptionChildrenWrapper = styled.div`
     margin: 0 2rem;
 `;
-

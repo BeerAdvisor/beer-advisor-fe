@@ -12,6 +12,12 @@ query beerForm {
   }
 `;
 
+export const GEET_BEER_FORM_STATUS = gql`
+query beerFormStatus {
+    isBeerFormOpened @client
+  }
+`;
+
 export const GET_USER = gql`
 query user {
     user @client {

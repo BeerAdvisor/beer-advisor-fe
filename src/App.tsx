@@ -3,7 +3,7 @@ import React, { Component, Suspense, lazy } from 'react';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { install } from '@material-ui/styles';
+import { install, ThemeProvider as MuiContextThemeProvider  } from '@material-ui/styles';
 import {
     MuiThemeProvider,
     createGenerateClassName,
@@ -75,12 +75,14 @@ const App = () => (
     <ApolloProvider client={client}>
         <StyledComponentsThemeProvider theme={theme}>
             <MuiThemeProvider theme={theme}>
+                <MuiContextThemeProvider theme={theme}>
                 <JssProvider jss={jss} generateClassName={generateClassName}>
                     <>
                         <GlobalStyle />
                         <Routes />
                     </>
                 </JssProvider>
+                </MuiContextThemeProvider>
             </MuiThemeProvider>
         </StyledComponentsThemeProvider>
     </ApolloProvider>

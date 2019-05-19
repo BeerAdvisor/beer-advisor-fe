@@ -8,7 +8,6 @@ export interface InputProps extends InputBaseProps {
 
 const Input = (props: InputProps) => {
     const { label, placeholder, name, onChange, value, defaultValue, ...other } = props;
-    console.log(value);
     return (
         <FormControl> 
         {label && (<FormLabel>

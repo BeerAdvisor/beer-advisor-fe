@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 export const typeDefs = gql`
   extend type Query {
     beerForm: BeerForm
+    isMainFormOpened: Boolean;
   }
 
   extend type BeerForm {
@@ -19,6 +20,7 @@ const defaults = {
   beerForm: {
     beerName: '', beerType:'', priceRange: [0, 100], strongRange: [0, 100], filter: 'Distance', __typename: 'beerForm',
   },
+  isMainFormOpened: true,
 };
 
 export const resolvers = {};
