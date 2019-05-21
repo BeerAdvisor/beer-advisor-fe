@@ -1,5 +1,8 @@
 import { createMuiTheme, Theme as MuiTheme } from '@material-ui/core/styles';
-import { PaletteOptions as MuiPalette, PaletteColorOptions as MuiColor } from '@material-ui/core/styles/createPalette';
+import {
+    PaletteOptions as MuiPalette,
+    PaletteColorOptions as MuiColor,
+} from '@material-ui/core/styles/createPalette';
 
 export type Color = {
     light: string;
@@ -13,7 +16,7 @@ export type Palette = {
     light: string;
 } & MuiPalette;
 
-const palette: Palette= {
+const palette: Palette = {
     primary: {
         main: '#FECC30',
         light: '#FEC619',
@@ -94,11 +97,17 @@ const muiTheme = createMuiTheme({
                 padding: '0px 14px',
             },
         },
+        MuiInput: {
+            formControl: {
+                'label + &': {
+                    marginTop: '.5rem',
+                },
+            },
+        },
         MuiFormControl: {
             root: {
                 width: '100%',
                 marginTop: '1.5rem',
-                
             },
         },
         MuiSvgIcon: {

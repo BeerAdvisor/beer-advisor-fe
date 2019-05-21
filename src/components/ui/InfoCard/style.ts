@@ -1,4 +1,5 @@
 import styled from '../../../styled-components';
+import { SMALL_BP_UP, SMALL_BP_DOWN } from '../../../theme';
 
 export interface InfoCardStyledProps {
     isFirst?: boolean;
@@ -21,28 +22,48 @@ const getInfoCardBorderRadius = ({ isFirst, isLast, theme: { borderRadius } }: a
 export const InfoCardStyled = styled.div<InfoCardStyledProps>`
     display: flex;
     justify-content: space-between;
-    height: 8.5rem;
-    width: 100%;
+    box-shadow: 0px -2px 20px rgba(0, 102, 102, 0.15);
+    min-height: 8.5rem;
     box-sizing: border-box;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     background-color: ${props => props.theme.palette.light};
-    z-index: ${props => typeof props.index === 'number' ? 1000 - props.index : 0};
 
-    &:hover {
-        z-index: 1001;
+    border-radius: ${props => props.theme.borderRadius};
+    width: 100%;
+
+    ${SMALL_BP_DOWN} {
+        flex-direction: column;
+        &:not(:first-child) {
+            margin-top: 1rem;
+        }
     }
 
-    border-radius: ${getInfoCardBorderRadius};
+    ${SMALL_BP_UP} {
+        z-index: ${props => typeof props.index === 'number' ? 1000 - props.index : 0};
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        &:hover {
+            z-index: 1001;
+        }
+        height: 8.5rem;
+        width: 100%;
+        border-radius: ${getInfoCardBorderRadius};
+    }
 `;
 
 export const InfoCardContainer = styled.div`
     display: flex;
     cursor: pointer;
-    position: absolute;
     justify-content: flex-start;
     align-items: flex-start;
-    margin: 1rem 3rem;
     box-sizing: border-box;
+
+    ${SMALL_BP_UP} {
+        position: absolute;
+        margin: 1rem 3rem;
+    }
+    ${SMALL_BP_DOWN} {
+        padding: 1rem 2rem;
+        flex-direction: column;
+    }
 `;
 
 export const InfoCardColumn = styled.div`
@@ -73,21 +94,28 @@ export const LabelValueContainer = styled.span`
 export const BottomLinkContainer = styled.span`
     display: flex;
     align-items: center;
-    position: relative;
-    left: 45%;
-    bottom: 5%;
-    cursor: pointer;
-    margin-bottom: 1rem;
-    align-self: flex-end;
+    align-self: center;
     color: ${props => props.theme.palette.secondary.main};
+    ${SMALL_BP_UP} {
+        left: 45%;
+        bottom: 5%;
+        position: relative;
+        align-self: flex-end;
+        cursor: pointer;
+        margin-bottom: 1rem;
+    }
 `;
 
 export const LeftDetailContainer = styled.div`
-    width: 6rem;
-    height: 6rem;
+    width: 9rem;
+    height: 9rem;
     margin-right: 3rem;
     border-radius: 50%;
     background-color: gray;
+    ${SMALL_BP_UP} {
+        width: 6rem;
+        height: 6rem;
+    }
 `;
 
 const getRightDetailBorderRadius = ({ isFirst, isLast, theme: { borderRadius } }: any) => {
@@ -112,11 +140,15 @@ export const RightDetail = styled.div<InfoCardStyledProps>`
     cursor: pointer;
 `;
 
+export const MobileInfoCardTop = styled.div`
+    display: flex;
+`;
+
 export const BottomLink = styled.span`
     font-size: 0.8rem;
-    color: ${props => props.theme.palette.secondary.main}
+    color: ${props => props.theme.palette.secondary.main};
     
-    &: hover {
+    &:hover {
         text-decoration: underline;
     }
 `;

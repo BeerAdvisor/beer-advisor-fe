@@ -1,13 +1,17 @@
 import React, { ReactNode } from 'react';
 import { map , addIndex } from 'ramda';
 
+import { SMALL_BP_UP } from '../theme';
 import styled from '../styled-components';
 
 // TODO: Label values will be redone as table
 export const LabelValueContainer = styled.span`
     width: auto;
-    &:not(:first-child) {
-        margin-left: 2rem;
+
+    ${SMALL_BP_UP} {
+        &:not(:first-child) {
+            margin-left: 2rem;
+        }
     }
 `;
 

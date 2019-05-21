@@ -38,7 +38,7 @@ const ToggleFormMobileButton = () => {
 };
 
 const StyledFloatingButton = styled(FloatingButton)`
-    position: absolute;
+    position: fixed;
     left: 42%;
     bottom: 4%;
     z-index: ${props => props.theme.zIndex.tooltip};

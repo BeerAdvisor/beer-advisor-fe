@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect, ReactNode } from 'react';
 
 import { Collapse } from '../Collapse';
-import { InfoCard, InfoCardProps } from '../InfoCard';
+import { MobileInfoCard, InfoCard, InfoCardProps } from '../InfoCard';
+import { useMobileDevice } from '../../../utils';
 
 export type ExpandableInfoCardProps = {
     bottomLink?: string;
@@ -33,14 +34,20 @@ export const ExpandableInfoCard = ({
         [propsExpanded]
     );
 
+    const infoCardProps = {
+        bottomLink,
+        expanded,
+        onClick: handleExpanded,
+        ...other,
+    };
+
     return (
         <React.Fragment>
-            <InfoCard
-                onClick={handleExpanded}
-                bottomLink={bottomLink}
-                expanded={expanded}
-                {...other}
-            />
+            {useMobileDevice() ? (
+                <MobileInfoCard {...infoCardProps} />
+            ) : (
+                <InfoCard {...infoCardProps} />
+            )}
             <Collapse in={expanded}>{expandedContent}</Collapse>
         </React.Fragment>
     );

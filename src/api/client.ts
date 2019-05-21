@@ -20,7 +20,7 @@ const defaults = {
   beerForm: {
     beerName: '', beerType:'', priceRange: [0, 100], strongRange: [0, 100], filter: 'Distance', __typename: 'beerForm',
   },
-  isMainFormOpened: true,
+  isMainFormOpened: false,
 };
 
 export const resolvers = {};

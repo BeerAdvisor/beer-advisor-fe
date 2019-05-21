@@ -1,13 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import { useTheme } from '@material-ui/styles';
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
 
 import { MainForm, MainFormProps } from '../MainForm';
 import { Theme } from '../../theme';
 import { Switch } from '../../components';
 import { ToggleFormMobileButton } from '../../containers';
 import { GEET_BEER_FORM_STATUS, Query } from '../../graphql';
+import { useMobileDevice } from '../../utils';
 
 import {
     SwitchWrapper,
@@ -18,8 +17,7 @@ import {
 export type CombinedFormsProps = MainFormProps;
 
 export const CombinedForms = (props: CombinedFormsProps) => {
-    const theme = useTheme<Theme>();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMobile = useMobileDevice();
     const [isBarForm, setForm] = useState(false);
     const [isOpened, setOpened] = useState(false);
 
