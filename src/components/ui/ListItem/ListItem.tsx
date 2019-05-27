@@ -5,6 +5,7 @@ import { LabelValue, LabelValueContainer } from '../../../utils';
 import { DoubleKeyboardArrowRight } from '../../Icons';
 
 import { ListItemValuesWrapper, ListItemDivider, ListItemWrapper, NameContainer } from './style';
+import styled from '../../../styled-components';
 
 interface ListItemProps {
     name: string;
@@ -32,14 +33,20 @@ let labelsIndex = 0;
 // TODO: I don't like this mapping, should be to array.
 export const mapLabelValues = ({ rating, price, distance }: any) => (
         <>
-            <LabelValueContainer key={`${rating}${labelsIndex++}`}>
-                {'Rating'}:{rating}
-            </LabelValueContainer>
-            <LabelValueContainer key={`${price}${labelsIndex++}`}>
-                {'Price'}:{price}
-            </LabelValueContainer>
-            <LabelValueContainer key={`${distance}${labelsIndex++}`}>
-                {'Distance'}:{distance}
-            </LabelValueContainer>
+            <AdditionalMarginLabelValueContainer key={`${rating}${labelsIndex++}`}>
+                {rating}
+            </AdditionalMarginLabelValueContainer>
+            <AdditionalMarginLabelValueContainer key={`${price}${labelsIndex++}`}>
+                {price}
+            </AdditionalMarginLabelValueContainer>
+            <AdditionalMarginLabelValueContainer key={`${distance}${labelsIndex++}`}>
+                {distance}
+            </AdditionalMarginLabelValueContainer>
         </>
 );
+
+const AdditionalMarginLabelValueContainer = styled(LabelValueContainer)`
+    &:not(:first-child) {
+        margin-left: 3rem;
+    }
+`;

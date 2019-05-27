@@ -1,5 +1,6 @@
 import styled from '../../../styled-components';
 import { BasicDivider } from '../Dividers';
+import { SMALL_BP_DOWN } from '../../../theme';
 
 export const ListItemValuesWrapper = styled.div`
     display: flex;
@@ -14,6 +15,9 @@ export const ListItemWrapper = styled.div`
 
 export const NameContainer = styled.div`
     width: 10rem;
+    ${SMALL_BP_DOWN} {
+        width: 9rem;
+    }
 `;
 
 export const ListItemDivider = styled(BasicDivider)`

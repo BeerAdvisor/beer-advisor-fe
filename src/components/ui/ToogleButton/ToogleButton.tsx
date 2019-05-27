@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import MaterialToogleButton, { ToggleButtonProps as MuiToggleButtonProps } from '@material-ui/lab/ToggleButton';
+import { SMALL_BP_DOWN } from '../../../theme';
 
 interface ToggleButtonProps extends MuiToggleButtonProps {
     small?: boolean;
@@ -15,6 +16,9 @@ const ToggleButton = styled(({ small, ...other }: ToggleButtonProps) => (
     box-shadow: 3px 0 10px 0 rgba(0, 0, 0, 0.11);
     font-size: 1rem;
     margin: 0 10px;
+    ${SMALL_BP_DOWN} {
+        margin: 0;
+    }
     ${props => props.small && `
         width: 6rem;
         height: 2rem;

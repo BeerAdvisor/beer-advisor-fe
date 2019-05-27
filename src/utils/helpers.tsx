@@ -3,6 +3,7 @@ import { map , addIndex } from 'ramda';
 
 import { SMALL_BP_UP } from '../theme';
 import styled from '../styled-components';
+
 import { useMobileDevice } from './hooks';
 
 // TODO: Label values will be redone as table

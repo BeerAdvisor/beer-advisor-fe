@@ -3,12 +3,11 @@ import { Typography } from '@material-ui/core';
 import { sortBy, compose, prop } from 'ramda';
 
 import { KeyboardArrowDown, KeyboardArrowUp } from '../../Icons';
-import { ToogleButtonGroup } from '../ToogleButton';
 import { ListItem } from '../ListItem';
 import { FloatingButton } from '../FloatingButton';
-import { mapIndexed } from '../../../utils';
+import { mapIndexed, useMobileDevice } from '../../../utils';
 
-import { ExpandedInfoCardWrapper, ListItemsContainer, ButtonContainer } from './style';
+import { ExpandedInfoCardWrapper, ListItemsContainer, ButtonContainer, ExpandedToggleButtonGroup } from './style';
 
 export interface ExpandedInfoCardProps {
     listName: ReactNode;
@@ -101,6 +100,7 @@ export default ({
     expandedListItems,
     ...other
 }: ExpandedInfoCardProps) => {
+    const isMobile = useMobileDevice();
     const [isShowAll, setShowAll] = useState(false);
     const [sortedBars, setSortedBars] = useState(sortByLabel('price')(bars));
 
@@ -114,8 +114,8 @@ export default ({
 
     return (
         <ExpandedInfoCardWrapper {...other}>
-            <Typography variant="subtitle1">{listName}</Typography>
-            <ToogleButtonGroup
+            {!isMobile && <Typography variant="subtitle1">{listName}</Typography>}
+            <ExpandedToggleButtonGroup
                 isSmall
                 name="infoFilters"
                 defaultValue="price"
