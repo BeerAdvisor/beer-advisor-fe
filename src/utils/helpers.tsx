@@ -3,6 +3,7 @@ import { map , addIndex } from 'ramda';
 
 import { SMALL_BP_UP } from '../theme';
 import styled from '../styled-components';
+import { useMobileDevice } from './hooks';
 
 // TODO: Label values will be redone as table
 export const LabelValueContainer = styled.span`
@@ -22,11 +23,18 @@ export interface LabelValue {
 
 let labelsIndex = 0;
 export const mapLabelValues = map<LabelValue, any>(
-    ({ label, value }: LabelValue) => (
-        <LabelValueContainer key={`${label}${labelsIndex++}`}>
-            {label}:{` ${value ? value : 'Unknown'}`}
-        </LabelValueContainer>
-    )
+    ({ label, value }: LabelValue) => {
+        const finalValue = ` ${value ? value : 'Unknown'}`;
+        return (
+            <LabelValueContainer key={`${label}${labelsIndex++}`}>
+                {useMobileDevice() 
+                    ? finalValue
+                    : <>{label}:{finalValue}</>
+                }
+            </LabelValueContainer>
+        );
+    
+    }
 );
 
 export const mapIndexed = addIndex<any>(map);

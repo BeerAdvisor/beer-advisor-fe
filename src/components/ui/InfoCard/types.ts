@@ -11,4 +11,5 @@ export interface InfoCardProps extends InfoCardStyledProps {
     onClick?: (e: MouseEvent<HTMLDivElement>) => void;
     onInfoClick?: () => void;
     expanded?: boolean;
+    rating?: number;
 }

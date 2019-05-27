@@ -91,6 +91,12 @@ export const LabelValueContainer = styled.span`
     }
 `;
 
+export const MainInfoWrapper = styled.div`
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+`;
+
 export const BottomLinkContainer = styled.span`
     display: flex;
     align-items: center;
@@ -109,12 +115,13 @@ export const BottomLinkContainer = styled.span`
 export const LeftDetailContainer = styled.div`
     width: 9rem;
     height: 9rem;
-    margin-right: 3rem;
+    margin-right: 1.5rem;
     border-radius: 50%;
     background-color: gray;
     ${SMALL_BP_UP} {
         width: 6rem;
         height: 6rem;
+        margin-right: 3rem;
     }
 `;
 

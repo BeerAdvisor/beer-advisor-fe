@@ -55,6 +55,7 @@ const mapBeerInfoCards = (
         return {
             name,
             labelValues,
+            rating: avgRating,
             onInfoClick: handleInfoClick(id),
             expandedContent: (
                 <ExpandedInfoCard
