@@ -1,11 +1,11 @@
 import React, { MouseEvent } from 'react';
 import { Typography } from '@material-ui/core';
 
-import { LabelValue, LabelValueContainer } from '../../../utils';
+import { LabelValue, LabelValueContainer, useMobileDevice } from '../../../utils';
 import { DoubleKeyboardArrowRight } from '../../Icons';
+import styled from '../../../styled-components';
 
 import { ListItemValuesWrapper, ListItemDivider, ListItemWrapper, NameContainer } from './style';
-import styled from '../../../styled-components';
 
 interface ListItemProps {
     name: string;
@@ -20,7 +20,7 @@ export const ListItem = ({ name, labelValues, ...other }: ListItemProps) => {
                     <Typography variant="subtitle2">{name}</Typography>
                 </NameContainer>
                 {mapLabelValues(labelValues)}
-                <DoubleKeyboardArrowRight />
+                {!useMobileDevice() && <DoubleKeyboardArrowRight />}
             </ListItemValuesWrapper>
             <ListItemDivider />
         </ListItemWrapper>

@@ -6,10 +6,9 @@ import { FloatingButton } from '../../components';
 import { Search } from '../../components/Icons';
 import styled from '../../styled-components';
 
-const toggleBeerFormStatus = (
+export const toggleBeerFormStatus = (
     client: ApolloClient<any>,
-    isMainFormOpened: boolean,
-    refetch: () => void
+    isMainFormOpened: boolean
 ) => () => {
     client.writeData({ data: { isMainFormOpened } });
     // refetch();
@@ -23,8 +22,8 @@ const ToggleFormMobileButton = () => {
                     color="primary"
                     onClick={toggleBeerFormStatus(
                         client,
-                        !isMainFormOpened,
-                        refetch
+                        !isMainFormOpened
+                        // refetch
                     )}
                 >
                     <Search />

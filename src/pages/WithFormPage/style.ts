@@ -6,6 +6,6 @@ export const WithFormPageWrapper = styled.div`
     justify-content: space-between;
     align-items: flex-start;
     ${SMALL_BP_UP} {
-        padding: ${props => props.theme.combinedPadding}
+        padding: ${props => props.theme.combinedPadding};
     }
 `;

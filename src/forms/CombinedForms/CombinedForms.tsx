@@ -7,6 +7,7 @@ import { Switch } from '../../components';
 import { ToggleFormMobileButton } from '../../containers';
 import { GEET_BEER_FORM_STATUS, Query } from '../../graphql';
 import { useMobileDevice } from '../../utils';
+import { toggleBeerFormStatus } from '../../containers/ToggleFormMobileButton/ToggleFormMobileButton';
 
 import {
     SwitchWrapper,
@@ -16,17 +17,16 @@ import {
 
 export type CombinedFormsProps = MainFormProps;
 
-export const CombinedForms = (props: CombinedFormsProps) => {
+export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
     const isMobile = useMobileDevice();
     const [isBarForm, setForm] = useState(false);
-    const [isOpened, setOpened] = useState(false);
 
-    const handleOpenForm = useCallback(() => setOpened(o => !o), []);
-    const { variant } = props;
+    const handleOpenForm = useCallback(client => toggleBeerFormStatus(client, true), []);
+    const handleCloseForm = useCallback(client => toggleBeerFormStatus(client, false), []);
     const finalVaraint = isMobile ? 'small' : variant;
 
     const layoutProps = {
-        ...props,
+        ...other,
         searchFieldPlaceholder: 'Find a beer', // TODO: constants, export to separate logic components
         searchFieldLabel: 'Name',
         selectLabel: 'Type',
@@ -53,12 +53,14 @@ export const CombinedForms = (props: CombinedFormsProps) => {
         <>
             {isMobile ? (
                 <Query query={GEET_BEER_FORM_STATUS}>
-                    {({ data: { isMainFormOpened } }) => (
+                    {({ data: { isMainFormOpened }, client }) => (
                         <SwipeableDrawer
                             anchor="bottom"
+                            disableDiscovery
+                            disableBackdropTransition
                             open={isMainFormOpened}
-                            onClose={handleOpenForm}
-                            onOpen={handleOpenForm}
+                            onClose={handleCloseForm(client)}
+                            onOpen={handleOpenForm(client)}
                         >
                             {content}
                         </SwipeableDrawer>
