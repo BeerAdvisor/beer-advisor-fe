@@ -28,8 +28,9 @@ export const CombinedFormsContainer = styled.div<CombinedFormsContainerProps>`
     background-color: ${props => props.theme.palette.light};
     padding: 2rem;
     ${SMALL_BP_DOWN} {
-        height: 100vh;
+        height: 100%;
         padding-bottom: 6.5rem;
+        justify-content: space-around;
     }
 
     max-width: 39rem;

@@ -1,6 +1,14 @@
 import styled from '../../../styled-components';
+import { SMALL_BP_DOWN } from '../../../theme';
 
-export const NavigationBarWrapper = styled.div``;
+export const NavigationBarWrapper = styled.div`
+    ${SMALL_BP_DOWN} {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 3.5rem;
+    }
+`;
 
 export const NavList = styled.ul`
     display: flex;
@@ -26,7 +34,7 @@ export const NavElement = styled.li`
     color: #000000;
     cursor: pointer;
 
-    &: hover {
+    &:hover {
         color: ${props => props.theme.palette.primary.light};
     }
 `;

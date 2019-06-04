@@ -52,6 +52,12 @@ const muiTheme = createMuiTheme({
             textTransform: 'uppercase',
             fontWeight: 'bold',
         },
+        h5: {
+            fontFamily: 'Raleway',
+            fontSize: '1rem',
+            lineHeight: '16px',
+            fontWeight: 'bold',
+        },
         h6: {
             color: palette.primary.light,
             fontSize: '1rem',

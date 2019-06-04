@@ -1,5 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+// @ts-ignore
+import Div100vh from 'react-div-100vh';
 
 import { MainForm, MainFormProps } from '../MainForm';
 import { Theme } from '../../theme';
@@ -62,7 +64,9 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
                             onClose={handleCloseForm(client)}
                             onOpen={handleOpenForm(client)}
                         >
-                            {content}
+                            <Div100vh>
+                                {content}
+                            </Div100vh>
                         </SwipeableDrawer>
                     )}
                 </Query>
