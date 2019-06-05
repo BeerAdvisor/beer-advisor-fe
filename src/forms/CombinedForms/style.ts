@@ -29,7 +29,6 @@ export const CombinedFormsContainer = styled.div<CombinedFormsContainerProps>`
     padding: 2rem;
     ${SMALL_BP_DOWN} {
         height: 100%;
-        padding-bottom: 6.5rem;
         justify-content: space-around;
     }
 

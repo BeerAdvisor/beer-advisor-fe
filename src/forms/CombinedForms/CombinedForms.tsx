@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import { ApolloClient } from 'apollo-boost';
 // @ts-ignore
 import Div100vh from 'react-div-100vh';
 
@@ -23,8 +24,6 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
     const isMobile = useMobileDevice();
     const [isBarForm, setForm] = useState(false);
 
-    const handleOpenForm = useCallback(client => toggleBeerFormStatus(client, true), []);
-    const handleCloseForm = useCallback(client => toggleBeerFormStatus(client, false), []);
     const finalVaraint = isMobile ? 'small' : variant;
 
     const layoutProps = {
@@ -56,6 +55,7 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
             {isMobile ? (
                 <Query query={GEET_BEER_FORM_STATUS}>
                     {({ data: { isMainFormOpened }, client }) => (
+                        <>
                         <SwipeableDrawer
                             anchor="bottom"
                             disableDiscovery
@@ -68,14 +68,18 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
                                 {content}
                             </Div100vh>
                         </SwipeableDrawer>
+                        {!isMainFormOpened && <ToggleFormMobileButton />}
+                        </>
                     )}
                 </Query>
             ) : (
                 content
             )}
-            {isMobile && <ToggleFormMobileButton />}
         </>
     );
 };
+
+const handleOpenForm = (client: ApolloClient<any>) => toggleBeerFormStatus(client, true);
+const handleCloseForm = (client: ApolloClient<any>) => toggleBeerFormStatus(client, false);
 
 export default CombinedForms;
