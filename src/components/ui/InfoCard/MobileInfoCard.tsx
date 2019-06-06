@@ -31,7 +31,7 @@ export const MobileInfoCard = ({
 }: InfoCardProps) => (
     <InfoCardStyled onClick={onClick} {...other}>
         <InfoCardContainer>
-            <MobileInfoCardTop>
+            <MobileInfoCardTop onClick={onInfoClick}>
                 <LeftDetailContainer />
                 <MainInfoWrapper>
                     <Typography variant="subtitle1">{name}</Typography>

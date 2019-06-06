@@ -13,7 +13,6 @@ import {
 import { TypeSelect } from '../../components';
 import { beerTypes, BeerForm, BeerFormValues } from '../../@types';
 import { FormixInputField } from '../../components/formix';
-import { toggleBeerFormStatus } from '../../containers/ToggleFormMobileButton/ToggleFormMobileButton';
 
 import {
     MainFormContainer,
@@ -47,7 +46,6 @@ const onSubmit = memoizeWith(
         priceRange,
         strongRange,
     }: BeerFormValues) => {
-
         client.writeData({
             data: {
                 beerForm: {
@@ -58,14 +56,9 @@ const onSubmit = memoizeWith(
                     priceRange,
                     strongRange,
                 },
+                isMainFormOpened: false,
             },
         });
-
-        // TODO: How about use apollo consumer on the to level
-        // pass it down to react context and create inside of context
-        // all store dependant functions? Because this toggler is just fucking ugly
-        // || named mutations and graphql hoc?
-        toggleBeerFormStatus(client, false)();
 
         history.push('/form/beers');
     }

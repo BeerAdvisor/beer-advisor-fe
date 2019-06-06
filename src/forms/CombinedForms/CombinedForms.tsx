@@ -1,21 +1,27 @@
 import React, { useState, useCallback } from 'react';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { ApolloClient } from 'apollo-boost';
+import { Close as CloseIcon } from '@material-ui/icons';
 // @ts-ignore
 import Div100vh from 'react-div-100vh';
 
 import { MainForm, MainFormProps } from '../MainForm';
-import { Theme } from '../../theme';
 import { Switch } from '../../components';
 import { ToggleFormMobileButton } from '../../containers';
-import { GEET_BEER_FORM_STATUS, Query } from '../../graphql';
+import {
+    GEET_BEER_FORM_STATUS,
+    Query,
+    Mutation,
+    OPEN_FORM_MUTATION,
+    CLOSE_FORM_MUTATION,
+} from '../../graphql';
 import { useMobileDevice } from '../../utils';
-import { toggleBeerFormStatus } from '../../containers/ToggleFormMobileButton/ToggleFormMobileButton';
 
 import {
     SwitchWrapper,
     StyledSwipeableViews,
     CombinedFormsContainer,
+    RightCornerIconButton,
 } from './style';
 
 export type CombinedFormsProps = MainFormProps;
@@ -50,36 +56,49 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
         </CombinedFormsContainer>
     );
 
-    return (
-        <>
-            {isMobile ? (
-                <Query query={GEET_BEER_FORM_STATUS}>
-                    {({ data: { isMainFormOpened }, client }) => (
-                        <>
-                        <SwipeableDrawer
-                            anchor="bottom"
-                            disableDiscovery
-                            disableBackdropTransition
-                            open={isMainFormOpened}
-                            onClose={handleCloseForm(client)}
-                            onOpen={handleOpenForm(client)}
-                        >
-                            <Div100vh>
-                                {content}
-                            </Div100vh>
-                        </SwipeableDrawer>
-                        {!isMainFormOpened && <ToggleFormMobileButton />}
-                        </>
-                    )}
-                </Query>
-            ) : (
-                content
-            )}
-        </>
-    );
+    return <>{isMobile ? <MobileCombinedForm content={content} /> : content}</>;
 };
 
-const handleOpenForm = (client: ApolloClient<any>) => toggleBeerFormStatus(client, true);
-const handleCloseForm = (client: ApolloClient<any>) => toggleBeerFormStatus(client, false);
+export interface MobileCombinedFormProps {
+    content: JSX.Element;
+}
+const MobileCombinedForm = ({ content }: MobileCombinedFormProps) => (
+    <Query query={GEET_BEER_FORM_STATUS}>
+        {({ data: { isMainFormOpened } }) => (
+            <Mutation mutation={OPEN_FORM_MUTATION}>
+                {(openForm: () => void) => (
+                    <Mutation mutation={CLOSE_FORM_MUTATION}>
+                        {(closeForm: () => void)=> (
+                            <>
+                                <SwipeableDrawer
+                                    anchor="bottom"
+                                    disableDiscovery
+                                    disableBackdropTransition
+                                    open={isMainFormOpened}
+                                    onClose={closeForm}
+                                    onOpen={openForm}
+                                >
+                                    <Div100vh>
+                                        <RightCornerIconButton
+                                            onClick={closeForm}
+                                            color="inherit"
+                                            aria-label="Close"
+                                        >
+                                            <CloseIcon />
+                                        </RightCornerIconButton>
+                                        {content}
+                                    </Div100vh>
+                                </SwipeableDrawer>
+                                {!isMainFormOpened && (
+                                    <ToggleFormMobileButton />
+                                )}
+                            </>
+                        )}
+                    </Mutation>
+                )}
+            </Mutation>
+        )}
+    </Query>
+);
 
 export default CombinedForms;

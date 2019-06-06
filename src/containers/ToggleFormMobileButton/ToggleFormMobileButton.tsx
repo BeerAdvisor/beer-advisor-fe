@@ -1,30 +1,18 @@
 import React, { useCallback } from 'react';
 import { ApolloClient } from 'apollo-boost';
 
-import { Query, GEET_BEER_FORM_STATUS } from '../../graphql';
+import { Query, GEET_BEER_FORM_STATUS, Mutation, OPEN_FORM_MUTATION } from '../../graphql';
 import { FloatingButton } from '../../components';
 import { Search } from '../../components/Icons';
 import styled from '../../styled-components';
 
-export const toggleBeerFormStatus = (
-    client: ApolloClient<any>,
-    isMainFormOpened: boolean
-) => () => {
-    client.writeData({ data: { isMainFormOpened } });
-    // refetch();
-};
-
 const ToggleFormMobileButton = () => {
     const renderToggler = useCallback(
-        ({ data: { isMainFormOpened }, client, refetch }) => {
+        openForm => {
             return (
                 <StyledFloatingButton
                     color="primary"
-                    onClick={toggleBeerFormStatus(
-                        client,
-                        !isMainFormOpened
-                        // refetch
-                    )}
+                    onClick={openForm}
                 >
                     <Search />
                 </StyledFloatingButton>
@@ -33,7 +21,7 @@ const ToggleFormMobileButton = () => {
         []
     );
 
-    return <Query query={GEET_BEER_FORM_STATUS}>{renderToggler}</Query>;
+    return <Mutation mutation={OPEN_FORM_MUTATION}>{renderToggler}</Mutation>;
 };
 
 const StyledFloatingButton = styled(FloatingButton)`

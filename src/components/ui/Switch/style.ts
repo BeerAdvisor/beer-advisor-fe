@@ -7,7 +7,7 @@ const KNOB_SIZE = 12;
 export interface StyledSwitchProps {
     checked?: boolean;
     disabled?: boolean;
-};
+}
 
 export const SwitchWrapper = styled.div`
     display: inline-block;

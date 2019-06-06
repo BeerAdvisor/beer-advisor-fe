@@ -1,4 +1,5 @@
 import ApolloClient from 'apollo-boost';
+import { IResolvers } from 'graphql-tools';
 import gql from 'graphql-tag';
 
 export const typeDefs = gql`
@@ -23,7 +24,18 @@ const defaults = {
   isMainFormOpened: false,
 };
 
-export const resolvers = {};
+export const resolvers: IResolvers = {
+  Mutation: {
+    closeForm: (_, __, { cache }) => {
+      cache.writeData({ data: { isMainFormOpened: false } });
+      return null;
+    },
+    openForm: (_, __, { cache }) => {
+      cache.writeData({ data: { isMainFormOpened: true } });
+      return null;
+    },
+  },
+};
 
 const client = new ApolloClient({
   uri: 'https://beer-advisor-development.herokuapp.com',
