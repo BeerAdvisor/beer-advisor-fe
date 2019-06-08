@@ -6,6 +6,7 @@ import { Carousel } from '../Carousel';
 import { SmallButton } from '../Button';
 
 import { AvailabilityCardWrapper, ButtonWrapper, SortingLink, SortingLinksWrapper, CarouselWrapper} from './style';
+import { useMobileDevice } from '../../../utils';
 
 const DUMMY_CAROUSEL_CARD = [
     {
@@ -68,11 +69,13 @@ export interface AvailabilityCardProps {
     buttonClick?: () => void;
 }
 const AvailabilityCard = ({ sortingLinks, buttonClick, ...other }: AvailabilityCardProps) => {
+    const itemsToShow = useMobileDevice() ? 1 : 4;
+
     return (
         <AvailabilityCardWrapper {...other}>
             <Typography variant="body1">This beer in bars</Typography>
             {/* <CarouselWrapper> */}
-                <Carousel cards={DUMMY_CAROUSEL_CARD} />
+                <Carousel cards={DUMMY_CAROUSEL_CARD} maxToShow={itemsToShow} />
             {/* </CarouselWrapper> */}
                 {sortingLinks && <SortingLinksWrapper>Sort by:{mapSortedLinks(sortingLinks)}</SortingLinksWrapper>}
             <ButtonWrapper>

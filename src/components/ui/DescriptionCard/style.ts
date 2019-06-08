@@ -1,10 +1,14 @@
 import styled from '../../../styled-components';
+import { SMALL_BP_UP } from '../../../theme';
 
 export const DescriptionCardWrapper = styled.div`
     padding: 2rem;
+    box-shadow: ${props => props.theme.surfaces.shadow_1};
     border-radius: ${props => props.theme.borderRadius};
     background-color: ${props => props.theme.palette.light};
-    max-width: 20rem;
+    ${SMALL_BP_UP} {
+        max-width: 20rem;
+    }
     width: 100%;
     box-sizing: border-box;
 `;

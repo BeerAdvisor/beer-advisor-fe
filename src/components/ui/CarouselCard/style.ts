@@ -1,4 +1,5 @@
 import styled from '../../../styled-components';
+import { SMALL_BP_UP } from '../../../theme';
 
 export const StyledCarouselCard = styled.div`
     display: flex;
@@ -8,7 +9,9 @@ export const StyledCarouselCard = styled.div`
     cursor: pointer;
 
     border-radius: 10px;
-    width: 10rem;
+    ${SMALL_BP_UP} {
+        width: 10rem;
+    }
     height: 12rem;
     padding: 1rem;
     box-shadow: ${props => props.theme.surfaces.color_shadow_1};

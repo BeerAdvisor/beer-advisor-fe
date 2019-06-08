@@ -1,11 +1,14 @@
 import styled from '../../../styled-components';
+import { SMALL_BP_UP } from '../../../theme';
 
 export const AvailabilityCardWrapper = styled.div`
-    max-width: 49rem;
+    ${SMALL_BP_UP} {
+        max-width: 49rem;
+    }
     height: fit-content;
     width: 100%;
     background-color: ${props => props.theme.palette.light};
-    border-radius: ${props => props.theme.borderRadius}
+    border-radius: ${props => props.theme.borderRadius};
     padding: 2rem 3rem;
     box-shadow: ${props => props.theme.surfaces.shadow_1};
 
