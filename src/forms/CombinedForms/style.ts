@@ -6,6 +6,7 @@ import styled from '../../styled-components';
 
 export const RightCornerIconButton = styled<any>(IconButton)`
     position: absolute;
+    z-index: 1100;
     top: 2%;
     right: 2%;
     padding: 0;

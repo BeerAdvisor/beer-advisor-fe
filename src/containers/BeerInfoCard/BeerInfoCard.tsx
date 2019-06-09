@@ -12,17 +12,21 @@ export interface BeerRouteParams {
 
 export type BeerInfoProps = {
     searchResult: FindBeers;
+    // TODO: this has to be deleted once graphql will resolve it's typing issues
+    mutate: any;
 } & BeerForm &
     RouteComponentProps<BeerRouteParams>;
 
 export const BeerInfoCard = ({
     searchResult,
     history,
+    data,
     ...other
 }: BeerInfoProps) => {
     if (!searchResult.findBeers) {
         return null;
     }
+
     const expandableInfoCards = memoMapBeerCards(
         history,
         searchResult.findBeers

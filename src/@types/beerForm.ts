@@ -1,4 +1,5 @@
-import { DataProps } from 'react-apollo';
+import { ApolloQueryResult } from 'apollo-boost';
+import { QueryControls } from 'react-apollo';
 
 export interface BeerFormValues {
     priceRange: number[];
@@ -8,8 +9,8 @@ export interface BeerFormValues {
     beerType?: string;
 }
 
-export interface FormData {
+export interface FormData extends QueryControls {
     beerForm: BeerFormValues;
 }
 
-export type BeerForm = DataProps<FormData>;
+export type BeerForm = ApolloQueryResult<FormData>;

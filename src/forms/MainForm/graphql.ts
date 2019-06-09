@@ -19,11 +19,10 @@ export const BEER_TYPES = 'beerTypesData';
 
 export default compose(
   graphql<MainFormProps>(BEER_TYPES_QUERY, { name: BEER_TYPES }),
-  graphql<MainFormProps>(GET_BEER_FORM_DATA, { name: 'data' }),
-  (Component: React.ComponentType<MainFormProps>) => withApollo(Component),
+  graphql(GET_BEER_FORM_DATA, { name: 'data' }),
+  withApollo,
   (Component: React.ComponentType<MainFormProps>) => withLoadingHandler({
-    Component,
     CircularProgressContainer: MainFormContainerStub,
     dataPropName: BEER_TYPES,
-  })
+  })(Component)
 )(MainForm);

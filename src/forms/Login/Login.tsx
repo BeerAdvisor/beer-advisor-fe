@@ -7,7 +7,7 @@ import { Formik, Field, FormikProps } from 'formik';
 import { Mutation } from '../../graphql';
 import { FormixInputField } from '../../components/formix';
 import { InputField, SmallButton, ErrorMessage } from '../../components';
-import { LoginMutationVariables, SignupMutationVariables, LoginMutation, SignupMutation } from '../../@types';
+import { LoginMutationVariables, SignupMutationVariables, LoginMutation, SignupMutation, Sex } from '../../@types';
 
 import { LoginFormWrapper, StyledAnchor } from './style';
 import { LOGIN_MUTATION, SIGNUP_MUTATION } from './mutation';
@@ -26,7 +26,7 @@ const onSubmit = (
     // TODO: This is maybe redundandt since we have a mutation response
     let finalVars = variables;
     if (!login) {
-        finalVars = {...variables, sex: 'MALE', birthdate: new Date(), nickname: variables.email};
+        finalVars = {...variables, sex: Sex.MALE, birthdate: new Date(), nickname: variables.email};
     }
 
     const result = await mutation({ variables: finalVars });

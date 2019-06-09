@@ -13,19 +13,18 @@ export const CircularProgressContainerElement = styled.div`
     justify-content: center;
 `;
 
-export interface WithLoadingHocFactory<T> {
+export interface LoadingConfiguration {
+    dataPropName?: string;
     Loader?: React.ComponentType<CircularProgressProps>;
     CircularProgressContainer?: React.ComponentType<any>;
-    Component: React.ComponentType<T>;
-    dataPropName?: string;
 }
 
-const withLoadingHandler = <T extends any>({
-    Component,
+const withLoadingHandler = ({
     Loader = MuiCircularProgress,
     CircularProgressContainer = CircularProgressContainerElement,
     dataPropName = 'data',
-}: WithLoadingHocFactory<T>) => (props: T) => {
+}: LoadingConfiguration) => <T extends any>(Component: React.ComponentType<T>) => 
+ (props: T) => {
     if (props[dataPropName].loading) {
         return (
             <CircularProgressContainer>

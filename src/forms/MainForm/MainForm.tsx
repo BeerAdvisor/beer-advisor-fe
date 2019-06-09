@@ -35,6 +35,8 @@ export interface MainFormProps
     sliderStep: number;
     client: ApolloClient<any>;
     beerTypesData: beerTypes;
+    // TODO: this has to be deleted once graphql will resolve it's typing issues
+    mutate: any;
 }
 
 const onSubmit = memoizeWith(

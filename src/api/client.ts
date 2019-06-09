@@ -1,5 +1,4 @@
-import ApolloClient from 'apollo-boost';
-import { IResolvers } from 'graphql-tools';
+import ApolloClient, { Resolvers } from 'apollo-boost';
 import gql from 'graphql-tag';
 
 export const typeDefs = gql`
@@ -17,14 +16,33 @@ export const typeDefs = gql`
   }
 `;
 
-const defaults = {
+interface BeerForm {
+  priceRange: number[];
+  strongRange: number[];
+  filter?: string;
+  beerName?: string;
+  beerType?: string;
+  __typename: string;
+}
+
+interface InitialState {
+  beerForm: BeerForm;
+  isMainFormOpened: boolean;
+}
+
+export interface Client {
+  defaults: InitialState;
+  typeDefs: any;
+}
+
+const defaults: InitialState = {
   beerForm: {
     beerName: '', beerType:'', priceRange: [0, 100], strongRange: [0, 100], filter: 'Distance', __typename: 'beerForm',
   },
   isMainFormOpened: false,
 };
 
-export const resolvers: IResolvers = {
+export const resolvers: Resolvers = {
   Mutation: {
     closeForm: (_, __, { cache }) => {
       cache.writeData({ data: { isMainFormOpened: false } });

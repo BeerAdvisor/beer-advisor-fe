@@ -66,15 +66,16 @@ const getFindBeersQuery: ((props: BeerInfoProps) => QueryOpts<FindBeersVariables
     return { variables };
 };
 
+const withBeerInfoCardLoader = withLoadingHandler({
+    CircularProgressContainer: BeerInfoCardStub,
+    dataPropName: 'searchResult',
+});
+
 export default compose(
   graphql<BeerInfoProps>(GET_BEER_FORM_DATA, { name: 'data' }),
   graphql<BeerInfoProps>(FIND_BEERS, {
         options: getFindBeersQuery,
         name: 'searchResult',
     }),
-  (Component: React.ComponentType<BeerInfoProps>) => withLoadingHandler({
-        Component,
-        CircularProgressContainer: BeerInfoCardStub,
-        dataPropName: 'searchResult',
-    })
+    (Component: React.ComponentType<BeerInfoProps>) => withBeerInfoCardLoader<BeerInfoProps>(Component)
 )(BeerInfoCard);
