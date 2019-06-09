@@ -80,6 +80,13 @@ const muiTheme = createMuiTheme({
             fontWeight: 400,
             lineHeight: 1.5,
         },
+        body2: {
+            color: palette.dark,
+            fontSize: '.85rem',
+            fontWeight: 400,
+            letterSpacing: '0.02em',
+            lineHeight: 1.34,
+        },
     },
     palette,
     overrides: {

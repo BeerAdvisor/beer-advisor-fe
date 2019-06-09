@@ -24,3 +24,4 @@ export * from './CarouselCard';
 export * from './Carousel';
 export * from './AvailabilityCard';
 export * from './FloatingButton';
+export * from './CommentCard';
