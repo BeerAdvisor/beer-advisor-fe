@@ -7,8 +7,8 @@ export const CommentaCardContainer = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     padding: 1rem;
-
-    width: 23rem;
+    box-sizing: border-box;
+    width: 100%;
 `;
 
 export const CommentColumnWrapper = styled.div`

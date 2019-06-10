@@ -3,14 +3,26 @@ import { RouteComponentProps } from 'react-router';
 import { Fade } from '@material-ui/core';
 
 import { Query, GET_BEER_INFO } from '../../graphql';
-import { DescriptionCard, AvailabilityCard } from '../../components';
+import { DescriptionCard, AvailabilityCard, CommentCard } from '../../components';
 import { beer, suggestChange } from '../../@types';
 import { GuaranteedQueryResult } from '../../@types/CustomGqlTypes';
 import { SortingLink } from '../../components/ui/AvailabilityCard/AvailabilityCard';
 import { SuggestChange } from '../../forms/SuggestChange';
+import { VerticalFlexBoxWithMargin } from '../../commonStyles';
+import { CommentsBox } from '../../components/ui/CommentsBox/CommentsBox';
 
 import { BeerDescriptionCardContainer, BeerDescriptionChildrenWrapper } from './style';
 import { SUGGEST_BEER_CHANGE_QUERY } from './graphql';
+
+const CommentProps = {
+    author: 'Anatoly',
+    comment: 'Show comment',
+};
+
+const CommentProps2 = {
+    author: 'Vasily',
+    comment: 'Very long repetative comment to be sure that line clap works. Very long. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works.  repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works',
+};
 
 export interface BeerDescriptionCardProps extends RouteComponentProps {
     beerId: string;
@@ -75,10 +87,16 @@ export const BeerDescriptionCard = ({
                         </Query>
                     ): <div />}
                     </Fade>
-                    <AvailabilityCard
-                        buttonClick={handleShowAllBars}
-                        sortingLinks={sortingLinks}
-                    />
+                    <VerticalFlexBoxWithMargin>
+                        <AvailabilityCard
+                            buttonClick={handleShowAllBars}
+                            sortingLinks={sortingLinks}
+                        />
+                        <CommentsBox>
+                            <CommentCard {...CommentProps} />
+                            <CommentCard {...CommentProps2} />
+                        </CommentsBox>
+                    </VerticalFlexBoxWithMargin>
                 </BeerDescriptionCardContainer>
             )}
         </Query>

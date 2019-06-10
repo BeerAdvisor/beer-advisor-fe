@@ -20,3 +20,4 @@ export const BeerDescriptionChildrenWrapper = styled.div`
         margin: 0;
     }
 `;
+
