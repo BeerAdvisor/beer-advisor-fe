@@ -107,7 +107,12 @@ const muiTheme = createMuiTheme({
                 boxShadow: '0px 1px 8px rgba(0, 0, 0, 0.1)',
                 borderRadius: '40px',
                 minHeight: '2.5rem',
+            },
+            input: {
                 padding: '0px 14px',
+            },
+            inputMultiline: {
+                padding: '14px 28px',
             },
         },
         MuiInput: {
