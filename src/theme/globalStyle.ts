@@ -24,6 +24,10 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     background: ${props => props.theme.palette.backgroundLight};
     min-height: 100vh;
+    
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
   }
 `;
 

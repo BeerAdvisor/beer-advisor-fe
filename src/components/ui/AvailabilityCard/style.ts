@@ -1,5 +1,6 @@
 import styled from '../../../styled-components';
 import { SMALL_BP_UP } from '../../../theme';
+import { Carousel } from '../Carousel';
 
 export const AvailabilityCardWrapper = styled.div`
     ${SMALL_BP_UP} {
@@ -32,9 +33,9 @@ export const SortingLink = styled.div<SortingLinkProps>`
     font-weight: bold;
 `;
 
-export const CarouselWrapper = styled.div`
-    width: 100%;
-    margin: 0px -2rem;
+export const AvailabilityCarousel = styled(Carousel)`
+    width: auto;
+    margin: 0 -2rem;
 `;
 
 export const SortingLinksWrapper = styled.div`

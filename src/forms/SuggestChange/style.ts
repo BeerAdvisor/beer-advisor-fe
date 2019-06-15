@@ -7,6 +7,7 @@ export const StyledSuggestChange = styled.form`
     flex-direction: column;
     ${SMALL_BP_UP} {
         max-width: 20rem;
+        min-width: 19rem;
     }
     box-shadow: ${props => props.theme.surfaces.shadow_1};
     width: 100%;

@@ -89,6 +89,7 @@ export const BeerDescriptionCard = ({
                     </Fade>
                     <VerticalFlexBoxWithMargin>
                         <AvailabilityCard
+                            carouselHeader={`${data.beer.name} in bars`}
                             buttonClick={handleShowAllBars}
                             sortingLinks={sortingLinks}
                         />

@@ -4,7 +4,8 @@ import { RouteComponentProps } from 'react-router';
 import { History } from 'history';
 
 import { BeerForm, FindBeers, FindBeers_findBeers } from '../../@types';
-import { ExpandableInfoList, ExpandedInfoCard } from '../../components';
+import { ExpandableInfoList, ExpandedInfoCard, Link } from '../../components';
+import { BeerLink } from '../../components/ui/Link/Link';
 
 export interface BeerRouteParams {
     beerId: string;
@@ -55,6 +56,12 @@ const mapBeerInfoCards = (
             { label: 'Strong', value: strong },
             { label: 'Type', value: type ? type.name : null },
         ];
+        const listHeader = (
+        <>
+            Bars where you can find{' '}
+            <BeerLink to={`/form/beer/${id}`}>{name}</BeerLink>
+        </>
+        );
 
         return {
             name,
@@ -64,7 +71,7 @@ const mapBeerInfoCards = (
             expandedContent: (
                 <ExpandedInfoCard
                     key={id}
-                    listName="Bars where you can find this beer"
+                    listName={listHeader}
                 />
             ),
         };

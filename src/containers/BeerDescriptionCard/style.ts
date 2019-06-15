@@ -4,6 +4,7 @@ import { SMALL_BP_DOWN } from '../../theme';
 export const BeerDescriptionCardContainer = styled.div`
     display: flex;
     width: 100%;
+    box-sizing: border-box;
     ${SMALL_BP_DOWN} {
         flex-direction: column;
         padding: 0 1rem;
@@ -14,10 +15,11 @@ export const BeerDescriptionCardContainer = styled.div`
 `;
 
 export const BeerDescriptionChildrenWrapper = styled.div`
-    margin: 0 2rem;
+    margin-left: 3rem;
+    margin-right: 1rem;
     width: 100%;
     ${SMALL_BP_DOWN} {
-        margin: 0;
+        margin-left: 0;
+        margin-right: 0;
     }
 `;
-

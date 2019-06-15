@@ -8,6 +8,7 @@ export const DescriptionCardWrapper = styled.div`
     background-color: ${props => props.theme.palette.light};
     ${SMALL_BP_UP} {
         max-width: 20rem;
+        min-width: 19rem;
     }
     width: 100%;
     box-sizing: border-box;

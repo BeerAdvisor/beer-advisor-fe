@@ -8,4 +8,9 @@ export const Link = styled(RouterLink)`
     color: inherit;
 `;
 
+export const BeerLink = styled(RouterLink)`
+    cursor: pointer;
+    color: ${props => props.theme.palette.primary.main};
+`;
+
 export default Link;

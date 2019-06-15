@@ -3,9 +3,13 @@ import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMe
 
 import { Theme } from '../theme';
 
-export const useMobileDevice = () => {
+export const useMobileDevice = () => useDevice('sm');
+export const useTabletDevice = () => useDevice('md');
+export const useNotebookDevice = () => useDevice(1540);
+
+export const useDevice = (size: number | 'xs' | 'sm' | 'md' | 'lg' | 'xl') => {
     const theme = useTheme<Theme>();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMobile = useMediaQuery(theme.breakpoints.down(size));
 
     return isMobile;
 };

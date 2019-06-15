@@ -19,20 +19,25 @@ const Carousel = ({ cards, maxToShow = 4, ...other }: CarouselProps) => {
     useEffect(() => {
         const localCarouselItems: CarouselCardProps[][]= [];
         let oneSlide: CarouselCardProps[]= [];
-        mapIndexed((card, index) => {
-                if (index === maxToShow || index === cards.length - 1) {
+        let cardsCounter = 0;
+        mapIndexed((card, actualIndex) => {
+                if (cardsCounter === maxToShow) {
+                    cardsCounter = 0;
                     localCarouselItems.push(oneSlide);
                     oneSlide = [];
                 }
 
-                if (index === cards.length - 1) {
+                oneSlide.push(card);
+
+                if (actualIndex === cards.length - 1) {
+                    localCarouselItems.push(oneSlide);
                     setCarouselItems(localCarouselItems);
                 }
-            
-                oneSlide.push(card);
+
+                cardsCounter++;
             } 
         )(cards);
-    }, [cards]);
+    }, [cards, maxToShow]);
 
     const handleRightClick = () => (activeValue !== carouselItems.length - 1) && setActiveValue(a => a + 1);
     const handleLeftClick = () => activeValue !== 0 && setActiveValue(a => a - 1);
@@ -46,11 +51,10 @@ const Carousel = ({ cards, maxToShow = 4, ...other }: CarouselProps) => {
                 axis={'x'}
                 index={activeValue}
                 onChangeIndex={setActiveValue}
-                containerStyle={{width: '100%'}}
                 style={{width: '100%'}}
             >
             {mapIndexed((carouselCards: CarouselCardProps[], higherIndex) => (
-                <CarouselContainer key={`-.-${higherIndex}`}>
+                <CarouselContainer hide={higherIndex !== activeValue} key={`-.-${higherIndex}`}>
                     {mapIndexed(({ imageUrl, cardName, cardValue }: CarouselCardProps, index) => (
                         (index < maxToShow) && 
                             <CarouselCard
