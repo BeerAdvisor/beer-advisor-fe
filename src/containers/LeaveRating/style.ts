@@ -7,8 +7,8 @@ export const RatingWrapper = styled.div`
 `;
 
 export const LeaveRatingWrapper = styled.div`
-    display:flex;
+    display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+    margin-top: .5rem;
     width: 100%;
 `;

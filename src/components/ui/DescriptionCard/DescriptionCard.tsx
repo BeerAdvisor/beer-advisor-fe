@@ -5,14 +5,13 @@ import { LogoImage } from '../LogoImage';
 import { Rating } from '../Rating';
 import { SmallButton } from '../Button';
 import { beer_beer } from '../../../@types';
-// TODO: This comes from the container, should I move Description card up?
-import { LeaveRating } from '../../../containers/LeaveRating';
 
 import {
     DescriptionCardWrapper,
     DescriptionCardTopWrapper,
     DescriptionCardBottomWrapper,
     DescriptionNameValueWrapper,
+    DescriptionCardFormLabel,
 } from './style';
 
 export interface DescriptionCardProps {
@@ -21,11 +20,13 @@ export interface DescriptionCardProps {
     bar?: any;
     onChangeSuggest?: () => void;
     onAddToFavourite?: (id: string) => void;
+    ratingComponent: JSX.Element;
 }
 export const DescriptionCard = ({
     beer,
     bar,
     onChangeSuggest,
+    ratingComponent,
     ...other
 }: DescriptionCardProps) => {
     return (
@@ -36,11 +37,10 @@ export const DescriptionCard = ({
                     {beer ? beer.name : bar.barName}
                 </Typography>
                 <Rating filled={beer ? beer.avgRating || 0 : bar.rating} />
-                <SmallButton favourite variant="outlined">Add to favourite</SmallButton>
             </DescriptionCardTopWrapper>
             <DescriptionCardBottomWrapper>
                 {beer && getBeerDescription(beer)}
-                <LeaveRating id={beer ? beer.id : bar.id} />
+                {ratingComponent}
                 <SmallButton onClick={onChangeSuggest} variant="outlined" color="primary">Suggest change</SmallButton>
             </DescriptionCardBottomWrapper>
         </DescriptionCardWrapper>
@@ -51,8 +51,9 @@ const createDescriptionField = (
     name: string,
     value: string | null = 'Unknown'
 ) => (
+    value && 
     <DescriptionNameValueWrapper>
-        <Typography variant="subtitle2">{`${name}:`}&nbsp;</Typography>
+        <DescriptionCardFormLabel>{name}</DescriptionCardFormLabel>
         <Typography variant="body1">{value}</Typography>
     </DescriptionNameValueWrapper>
 );

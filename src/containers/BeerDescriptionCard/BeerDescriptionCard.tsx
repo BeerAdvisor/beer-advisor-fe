@@ -10,6 +10,7 @@ import { SortingLink } from '../../components/ui/AvailabilityCard/AvailabilityCa
 import { SuggestChange } from '../../forms/SuggestChange';
 import { VerticalFlexBoxWithMargin } from '../../commonStyles';
 import { CommentsBox } from '../../components/ui/CommentsBox/CommentsBox';
+import { LeaveRating } from '../LeaveRating';
 
 import { BeerDescriptionCardContainer, BeerDescriptionChildrenWrapper } from './style';
 import { SUGGEST_BEER_CHANGE_QUERY } from './graphql';
@@ -63,6 +64,7 @@ export const BeerDescriptionCard = ({
                                 <DescriptionCard
                                     onChangeSuggest={handleSetBeerEditMode}
                                     beer={data.beer}
+                                    ratingComponent={<LeaveRating id={data.beer.id} />}
                                     {...other}
                                 />
                             </BeerDescriptionChildrenWrapper>

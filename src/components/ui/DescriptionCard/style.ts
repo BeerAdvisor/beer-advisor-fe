@@ -1,3 +1,5 @@
+import { FormLabel } from '@material-ui/core';
+
 import styled from '../../../styled-components';
 import { SMALL_BP_UP } from '../../../theme';
 
@@ -27,7 +29,12 @@ export const DescriptionCardTopWrapper = styled.div`
 
 export const DescriptionNameValueWrapper = styled.div`
     display: flex;
+    flex-direction: column;
     align-self: flex-start;
+`;
+
+export const DescriptionCardFormLabel = styled(FormLabel)`
+    position: static;
 `;
 
 export const DescriptionCardBottomWrapper = styled(DescriptionCardTopWrapper)`

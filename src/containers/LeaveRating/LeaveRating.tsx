@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import gql from 'graphql-tag';
 import { MutationFn } from 'react-apollo';
+import { FormLabel } from '@material-ui/core';
 
 import { Rating, LittleButton } from '../../components';
 import {
@@ -45,7 +46,7 @@ const LeaveRating = ({ id }: LeaveRatingProps) => {
         <Mutation mutation={RATE_BEER_MUTATION} refetchQueries={[{ query: GET_BEER_INFO, variables: { beerId: id } }]}>
             {(mutation, { data: mutationResult }) => (
                 <RatingWrapper>
-                    Your rating:
+                    <FormLabel style={{ position: 'static' }}>Your rating</FormLabel>
                     <LeaveRatingWrapper>
                         <Rating onClick={setUserBeerRating} filled={userBeerRating} disabled={canLeaveRating} />
                         <LittleButton
