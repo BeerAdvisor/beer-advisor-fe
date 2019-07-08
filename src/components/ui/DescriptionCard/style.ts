@@ -2,8 +2,10 @@ import { FormLabel } from '@material-ui/core';
 
 import styled from '../../../styled-components';
 import { SMALL_BP_UP } from '../../../theme';
+import { FavoriteButton } from '../../Icons/Favorite/Favorite';
 
 export const DescriptionCardWrapper = styled.div`
+    position: relative;
     padding: 2rem;
     box-shadow: ${props => props.theme.surfaces.shadow_1};
     border-radius: ${props => props.theme.borderRadius};
@@ -14,6 +16,12 @@ export const DescriptionCardWrapper = styled.div`
     }
     width: 100%;
     box-sizing: border-box;
+`;
+
+export const FavoriteButtonWrapper = styled.div`
+    position: absolute;
+    top: 5%;
+    left: 5%;
 `;
 
 export const DescriptionCardTopWrapper = styled.div`

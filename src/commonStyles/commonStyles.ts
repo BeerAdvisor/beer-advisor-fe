@@ -4,6 +4,10 @@ export const FlexBox = styled.div`
     display: flex;
 `;
 
+export const CenteredFlexBox = styled(FlexBox)`
+    justify-content: center;
+`;
+
 export const VerticalFlexBox = styled(FlexBox)`
     flex-direction: column;
 `;

@@ -5,6 +5,7 @@ import { LogoImage } from '../LogoImage';
 import { Rating } from '../Rating';
 import { SmallButton } from '../Button';
 import { beer_beer } from '../../../@types';
+import { FavoriteButton } from '../../Icons';
 
 import {
     DescriptionCardWrapper,
@@ -12,6 +13,7 @@ import {
     DescriptionCardBottomWrapper,
     DescriptionNameValueWrapper,
     DescriptionCardFormLabel,
+    FavoriteButtonWrapper,
 } from './style';
 
 export interface DescriptionCardProps {
@@ -31,6 +33,9 @@ export const DescriptionCard = ({
 }: DescriptionCardProps) => {
     return (
         <DescriptionCardWrapper {...other}>
+            <FavoriteButtonWrapper>
+                    <FavoriteButton />
+            </FavoriteButtonWrapper>
             <DescriptionCardTopWrapper>
                 <LogoImage />
                 <Typography variant="h4">
