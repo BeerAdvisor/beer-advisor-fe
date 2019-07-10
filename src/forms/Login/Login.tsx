@@ -6,8 +6,14 @@ import { Formik, Field, FormikProps } from 'formik';
 
 import { Mutation } from '../../graphql';
 import { FormixInputField } from '../../components/formix';
-import { InputField, SmallButton, ErrorMessage } from '../../components';
-import { LoginMutationVariables, SignupMutationVariables, LoginMutation, SignupMutation, Sex } from '../../@types';
+import { SmallButton, ErrorMessage } from '../../components';
+import {
+    LoginMutationVariables,
+    SignupMutationVariables,
+    LoginMutation,
+    SignupMutation,
+    Sex,
+} from '../../@types';
 
 import { LoginFormWrapper, StyledAnchor } from './style';
 import { LOGIN_MUTATION, SIGNUP_MUTATION } from './mutation';
@@ -15,7 +21,10 @@ import { validate, isLoginMutation, isSignupMutation } from './helpers';
 
 export type MutationAuth = LoginMutation | SignupMutation;
 
-export type MutationLogin = MutationFn<MutationAuth, LoginMutationVariables | SignupMutationVariables>;
+export type MutationLogin = MutationFn<
+    MutationAuth,
+    LoginMutationVariables | SignupMutationVariables
+>;
 
 const onSubmit = (
     mutation: MutationLogin,
@@ -26,7 +35,12 @@ const onSubmit = (
     // TODO: This is maybe redundandt since we have a mutation response
     let finalVars = variables;
     if (!login) {
-        finalVars = {...variables, sex: Sex.MALE, birthdate: new Date(), nickname: variables.email};
+        finalVars = {
+            ...variables,
+            sex: Sex.MALE,
+            birthdate: new Date(),
+            nickname: variables.email,
+        };
     }
 
     const result = await mutation({ variables: finalVars });
@@ -45,7 +59,6 @@ const onSubmit = (
                     user,
                 },
             });
-
         }
     }
 
@@ -88,53 +101,62 @@ const useLogin = () => {
 };
 
 export default ({ history }: RouteComponentProps) => {
-    const { login, handleLogin} = useLogin();
+    const { login, handleLogin } = useLogin();
 
-    const initialValues = login ? {email: '', password: ''} : {email: '', password: '', confirmPassword: ''};
+    const initialValues = login
+        ? { email: '', password: '' }
+        : { email: '', password: '', confirmPassword: '' };
 
     return (
         <Mutation mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}>
-            {(mutation , {client, loading, error}) => (
+            {(mutation, { client, loading, error }) => (
                 <Formik
                     initialValues={initialValues}
                     onSubmit={onSubmit(mutation, client, history, login)}
                     validate={validate}
                     render={generateForm(login, handleLogin, loading, error)}
                 />
-        )}
+            )}
         </Mutation>
     );
 };
 
 const generateForm = (
-        login: boolean,
-        handleLogin: (e: React.MouseEvent<HTMLAnchorElement>) => void,
-        loading: boolean, 
-        error?: ApolloError
-    ) => ({ handleSubmit }: FormikProps<any>) => (
-    <form onSubmit={(handleSubmit)}>
+    login: boolean,
+    handleLogin: (e: React.MouseEvent<HTMLAnchorElement>) => void,
+    loading: boolean,
+    error?: ApolloError
+) => ({ handleSubmit }: FormikProps<any>) => (
+    <form onSubmit={handleSubmit}>
         <LoginFormWrapper login={login}>
-        <Field component={FormixInputField} {...loginProps} type="text" />
-        <Field component={FormixInputField}  {...passwordProps} type="password" />
+            <Field component={FormixInputField} {...loginProps} type="text" />
+            <Field
+                component={FormixInputField}
+                {...passwordProps}
+                type="password"
+            />
             {!login && (
                 <React.Fragment>
-                    <Field component={FormixInputField}  {...confirmPasswordProps} type="password" />
+                    <Field
+                        component={FormixInputField}
+                        {...confirmPasswordProps}
+                        type="password"
+                    />
                 </React.Fragment>
             )}
-                <React.Fragment>
-                    <SmallButton
-                        {...buttonProps}
-                        disabled={loading}
-                    >
-                        Sign {login ? 'In' : 'Up'}
-                    </SmallButton>
-                    {error && error.graphQLErrors[0] && <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>}
-                </React.Fragment>
+            <React.Fragment>
+                <SmallButton {...buttonProps} disabled={loading}>
+                    Sign {login ? 'In' : 'Up'}
+                </SmallButton>
+                {error && error.graphQLErrors[0] && (
+                    <ErrorMessage>
+                        {error.graphQLErrors[0].message}
+                    </ErrorMessage>
+                )}
+            </React.Fragment>
             <StyledAnchor onClick={handleLogin}>
-                {login
-                    ? "Don't have an account?"
-                    : 'Already have an account?'}
+                {login ? "Don't have an account?" : 'Already have an account?'}
             </StyledAnchor>
         </LoginFormWrapper>
     </form>
-    );
+);

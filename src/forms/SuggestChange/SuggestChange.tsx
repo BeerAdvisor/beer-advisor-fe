@@ -53,7 +53,7 @@ const SuggestChange = ({
     onClear,
     ...other
 }: SuggestChangeProps) => {
-    const submitAnus = (
+    const submitForm = (
         values: BeerSuggestChangeValues,
         actions: FormikActions<BeerSuggestChangeValues>
     ) => {
@@ -72,7 +72,7 @@ const SuggestChange = ({
                 beerType: (type && type.name) || '',
                 abv: strong || '',
             }}
-            onSubmit={submitAnus}
+            onSubmit={submitForm}
             render={renderSuggestChange(beerTypes, breweries, onClear)}
         />
     );

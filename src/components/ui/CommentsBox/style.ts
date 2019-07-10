@@ -20,8 +20,3 @@ export const CommentsBoxContainer = styled(VerticalFlexBox)`
         margin-bottom: 1rem;
     }
 `;
-
-export const LimitedWidthButton = styled(SmallButton)`
-    max-width: 15rem;
-    align-self: flex-end;
-`;

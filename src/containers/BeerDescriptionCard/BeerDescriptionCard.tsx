@@ -11,6 +11,7 @@ import { SuggestChange } from '../../forms/SuggestChange';
 import { VerticalFlexBoxWithMargin } from '../../commonStyles';
 import { CommentsBox } from '../../components/ui/CommentsBox/CommentsBox';
 import { LeaveRating } from '../LeaveRating';
+import { Comment } from '../Comment/Comment';
 
 import { BeerDescriptionCardContainer, BeerDescriptionChildrenWrapper } from './style';
 import { SUGGEST_BEER_CHANGE_QUERY } from './graphql';
@@ -96,6 +97,7 @@ export const BeerDescriptionCard = ({
                             sortingLinks={sortingLinks}
                         />
                         <CommentsBox>
+                            <Comment id={data.beer.id} />
                             <CommentCard {...CommentProps} />
                             <CommentCard {...CommentProps2} />
                         </CommentsBox>
