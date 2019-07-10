@@ -1,19 +1,32 @@
 import React, { useCallback, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Fade } from '@material-ui/core';
+import { map } from 'ramda';
 
 import { Query, GET_BEER_INFO } from '../../graphql';
-import { DescriptionCard, AvailabilityCard, CommentCard } from '../../components';
-import { beer, suggestChange } from '../../@types';
+import {
+    DescriptionCard,
+    AvailabilityCard,
+    CommentCard,
+} from '../../components';
+import {
+    beer,
+    suggestChange,
+    beer_beer_beerComments_user,
+    beer_beer_beerComments,
+} from '../../@types';
 import { GuaranteedQueryResult } from '../../@types/CustomGqlTypes';
 import { SortingLink } from '../../components/ui/AvailabilityCard/AvailabilityCard';
 import { SuggestChange } from '../../forms/SuggestChange';
 import { VerticalFlexBoxWithMargin } from '../../commonStyles';
 import { CommentsBox } from '../../components/ui/CommentsBox/CommentsBox';
 import { LeaveRating } from '../LeaveRating';
-import { Comment } from '../Comment/Comment';
+import { LeaveBeerComment } from '../LeaveBeerComment';
 
-import { BeerDescriptionCardContainer, BeerDescriptionChildrenWrapper } from './style';
+import {
+    BeerDescriptionCardContainer,
+    BeerDescriptionChildrenWrapper,
+} from './style';
 import { SUGGEST_BEER_CHANGE_QUERY } from './graphql';
 
 const CommentProps = {
@@ -23,7 +36,8 @@ const CommentProps = {
 
 const CommentProps2 = {
     author: 'Vasily',
-    comment: 'Very long repetative comment to be sure that line clap works. Very long. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works.  repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works',
+    comment:
+        'Very long repetative comment to be sure that line clap works. Very long. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works.  repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works. Very long repetative comment to be sure that line clap works',
 };
 
 export interface BeerDescriptionCardProps extends RouteComponentProps {
@@ -60,35 +74,44 @@ export const BeerDescriptionCard = ({
             {({ data }: GuaranteedQueryResult<beer>) => (
                 <BeerDescriptionCardContainer>
                     <Fade in={!beerEditMode}>
-                    {!beerEditMode ? (
+                        {!beerEditMode ? (
                             <BeerDescriptionChildrenWrapper>
                                 <DescriptionCard
                                     onChangeSuggest={handleSetBeerEditMode}
                                     beer={data.beer}
-                                    ratingComponent={<LeaveRating id={data.beer.id} />}
+                                    ratingComponent={
+                                        <LeaveRating id={data.beer.id} />
+                                    }
                                     {...other}
                                 />
                             </BeerDescriptionChildrenWrapper>
-                    ) : <div />}
+                        ) : (
+                            <div />
+                        )}
                     </Fade>
                     <Fade in={beerEditMode}>
-                    {beerEditMode ? (
-                        <Query query={SUGGEST_BEER_CHANGE_QUERY}>
-                            {({
-                                data: { beerTypes: beerTypesData, breweries },
-                            }: GuaranteedQueryResult<suggestChange>) => (
-                            <BeerDescriptionChildrenWrapper>
-                                <SuggestChange
-                                    beerTypes={beerTypesData}
-                                    breweries={breweries}
-                                    beer={data.beer}
-                                    onClear={handleSetBeerEditMode}
-                                    {...other}
-                                />
-                            </BeerDescriptionChildrenWrapper>
-                            )}
-                        </Query>
-                    ): <div />}
+                        {beerEditMode ? (
+                            <Query query={SUGGEST_BEER_CHANGE_QUERY}>
+                                {({
+                                    data: {
+                                        beerTypes: beerTypesData,
+                                        breweries,
+                                    },
+                                }: GuaranteedQueryResult<suggestChange>) => (
+                                    <BeerDescriptionChildrenWrapper>
+                                        <SuggestChange
+                                            beerTypes={beerTypesData}
+                                            breweries={breweries}
+                                            beer={data.beer}
+                                            onClear={handleSetBeerEditMode}
+                                            {...other}
+                                        />
+                                    </BeerDescriptionChildrenWrapper>
+                                )}
+                            </Query>
+                        ) : (
+                            <div />
+                        )}
                     </Fade>
                     <VerticalFlexBoxWithMargin>
                         <AvailabilityCard
@@ -97,9 +120,19 @@ export const BeerDescriptionCard = ({
                             sortingLinks={sortingLinks}
                         />
                         <CommentsBox>
-                            <Comment id={data.beer.id} />
-                            <CommentCard {...CommentProps} />
-                            <CommentCard {...CommentProps2} />
+                            <LeaveBeerComment id={data.beer.id} />
+                            {data.beer.beerComments 
+                            ? map<
+                                beer_beer_beerComments,
+                                JSX.Element
+                            >(({ user, comment }) => (
+                                <CommentCard
+                                    author={user ? user.nickname : 'Guest'}
+                                    comment={comment}
+                                />
+                            ))(data.beer.beerComments)
+                            : `Be the first to leave a comment about ${data.beer.name}`
+                        }
                         </CommentsBox>
                     </VerticalFlexBoxWithMargin>
                 </BeerDescriptionCardContainer>

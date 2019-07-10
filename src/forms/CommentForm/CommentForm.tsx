@@ -1,8 +1,9 @@
 import React from 'react';
-import { Formik, FormikProps, Field } from 'formik';
+import { Formik, FormikProps, Field, FormikActions } from 'formik';
 import { MutationFn } from 'react-apollo';
 
 import { FormixInputField } from '../../components/formix';
+import { CommentBeerVariables } from '../../@types';
 
 import { LimitedWidthButton } from './style';
 
@@ -22,22 +23,16 @@ const renderCommentForm = ({ handleSubmit }: FormikProps<any>) => (
     </form>
 );
 
-interface SubmitCommentVariables {
-    comment: string;
-}
-
-export type CommentMutationVaraibles = {
-    beerId: string;
-} & SubmitCommentVariables;
+type SubmitCommentVariables = Pick<CommentBeerVariables, 'comment'>;
 
 export interface CommentFormProps {
-    submitComment: MutationFn<any, CommentMutationVaraibles>;
+    submitComment: MutationFn<any, CommentBeerVariables>;
     id: string;
 }
 
-const CommentForm = ({ id, submitComment, ...other }: CommentFormProps) => {
-    const onSubmit = ({ comment }: SubmitCommentVariables) => {
-        submitComment({ variables: { beerId: id, comment } });
+const CommentForm = ({ id, submitComment,  ...other }: CommentFormProps) => {
+    const onSubmit = ({ comment }: SubmitCommentVariables, { resetForm }: FormikActions<SubmitCommentVariables>) => {
+        submitComment({ variables: { beerId: id, comment } }).then(() => resetForm());
     };
 
     return (

@@ -46,6 +46,12 @@ export const GET_BEER_INFO = gql`
             strong
             photo
             avgRating
+            beerComments {
+                user {
+                    nickname
+                }
+                comment
+            }
             brewery {
                 name
             }
