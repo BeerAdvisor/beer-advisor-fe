@@ -12,6 +12,17 @@ query beerForm {
   }
 `;
 
+export const GET_BAR_FORM_DATA = gql`
+query barForm {
+    barForm @client {
+        maxBeerPrice
+        openHours
+        filter
+        barName
+      }
+  }
+`;
+
 export const GEET_BEER_FORM_STATUS = gql`
 query beerFormStatus {
     isMainFormOpened @client

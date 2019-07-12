@@ -9,7 +9,7 @@ export interface BeerFormValues {
     beerType?: string;
 }
 
-export interface FormData extends QueryControls {
+interface FormData extends QueryControls {
     beerForm: BeerFormValues;
 }
 

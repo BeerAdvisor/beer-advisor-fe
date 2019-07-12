@@ -23,6 +23,7 @@ import {
     CombinedFormsContainer,
     RightCornerIconButton,
 } from './style';
+import BarSearchForm from '../MainForm/BarSearchForm';
 
 export type CombinedFormsProps = MainFormProps;
 
@@ -51,7 +52,7 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
                 containerStyle={{ width: '100%' }}
             >
                 <MainForm variant={finalVaraint} {...layoutProps} />
-                <MainForm variant={finalVaraint} {...layoutProps} />
+                <BarSearchForm variant={finalVaraint} {...layoutProps} />
             </StyledSwipeableViews>
         </CombinedFormsContainer>
     );

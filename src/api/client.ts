@@ -1,5 +1,6 @@
 import ApolloClient, { Resolvers } from 'apollo-boost';
 import gql from 'graphql-tag';
+import { BarFormValues } from '../@types';
 
 export const typeDefs = gql`
   extend type Query {
@@ -14,6 +15,13 @@ export const typeDefs = gql`
     beerName: String
     beerType: String
   }
+
+  extend type BarForm {
+    maxBeerPrice: [Int!]
+    openHours: [Int!]
+    filter: String
+    barName: String
+  }
 `;
 
 interface BeerForm {
@@ -25,8 +33,13 @@ interface BeerForm {
   __typename: string;
 }
 
+interface BarForm extends BarFormValues {
+  __typename: string;  
+}
+
 interface InitialState {
   beerForm: BeerForm;
+  barForm: BarForm;
   isMainFormOpened: boolean;
 }
 
@@ -38,6 +51,9 @@ export interface Client {
 const defaults: InitialState = {
   beerForm: {
     beerName: '', beerType:'', priceRange: [0, 100], strongRange: [0, 100], filter: 'Distance', __typename: 'beerForm',
+  },
+  barForm: {
+    barName: '', maxBeerPrice: [0, 100], openHours: [0, 100], filter: 'Distance', __typename: 'barForm',
   },
   isMainFormOpened: false,
 };
