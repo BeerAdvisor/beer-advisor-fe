@@ -14,7 +14,9 @@ import {
     Mutation,
     OPEN_FORM_MUTATION,
     CLOSE_FORM_MUTATION,
+    SEARCH_BAR_MUTATION,
 } from '../../graphql';
+import BarSearchForm from '../MainForm/BarSearchForm';
 import { useMobileDevice } from '../../utils';
 
 import {
@@ -23,7 +25,6 @@ import {
     CombinedFormsContainer,
     RightCornerIconButton,
 } from './style';
-import BarSearchForm from '../MainForm/BarSearchForm';
 
 export type CombinedFormsProps = MainFormProps;
 
@@ -52,7 +53,11 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
                 containerStyle={{ width: '100%' }}
             >
                 <MainForm variant={finalVaraint} {...layoutProps} />
-                <BarSearchForm variant={finalVaraint} {...layoutProps} />
+                <Mutation mutation={SEARCH_BAR_MUTATION}>
+                    {(searchBar: () => Promise<any>) => 
+                        <BarSearchForm searchBar={searchBar} variant={finalVaraint} {...layoutProps} />
+                    }
+                </Mutation>
             </StyledSwipeableViews>
         </CombinedFormsContainer>
     );
@@ -69,7 +74,7 @@ const MobileCombinedForm = ({ content }: MobileCombinedFormProps) => (
             <Mutation mutation={OPEN_FORM_MUTATION}>
                 {(openForm: () => void) => (
                     <Mutation mutation={CLOSE_FORM_MUTATION}>
-                        {(closeForm: () => void)=> (
+                        {(closeForm: () => void) => (
                             <>
                                 <SwipeableDrawer
                                     anchor="bottom"

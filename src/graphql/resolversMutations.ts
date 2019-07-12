@@ -11,3 +11,9 @@ export const CLOSE_FORM_MUTATION = gql`
     closeForm @client
   }
 `;
+
+export const SEARCH_BAR_MUTATION = gql`
+  mutation SearchBar($barForm: BarForm) {
+    searchBar(barForm: $barForm) @client
+  }
+`;

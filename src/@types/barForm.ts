@@ -8,8 +8,8 @@ export interface BarFormValues {
     barName?: string;
 }
 
-interface FormData extends QueryControls {
+export interface BarFormData extends QueryControls {
     barForm: BarFormValues;
 }
 
-export type BarForm = ApolloQueryResult<FormData>;
+export type BarForm = ApolloQueryResult<BarFormData>;

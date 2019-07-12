@@ -1,12 +1,29 @@
 import React, { useCallback } from 'react';
 import { Formik, FormikProps, Field } from 'formik';
+import { MutationFn } from 'react-apollo';
 
-import { SliderField, SelectField, SmallButton, ToogleButtonGroupField } from '../../components';
+import {
+    SliderField,
+    SelectField,
+    SmallButton,
+    ToogleButtonGroupField,
+} from '../../components';
 import { FormixInputField } from '../../components/formix';
 import { BarFormValues } from '../../@types/barForm';
-import { Query, GET_BAR_FORM_DATA } from '../../graphql';
+import {
+    Query,
+    GET_BAR_FORM_DATA,
+    SEARCH_BAR_MUTATION,
+    Mutation,
+} from '../../graphql';
 
-import { MainFormContainer, ElementsWrapper, SliderContaier, MainFormToogleButtonGroupFieldWrapper, ButtonWrapper } from './style';
+import {
+    MainFormContainer,
+    ElementsWrapper,
+    SliderContaier,
+    MainFormToogleButtonGroupFieldWrapper,
+    ButtonWrapper,
+} from './style';
 
 const barFieldProps = {
     placeholder: 'e.g. Kozlovna',
@@ -31,12 +48,16 @@ const filterProps = {
     label: 'Filter by',
 };
 
-export interface BarSearchFormProps {
-    variant?: 'small';
+interface BarForm {
+    barForm: BarFormValues;
 }
 
-const BarSearchForm = ({ variant }: BarSearchFormProps) => {
+export interface BarSearchFormProps {
+    variant?: 'small';
+    searchBar: MutationFn<any, BarForm>;
+}
 
+const BarSearchForm = ({ variant, searchBar }: BarSearchFormProps) => {
     const generateForm = useCallback(
         ({ handleSubmit }: FormikProps<BarFormValues>) => (
             <form onSubmit={handleSubmit}>
@@ -72,10 +93,7 @@ const BarSearchForm = ({ variant }: BarSearchFormProps) => {
                             />
                         </MainFormToogleButtonGroupFieldWrapper>
                     ) : (
-                        <SelectField
-                            name="filter"
-                            {...filterProps}
-                        />
+                        <SelectField name="filter" {...filterProps} />
                     )}
                     <ButtonWrapper>
                         <SmallButton {...searchButtonProps}>Search</SmallButton>
@@ -83,24 +101,22 @@ const BarSearchForm = ({ variant }: BarSearchFormProps) => {
                 </MainFormContainer>
             </form>
         ),
-        [
-            variant,
-            barFieldProps,
-            filterProps,
-            searchButtonProps,
-            sliderProps,
-        ]
+        [variant, barFieldProps, filterProps, searchButtonProps, sliderProps]
     );
+
+    const onSubmit = (values: BarFormValues) => {
+        searchBar({ variables: { barForm: values } }).then(() => {});
+    };
 
     return (
         <Query query={GET_BAR_FORM_DATA}>
-        {({ data }) => (
-                    <Formik
-                    onSubmit={() => null}
+            {({ data }) => (
+                <Formik
+                    onSubmit={onSubmit}
                     initialValues={data.barForm}
                     render={generateForm}
                 />
-        )}
+            )}
         </Query>
     );
 };
