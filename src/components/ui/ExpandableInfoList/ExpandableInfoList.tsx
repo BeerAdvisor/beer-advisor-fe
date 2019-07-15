@@ -7,6 +7,7 @@ import { LabelValue } from '../../../utils';
 export interface ExpandableInfoListProps {
     expandableInfoCards: IExpandableInfoCard[];
     bottomLink: string;
+    color?: 'primary' | 'secondary';
 }
 
 export interface IExpandableInfoCard {
@@ -18,6 +19,7 @@ export interface IExpandableInfoCard {
 export default memo(({
     expandableInfoCards,
     bottomLink,
+    color = 'primary',
     ...other
 }: ExpandableInfoListProps) => {
     const [expandedIndex, setExpandedIndex] = useState(-1);
@@ -35,6 +37,7 @@ export default memo(({
             index={index}
             isFirst={index === 0}
             isLast={index === expandableInfoCards.length - 1}
+            color={color}
             {...expandableInfoCardProps}
             {...other}
         />

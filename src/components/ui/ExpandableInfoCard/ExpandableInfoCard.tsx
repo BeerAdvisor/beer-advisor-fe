@@ -8,6 +8,7 @@ export type ExpandableInfoCardProps = {
     bottomLink?: string;
     expanded?: boolean;
     expandedContent?: ReactNode;
+    color?: 'primary' | 'secondary';
 } & InfoCardProps;
 
 export const ExpandableInfoCard = ({

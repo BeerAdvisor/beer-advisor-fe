@@ -6,6 +6,7 @@ import { InfoCardStyledProps } from './style';
 
 export interface InfoCardProps extends InfoCardStyledProps {
     labelValues: LabelValue[];
+    color?: 'primary' | 'secondary';
     name?: string;
     bottomLink?: string;
     onClick?: (e: MouseEvent<HTMLDivElement>) => void;

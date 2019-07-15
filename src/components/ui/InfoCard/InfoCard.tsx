@@ -16,11 +16,11 @@ import {
 } from './style';
 import { InfoCardProps } from './types';
 
-export default ({ name, labelValues, bottomLink, onClick, expanded, isFirst, isLast, onInfoClick, ...other }: InfoCardProps) => {
+export default ({ name, color, labelValues, bottomLink, onClick, expanded, isFirst, isLast, onInfoClick, ...other }: InfoCardProps) => {
     return (
         <InfoCardStyled onClick={onClick} isFirst={isFirst} isLast={isLast} {...other}>
             {bottomLink && (
-                <BottomLinkContainer>
+                <BottomLinkContainer color={color}>
                     <BottomLink>{bottomLink}</BottomLink>
                     {expanded ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
                 </BottomLinkContainer>
@@ -34,7 +34,7 @@ export default ({ name, labelValues, bottomLink, onClick, expanded, isFirst, isL
                     </InfoCardRow>
                 </InfoCardColumn>
             </InfoCardContainer>
-            <RightDetail onClick={onInfoClick} isFirst={isFirst} isLast={isLast}> 
+            <RightDetail color={color} onClick={onInfoClick} isFirst={isFirst} isLast={isLast}> 
                 <ArrowRight fontSize="large" />
             </RightDetail>
         </InfoCardStyled>

@@ -101,7 +101,8 @@ export const BottomLinkContainer = styled.span`
     display: flex;
     align-items: center;
     align-self: center;
-    color: ${props => props.theme.palette.secondary.main};
+    color: ${props => props.color === 'primary' ? props.theme.palette.primary.main : props.theme.palette.secondary.main};
+
     ${SMALL_BP_UP} {
         left: 45%;
         bottom: 5%;
@@ -142,7 +143,9 @@ export const RightDetail = styled.div<InfoCardStyledProps>`
     height: 100%;
     align-self: flex-end;
     width: 3rem;
-    background-color: ${props => props.theme.palette.primary.light};
+    background-color: ${props => props.color === 'primary' 
+    ? props.theme.palette.secondary.light
+    : props.theme.palette.primary.light};
     border-radius: ${getRightDetailBorderRadius};
     cursor: pointer;
 `;
@@ -153,7 +156,6 @@ export const MobileInfoCardTop = styled.div`
 
 export const BottomLink = styled.span`
     font-size: 0.8rem;
-    color: ${props => props.theme.palette.secondary.main};
     
     &:hover {
         text-decoration: underline;

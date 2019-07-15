@@ -31,6 +31,7 @@ export const BarInfoCard = ({
 
     return (
         <ExpandableInfoList
+            color="primary"
             bottomLink="Show beers"
             expandableInfoCards={expandableInfoCards}
             {...other}
