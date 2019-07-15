@@ -13,6 +13,10 @@ const routes = [
         main: (props: any) => <BeerResultPage {...props} />,
     },
     {
+        path: '/bars',
+        main: (props: any) => <BeerResultPage {...props} />,
+    },
+    {
         path: '/beers/:beerId',
         main: (props: any) => <BeerResultPage {...props} />,
     },

@@ -6,3 +6,4 @@ export * from './FindBeers';
 export * from './beer';
 export * from './suggestChange';
 export * from './CommentBeer';
+export * from './FindBars';

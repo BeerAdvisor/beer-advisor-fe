@@ -16,6 +16,12 @@ export enum Sex {
   MALE = "MALE",
 }
 
+export interface DistanceSearch {
+  lat: string;
+  long: string;
+  distance: number;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

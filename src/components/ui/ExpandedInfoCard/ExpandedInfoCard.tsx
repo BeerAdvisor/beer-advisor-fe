@@ -11,106 +11,53 @@ import { ExpandedInfoCardWrapper, ListItemsContainer, ButtonContainer, ExpandedT
 
 export interface ExpandedInfoCardProps {
     listName: ReactNode;
-    expandedListItems?: ReactNode;
+    expandedListItems?: ExpandedListItem[];
     maxItemsToShow?: number;
-    isBeer?: boolean;
+    sortings: string[];
 }
 
-export interface Bar {
+export interface ExpandedListItem {
     name: string;
-    id: number;
-    labelValues: BarLabelValue;
+    id: number | string;
+    labelValues: UnitedLavelValue;
 }
 
-export interface BarLabelValue {
-    rating: string;
-    price: string;
-    distance: string;
+export type UnitedLavelValue = BeerLabelValue | BarLabelValue; 
+
+export interface BeerLabelValue {
+    rating?: number | null;
+    price?: number;
 }
 
-const DUMMY_BAR_LABEL_VALUE: BarLabelValue = {
-    rating: '',
-    price: '',
-    distance: '',
-};
-
-const bars: Bar[] = [
-    {
-        name: 'Kozlovna',
-        id: 1,
-        labelValues: {
-            rating: '4',
-            price: '2000 CZK',
-            distance: '1000 M',
-        },
-    },
-    {
-        name: 'Mala ryba',
-        id: 2,
-        labelValues: {
-            rating: '3.5',
-            price: '2000 CZK',
-            distance: '12 M',
-        },
-    },
-    {
-        name: 'Mila tchyne',
-        id: 3,
-        labelValues: {
-            rating: '4.2',
-            price: '2000 CZK',
-            distance: '300 M',
-        },
-    },
-    {
-        name: 'Atmoska',
-        id: 4,
-        labelValues: {
-            rating: '4.3',
-            price: '1010 CZK',
-            distance: '300 M',
-        },
-    },
-    {
-        name: 'The Pub',
-        id: 5,
-        labelValues: {
-            rating: '5',
-            price: '100 CZK',
-            distance: '300 M',
-        },
-    },
-    {
-        name: 'U Novaku',
-        id: 6,
-        labelValues: {
-            rating: '5',
-            price: '10 CZK',
-            distance: '100 M',
-        },
-    },
-];
-
-const filterProps = { values: Object.keys(DUMMY_BAR_LABEL_VALUE)};
+export interface BarLabelValue extends BeerLabelValue {
+    distance?: string;
+}
 
 export default ({
     maxItemsToShow = 3,
-    isBeer = false,
     listName,
     expandedListItems,
+    sortings,
     ...other
 }: ExpandedInfoCardProps) => {
+    if (!expandedListItems) {
+        // TODO: fallback
+        return null;
+    }
+
     const isMobile = useMobileDevice();
     const [isShowAll, setShowAll] = useState(false);
-    const [sortedBars, setSortedBars] = useState(sortByLabel('price')(bars));
+    const [sortedItems, setSortedItems] = useState(sortByLabel('price')(expandedListItems));
 
     const handleShowAll = useCallback(() => setShowAll(c => !c), []);
 
     const handleSortChange = useCallback((value: string) => {
-        if (value === 'rating' || value === 'distance' || value === 'price' ) {
-            setSortedBars(sortByLabel(value)(bars));
+        if (value === 'rating' || value === 'price' ) {
+            setSortedItems(sortByLabel(value)(expandedListItems));
         }
     }, []);
+
+    const filterProps = { values: sortings};
 
     return (
         <ExpandedInfoCardWrapper {...other}>
@@ -130,9 +77,9 @@ export default ({
                         name={name}
                         labelValues={labelValues}
                     />
-                ), sortedBars)}
+                ), sortedItems)}
             </ListItemsContainer>
-            {bars.length !== maxItemsToShow && (
+            {expandedListItems.length !== maxItemsToShow && (
                 <ButtonContainer>
                     <FloatingButton onClick={handleShowAll} size="small">
                             {isShowAll ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
@@ -143,8 +90,8 @@ export default ({
     );
 };
 
-const sortByLabel = (filter: keyof BarLabelValue) => sortBy(
-        compose<Bar, BarLabelValue, string>(
+const sortByLabel =  (filter: keyof UnitedLavelValue) => sortBy(
+        compose<ExpandedListItem, any, string>(
             prop(filter),
             prop('labelValues')
     )

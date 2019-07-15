@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { Formik, FormikProps, Field } from 'formik';
 import { MutationFn } from 'react-apollo';
+import { RouteComponentProps } from 'react-router';
 
 import {
     SliderField,
@@ -52,12 +53,12 @@ interface BarForm {
     barForm: BarFormValues;
 }
 
-export interface BarSearchFormProps {
+export interface BarSearchFormProps extends RouteComponentProps {
     variant?: 'small';
     searchBar: MutationFn<any, BarForm>;
 }
 
-const BarSearchForm = ({ variant, searchBar }: BarSearchFormProps) => {
+const BarSearchForm = ({ variant, searchBar, history }: BarSearchFormProps) => {
     const generateForm = useCallback(
         ({ handleSubmit }: FormikProps<BarFormValues>) => (
             <form onSubmit={handleSubmit}>
@@ -105,7 +106,7 @@ const BarSearchForm = ({ variant, searchBar }: BarSearchFormProps) => {
     );
 
     const onSubmit = (values: BarFormValues) => {
-        searchBar({ variables: { barForm: values } }).then(() => {});
+        searchBar({ variables: { barForm: values } }).then(() => history.push('/form/bars'));
     };
 
     return (

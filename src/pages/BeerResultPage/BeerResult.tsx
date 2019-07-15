@@ -1,13 +1,21 @@
 import React from 'react';
+import { Route } from 'react-router';
 
-import { BeerInfoCard } from '../../containers';
+import { BeerInfoCard, BarInfoCard } from '../../containers';
 
 import { BeerResultContainer, SearchResultContainer } from './style';
 
 export const BeerResultPage = (props: any) => (
     <BeerResultContainer>
         <SearchResultContainer>
-            <BeerInfoCard {...props as any} />
+                <Route
+                    path="/form/bars"
+                    component={BarInfoCard}
+                />
+                 <Route
+                    path="/form/beers"
+                    component={BeerInfoCard}
+                />
         </SearchResultContainer>
     </BeerResultContainer>
 );

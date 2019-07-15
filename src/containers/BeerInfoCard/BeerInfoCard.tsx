@@ -21,7 +21,6 @@ export type BeerInfoProps = {
 export const BeerInfoCard = ({
     searchResult,
     history,
-    data,
     ...other
 }: BeerInfoProps) => {
     if (!searchResult.findBeers) {
@@ -41,6 +40,65 @@ export const BeerInfoCard = ({
         />
     );
 };
+
+const bars = [
+    {
+        name: 'Kozlovna',
+        id: 1,
+        labelValues: {
+            rating: 4,
+            price: 2000,
+            distance: '1000 M',
+        },
+    },
+    {
+        name: 'Mala ryba',
+        id: 2,
+        labelValues: {
+            rating: 3.5,
+            price: 2000,
+            distance: '12 M',
+        },
+    },
+    {
+        name: 'Mila tchyne',
+        id: 3,
+        labelValues: {
+            rating: 4.2,
+            price: 2000,
+            distance: '300 M',
+        },
+    },
+    {
+        name: 'Atmoska',
+        id: 4,
+        labelValues: {
+            rating: 4.3,
+            price: 1010,
+            distance: '300 M',
+        },
+    },
+    {
+        name: 'The Pub',
+        id: 5,
+        labelValues: {
+            rating: 5,
+            price: 100,
+            distance: '300 M',
+        },
+    },
+    {
+        name: 'U Novaku',
+        id: 6,
+        labelValues: {
+            rating: 5,
+            price: 10,
+            distance: '100 M',
+        },
+    },
+];
+
+const beerSortings = ['price', 'rating', 'distance'];
 
 const mapBeerInfoCards = (
     history: History<any>,
@@ -72,6 +130,8 @@ const mapBeerInfoCards = (
                 <ExpandedInfoCard
                     key={id}
                     listName={listHeader}
+                    expandedListItems={bars}
+                    sortings={beerSortings}
                 />
             ),
         };
