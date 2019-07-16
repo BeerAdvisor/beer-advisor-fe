@@ -58,6 +58,7 @@ export const GET_BEER_INFO = gql`
             photo
             avgRating
             beerComments {
+                id
                 user {
                     nickname
                 }
@@ -85,6 +86,7 @@ export const GET_BAR_INFO = gql`
             openTime
             closeTime
             barComments {
+                id
                 user {
                     nickname
                 }

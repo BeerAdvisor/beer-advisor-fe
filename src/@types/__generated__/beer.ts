@@ -13,6 +13,7 @@ export interface beer_beer_beerComments_user {
 
 export interface beer_beer_beerComments {
   __typename: "BeerComment";
+  id: string;
   user: beer_beer_beerComments_user | null;
   comment: string;
 }

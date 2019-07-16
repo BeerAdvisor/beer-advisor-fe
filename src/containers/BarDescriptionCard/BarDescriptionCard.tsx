@@ -123,8 +123,9 @@ export const BarDescriptionCard = ({
                             ? map<
                                 bar_bar_barComments,
                                 JSX.Element
-                            >(({ user, comment }) => (
+                            >(({ user, comment, id }) => (
                                 <CommentCard
+                                    key={id}
                                     author={user ? user.nickname : 'Guest'}
                                     comment={comment}
                                 />

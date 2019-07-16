@@ -13,6 +13,7 @@ export interface bar_bar_barComments_user {
 
 export interface bar_bar_barComments {
   __typename: "BarComment";
+  id: string;
   user: bar_bar_barComments_user | null;
   comment: string;
 }
