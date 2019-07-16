@@ -41,7 +41,7 @@ const routes = [
     },
     {
         path: '/login',
-        main: () => <LoginPage />,
+        main: (props: any) => <LoginPage {...props} />,
     },
     {
         path: '/form',
