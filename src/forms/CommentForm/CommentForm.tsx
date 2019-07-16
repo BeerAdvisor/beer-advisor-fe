@@ -6,6 +6,7 @@ import { FormixInputField } from '../../components/formix';
 import { CommentBeerVariables } from '../../@types';
 
 import { LimitedWidthButton } from './style';
+import { CommentBarVariables } from '../../@types/__generated__/CommentBar';
 
 const renderCommentForm = ({ handleSubmit }: FormikProps<any>) => (
     <form onSubmit={handleSubmit}>
@@ -26,13 +27,20 @@ const renderCommentForm = ({ handleSubmit }: FormikProps<any>) => (
 type SubmitCommentVariables = Pick<CommentBeerVariables, 'comment'>;
 
 export interface CommentFormProps {
-    submitComment: MutationFn<any, CommentBeerVariables>;
+    submitBeerComment?: MutationFn<any, CommentBeerVariables>;
+    submitBarComment?: MutationFn<any, CommentBarVariables>;
     id: string;
 }
 
-const CommentForm = ({ id, submitComment,  ...other }: CommentFormProps) => {
+const CommentForm = ({ id, submitBeerComment, submitBarComment,  ...other }: CommentFormProps) => {
     const onSubmit = ({ comment }: SubmitCommentVariables, { resetForm }: FormikActions<SubmitCommentVariables>) => {
-        submitComment({ variables: { beerId: id, comment } }).then(() => resetForm());
+        if (submitBeerComment) {
+            submitBeerComment({ variables: { beerId: id, comment } }).then(() => resetForm());
+        }
+
+        if (submitBarComment) {
+            submitBarComment({ variables: { barId: id, comment } }).then(() => resetForm());
+        }
     };
 
     return (

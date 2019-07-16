@@ -1,1 +1,1 @@
-export { default as BarDescriptionCard } from './BarDescriptionCard';
+export { default as BarDescriptionCard } from './Container';

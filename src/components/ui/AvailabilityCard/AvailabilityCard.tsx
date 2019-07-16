@@ -3,6 +3,7 @@ import { Typography } from '@material-ui/core';
 import { map, memoizeWith, identity } from 'ramda';
 
 import { SmallButton } from '../Button';
+import { CarouselCardProps } from '../CarouselCard';
 import { useMobileDevice, useTabletDevice, useNotebookDevice } from '../../../utils';
 
 import { AvailabilityCardWrapper, ButtonWrapper, SortingLink, SortingLinksWrapper, AvailabilityCarousel} from './style';
@@ -63,10 +64,17 @@ export interface SortingLink {
     selected?: boolean;
 }
 
+interface AvailabilityCardButtonProps {
+    onClick: () => void;
+    children: string;
+    color: string;
+}
+
 export interface AvailabilityCardProps {
     sortingLinks?: SortingLink[];
-    buttonClick?: () => void;
     carouselHeader?: ReactNode;
+    buttonProps: AvailabilityCardButtonProps;
+    carouselCards?: CarouselCardProps[];
 }
 const useItemsToShow = () => {
     let itemsToShow = 4;
@@ -84,16 +92,18 @@ const useItemsToShow = () => {
     return itemsToShow;
 };
 
-const AvailabilityCard = ({ sortingLinks, buttonClick, carouselHeader, ...other }: AvailabilityCardProps) => {
+const AvailabilityCard = ({ sortingLinks, carouselCards, buttonProps, carouselHeader, ...other }: AvailabilityCardProps) => {
     const itemsToShow = useItemsToShow();
 
     return (
         <AvailabilityCardWrapper {...other}>
             <Typography variant="body1">{carouselHeader}</Typography>
-            <AvailabilityCarousel cards={DUMMY_CAROUSEL_CARD} maxToShow={itemsToShow} />
-                {sortingLinks && <SortingLinksWrapper>Sort by:{mapSortedLinks(sortingLinks)}</SortingLinksWrapper>}
+            <AvailabilityCarousel cards={carouselCards ? carouselCards : DUMMY_CAROUSEL_CARD} maxToShow={itemsToShow} />
+            {sortingLinks && 
+                <SortingLinksWrapper>Sort by:{mapSortedLinks(sortingLinks)}</SortingLinksWrapper>
+            }
             <ButtonWrapper>
-                <SmallButton onClick={buttonClick} variant="outlined" color="secondary">Show all bars</SmallButton>
+                <SmallButton {...buttonProps} variant="outlined" />
             </ButtonWrapper>
         </AvailabilityCardWrapper>
     );

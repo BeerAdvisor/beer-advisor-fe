@@ -16,6 +16,7 @@ export interface FindBars_findBars_barRating {
 export interface FindBars_findBars_beerList_items_beer {
   __typename: "Beer";
   id: string;
+  photo: string | null;
   name: string;
   avgRating: number | null;
 }

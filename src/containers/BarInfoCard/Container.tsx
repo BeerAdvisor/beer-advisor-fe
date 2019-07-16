@@ -34,6 +34,7 @@ const FIND_BARS = gql`
                     price
                     beer {
                         id
+                        photo
                         name
                         avgRating
                     }

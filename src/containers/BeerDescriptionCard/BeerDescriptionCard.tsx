@@ -54,6 +54,12 @@ export const BeerDescriptionCard = ({
         { name: 'Distance', handler: handleSorting, selected: selected === 1 },
     ];
 
+    const availabilityCardButtonProps = {
+        onClick: handleShowAllBars,
+        children: 'Show all bars',
+        color: 'secondary',
+    };
+
     return (
         <Query query={GET_BEER_INFO} variables={{ beerId }}>
             {({ data }: GuaranteedQueryResult<beer>) => (
@@ -101,7 +107,7 @@ export const BeerDescriptionCard = ({
                     <VerticalFlexBoxWithMargin>
                         <AvailabilityCard
                             carouselHeader={`${data.beer.name} in bars`}
-                            buttonClick={handleShowAllBars}
+                            buttonProps={availabilityCardButtonProps}
                             sortingLinks={sortingLinks}
                         />
                         <CommentsBox>

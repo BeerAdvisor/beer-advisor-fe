@@ -98,6 +98,7 @@ export const GET_BAR_INFO = gql`
                     price
                     beer {
                         id
+                        photo
                         name
                         avgRating
                     }

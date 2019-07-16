@@ -25,6 +25,7 @@ export interface bar_bar_barRating {
 export interface bar_bar_beerList_items_beer {
   __typename: "Beer";
   id: string;
+  photo: string | null;
   name: string;
   avgRating: number | null;
 }

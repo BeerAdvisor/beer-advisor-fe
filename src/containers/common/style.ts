@@ -4,7 +4,6 @@ import { SMALL_BP_DOWN } from '../../theme';
 export const DescriptionChildrenWrapper = styled.div`
     margin-left: 3rem;
     margin-right: 1rem;
-    width: 100%;
     ${SMALL_BP_DOWN} {
         margin-left: 0;
         margin-right: 0;

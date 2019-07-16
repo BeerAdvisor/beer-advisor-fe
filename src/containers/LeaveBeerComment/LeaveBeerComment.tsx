@@ -18,7 +18,7 @@ export interface CommentProps {
 
 const LeaveBeerComment = ({ id }: CommentProps) => (
     <Mutation mutation={COMMENT_BEER_MUTATION} refetchQueries={[{ query: GET_BAR_INFO, variables: { beerId: id } }]}>
-        {(mutation: any) => <CommentForm id={id} submitComment={mutation} />}
+        {(mutation: any) => <CommentForm id={id} submitBeerComment={mutation} />}
     </Mutation>
 );
 
