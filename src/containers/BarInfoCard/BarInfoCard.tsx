@@ -3,9 +3,9 @@ import { isEmpty, map, memoizeWith, identity } from 'ramda';
 import { RouteComponentProps } from 'react-router';
 import { History } from 'history';
 
-import { FindBars, FindBars_findBars, FindBars_findBars_beerList_items } from '../../@types';
-import { ExpandableInfoList, ExpandedInfoCard, Link } from '../../components';
-import { BeerLink } from '../../components/ui/Link/Link';
+import { FindBars, FindBars_findBars } from '../../@types';
+import { ExpandableInfoList, ExpandedInfoCard } from '../../components';
+import { BarLink } from '../../components/ui/Link/Link';
 
 export interface BarRouteParams {
     barId: string;
@@ -59,7 +59,7 @@ const mapBarInfoCards = (
         const listHeader = (
         <>
             Beers you can try in{' '}
-            <BeerLink to={`/form/bar/${id}`}>{name}</BeerLink>
+            <BarLink to={`/form/bar/${id}`}>{name}</BarLink>
         </>
         );
 

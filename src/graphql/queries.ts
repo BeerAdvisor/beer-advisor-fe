@@ -75,3 +75,34 @@ export const GET_BEER_INFO = gql`
         }
     }
 `;
+
+export const GET_BAR_INFO = gql`
+    query bar($barId: ID!) {
+        bar(id: $barId) {
+            name
+            id
+            address
+            openTime
+            closeTime
+            barComments {
+                user {
+                    nickname
+                }
+                comment
+            }
+            barRating {
+                rating
+            }
+            beerList {
+                items {
+                    price
+                    beer {
+                        id
+                        name
+                        avgRating
+                    }
+                }
+            }
+        }
+    }
+`;

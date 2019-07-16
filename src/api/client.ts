@@ -65,7 +65,7 @@ const defaults: InitialState = {
         filter: 'Distance',
         __typename: 'barForm',
     },
-    isMainFormOpened: false,
+    isMainFormOpened: true,
 };
 
 export const resolvers: Resolvers = {

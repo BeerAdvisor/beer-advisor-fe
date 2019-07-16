@@ -15,6 +15,7 @@ import {
     DescriptionCardFormLabel,
     FavoriteButtonWrapper,
 } from './style';
+import { bar_bar } from '../../../@types/__generated__/bar';
 
 export interface DescriptionCardProps {
     beer?: beer_beer;
@@ -45,6 +46,7 @@ export const DescriptionCard = ({
             </DescriptionCardTopWrapper>
             <DescriptionCardBottomWrapper>
                 {beer && getBeerDescription(beer)}
+                {bar && getBarDescription(bar)}
                 {ratingComponent}
                 <SmallButton onClick={onChangeSuggest} variant="outlined" color="primary">Suggest change</SmallButton>
             </DescriptionCardBottomWrapper>
@@ -54,7 +56,7 @@ export const DescriptionCard = ({
 
 const createDescriptionField = (
     name: string,
-    value: string | null = 'Unknown'
+    value: string | null | number = 'Unknown'
 ) => (
     value && 
     <DescriptionNameValueWrapper>
@@ -72,6 +74,19 @@ const getBeerDescription = (beer: beer_beer) => (
         {createDescriptionField('Type', beer.type ? beer.type.name : undefined)}
         {createDescriptionField('ABV', beer.strong)}
         {createDescriptionField('Minimum Price', 'Not known')}
+    </>
+);
+
+const getBarDescription = (bar: bar_bar) => (
+    <>
+        {createDescriptionField(
+            'Address',
+            bar.address
+        )}
+        {createDescriptionField('Open hours', `${bar.openTime} - ${bar.closeTime}`)}
+        {/* TODO: Force in the API */}
+        {createDescriptionField('Kitchen', 'Missing in the API')}
+        {createDescriptionField('Number of beers', bar.beerList.items ? bar.beerList.items.length : 0)}
     </>
 );
 

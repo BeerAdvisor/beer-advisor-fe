@@ -13,4 +13,9 @@ export const BeerLink = styled(RouterLink)`
     color: ${props => props.theme.palette.primary.main};
 `;
 
+export const BarLink = styled(RouterLink)`
+    cursor: pointer;
+    color: ${props => props.theme.palette.secondary.main};
+`;
+
 export default Link;

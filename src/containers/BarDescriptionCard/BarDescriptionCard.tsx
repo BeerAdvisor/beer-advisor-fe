@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { Fade } from '@material-ui/core';
 import { map } from 'ramda';
 
-import { Query, GET_BEER_INFO } from '../../graphql';
+import { Query, GET_BAR_INFO } from '../../graphql';
 import {
     DescriptionCard,
     AvailabilityCard,
@@ -21,23 +21,26 @@ import { VerticalFlexBoxWithMargin } from '../../commonStyles';
 import { CommentsBox } from '../../components/ui/CommentsBox/CommentsBox';
 import { LeaveRating } from '../LeaveRating';
 import { LeaveBeerComment } from '../LeaveBeerComment';
-import { DescriptionChildrenWrapper, DescriptionCardContainer } from '../common';
-
-import { SUGGEST_BEER_CHANGE_QUERY } from './graphql';
+import {
+    DescriptionCardContainer,
+    DescriptionChildrenWrapper,
+} from '../common';
+import { SUGGEST_BEER_CHANGE_QUERY } from '../BeerDescriptionCard/graphql';
+import { bar } from '../../@types/__generated__/bar';
 
 export interface BeerDescriptionCardProps extends RouteComponentProps {
-    beerId: string;
+    barId: string;
 }
-export const BeerDescriptionCard = ({
-    beerId,
+export const BarDescriptionCard = ({
+    barId,
     history,
     ...other
 }: BeerDescriptionCardProps) => {
     const [selected, setSelected] = useState(0);
-    const [beerEditMode, setBeerEditMode] = useState(false);
+    const [barEditMode, setBarEditMode] = useState(false);
 
     const handleSetBeerEditMode = useCallback(
-        () => setBeerEditMode(editMode => !editMode),
+        () => setBarEditMode(editMode => !editMode),
         []
     );
     const handleSorting = useCallback(
@@ -45,7 +48,7 @@ export const BeerDescriptionCard = ({
         []
     );
     const handleShowAllBars = useCallback(
-        () => history.push(`/form/beers/${beerId}`),
+        () => history.push(`/form/beers/${barId}`),
         []
     );
 
@@ -55,17 +58,17 @@ export const BeerDescriptionCard = ({
     ];
 
     return (
-        <Query query={GET_BEER_INFO} variables={{ beerId }}>
-            {({ data }: GuaranteedQueryResult<beer>) => (
+        <Query query={GET_BAR_INFO} variables={{ barId }}>
+            {({ data }: GuaranteedQueryResult<bar>) => (
                 <DescriptionCardContainer>
-                    <Fade in={!beerEditMode}>
-                        {!beerEditMode ? (
+                    <Fade in={!barEditMode}>
+                        {!barEditMode ? (
                             <DescriptionChildrenWrapper>
                                 <DescriptionCard
                                     onChangeSuggest={handleSetBeerEditMode}
-                                    beer={data.beer}
+                                    bar={data.bar}
                                     ratingComponent={
-                                        <LeaveRating isBeer id={data.beer.id} />
+                                        <LeaveRating id={data.bar.id} />
                                     }
                                     {...other}
                                 />
@@ -74,7 +77,7 @@ export const BeerDescriptionCard = ({
                             <div />
                         )}
                     </Fade>
-                    <Fade in={beerEditMode}>
+                    {/* <Fade in={beerEditMode}>
                         {beerEditMode ? (
                             <Query query={SUGGEST_BEER_CHANGE_QUERY}>
                                 {({
@@ -119,11 +122,11 @@ export const BeerDescriptionCard = ({
                             : <span>{`Be the first to leave a comment about ${data.beer.name}`}</span>
                         }
                         </CommentsBox>
-                    </VerticalFlexBoxWithMargin>
+                    </VerticalFlexBoxWithMargin> */}
                 </DescriptionCardContainer>
             )}
         </Query>
     );
 };
 
-export default BeerDescriptionCard;
+export default BarDescriptionCard;

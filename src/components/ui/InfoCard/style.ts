@@ -103,6 +103,10 @@ export const BottomLinkContainer = styled.span`
     align-self: center;
     color: ${props => props.color === 'primary' ? props.theme.palette.primary.main : props.theme.palette.secondary.main};
 
+    
+    &:hover {
+        text-decoration: underline;
+    }
     ${SMALL_BP_UP} {
         left: 45%;
         bottom: 5%;
@@ -156,8 +160,4 @@ export const MobileInfoCardTop = styled.div`
 
 export const BottomLink = styled.span`
     font-size: 0.8rem;
-    
-    &:hover {
-        text-decoration: underline;
-    }
 `;

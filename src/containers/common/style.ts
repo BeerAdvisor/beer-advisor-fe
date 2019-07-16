@@ -1,7 +1,17 @@
 import styled from '../../styled-components';
 import { SMALL_BP_DOWN } from '../../theme';
 
-export const BeerDescriptionCardContainer = styled.div`
+export const DescriptionChildrenWrapper = styled.div`
+    margin-left: 3rem;
+    margin-right: 1rem;
+    width: 100%;
+    ${SMALL_BP_DOWN} {
+        margin-left: 0;
+        margin-right: 0;
+    }
+`;
+
+export const DescriptionCardContainer = styled.div`
     display: flex;
     width: 100%;
     box-sizing: border-box;
@@ -11,15 +21,5 @@ export const BeerDescriptionCardContainer = styled.div`
         &>* {
             margin-bottom: 1rem;
         }
-    }
-`;
-
-export const BeerDescriptionChildrenWrapper = styled.div`
-    margin-left: 3rem;
-    margin-right: 1rem;
-    width: 100%;
-    ${SMALL_BP_DOWN} {
-        margin-left: 0;
-        margin-right: 0;
     }
 `;

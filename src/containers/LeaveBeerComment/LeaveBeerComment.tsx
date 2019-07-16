@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import { Mutation, GET_BEER_INFO } from '../../graphql';
+import { Mutation, GET_BAR_INFO } from '../../graphql';
 import { CommentForm } from '../../forms/CommentForm';
 
 export const COMMENT_BEER_MUTATION = gql`
@@ -17,7 +17,7 @@ export interface CommentProps {
 }
 
 const LeaveBeerComment = ({ id }: CommentProps) => (
-    <Mutation mutation={COMMENT_BEER_MUTATION} refetchQueries={[{ query: GET_BEER_INFO, variables: { beerId: id } }]}>
+    <Mutation mutation={COMMENT_BEER_MUTATION} refetchQueries={[{ query: GET_BAR_INFO, variables: { beerId: id } }]}>
         {(mutation: any) => <CommentForm id={id} submitComment={mutation} />}
     </Mutation>
 );
