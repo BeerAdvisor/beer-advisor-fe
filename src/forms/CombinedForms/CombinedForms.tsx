@@ -1,11 +1,12 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import { ApolloClient } from 'apollo-boost';
 import { Close as CloseIcon } from '@material-ui/icons';
+import { MutationFn } from 'react-apollo';
 // @ts-ignore
 import Div100vh from 'react-div-100vh';
 
-import { MainForm, MainFormProps } from '../MainForm';
+import BarSearchForm, { BarForm } from '../MainForm/BarSearchForm';
+import { BeerSearchForm, BeerSearchFormProps } from '../MainForm';
 import { Switch } from '../../components';
 import { ToggleFormMobileButton } from '../../containers';
 import {
@@ -16,18 +17,16 @@ import {
     CLOSE_FORM_MUTATION,
     SEARCH_BAR_MUTATION,
 } from '../../graphql';
-import BarSearchForm from '../MainForm/BarSearchForm';
 import { useMobileDevice } from '../../utils';
 
 import {
-    SwitchWrapper,
     StyledSwipeableViews,
     CombinedFormsContainer,
     RightCornerIconButton,
     CombinedFormsWrapper,
 } from './style';
 
-export type CombinedFormsProps = MainFormProps;
+export type CombinedFormsProps = BeerSearchFormProps;
 
 export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
     const isMobile = useMobileDevice();
@@ -54,9 +53,9 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
                 index={Number(isBarForm)}
                 containerStyle={{ width: '100%' }}
             >
-                <MainForm variant={finalVaraint} {...layoutProps} />
+                <BeerSearchForm variant={finalVaraint} {...layoutProps} />
                 <Mutation mutation={SEARCH_BAR_MUTATION}>
-                    {(searchBar: () => Promise<any>) => 
+                    {(searchBar: MutationFn<any, BarForm>) => 
                         <BarSearchForm searchBar={searchBar} variant={finalVaraint} {...layoutProps} />
                     }
                 </Mutation>

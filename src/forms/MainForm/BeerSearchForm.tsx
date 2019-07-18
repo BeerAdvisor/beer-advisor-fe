@@ -23,7 +23,7 @@ import {
     MainFormContainerProps,
 } from './style';
 
-export interface MainFormProps
+export interface BeerSearchFormProps
     extends RouteComponentProps,
         MainFormContainerProps,
         BeerForm {
@@ -66,7 +66,7 @@ const onSubmit = memoizeWith(
     }
 );
 
-const MainForm = ({
+const BeerSearchForm = ({
     searchFieldLabel,
     searchFieldPlaceholder,
     sliderMaxValue,
@@ -78,7 +78,7 @@ const MainForm = ({
     data,
     client,
     beerTypesData,
-}: MainFormProps) => {
+}: BeerSearchFormProps) => {
     const searchFieldProps = {
         placeholder: searchFieldPlaceholder,
         label: searchFieldLabel,
@@ -179,4 +179,4 @@ const MainForm = ({
     );
 };
 
-export default MainForm;
+export default BeerSearchForm;

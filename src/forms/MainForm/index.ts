@@ -1,3 +1,3 @@
-export { default as MainForm } from './graphql';
+export { default as BeerSearchForm } from './graphql';
 
-export * from './MainForm';
+export * from './BeerSearchForm';

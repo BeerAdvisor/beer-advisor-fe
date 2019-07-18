@@ -55,6 +55,7 @@ const getFindBeersQuery: ((props: BeerInfoProps) => QueryOpts<FindBeersVariables
 
     if (beerForm) {
         const { beerName, beerType, strongRange } = beerForm;
+
         variables = {
             name: beerName || '',
             type: beerType || '',

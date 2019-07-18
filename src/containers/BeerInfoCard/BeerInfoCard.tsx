@@ -27,7 +27,7 @@ export const BeerInfoCard = ({
         return null;
     }
 
-    const expandableInfoCards = memoMapBeerCards(
+    const expandableInfoCards = mapBeerInfoCards(
         history,
         searchResult.findBeers
     );

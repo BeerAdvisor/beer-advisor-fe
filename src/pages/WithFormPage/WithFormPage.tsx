@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import { CombinedForms } from '../../forms';
-import BeerResultPage from '../BeerResultPage';
+import BeerResultPage from '../SearchResultPage';
 import { BeerInfoPage } from '../BeerInfoPage';
 import { BarInfoPage } from '../BarInfoPage';
 

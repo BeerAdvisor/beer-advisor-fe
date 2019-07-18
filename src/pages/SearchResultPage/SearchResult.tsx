@@ -3,10 +3,10 @@ import { Route } from 'react-router';
 
 import { BeerInfoCard, BarInfoCard } from '../../containers';
 
-import { BeerResultContainer, SearchResultContainer } from './style';
+import { SearchResultWrapper, SearchResultContainer } from './style';
 
-export const BeerResultPage = (props: any) => (
-    <BeerResultContainer>
+export const SearchResultPage = (props: any) => (
+    <SearchResultWrapper>
         <SearchResultContainer>
                 <Route
                     path="/form/bars"
@@ -17,7 +17,7 @@ export const BeerResultPage = (props: any) => (
                     component={BeerInfoCard}
                 />
         </SearchResultContainer>
-    </BeerResultContainer>
+    </SearchResultWrapper>
 );
 
-export default BeerResultPage;
+export default SearchResultPage;

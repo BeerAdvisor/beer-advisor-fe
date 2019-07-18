@@ -49,7 +49,7 @@ const filterProps = {
     label: 'Filter by',
 };
 
-interface BarForm {
+export interface BarForm {
     barForm: BarFormValues;
 }
 

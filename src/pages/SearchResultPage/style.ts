@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { SMALL_BP_UP } from '../../theme';
 
-export const BeerResultContainer = styled.div`
+export const SearchResultWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;

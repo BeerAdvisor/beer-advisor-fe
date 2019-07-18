@@ -24,7 +24,7 @@ export const BarInfoCard = ({
         return null;
     }
 
-    const expandableInfoCards = memoMapBeerCards(
+    const expandableInfoCards = mapBarInfoCards(
         history,
         searchResult.findBars
     );
@@ -94,7 +94,8 @@ const mapBarInfoCards = (
     }, bars);
 };
 
-const memoMapBeerCards = memoizeWith(
+// TODO: this is premature optimization, more over it doesn't work. Identity is shallow equal.
+const memoMapBarCards = memoizeWith(
     identity,
     mapBarInfoCards
 );
