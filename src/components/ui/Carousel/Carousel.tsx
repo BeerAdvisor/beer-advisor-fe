@@ -55,10 +55,10 @@ const Carousel = ({ cards, maxToShow = 4, ...other }: CarouselProps) => {
             >
             {mapIndexed((carouselCards: CarouselCardProps[], higherIndex) => (
                 <CarouselContainer hide={higherIndex !== activeValue} key={`-.-${higherIndex}`}>
-                    {mapIndexed(({ imageUrl, cardName, cardValue }: CarouselCardProps, index) => (
+                    {mapIndexed(({ imageUrl, id, cardName, cardValue }: CarouselCardProps, index) => (
                         (index < maxToShow) && 
                             <CarouselCard
-                                key={`${cardName}${index}`}
+                                key={id}
                                 imageUrl={imageUrl}
                                 cardName={cardName}
                                 cardValue={cardValue}

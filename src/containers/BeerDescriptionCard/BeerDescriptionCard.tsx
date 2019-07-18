@@ -3,16 +3,16 @@ import { RouteComponentProps } from 'react-router';
 import { Fade } from '@material-ui/core';
 import { map } from 'ramda';
 
-import { Query, GET_BEER_INFO } from '../../graphql';
+import { Query } from '../../graphql';
 import {
     DescriptionCard,
     AvailabilityCard,
     CommentCard,
 } from '../../components';
 import {
-    beer,
     suggestChange,
     beer_beer_beerComments,
+    beer_beer,
 } from '../../@types';
 import { GuaranteedQueryResult } from '../../@types/CustomGqlTypes';
 import { SortingLink } from '../../components/ui/AvailabilityCard/AvailabilityCard';
@@ -27,9 +27,11 @@ import { SUGGEST_BEER_CHANGE_QUERY } from './graphql';
 
 export interface BeerDescriptionCardProps extends RouteComponentProps {
     beerId: string;
+    beer: beer_beer;
 }
 export const BeerDescriptionCard = ({
     beerId,
+    beer,
     history,
     ...other
 }: BeerDescriptionCardProps) => {
@@ -60,18 +62,27 @@ export const BeerDescriptionCard = ({
         color: 'secondary',
     };
 
+    const { includedIn: items } = beer;
+    const carouselItems = items 
+    ? items.map(({ beerList: { bar }, price }) => bar && ({
+        id: bar.id,
+        imageUrl: bar.photos && bar.photos[0] || undefined,
+        cardName:  bar.name,
+        cardValue: `${price}CZK`,
+    }))
+    : [];
+    debugger;
+
     return (
-        <Query query={GET_BEER_INFO} variables={{ beerId }}>
-            {({ data }: GuaranteedQueryResult<beer>) => (
                 <DescriptionCardContainer>
                     <Fade in={!beerEditMode}>
                         {!beerEditMode ? (
                             <DescriptionChildrenWrapper>
                                 <DescriptionCard
                                     onChangeSuggest={handleSetBeerEditMode}
-                                    beer={data.beer}
+                                    beer={beer}
                                     ratingComponent={
-                                        <LeaveRating isBeer id={data.beer.id} />
+                                        <LeaveRating isBeer id={beer.id} />
                                     }
                                     {...other}
                                 />
@@ -93,7 +104,7 @@ export const BeerDescriptionCard = ({
                                         <SuggestChange
                                             beerTypes={beerTypesData}
                                             breweries={breweries}
-                                            beer={data.beer}
+                                            beer={beer}
                                             onClear={handleSetBeerEditMode}
                                             {...other}
                                         />
@@ -104,15 +115,18 @@ export const BeerDescriptionCard = ({
                             <div />
                         )}
                     </Fade>
-                    <VerticalFlexBoxWithMargin>
+                    <VerticalFlexBoxWithMargin style={{ width: '100%' }}>
                         <AvailabilityCard
-                            carouselHeader={`${data.beer.name} in bars`}
+                            carouselHeader={`${beer.name} in bars`}
                             buttonProps={availabilityCardButtonProps}
                             sortingLinks={sortingLinks}
+                            // Wrong typing are comming from BE
+                            // @ts-ignore
+                            carouselCards={carouselItems}
                         />
                         <CommentsBox>
-                            <LeaveBeerComment id={data.beer.id} />
-                            {data.beer.beerComments 
+                            <LeaveBeerComment id={beer.id} />
+                            {beer.beerComments 
                             ? map<
                                 beer_beer_beerComments,
                                 JSX.Element
@@ -122,14 +136,12 @@ export const BeerDescriptionCard = ({
                                     author={user ? user.nickname : 'Guest'}
                                     comment={comment}
                                 />
-                            ))(data.beer.beerComments)
-                            : <span>{`Be the first to leave a comment about ${data.beer.name}`}</span>
+                            ))(beer.beerComments)
+                            : <span>{`Be the first to leave a comment about ${beer.name}`}</span>
                         }
                         </CommentsBox>
                     </VerticalFlexBoxWithMargin>
                 </DescriptionCardContainer>
-            )}
-        </Query>
     );
 };
 

@@ -61,7 +61,8 @@ export const BarDescriptionCard = ({
 
     const { beerList: { items } } = bar;
     const carouselItems = items 
-    ? items.map(({ beer: { photo, name }, price }) => ({
+    ? items.map(({ beer: { photo, id, name }, price }) => ({
+        id,
         imageUrl: photo || undefined,
         cardName: name,
         cardValue: `${price}CZK`,
@@ -108,7 +109,7 @@ export const BarDescriptionCard = ({
                             </Query>
                         ) : (
                             <div />
-                        )}Hey, @Twitter, am I using a version for blind people? 
+                        )}
                         </Fade> */ }
                     <VerticalFlexBoxWithMargin style={{ width: '100%' }}>
                         <AvailabilityCard

@@ -109,7 +109,7 @@ const mapBeerInfoCards = (
         history.push(`/form/beer/${beerId}`);
     };
 
-    return map(({ name, avgRating, strong, type, id }: FindBeers_findBeers) => {
+    return map(({ name, avgRating, strong, photo, type, id }: FindBeers_findBeers) => {
         const labelValues = [
             { label: 'Rating', value: avgRating },
             { label: 'Strong', value: strong },
@@ -125,6 +125,7 @@ const mapBeerInfoCards = (
         return {
             name,
             labelValues,
+            avatar: photo || '',
             rating: avgRating,
             onInfoClick: handleInfoClick(id),
             expandedContent: (

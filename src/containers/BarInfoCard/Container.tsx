@@ -2,8 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { RouteComponentProps } from 'react-router';
 
-import { withLoadingHandler, Query, GET_BAR_FORM_DATA } from '../../graphql';
-import { BeerInfoCardStub } from '../BeerInfoCard/style';
+import { Query, GET_BAR_FORM_DATA } from '../../graphql';
 
 import BarInfoCard, { BarRouteParams, BarInfoProps } from './BarInfoCard';
 
@@ -26,9 +25,8 @@ const FIND_BARS = gql`
             closeTime
             phone
             address
-            barRating {
-                rating
-            }
+            photos
+            avgRating
             beerList {
                 items {
                     price

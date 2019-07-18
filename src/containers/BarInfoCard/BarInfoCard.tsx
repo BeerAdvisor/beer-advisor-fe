@@ -49,7 +49,7 @@ const mapBarInfoCards = (
         history.push(`/form/bar/${barId}`);
     };
 
-    return map(({ name, id, address, barRating, openTime, closeTime, beerList }: FindBars_findBars) => {
+    return map(({ name, id, address, photos, avgRating, openTime, closeTime, beerList }: FindBars_findBars) => {
         const labelValues = [
             { label: 'Address', value: address },
             { label: 'Open hours', value: `${openTime} - ${closeTime}` },
@@ -67,20 +67,23 @@ const mapBarInfoCards = (
 
         let expandedListItems;
         if (items && !isEmpty(items)) {
-            expandedListItems = items.map(({ beer: { name: beerName, id: beerId, avgRating }, price }) => ({
+            expandedListItems = items.map(({ beer: { name: beerName, id: beerId, avgRating: beerRating }, price }) => ({
                 name: beerName,
                 id: beerId,
                 labelValues: {
                     price,
-                    rating: avgRating,
+                    rating: beerRating,
                 },
             }));
         }
 
+        const photo = photos ? photos[0] : '';
+
         return {
             name,
+            avatar: photo,
             labelValues,
-            rating: barRating,
+            rating: avgRating,
             onInfoClick: handleInfoClick(id),
             expandedContent: (
                 <ExpandedInfoCard

@@ -117,7 +117,7 @@ export const BottomLinkContainer = styled.span`
     }
 `;
 
-export const LeftDetailContainer = styled.div`
+export const LeftDetailContainer = styled.img`
     width: 9rem;
     height: 9rem;
     margin-right: 1.5rem;

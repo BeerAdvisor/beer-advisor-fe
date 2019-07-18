@@ -6,6 +6,7 @@ import { Rating } from '../Rating';
 import { SmallButton } from '../Button';
 import { beer_beer } from '../../../@types';
 import { FavoriteButton } from '../../Icons';
+import { bar_bar } from '../../../@types/__generated__/bar';
 
 import {
     DescriptionCardWrapper,
@@ -15,12 +16,10 @@ import {
     DescriptionCardFormLabel,
     FavoriteButtonWrapper,
 } from './style';
-import { bar_bar } from '../../../@types/__generated__/bar';
 
 export interface DescriptionCardProps {
     beer?: beer_beer;
-    // TODO: we dont have type for this now, change it later
-    bar?: any;
+    bar?: bar_bar;
     onChangeSuggest?: () => void;
     onAddToFavourite?: (id: string) => void;
     ratingComponent: JSX.Element;
@@ -32,17 +31,20 @@ export const DescriptionCard = ({
     ratingComponent,
     ...other
 }: DescriptionCardProps) => {
+    // TODO: fallback here
+    const logo = (beer ? beer.photo : bar && bar.photos && bar.photos[0]) || '';
+
     return (
         <DescriptionCardWrapper {...other}>
             <FavoriteButtonWrapper>
                     <FavoriteButton />
             </FavoriteButtonWrapper>
             <DescriptionCardTopWrapper>
-                <LogoImage />
+                <LogoImage src={logo} />
                 <Typography variant="h4">
-                    {beer ? beer.name : bar.barName}
+                    {beer ? beer.name : bar && bar.name}
                 </Typography>
-                <Rating filled={beer ? beer.avgRating || 0 : bar.rating} />
+                <Rating filled={beer ? beer.avgRating || 0 : bar && bar.avgRating || 0} />
             </DescriptionCardTopWrapper>
             <DescriptionCardBottomWrapper>
                 {beer && getBeerDescription(beer)}

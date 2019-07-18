@@ -12,6 +12,7 @@ export interface ExpandableInfoListProps {
 
 export interface IExpandableInfoCard {
     name: string;
+    avatar: string;
     labelValues: LabelValue[];
     onInfoClick?: () => void;
 }

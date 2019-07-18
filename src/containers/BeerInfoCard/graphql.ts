@@ -18,20 +18,30 @@ query FindBeers(
     findBeers(
         findBeerInput: { name: $name, type: $type, strong: $strong, brewery: $brewery }
     ) {
-        name,
-        id,
-        strong,
-        photo,
-        avgRating,
+        name
+        id
+        strong
+        photo
+        avgRating
+        includedIn {
+            price
+            beerList{
+              bar {
+                id
+                name
+                photos
+              }
+            }
+          }
         brewery {
-        	name
-        },
+            name
+        }
         type {
-        	name
-        },
+            name
+        }
         beerRating {
-        	rating
-        },
+            rating
+        }
     }
 }
 `;

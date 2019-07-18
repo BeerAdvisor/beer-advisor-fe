@@ -7,49 +7,7 @@ import { CarouselCardProps } from '../CarouselCard';
 import { useMobileDevice, useTabletDevice, useNotebookDevice } from '../../../utils';
 
 import { AvailabilityCardWrapper, ButtonWrapper, SortingLink, SortingLinksWrapper, AvailabilityCarousel} from './style';
-
-const DUMMY_CAROUSEL_CARD = [
-    {
-        imageUrl: 'https://praga-praha.ru/wp-content/uploads/2016/10/%D0%9F%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F-Kozlovna-u-Paukerta-7.jpg',
-        cardName: 'Kozlovna',
-        cardValue: '100CZK',
-    },
-    {
-        imageUrl: 'https://praga-praha.ru/wp-content/uploads/2016/10/%D0%9F%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F-Kozlovna-u-Paukerta-7.jpg',
-        cardName: 'Atmoska',
-        cardValue: '38CZK',
-    },
-    {
-        imageUrl: 'https://praga-praha.ru/wp-content/uploads/2016/10/%D0%9F%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F-Kozlovna-u-Paukerta-7.jpg',
-        cardName: 'The pub',
-        cardValue: '98CZK',
-    },
-    {
-        imageUrl: 'https://praga-praha.ru/wp-content/uploads/2016/10/%D0%9F%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F-Kozlovna-u-Paukerta-7.jpg',
-        cardName: 'Once upon a beer',
-        cardValue: '40CZK',
-    },
-    {
-        imageUrl: 'https://praga-praha.ru/wp-content/uploads/2016/10/%D0%9F%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F-Kozlovna-u-Paukerta-7.jpg',
-        cardName: 'Zhopa',
-        cardValue: '40CZK',
-    },
-    {
-        imageUrl: 'https://praga-praha.ru/wp-content/uploads/2016/10/%D0%9F%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F-Kozlovna-u-Paukerta-7.jpg',
-        cardName: 'Another bar',
-        cardValue: '40CZK',
-    },
-    {
-        imageUrl: 'https://praga-praha.ru/wp-content/uploads/2016/10/%D0%9F%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F-Kozlovna-u-Paukerta-7.jpg',
-        cardName: 'Another bar another',
-        cardValue: '38CZK',
-    },
-    {
-        imageUrl: 'https://praga-praha.ru/wp-content/uploads/2016/10/%D0%9F%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F-Kozlovna-u-Paukerta-7.jpg',
-        cardName: 'Kozlovna',
-        cardValue: '35CZK',
-    },
-];
+import isEmpty from 'ramda/es/isEmpty';
 
 const mapSortedLinks = (sortingLinks: SortingLink[]) => map(({ name, handler, selected }: SortingLink) => (
     <SortingLink key={name}selected={selected} onClick={handler}>{name}</SortingLink>
@@ -74,7 +32,7 @@ export interface AvailabilityCardProps {
     sortingLinks?: SortingLink[];
     carouselHeader?: ReactNode;
     buttonProps: AvailabilityCardButtonProps;
-    carouselCards?: CarouselCardProps[];
+    carouselCards: CarouselCardProps[];
 }
 const useItemsToShow = () => {
     let itemsToShow = 4;
@@ -95,10 +53,20 @@ const useItemsToShow = () => {
 const AvailabilityCard = ({ sortingLinks, carouselCards, buttonProps, carouselHeader, ...other }: AvailabilityCardProps) => {
     const itemsToShow = useItemsToShow();
 
+    if (isEmpty(carouselCards)) {
+        // TODO: Design for this fallback
+        return (
+        <AvailabilityCardWrapper {...other}>
+            <Typography variant="h4">Help us find where we can taste this beer</Typography>
+            <SmallButton variant="outlined">Add bar</SmallButton>
+        </AvailabilityCardWrapper>
+        );
+    }
+
     return (
         <AvailabilityCardWrapper {...other}>
             <Typography variant="body1">{carouselHeader}</Typography>
-            <AvailabilityCarousel cards={carouselCards ? carouselCards : DUMMY_CAROUSEL_CARD} maxToShow={itemsToShow} />
+            <AvailabilityCarousel cards={carouselCards} maxToShow={itemsToShow} />
             {sortingLinks && 
                 <SortingLinksWrapper>Sort by:{mapSortedLinks(sortingLinks)}</SortingLinksWrapper>
             }

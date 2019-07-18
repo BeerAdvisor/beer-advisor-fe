@@ -8,6 +8,7 @@ export interface InfoCardProps extends InfoCardStyledProps {
     labelValues: LabelValue[];
     color?: 'primary' | 'secondary';
     name?: string;
+    avatar?: string;
     bottomLink?: string;
     onClick?: (e: MouseEvent<HTMLDivElement>) => void;
     onInfoClick?: () => void;

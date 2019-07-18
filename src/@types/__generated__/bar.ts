@@ -49,6 +49,8 @@ export interface bar_bar {
   address: string;
   openTime: any | null;
   closeTime: any | null;
+  avgRating: number | null;
+  photos: string[] | null;
   barComments: bar_bar_barComments[] | null;
   barRating: bar_bar_barRating[] | null;
   beerList: bar_bar_beerList;

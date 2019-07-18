@@ -57,6 +57,16 @@ export const GET_BEER_INFO = gql`
             strong
             photo
             avgRating
+            includedIn {
+                price
+                beerList{
+                  bar {
+                    id
+                    name
+                    photos
+                  }
+                }
+              }
             beerComments {
                 id
                 user {
@@ -85,6 +95,8 @@ export const GET_BAR_INFO = gql`
             address
             openTime
             closeTime
+            avgRating
+            photos
             barComments {
                 id
                 user {

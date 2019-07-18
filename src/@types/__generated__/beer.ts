@@ -6,6 +6,24 @@
 // GraphQL query operation: beer
 // ====================================================
 
+export interface beer_beer_includedIn_beerList_bar {
+  __typename: "Bar";
+  id: string;
+  name: string;
+  photos: string[] | null;
+}
+
+export interface beer_beer_includedIn_beerList {
+  __typename: "BeerList";
+  bar: beer_beer_includedIn_beerList_bar | null;
+}
+
+export interface beer_beer_includedIn {
+  __typename: "BeerListItem";
+  price: number;
+  beerList: beer_beer_includedIn_beerList;
+}
+
 export interface beer_beer_beerComments_user {
   __typename: "User";
   nickname: string;
@@ -40,6 +58,7 @@ export interface beer_beer {
   strong: string | null;
   photo: string | null;
   avgRating: number | null;
+  includedIn: beer_beer_includedIn[] | null;
   beerComments: beer_beer_beerComments[] | null;
   brewery: beer_beer_brewery | null;
   type: beer_beer_type | null;

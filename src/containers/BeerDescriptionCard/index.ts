@@ -1,1 +1,1 @@
-export { default as BeerDescriptionCard } from './BeerDescriptionCard';
+export { default as BeerDescriptionCard } from './Container';

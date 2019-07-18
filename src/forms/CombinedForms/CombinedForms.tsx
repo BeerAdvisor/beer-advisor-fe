@@ -46,7 +46,7 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
 
     const content = (
         <CombinedFormsWrapper variant={isMobile ? undefined : variant}>
-        <Switch variant={isMobile ? undefined : variant} onChange={setForm} onText="Bar" offText="Beer" />
+        <Switch variant={finalVaraint} onChange={setForm} onText="Bar" offText="Beer" />
         <CombinedFormsContainer>
             <StyledSwipeableViews
                 axis={'x'}

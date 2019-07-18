@@ -3,6 +3,7 @@ import React from 'react';
 import { StyledCarouselCard, CarouselCardImage } from './style';
 
 export interface CarouselCardProps {
+    id?: string;
     cardName: string;
     cardValue: string;
     imageUrl?: string;
