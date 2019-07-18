@@ -3,6 +3,7 @@ import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 
 import { SMALL_BP_DOWN } from '../../theme';
 import styled from '../../styled-components';
+import { Card } from '../../commonStyles';
 
 export const RightCornerIconButton = styled<any>(IconButton)`
     position: absolute;
@@ -25,27 +26,32 @@ export const StyledSwipeableViews = styled(SwipeableViews)`
 interface CombinedFormsContainerProps { 
     variant?: 'small';
 }
-export const CombinedFormsContainer = styled.div<CombinedFormsContainerProps>`
-    box-shadow: ${props => props.theme.surfaces.shadow_1};
+export const CombinedFormsWrapper = styled.div<CombinedFormsContainerProps>`
     min-width: 20rem;
+    max-width: 39rem;
+    min-height: 31rem;
+    margin: 2rem auto 0;
+
+    &>*:first-child {
+        margin-bottom: 1rem;
+    }
+
+
+    ${props => props.variant === 'small' && `
+        max-width: 20%;
+        margin: 0 auto;
+    `}
+`;
+
+export const CombinedFormsContainer = styled.div`
+    ${Card};
     display: flex;
     flex-direction: column;
-    box-sizing: border-box; 
-    border-radius: ${props => props.theme.borderRadius};
     width: 100%;
-    min-height: 31rem;
     overflow-x: hidden;
-    background-color: ${props => props.theme.palette.light};
     padding: 2rem;
     ${SMALL_BP_DOWN} {
         height: 100%;
         justify-content: flex-start;
     }
-
-    max-width: 39rem;
-    margin: 0 auto;
-
-    ${props => props.variant === 'small' && `
-        max-width: 20%;
-    `}
 `;

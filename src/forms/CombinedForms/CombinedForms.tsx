@@ -24,6 +24,7 @@ import {
     StyledSwipeableViews,
     CombinedFormsContainer,
     RightCornerIconButton,
+    CombinedFormsWrapper,
 } from './style';
 
 export type CombinedFormsProps = MainFormProps;
@@ -45,8 +46,9 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
     };
 
     const content = (
-        <CombinedFormsContainer variant={isMobile ? undefined : variant}>
-            <Switch onChange={setForm} onText="Bar" offText="Beer" />
+        <CombinedFormsWrapper variant={isMobile ? undefined : variant}>
+        <Switch variant={isMobile ? undefined : variant} onChange={setForm} onText="Bar" offText="Beer" />
+        <CombinedFormsContainer>
             <StyledSwipeableViews
                 axis={'x'}
                 index={Number(isBarForm)}
@@ -60,6 +62,7 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
                 </Mutation>
             </StyledSwipeableViews>
         </CombinedFormsContainer>
+        </CombinedFormsWrapper>
     );
 
     return <>{isMobile ? <MobileCombinedForm content={content} /> : content}</>;

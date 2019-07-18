@@ -27,6 +27,7 @@ export const Switch: FunctionComponent<SwitchProps> = ({
     onChange,
     onText,
     offText,
+    variant,
 }) => {
     const [checked, setChecked] = useState(propsChecked);
 
@@ -47,25 +48,26 @@ export const Switch: FunctionComponent<SwitchProps> = ({
 
     const nativeControlProps = {
         checked,
+        variant,
         onClick: handleToggle,
         readOnly: true,
     };
 
-    const switchProps = { disabled, checked };
+    const switchProps = { disabled, checked, variant };
 
     const knob = (
         <React.Fragment>
             <SwitchKnob {...switchProps}>
                     <SwitchOnText>{checked ? onText.toUpperCase() : offText.toUpperCase()}</SwitchOnText>
             </SwitchKnob>
-            <SwitchOffText checked={checked}>{checked ? offText.toUpperCase() : onText.toUpperCase()}</SwitchOffText>
+            <SwitchOffText variant={variant} checked={checked}>{checked ? offText.toUpperCase() : onText.toUpperCase()}</SwitchOffText>
         </React.Fragment>
     );
 
     return (
         <SwitchWrapper>
             <NativeControl {...nativeControlProps} />
-            <SwitchBackground {...switchProps}>{knob}</SwitchBackground>
+            <SwitchBackground variant={variant} {...switchProps}>{knob}</SwitchBackground>
         </SwitchWrapper>
     );
 };

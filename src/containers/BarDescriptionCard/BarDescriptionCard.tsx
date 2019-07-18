@@ -108,7 +108,7 @@ export const BarDescriptionCard = ({
                             </Query>
                         ) : (
                             <div />
-                        )}
+                        )}Hey, @Twitter, am I using a version for blind people? 
                         </Fade> */ }
                     <VerticalFlexBoxWithMargin style={{ width: '100%' }}>
                         <AvailabilityCard
