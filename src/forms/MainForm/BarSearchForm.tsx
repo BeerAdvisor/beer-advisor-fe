@@ -97,7 +97,7 @@ const BarSearchForm = ({ variant, searchBar, history }: BarSearchFormProps) => {
                         <SelectField name="filter" {...filterProps} />
                     )}
                     <ButtonWrapper>
-                        <SmallButton {...searchButtonProps}>Search</SmallButton>
+                        <SmallButton {...searchButtonProps}>Find bar</SmallButton>
                     </ButtonWrapper>
                 </MainFormContainer>
             </form>

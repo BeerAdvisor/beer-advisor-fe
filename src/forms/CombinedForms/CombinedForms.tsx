@@ -36,7 +36,7 @@ export const CombinedForms = ({ variant, ...other }: CombinedFormsProps) => {
 
     const layoutProps = {
         ...other,
-        searchFieldPlaceholder: 'Find a beer', // TODO: constants, export to separate logic components
+        searchFieldPlaceholder: 'e.g. Kozel', // TODO: constants, export to separate logic components
         searchFieldLabel: 'Name',
         selectLabel: 'Type',
         sliderMaxValue: 100,

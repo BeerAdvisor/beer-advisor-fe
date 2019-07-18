@@ -152,7 +152,7 @@ const BeerSearchForm = ({
                         />
                     )}
                     <ButtonWrapper>
-                        <SmallButton {...searchButtonProps}>Search</SmallButton>
+                        <SmallButton {...searchButtonProps}>Find beer</SmallButton>
                     </ButtonWrapper>
                 </MainFormContainer>
             </form>

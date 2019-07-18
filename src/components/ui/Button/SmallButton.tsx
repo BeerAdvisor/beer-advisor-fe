@@ -30,7 +30,8 @@ export const SmallButton = styled(MaterialButton)<any>`
 
     ${props => props.color === 'secondary' && props.variant === 'contained' && `
         color: ${props.theme.palette.light};
-        background-color: ${props.theme.palette.secondary.main};
+        background: linear-gradient(90deg, #006666 0%, #00CCCC 100%);
+        border: none;
     `}
 `;
 

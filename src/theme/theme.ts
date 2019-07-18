@@ -18,8 +18,8 @@ export type Palette = {
 
 const palette: Palette = {
     primary: {
-        main: '#FECC30',
-        light: '#FEC619',
+        main: '#FFBF00',
+        light: '#FBC441',
     },
     secondary: {
         main: '#009B88',
