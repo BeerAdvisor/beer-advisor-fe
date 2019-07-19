@@ -34,7 +34,6 @@ const palette: Palette = {
 const muiTheme = createMuiTheme({
     typography: {
         fontFamily: 'Montserrat',
-        useNextVariants: true,
         h1: {
             color: palette.light,
             fontFamily: 'Raleway',
@@ -131,12 +130,6 @@ const muiTheme = createMuiTheme({
         MuiSvgIcon: {
             root: {
                 width: '1.5em',
-            },
-        },
-        MuiTab: {
-            label: {
-                fontFamily: 'Raleway',
-                fontSize: '24px',
             },
         },
     },

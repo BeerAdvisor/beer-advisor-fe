@@ -6,6 +6,7 @@ import { KeyboardArrowDown, KeyboardArrowUp } from '../../../Icons';
 import { ListItem } from '../../common/ListItem';
 import { FloatingButton } from '../../common/FloatingButton';
 import { mapIndexed, useMobileDevice } from '../../../../utils';
+import { TableRow } from '../../common';
 
 import { ExpandedInfoCardWrapper, ListItemsContainer, ButtonContainer, ExpandedToggleButtonGroup } from './style';
 
@@ -59,8 +60,11 @@ export default ({
 
     const filterProps = { values: sortings};
 
+    const rows = [{ label: 'Zhopa', id: '1', isActive: true }, { label: 'Zhopa2', id: '2' } ];
+
     return (
         <ExpandedInfoCardWrapper {...other}>
+            {/* <TableRow rows={rows} /> */}
             {!isMobile && <Typography variant="subtitle1">{listName}</Typography>}
             <ExpandedToggleButtonGroup
                 isSmall

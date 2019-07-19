@@ -1,14 +1,10 @@
 import React, { Component, Suspense, lazy } from 'react';
-// @ts-ignore
-import JssProvider from 'react-jss/lib/JssProvider';
-import { create } from 'jss';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { install, ThemeProvider as MuiContextThemeProvider  } from '@material-ui/styles';
 import {
-    MuiThemeProvider,
-    createGenerateClassName,
-    jssPreset,
-} from '@material-ui/core/styles';
+    StylesProvider,
+    ThemeProvider as MuiContextThemeProvider,
+} from '@material-ui/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
 import { ApolloProvider } from 'react-apollo';
 
@@ -19,16 +15,6 @@ import GlobalStyle from './theme/globalStyle';
 import { WithFormPage } from './pages';
 import { CombinedForms } from './forms';
 import LoginPage from './pages/LoginPage';
-
-const generateClassName = createGenerateClassName();
-const jss = create({
-    ...jssPreset(),
-    insertionPoint: document.getElementById(
-        'jss-insertion-point'
-    ) as HTMLElement,
-});
-
-install();
 
 // const HomePage =  lazy(() => (import('./pages/HomePage')));
 // const BeerResultPage = lazy(() => (import('./pages/BeerResultPage')));
@@ -58,12 +44,12 @@ const Routes = () => (
             <ErrorBoundary>
                 <Switch>
                     {routes.map((route, index) => (
-                            <Route
-                                key={index}
-                                path={route.path}
-                                exact={route.exact}
-                                component={route.main}
-                            />
+                        <Route
+                            key={index}
+                            path={route.path}
+                            exact={route.exact}
+                            component={route.main}
+                        />
                     ))}
                 </Switch>
             </ErrorBoundary>
@@ -76,12 +62,12 @@ const App = () => (
         <StyledComponentsThemeProvider theme={theme}>
             <MuiThemeProvider theme={theme}>
                 <MuiContextThemeProvider theme={theme}>
-                <JssProvider jss={jss} generateClassName={generateClassName}>
-                    <>
-                        <GlobalStyle />
-                        <Routes />
-                    </>
-                </JssProvider>
+                    <StylesProvider injectFirst>
+                        <>
+                            <GlobalStyle />
+                            <Routes />
+                        </>
+                    </StylesProvider>
                 </MuiContextThemeProvider>
             </MuiThemeProvider>
         </StyledComponentsThemeProvider>

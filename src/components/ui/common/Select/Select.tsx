@@ -1,11 +1,13 @@
 import React, { useState, ChangeEvent, useCallback } from 'react';
 import { FormControl, FormLabel, Input, Select } from '@material-ui/core';
 
+type SelectChangeEvent = React.ChangeEvent<{ name?: string; value: string }>;
+
 export interface SelectBoxProps {
     label?: string;
     items: JSX.Element[];
     name: string;
-    onChange: (e: ChangeEvent<HTMLSelectElement>, value?: string) => void;
+    onChange: (e: SelectChangeEvent, value?: string) => void;
     value: string;
 }
 
@@ -19,7 +21,7 @@ const SelectBox: React.SFC<SelectBoxProps> = ({
     ...other
 }) => {
     const [selectedValue, setSelectedValue] = useState(defaultValue);
-    const handleValueChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
+    const handleValueChange = useCallback((e: SelectChangeEvent) => {
         if (onChange) {
             onChange(e);
         }
@@ -32,7 +34,7 @@ const SelectBox: React.SFC<SelectBoxProps> = ({
             {label && <FormLabel>{label}</FormLabel>}
             <Select
                 value={selectedValue}
-                onChange={handleValueChange}
+                onChange={handleValueChange as any}
                 input={
                     <Input
                         {...other}

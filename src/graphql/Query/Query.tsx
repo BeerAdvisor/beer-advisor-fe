@@ -19,7 +19,7 @@ export default ({
     ...rest
 }: CustomizedQueryProps) => (
     <Query errorPolicy="all" {...rest}>
-        {result => {
+        {(result: any) => {
             if (result.loading) {
                 return (
                     <CircularProgressContainer>
