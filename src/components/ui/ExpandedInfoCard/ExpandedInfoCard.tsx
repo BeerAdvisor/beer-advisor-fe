@@ -79,7 +79,7 @@ export default ({
                     />
                 ), sortedItems)}
             </ListItemsContainer>
-            {expandedListItems.length !== maxItemsToShow && (
+            {expandedListItems.length > maxItemsToShow && (
                 <ButtonContainer>
                     <FloatingButton onClick={handleShowAll} size="small">
                             {isShowAll ? <KeyboardArrowUp /> : <KeyboardArrowDown />}

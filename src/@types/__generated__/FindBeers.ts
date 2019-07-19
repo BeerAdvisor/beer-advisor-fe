@@ -11,11 +11,12 @@ export interface FindBeers_findBeers_includedIn_beerList_bar {
   id: string;
   name: string;
   photos: string[] | null;
+  avgRating: number | null;
 }
 
 export interface FindBeers_findBeers_includedIn_beerList {
   __typename: "BeerList";
-  bar: FindBeers_findBeers_includedIn_beerList_bar | null;
+  bar: FindBeers_findBeers_includedIn_beerList_bar;
 }
 
 export interface FindBeers_findBeers_includedIn {

@@ -30,6 +30,7 @@ query FindBeers(
                 id
                 name
                 photos
+                avgRating
               }
             }
           }

@@ -64,6 +64,7 @@ export const GET_BEER_INFO = gql`
                     id
                     name
                     photos
+                    avgRating
                   }
                 }
               }

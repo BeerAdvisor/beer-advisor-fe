@@ -11,6 +11,7 @@ export interface beer_beer_includedIn_beerList_bar {
   id: string;
   name: string;
   photos: string[] | null;
+  avgRating: number | null;
 }
 
 export interface beer_beer_includedIn_beerList {

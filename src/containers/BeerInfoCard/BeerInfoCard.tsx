@@ -6,6 +6,7 @@ import { History } from 'history';
 import { BeerForm, FindBeers, FindBeers_findBeers } from '../../@types';
 import { ExpandableInfoList, ExpandedInfoCard, Link } from '../../components';
 import { BeerLink } from '../../components/ui/Link/Link';
+import isEmpty from 'ramda/es/isEmpty';
 
 export interface BeerRouteParams {
     beerId: string;
@@ -109,7 +110,7 @@ const mapBeerInfoCards = (
         history.push(`/form/beer/${beerId}`);
     };
 
-    return map(({ name, avgRating, strong, photo, type, id }: FindBeers_findBeers) => {
+    return map(({ name, avgRating, strong, photo, type, id, includedIn }: FindBeers_findBeers) => {
         const labelValues = [
             { label: 'Rating', value: avgRating },
             { label: 'Strong', value: strong },
@@ -122,6 +123,19 @@ const mapBeerInfoCards = (
         </>
         );
 
+        let expandedListItems;
+        if (includedIn && !isEmpty(includedIn)) {
+            expandedListItems = includedIn.map(({ beerList: { bar: { id: barId, name: barName, avgRating: barRating } }, price }) => ({
+                id: barId,
+                name: barName,
+                labelValues: {
+                    price,
+                    rating: barRating,
+                    distance: 'To be implemented',
+                },
+            }));
+        }
+
         return {
             name,
             labelValues,
@@ -132,7 +146,7 @@ const mapBeerInfoCards = (
                 <ExpandedInfoCard
                     key={id}
                     listName={listHeader}
-                    expandedListItems={bars}
+                    expandedListItems={expandedListItems}
                     sortings={beerSortings}
                 />
             ),
