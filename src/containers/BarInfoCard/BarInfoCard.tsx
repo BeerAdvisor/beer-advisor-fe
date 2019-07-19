@@ -5,7 +5,7 @@ import { History } from 'history';
 
 import { FindBars, FindBars_findBars } from '../../@types';
 import { ExpandableInfoList, ExpandedInfoCard } from '../../components';
-import { BarLink } from '../../components/ui/Link/Link';
+import { BarLink } from '../../components/ui/common/Link/Link';
 
 export interface BarRouteParams {
     barId: string;

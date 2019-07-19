@@ -15,10 +15,10 @@ import {
     beer_beer,
 } from '../../@types';
 import { GuaranteedQueryResult } from '../../@types/CustomGqlTypes';
-import { SortingLink } from '../../components/ui/AvailabilityCard/AvailabilityCard';
+import { SortingLink } from '../../components/ui/business/AvailabilityCard/AvailabilityCard';
 import { SuggestChange } from '../../forms/SuggestChange';
 import { VerticalFlexBoxWithMargin } from '../../commonStyles';
-import { CommentsBox } from '../../components/ui/CommentsBox/CommentsBox';
+import { CommentsBox } from '../../components/ui/business/CommentsBox/CommentsBox';
 import { LeaveRating } from '../LeaveRating';
 import { LeaveBeerComment } from '../LeaveBeerComment';
 import { DescriptionChildrenWrapper, DescriptionCardContainer } from '../common';
@@ -71,7 +71,6 @@ export const BeerDescriptionCard = ({
         cardValue: `${price}CZK`,
     }))
     : [];
-    debugger;
 
     return (
                 <DescriptionCardContainer>

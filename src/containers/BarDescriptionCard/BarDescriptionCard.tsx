@@ -9,10 +9,10 @@ import {
     AvailabilityCard,
     CommentCard,
 } from '../../components';
-import { SortingLink } from '../../components/ui/AvailabilityCard/AvailabilityCard';
+import { SortingLink } from '../../components/ui/business/AvailabilityCard/AvailabilityCard';
 import { SuggestChange } from '../../forms/SuggestChange';
 import { VerticalFlexBoxWithMargin } from '../../commonStyles';
-import { CommentsBox } from '../../components/ui/CommentsBox/CommentsBox';
+import { CommentsBox } from '../../components/ui/business/CommentsBox/CommentsBox';
 import { LeaveRating } from '../LeaveRating';
 import {
     DescriptionCardContainer,

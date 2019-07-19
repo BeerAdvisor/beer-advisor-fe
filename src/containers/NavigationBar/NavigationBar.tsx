@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { NavigationBar } from '../../components';
-import { Link } from '../../components/ui/Link';
+import { Link } from '../../components/ui/common/Link';
 
 const HOME_LINK = <Link key="home" to="/">Beer Advisor</Link>;
 const FAVOURITE_LINK = <Link key="favourite" to="/">Favourite</Link>;

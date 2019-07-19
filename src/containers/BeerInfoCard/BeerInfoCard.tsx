@@ -2,11 +2,11 @@ import React from 'react';
 import { map, memoizeWith, identity } from 'ramda';
 import { RouteComponentProps } from 'react-router';
 import { History } from 'history';
+import isEmpty from 'ramda/es/isEmpty';
 
 import { BeerForm, FindBeers, FindBeers_findBeers } from '../../@types';
 import { ExpandableInfoList, ExpandedInfoCard, Link } from '../../components';
-import { BeerLink } from '../../components/ui/Link/Link';
-import isEmpty from 'ramda/es/isEmpty';
+import { BeerLink } from '../../components/ui/common/Link/Link';
 
 export interface BeerRouteParams {
     beerId: string;
