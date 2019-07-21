@@ -32,7 +32,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate": "apollo client:codegen src/@types/__generated__ --target=typescript --endpoint=https://beer-advisor-development.herokuapp.com --outputFlat --addTypename",
+    "generate": "apollo client:codegen src/@types/__generated__ --target=typescript --outputFlat --addTypename",
+    "generate:remote": "yarn generate --endpoint=https://beer-advisor-development.herokuapp.com",
+    "generate:local": "yarn generate --endpoint=http://localhost:8080",
     "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
   "eslintConfig": {

@@ -100,8 +100,12 @@ export const resolvers: Resolvers = {
     },
 };
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const client = new ApolloClient({
-    uri: 'https://beer-advisor-development.herokuapp.com',
+    uri: isProd
+        ? 'https://beer-advisor-development.herokuapp.com'
+        : 'http://localhost:8080',
     credentials: 'include',
     clientState: {
         defaults,
