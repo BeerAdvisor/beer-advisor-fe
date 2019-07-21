@@ -4,12 +4,7 @@ import gql from 'graphql-tag';
 import { BarFormValues } from '../@types';
 
 export const typeDefs = gql`
-    extend type Query {
-        beerForm: BeerForm
-        isMainFormOpened: Boolean
-    }
-
-    extend type BeerForm {
+    input BeerFormInput {
         priceRange: [Int!]
         strongRange: [Int!]
         filter: String
@@ -17,11 +12,23 @@ export const typeDefs = gql`
         beerType: String
     }
 
-    extend type BarForm {
+    input BarFormInput {
         maxBeerPrice: [Int!]
         openHours: [Int!]
         filter: String
         barName: String
+    }
+
+    extend type Query {
+        beerForm: BeerFormInput
+        barForm: BarFormInput
+        isMainFormOpened: Boolean
+    }
+
+    extend type Mutation {
+        openForm(noArg: Boolean): Boolean
+        closeForm(noArg: Boolean): Boolean
+        searchBar(barForm: BarFormInput): Boolean
     }
 `;
 
@@ -56,14 +63,14 @@ const defaults: InitialState = {
         priceRange: [0, 100],
         strongRange: [0, 100],
         filter: 'Distance',
-        __typename: 'beerForm',
+        __typename: 'BeerFormInput',
     },
     barForm: {
         barName: '',
         maxBeerPrice: [0, 100],
         openHours: [0, 100],
         filter: 'Distance',
-        __typename: 'barForm',
+        __typename: 'BarFormInput',
     },
     isMainFormOpened: true,
 };

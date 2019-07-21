@@ -5,20 +5,20 @@
 import { Role } from "./globalTypes";
 
 // ====================================================
-// GraphQL query operation: User
+// GraphQL query operation: user
 // ====================================================
 
-export interface User_user_beerRatings_beer {
+export interface user_user_beerRatings_beer {
   __typename: "Beer";
   id: string;
 }
 
-export interface User_user_beerRatings {
+export interface user_user_beerRatings {
   __typename: "BeerRating";
-  beer: User_user_beerRatings_beer;
+  beer: user_user_beerRatings_beer;
 }
 
-export interface User_user {
+export interface user_user {
   __typename: "User";
   email: string;
   role: Role;
@@ -28,9 +28,9 @@ export interface User_user {
   surname: string | null;
   createdAt: any;
   updatedAt: any;
-  beerRatings: User_user_beerRatings[] | null;
+  beerRatings: user_user_beerRatings[] | null;
 }
 
-export interface User {
-  user: User_user;
+export interface user {
+  user: user_user;
 }

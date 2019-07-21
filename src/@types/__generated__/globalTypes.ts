@@ -16,6 +16,21 @@ export enum Sex {
   MALE = "MALE",
 }
 
+export interface BarFormInput {
+  maxBeerPrice?: number[] | null;
+  openHours?: number[] | null;
+  filter?: string | null;
+  barName?: string | null;
+}
+
+export interface BeerFormInput {
+  priceRange?: number[] | null;
+  strongRange?: number[] | null;
+  filter?: string | null;
+  beerName?: string | null;
+  beerType?: string | null;
+}
+
 export interface DistanceSearch {
   lat: string;
   long: string;
