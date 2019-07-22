@@ -105,7 +105,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const client = new ApolloClient({
     uri: isProd
         ? 'https://beer-advisor-development.herokuapp.com'
-        : 'http://localhost:8080',
+        : 'https://beer-advisor-development.herokuapp.com',
     credentials: 'include',
     clientState: {
         defaults,

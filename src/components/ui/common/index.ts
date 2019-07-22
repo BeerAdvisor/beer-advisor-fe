@@ -13,4 +13,4 @@ export * from './Switch';
 export * from './CarouselCard';
 export * from './Carousel';
 export * from './FloatingButton';
-export * from './TableRow';
+export * from '../business/ExpandedCardTableHead';

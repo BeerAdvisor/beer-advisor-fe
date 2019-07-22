@@ -1,14 +1,21 @@
 import React, { ReactNode, useState, useCallback } from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, TableHead, Table, TableBody } from '@material-ui/core';
 import { sortBy, compose, prop } from 'ramda';
 
 import { KeyboardArrowDown, KeyboardArrowUp } from '../../../Icons';
 import { ListItem } from '../../common/ListItem';
 import { FloatingButton } from '../../common/FloatingButton';
 import { mapIndexed, useMobileDevice } from '../../../../utils';
-import { TableRow } from '../../common';
+import { ExpandedCardTableHead } from '../ExpandedCardTableHead';
+import { UnitedLavelValue } from '../../../../@types';
+import ExpandedCardTableRow from '../ExpandedCardTableCell/ExpandedCardTableRow';
 
-import { ExpandedInfoCardWrapper, ListItemsContainer, ButtonContainer, ExpandedToggleButtonGroup } from './style';
+import {
+    ExpandedInfoCardWrapper,
+    ListItemsContainer,
+    ButtonContainer,
+    ExpandedToggleButtonGroup,
+} from './style';
 
 export interface ExpandedInfoCardProps {
     listName: ReactNode;
@@ -21,17 +28,6 @@ export interface ExpandedListItem {
     name: string;
     id: number | string;
     labelValues: UnitedLavelValue;
-}
-
-export type UnitedLavelValue = BeerLabelValue | BarLabelValue; 
-
-export interface BeerLabelValue {
-    rating?: number | null;
-    price?: number;
-}
-
-export interface BarLabelValue extends BeerLabelValue {
-    distance?: string;
 }
 
 export default ({
@@ -48,24 +44,49 @@ export default ({
 
     const isMobile = useMobileDevice();
     const [isShowAll, setShowAll] = useState(false);
-    const [sortedItems, setSortedItems] = useState(sortByLabel('price')(expandedListItems));
+    const [sortedItems, setSortedItems] = useState(
+        sortByLabel('price')(expandedListItems)
+    );
+    const [activeSorting, setActiveSorting] = useState('price');
 
     const handleShowAll = useCallback(() => setShowAll(c => !c), []);
 
-    const handleSortChange = useCallback((value: string) => {
-        if (value === 'rating' || value === 'price' ) {
+    const handleSortChange = useCallback((value: string) => () => {
+        if (value === 'rating' || value === 'price') {
             setSortedItems(sortByLabel(value)(expandedListItems));
         }
     }, []);
 
-    const filterProps = { values: sortings};
+    const handleNameSearch = (searchValue: string) => {
 
-    const rows = [{ label: 'Zhopa', id: '1', isActive: true }, { label: 'Zhopa2', id: '2' } ];
+    };
+
+    const tableHeading = sortings.map((sorting, id) => ({
+        id,
+        label: sorting,
+        onClick: handleSortChange(sorting),
+        isActive: sorting === activeSorting,
+    }));
 
     return (
         <ExpandedInfoCardWrapper {...other}>
-            {/* <TableRow rows={rows} /> */}
             {!isMobile && <Typography variant="subtitle1">{listName}</Typography>}
+            <Table>
+                <TableHead>
+                    <ExpandedCardTableHead onValueSearch={handleNameSearch} cells={tableHeading} />
+                </TableHead>
+                <TableBody>
+                {mapIndexed(({ name, labelValues, id }, index) => ((index < maxItemsToShow) || isShowAll) && (
+                    <ExpandedCardTableRow
+                        key={id}
+                        name={name}
+                        id={id}
+                        values={labelValues}
+                    />
+                ), sortedItems)}
+                </TableBody>
+            </Table>
+            {/* 
             <ExpandedToggleButtonGroup
                 isSmall
                 name="infoFilters"
@@ -89,17 +110,18 @@ export default ({
                             {isShowAll ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
                     </FloatingButton>
                 </ButtonContainer>
-            )}        
+            )}         */}
         </ExpandedInfoCardWrapper>
     );
 };
 
-const sortByLabel =  (filter: keyof UnitedLavelValue) => sortBy(
+const sortByLabel = (filter: keyof UnitedLavelValue) =>
+    sortBy(
         compose<ExpandedListItem, any, string>(
             prop(filter),
             prop('labelValues')
-    )
-);
+        )
+    );
 
 const dummyOnClick = () => {
     console.log('Bar clicked');
