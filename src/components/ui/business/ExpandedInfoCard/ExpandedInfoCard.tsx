@@ -4,7 +4,7 @@ import { sortBy, compose, prop, reduce } from 'ramda';
 
 import { KeyboardArrowDown, KeyboardArrowUp } from '../../../Icons';
 import { FloatingButton } from '../../common/FloatingButton';
-import { useMobileDevice } from '../../../../utils';
+import { useMobileDevice, normalizeString } from '../../../../utils';
 import { UnitedLavelValue, BarLabelValue } from '../../../../@types';
 import { DownwardsMarginBox } from '../../../../commonStyles';
 import { SearchResultTable } from '../SearchResultTable';
@@ -46,6 +46,9 @@ export default ({
     const [sortedItems, setSortedItems] = useState(
         sortByLabel('price')(expandedListItems)
     );
+    const [filteredItems, setFilteredItems] = useState(
+        sortByLabel('price')(expandedListItems)
+    );
     const [activeSorting, setActiveSorting] = useState('price');
 
     const handleShowAll = useCallback(() => setShowAll(c => !c), []);
@@ -60,7 +63,10 @@ export default ({
         []
     );
 
-    const handleNameSearch = (searchValue: string) => {};
+    const handleNameSearch = (searchValue: string) => {
+        const normalizedSearchValue = normalizeString(searchValue);
+        setFilteredItems(sortedItems.filter(c => c.name.includes(normalizedSearchValue)));
+    };
 
     const tableHeading = sortings.map((sorting, id) => ({
         id,
@@ -89,7 +95,7 @@ export default ({
             return acc;
         },
         [],
-        sortedItems
+        filteredItems
     );
 
     index = 0;
