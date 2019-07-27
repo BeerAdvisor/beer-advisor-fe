@@ -1,38 +1,29 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { TableRow as MuiTableRow } from '@material-ui/core';
+import { map } from 'ramda';
 
 import { ValueTableCell } from '../../common/TableCell';
-import { UnitedLavelValue, isBarLabelValue } from '../../../../@types';
 
 export interface TableRowProps {
-    values: UnitedLavelValue;
-    id: string;
+    values: TableRowValues[];
+    id: string | number;
     name: string;
+    link: ReactNode;
 }
-const ExpandedCardTableRow = ({ values, id, name, ...other }: TableRowProps) => {
-    const { rating, price } = values;
-
-    let distance;
-    if (isBarLabelValue(values)) {
-        ({ distance } = values );
-    }
-
-    return (
+export interface TableRowValues {
+    [key: string]: string;
+}
+const ExpandedCardTableRow = ({ values, id, name, link, ...other }: TableRowProps) => (
         <MuiTableRow {...other}>
             <ValueTableCell key={`${id}${name}`} align={'left'}>
-                {name}
+                {link}
             </ValueTableCell>
-            <ValueTableCell key={`${id}${rating}`} align={'left'}>
-                {rating}
-            </ValueTableCell>
-            <ValueTableCell key={`${id}${price}`} align={'left'}>
-                {price}
-            </ValueTableCell>
-            {distance && <ValueTableCell key={`${id}${distance}`} align={'left'}>
-                {distance}
-            </ValueTableCell>}
+            {map(value => (
+                <ValueTableCell key={`${id}${value}`} align={'left'}>
+                    {value}
+                </ValueTableCell>
+            ), values)}
         </MuiTableRow>
     );
-};
 
 export default ExpandedCardTableRow;

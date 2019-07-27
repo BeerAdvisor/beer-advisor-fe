@@ -5,6 +5,9 @@ interface TableSortLabelProps {
     onClick?: () => void;
 }
 const TableSortLabel = styled.span<TableSortLabelProps>`
+    display: flex;
+    justify-content: space-between;
+
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;

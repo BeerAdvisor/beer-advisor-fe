@@ -13,7 +13,7 @@ const DEFAULT_TABLE_CELL_CSS = css`
     margin: 0 2rem;
     font-size: 0.78rem;
     line-height: 1rem;
-    box-sizing: border-box;
+    text-transform: capitalize;
     color: ${props => props.theme.palette.dark};
 `;
 
@@ -22,12 +22,13 @@ const TableCell = styled(({ isActive, ...other }: TableCellProps) => (
 ))`
     ${DEFAULT_TABLE_CELL_CSS}
     ${props => props.isActive && `
-        border-bottom: 1px solid ${props.theme.palette.primary.light};
+        box-shadow: 0px 2px 0px ${props.theme.palette.primary.light};
     `}
 `;
 
 export const ValueTableCell = styled(MuiTableCell)`
     ${DEFAULT_TABLE_CELL_CSS}
+    padding: 1rem 2rem;
     font-size: 1rem;
     line-height: 1.22rem;
 `;

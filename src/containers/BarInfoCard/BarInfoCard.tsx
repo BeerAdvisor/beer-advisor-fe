@@ -5,7 +5,7 @@ import { History } from 'history';
 
 import { FindBars, FindBars_findBars } from '../../@types';
 import { ExpandableInfoList, ExpandedInfoCard } from '../../components';
-import { BarLink } from '../../components/ui/common/Link/Link';
+import { BarLink, BeerLinkBold } from '../../components/ui/common/Link/Link';
 
 export interface BarRouteParams {
     barId: string;
@@ -70,6 +70,7 @@ const mapBarInfoCards = (
             expandedListItems = items.map(({ beer: { name: beerName, id: beerId, avgRating: beerRating }, price }) => ({
                 name: beerName,
                 id: beerId,
+                link: <BeerLinkBold to={`/form/beer/${beerId}`}>{beerName}</BeerLinkBold>,
                 labelValues: {
                     price,
                     rating: beerRating,

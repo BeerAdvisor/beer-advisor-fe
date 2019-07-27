@@ -6,7 +6,7 @@ import isEmpty from 'ramda/es/isEmpty';
 
 import { BeerForm, FindBeers, FindBeers_findBeers } from '../../@types';
 import { ExpandableInfoList, ExpandedInfoCard, Link } from '../../components';
-import { BeerLink } from '../../components/ui/common/Link/Link';
+import { BeerLink, BarLinkBold } from '../../components/ui/common/Link/Link';
 
 export interface BeerRouteParams {
     beerId: string;
@@ -43,63 +43,6 @@ export const BeerInfoCard = ({
     );
 };
 
-const bars = [
-    {
-        name: 'Kozlovna',
-        id: 1,
-        labelValues: {
-            rating: 4,
-            price: 2000,
-            distance: '1000 M',
-        },
-    },
-    {
-        name: 'Mala ryba',
-        id: 2,
-        labelValues: {
-            rating: 3.5,
-            price: 2000,
-            distance: '12 M',
-        },
-    },
-    {
-        name: 'Mila tchyne',
-        id: 3,
-        labelValues: {
-            rating: 4.2,
-            price: 2000,
-            distance: '300 M',
-        },
-    },
-    {
-        name: 'Atmoska',
-        id: 4,
-        labelValues: {
-            rating: 4.3,
-            price: 1010,
-            distance: '300 M',
-        },
-    },
-    {
-        name: 'The Pub',
-        id: 5,
-        labelValues: {
-            rating: 5,
-            price: 100,
-            distance: '300 M',
-        },
-    },
-    {
-        name: 'U Novaku',
-        id: 6,
-        labelValues: {
-            rating: 5,
-            price: 10,
-            distance: '100 M',
-        },
-    },
-];
-
 const beerSortings = ['price', 'rating', 'distance'];
 
 const mapBeerInfoCards = (
@@ -128,6 +71,7 @@ const mapBeerInfoCards = (
             expandedListItems = includedIn.map(({ beerList: { bar: { id: barId, name: barName, avgRating: barRating } }, price }) => ({
                 id: barId,
                 name: barName,
+                link: <BarLinkBold to={`/form/bar/${barId}`}>{barName}</BarLinkBold>,
                 labelValues: {
                     price,
                     rating: barRating,

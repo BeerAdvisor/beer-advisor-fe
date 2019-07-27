@@ -18,6 +18,10 @@ export const VerticalFlexBoxWithMargin = styled(VerticalFlexBox)`
     }
 `;
 
+export const DownwardsMarginBox = styled.div`
+    margin-bottom: 1rem;
+`;
+
 export const Card = css`
     background-color: ${props => props.theme.palette.light};
     border-radius: ${props => props.theme.borderRadius};

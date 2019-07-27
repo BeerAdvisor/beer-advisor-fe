@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { map , addIndex } from 'ramda';
+import { map , reduce, addIndex } from 'ramda';
 
 import { SMALL_BP_UP } from '../theme';
 import styled from '../styled-components';
@@ -39,3 +39,4 @@ export const mapLabelValues = map<LabelValue, any>(
 );
 
 export const mapIndexed = addIndex<any>(map);
+export const reduceIndexed = addIndex(reduce);

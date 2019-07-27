@@ -4,6 +4,7 @@ import { TableRow as MuiTableRow } from '@material-ui/core';
 import { TableCell } from '../../common/TableCell';
 import { TableSortLabel } from '../../common/TableSortLabel';
 import { SearchInput } from '../../common/SearchInput';
+import { CompareArrows } from '../../../Icons/CompareArrows';
 
 export interface Cell {
     id: string | number;
@@ -17,10 +18,10 @@ export interface TableRowProps {
 }
 const ExpandedCardTableHead = ({ cells, onValueSearch, ...other }: TableRowProps) => {
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => onValueSearch(e.target.value);
-    const cellWidth = 100 / cells.length + 1;
+    const cellWidth = 100 / (cells.length + 1);
 
     return (
-        <MuiTableRow {...other}>
+        <MuiTableRow style={{ marginBottom: '1rem' }} {...other}>
             <TableCell align="left" style={{ width: `${cellWidth}%` }}>
                 <SearchInput onChange={handleOnChange} />
             </TableCell>
@@ -36,6 +37,7 @@ const ExpandedCardTableHead = ({ cells, onValueSearch, ...other }: TableRowProps
                     {label && (
                         <TableSortLabel isActive={isActive} onClick={onClick}>
                             {label}
+                            <CompareArrows />
                         </TableSortLabel>
                     )}
                 </TableCell>
