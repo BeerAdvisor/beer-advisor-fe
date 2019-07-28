@@ -29,6 +29,15 @@ query beerFormStatus {
   }
 `;
 
+export const GET_USER_CORDINATES = gql`
+query getUserCordinates {
+    userCoordinates @client {
+        lat
+        lon
+    }
+  }
+`;
+
 export const GET_USER = gql`
 query user {
     user @client {

@@ -2,6 +2,7 @@ import ApolloClient, { Resolvers } from 'apollo-boost';
 import gql from 'graphql-tag';
 
 import { BarFormValues } from '../@types';
+import { getUserCordinates_userCoordinates } from '../@types/__generated__/getUserCordinates';
 
 export const typeDefs = gql`
     input BeerFormInput {
@@ -19,10 +20,16 @@ export const typeDefs = gql`
         barName: String
     }
 
+    type UserCoordinates {
+        lat: Int
+        lon: Int
+    }
+
     extend type Query {
-        beerForm: BeerFormInput
-        barForm: BarFormInput
-        isMainFormOpened: Boolean
+        beerForm: BeerFormInput!
+        barForm: BarFormInput!
+        isMainFormOpened: Boolean!
+        userCoordinates: UserCoordinates!
     }
 
     extend type Mutation {
@@ -49,6 +56,7 @@ interface InitialState {
     beerForm: BeerForm;
     barForm: BarForm;
     isMainFormOpened: boolean;
+    userCoordinates?: getUserCordinates_userCoordinates;
 }
 
 export interface Client {
@@ -73,6 +81,11 @@ const defaults: InitialState = {
         __typename: 'BarFormInput',
     },
     isMainFormOpened: true,
+    userCoordinates: {
+        lat: null,
+        lon: null,         
+        __typename: 'UserCoordinates',
+    },
 };
 
 export const resolvers: Resolvers = {

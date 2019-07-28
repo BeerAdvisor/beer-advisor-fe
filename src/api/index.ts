@@ -1,3 +1,3 @@
-export { default } from './client';
+export { default as client } from './client';
 export * from './client';
 export * from './errors';

@@ -9,7 +9,7 @@ import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-component
 import { ApolloProvider } from 'react-apollo';
 
 import theme from './theme';
-import client from './api';
+import { client } from './api';
 import { ErrorBoundary, NavigationBar } from './containers';
 import GlobalStyle from './theme/globalStyle';
 import { WithFormPage } from './pages';

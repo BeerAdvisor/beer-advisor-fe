@@ -24,7 +24,7 @@ export default memo(({
     ...other
 }: ExpandableInfoListProps) => {
     const [expandedIndex, setExpandedIndex] = useState(-1);
-
+    
     const handleExpandedIndex = useCallback((index) => () => setExpandedIndex(i => i === index ? -1 : index), []);
 
     const expandableCards = isEmpty(expandableInfoCards) 

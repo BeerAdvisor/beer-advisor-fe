@@ -7,6 +7,7 @@ import isEmpty from 'ramda/es/isEmpty';
 import { BeerForm, FindBeers, FindBeers_findBeers } from '../../@types';
 import { ExpandableInfoList, ExpandedInfoCard, Link } from '../../components';
 import { BeerLink, BarLinkBold } from '../../components/ui/common/Link/Link';
+import { calculateDistance } from '../../utils';
 
 export interface BeerRouteParams {
     beerId: string;
@@ -65,6 +66,8 @@ const mapBeerInfoCards = (
             <BeerLink to={`/form/beer/${id}`}>{name}</BeerLink>
         </>
         );
+        let distance: string | number = calculateDistance();
+        distance = distance < 1000 ? `${distance}M` : `${distance / 1000}Km`;
 
         let expandedListItems;
         if (includedIn && !isEmpty(includedIn)) {
@@ -75,7 +78,7 @@ const mapBeerInfoCards = (
                 labelValues: {
                     price,
                     rating: barRating,
-                    distance: 'To be implemented',
+                    distance,
                 },
             }));
         }
