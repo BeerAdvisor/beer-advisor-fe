@@ -50,9 +50,14 @@ const mapBarInfoCards = (
     };
 
     return map(({ name, id, address, photos, avgRating, openTime, closeTime, beerList }: FindBars_findBars) => {
+
         const labelValues = [
             { label: 'Address', value: address },
-            { label: 'Open hours', value: `${openTime} - ${closeTime}` },
+            { label: 'Open hours', 
+              value: (openTime && closeTime)
+                ? `${new Date(openTime).getHours()}:00 - ${new Date(closeTime).getHours()}:00`
+                : 'Not known',
+            },
             { label: 'Kitchen', value: 'To be added' },
         ];
 
