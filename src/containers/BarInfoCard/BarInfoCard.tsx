@@ -23,7 +23,6 @@ export const BarInfoCard = ({
     if (!searchResult.findBars) {
         return null;
     }
-
     const expandableInfoCards = mapBarInfoCards(
         history,
         searchResult.findBars

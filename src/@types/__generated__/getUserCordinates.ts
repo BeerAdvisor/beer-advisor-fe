@@ -9,7 +9,7 @@
 export interface getUserCordinates_userCoordinates {
   __typename: "UserCoordinates";
   lat: number | null;
-  lon: number | null;
+  long: number | null;
 }
 
 export interface getUserCordinates {

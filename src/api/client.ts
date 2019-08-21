@@ -22,7 +22,7 @@ export const typeDefs = gql`
 
     type UserCoordinates {
         lat: Int
-        lon: Int
+        long: Int
     }
 
     extend type Query {
@@ -83,7 +83,7 @@ const defaults: InitialState = {
     isMainFormOpened: true,
     userCoordinates: {
         lat: null,
-        lon: null,         
+        long: null,         
         __typename: 'UserCoordinates',
     },
 };
@@ -118,7 +118,8 @@ const isProd = process.env.NODE_ENV === 'production';
 const client = new ApolloClient({
     uri: isProd
         ? 'https://beer-advisor-development.herokuapp.com'
-        : 'https://beer-advisor-development.herokuapp.com',
+        : 'http://localhost:8080/',
+        // : 'https://beer-advisor-development.herokuapp.com'
     credentials: 'include',
     clientState: {
         defaults,

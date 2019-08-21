@@ -20,6 +20,10 @@ query barForm {
         filter
         barName
       }
+      userCoordinates @client {
+        lat
+        long
+    }
   }
 `;
 
@@ -33,7 +37,7 @@ export const GET_USER_CORDINATES = gql`
 query getUserCordinates {
     userCoordinates @client {
         lat
-        lon
+        long
     }
   }
 `;

@@ -61,7 +61,7 @@ export const normalizeString = compose(
 
 export interface Geolocation {
     lat: number;
-    lon: number;
+    long: number;
 }
 
 interface Units {
@@ -87,9 +87,9 @@ interface CalculateDistanceArgs {
 export const calculateDistance = ({
     unit = 'meter',
     // Prague Krymska
-    destination: { lat: destinationLat, lon: destinationLon } = {
+    destination: { lat: destinationLat, long: destinationLon } = {
         lat: 50.07157,
-        lon: 14.44718,
+        long: 14.44718,
     },
 }: CalculateDistanceArgs = {}) => {
     const result = client.readQuery<getUserCordinates>({
@@ -97,7 +97,7 @@ export const calculateDistance = ({
     });
     if (result) {
         const {
-            userCoordinates: { lat: originLat, lon: originLon },
+            userCoordinates: { lat: originLat, long: originLon },
         } = result;
         if (originLat && originLon) {
             const R = unit in UNITS ? UNITS[unit] : UNITS.km;
@@ -126,7 +126,7 @@ const geolocationCallback = (position: Position) => {
         data: {
             userCoordinates: {
                 lat: position.coords.latitude,
-                lon: position.coords.longitude,
+                long: position.coords.longitude,
                 __typename: 'UserCoordinates',
             },
         },

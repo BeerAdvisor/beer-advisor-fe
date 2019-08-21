@@ -3,8 +3,9 @@ import gql from 'graphql-tag';
 import { RouteComponentProps } from 'react-router';
 
 import { Query, GET_BAR_FORM_DATA } from '../../graphql';
+import { getCurrentUserPosition } from '../../utils';
 
-import BarInfoCard, { BarRouteParams, BarInfoProps } from './BarInfoCard';
+import BarInfoCard, { BarRouteParams } from './BarInfoCard';
 
 const FIND_BARS = gql`
     query FindBars(
@@ -44,8 +45,8 @@ const FIND_BARS = gql`
 
 const BarInfoCardContainer = (props: RouteComponentProps<BarRouteParams>) => (
     <Query query={GET_BAR_FORM_DATA}>
-        {({ data: { barForm: { barName } } }) => (
-            <Query query={FIND_BARS} variables={{ name: barName }}>
+        {({ data: { barForm: { barName }, userCoordinates: { __typename, ...other } } }) => (
+            <Query query={FIND_BARS} variables={{ name: barName, distance: { ...other } }}>
                 {({ data }) => <BarInfoCard {...props} searchResult={data} />}
             </Query>
         )}
